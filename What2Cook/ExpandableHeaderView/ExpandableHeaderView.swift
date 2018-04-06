@@ -41,12 +41,4 @@ class ExpandableHeaderView: UITableViewHeaderFooterView {
     self.textLabel?.textColor = UIColor.white
     self.contentView.backgroundColor = UIColor.darkGray
   }
-    /*
-    // Only override draw() if you perform custom drawing.
-    // An empty implementation adversely affects performance during animation.
-    override func draw(_ rect: CGRect) {
-        // Drawing code
-    }
-    */
-
 }

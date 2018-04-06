@@ -32,6 +32,7 @@ class FridgeViewController: UIViewController, UITableViewDelegate, UITableViewDa
     super.viewDidLoad()
     
     // Do any additional setup after loading the view.
+    self.tableView.allowsMultipleSelection = true
   }
   
   override func didReceiveMemoryWarning() {
@@ -70,17 +71,22 @@ class FridgeViewController: UIViewController, UITableViewDelegate, UITableViewDa
   }
   
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-    let cell = tableView.dequeueReusableCell(withIdentifier: "CategoryCell")!
+    let cell = tableView.dequeueReusableCell(withIdentifier: "IngredientCell")!
     cell.textLabel?.text = sections[indexPath.section].ingredients[indexPath.row]
     return cell
   }
   
   func toggleSection(header: ExpandableHeaderView, section: Int) {
     sections[section].expanded = !sections[section].expanded
+    // Animate so that ingredients appear and disappear
     tableView.beginUpdates()
     for i in 0 ..< sections[section].ingredients.count {
       tableView.reloadRows(at: [IndexPath(row: i, section: section)], with: .automatic)
     }
     tableView.endUpdates()
+  }
+  
+  func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    print("Selected: " + sections[indexPath.section].ingredients[indexPath.row])
   }
 }
