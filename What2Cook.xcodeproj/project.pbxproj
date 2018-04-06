@@ -25,6 +25,10 @@
 		20A4C3242073181F00F5A961 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20A4C3232073181F00F5A961 /* LoginViewController.swift */; };
 		20A511B82077146700FDF6BB /* FridgeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20A511B72077146700FDF6BB /* FridgeViewController.swift */; };
 		20A511BA20771EA200FDF6BB /* FriendsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20A511B920771EA200FDF6BB /* FriendsViewController.swift */; };
+		20A511BC2077205900FDF6BB /* IngredientCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20A511BB2077205900FDF6BB /* IngredientCell.swift */; };
+		20A511BE2077206A00FDF6BB /* CategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20A511BD2077206A00FDF6BB /* CategoryCell.swift */; };
+		20A511C12077408C00FDF6BB /* Section.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20A511C02077408C00FDF6BB /* Section.swift */; };
+		20A511C3207743E600FDF6BB /* ExpandableHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20A511C2207743E600FDF6BB /* ExpandableHeaderView.swift */; };
 		A55A3014CEB6E1189CD9706B /* Pods_What2CookTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D734C8EDDCCED6A3CF0A132 /* Pods_What2CookTests.framework */; };
 		D0C084F876509BC01C82048C /* Pods_What2Cook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4733198CBC5DDF83D9CAADBB /* Pods_What2Cook.framework */; };
 /* End PBXBuildFile section */
@@ -71,6 +75,10 @@
 		20A4C3232073181F00F5A961 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		20A511B72077146700FDF6BB /* FridgeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FridgeViewController.swift; sourceTree = "<group>"; };
 		20A511B920771EA200FDF6BB /* FriendsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsViewController.swift; sourceTree = "<group>"; };
+		20A511BB2077205900FDF6BB /* IngredientCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientCell.swift; sourceTree = "<group>"; };
+		20A511BD2077206A00FDF6BB /* CategoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCell.swift; sourceTree = "<group>"; };
+		20A511C02077408C00FDF6BB /* Section.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Section.swift; sourceTree = "<group>"; };
+		20A511C2207743E600FDF6BB /* ExpandableHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpandableHeaderView.swift; sourceTree = "<group>"; };
 		22BD4EB1FCD557746C9B418A /* Pods-What2CookTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-What2CookTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-What2CookTests/Pods-What2CookTests.debug.xcconfig"; sourceTree = "<group>"; };
 		3D734C8EDDCCED6A3CF0A132 /* Pods_What2CookTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_What2CookTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4733198CBC5DDF83D9CAADBB /* Pods_What2Cook.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_What2Cook.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -134,6 +142,7 @@
 		201BA62B2071354F00455146 /* What2Cook */ = {
 			isa = PBXGroup;
 			children = (
+				20A511BF2077406300FDF6BB /* ExpandableHeaderView */,
 				20A4C31A2071395500F5A961 /* Models */,
 				20A4C3192071394E00F5A961 /* API */,
 				20A4C315207138F000F5A961 /* Views */,
@@ -183,6 +192,8 @@
 			isa = PBXGroup;
 			children = (
 				20A4C31F20721E1A00F5A961 /* RecipeCell.swift */,
+				20A511BB2077205900FDF6BB /* IngredientCell.swift */,
+				20A511BD2077206A00FDF6BB /* CategoryCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -202,6 +213,15 @@
 				20A4C321207317BC00F5A961 /* User.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		20A511BF2077406300FDF6BB /* ExpandableHeaderView */ = {
+			isa = PBXGroup;
+			children = (
+				20A511C02077408C00FDF6BB /* Section.swift */,
+				20A511C2207743E600FDF6BB /* ExpandableHeaderView.swift */,
+			);
+			path = ExpandableHeaderView;
 			sourceTree = "<group>";
 		};
 		24E3873DC34FA6324A1B217C /* Frameworks */ = {
@@ -524,16 +544,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				20A511C12077408C00FDF6BB /* Section.swift in Sources */,
 				20A4C31E2072181300F5A961 /* SWRevealViewController.swift in Sources */,
 				20A4C3182071393600F5A961 /* PinterestAPIManager.swift in Sources */,
 				20A4C3132071384E00F5A961 /* RecipeViewController.swift in Sources */,
+				20A511BE2077206A00FDF6BB /* CategoryCell.swift in Sources */,
 				20A4C32020721E1A00F5A961 /* RecipeCell.swift in Sources */,
 				20A511BA20771EA200FDF6BB /* FriendsViewController.swift in Sources */,
+				20A511BC2077205900FDF6BB /* IngredientCell.swift in Sources */,
 				20A511B82077146700FDF6BB /* FridgeViewController.swift in Sources */,
 				201BA62D2071354F00455146 /* AppDelegate.swift in Sources */,
 				20A4C322207317BC00F5A961 /* User.swift in Sources */,
 				20A4C31C2072005400F5A961 /* Recipe.swift in Sources */,
 				20A4C3112071382100F5A961 /* SidebarViewController.swift in Sources */,
+				20A511C3207743E600FDF6BB /* ExpandableHeaderView.swift in Sources */,
 				20A4C3242073181F00F5A961 /* LoginViewController.swift in Sources */,
 				20A4C30F207137FC00F5A961 /* HomeViewController.swift in Sources */,
 			);
