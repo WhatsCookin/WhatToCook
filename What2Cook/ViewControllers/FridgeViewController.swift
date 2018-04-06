@@ -8,28 +8,79 @@
 
 import UIKit
 
-class FridgeViewController: UIViewController {
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
+class FridgeViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, ExpandableHeaderViewDelegate {
+  
+  @IBOutlet weak var tableView: UITableView!
+  
+  // TODO: Replace placeholder data
+  var sections = [
+    Section(category: "Fruits",
+            ingredients: ["Apple", "Peach", "Tomato"],
+            expanded: false),
+    Section(category: "Vegetables",
+            ingredients: ["Cabbage", "Carrot"],
+            expanded: false),
+    Section(category: "Meat",
+            ingredients: ["Chicken", "Beef"],
+            expanded: false),
+    Section(category: "Spices",
+            ingredients: [],
+            expanded: false)
+  ]
+  
+  override func viewDidLoad() {
+    super.viewDidLoad()
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    // Do any additional setup after loading the view.
+  }
+  
+  override func didReceiveMemoryWarning() {
+    super.didReceiveMemoryWarning()
+    // Dispose of any resources that can be recreated.
+  }
+  
+  func numberOfSections(in tableView: UITableView) -> Int {
+    return sections.count
+  }
+  
+  func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    return sections[section].ingredients.count
+  }
+  
+  func tableView(_ tableView: UITableView, estimatedHeightForHeaderInSection section: Int) -> CGFloat {
+    return 44
+  }
+  
+  func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+    if (sections[indexPath.section].expanded) {
+      return 44 }
+    else {
+      return 0
     }
-    */
-
+  }
+  
+  func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+    return 2
+  }
+  
+  func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+    let header = ExpandableHeaderView()
+    header.customInit(title: sections[section].category, section: section, delegate: self)
+      return header
+  }
+  
+  func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    let cell = tableView.dequeueReusableCell(withIdentifier: "CategoryCell")!
+    cell.textLabel?.text = sections[indexPath.section].ingredients[indexPath.row]
+    return cell
+  }
+  
+  func toggleSection(header: ExpandableHeaderView, section: Int) {
+    sections[section].expanded = !sections[section].expanded
+    tableView.beginUpdates()
+    for i in 0 ..< sections[section].ingredients.count {
+      tableView.reloadRows(at: [IndexPath(row: i, section: section)], with: .automatic)
+    }
+    tableView.endUpdates()
+  }
 }
