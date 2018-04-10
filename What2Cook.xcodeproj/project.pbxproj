@@ -14,6 +14,8 @@
 		201BA6372071354F00455146 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 201BA6352071354F00455146 /* LaunchScreen.storyboard */; };
 		201BA6422071354F00455146 /* What2CookTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 201BA6412071354F00455146 /* What2CookTests.swift */; };
 		201BA64D2071354F00455146 /* What2CookUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 201BA64C2071354F00455146 /* What2CookUITests.swift */; };
+		2056CBB4207C3B2700F9A63D /* Food2ForkAPIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2056CBB3207C3B2700F9A63D /* Food2ForkAPIManager.swift */; };
+		2056CBB6207CA27600F9A63D /* RecipeSuggestionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2056CBB5207CA27600F9A63D /* RecipeSuggestionCell.swift */; };
 		20A4C30F207137FC00F5A961 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20A4C30E207137FC00F5A961 /* HomeViewController.swift */; };
 		20A4C3112071382100F5A961 /* SidebarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20A4C3102071382100F5A961 /* SidebarViewController.swift */; };
 		20A4C3132071384E00F5A961 /* RecipeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20A4C3122071384E00F5A961 /* RecipeViewController.swift */; };
@@ -64,6 +66,8 @@
 		201BA6482071354F00455146 /* What2CookUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = What2CookUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		201BA64C2071354F00455146 /* What2CookUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = What2CookUITests.swift; sourceTree = "<group>"; };
 		201BA64E2071354F00455146 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2056CBB3207C3B2700F9A63D /* Food2ForkAPIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Food2ForkAPIManager.swift; sourceTree = "<group>"; };
+		2056CBB5207CA27600F9A63D /* RecipeSuggestionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeSuggestionCell.swift; sourceTree = "<group>"; };
 		20A4C30E207137FC00F5A961 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		20A4C3102071382100F5A961 /* SidebarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SidebarViewController.swift; sourceTree = "<group>"; };
 		20A4C3122071384E00F5A961 /* RecipeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeViewController.swift; sourceTree = "<group>"; };
@@ -194,6 +198,7 @@
 				20A4C31F20721E1A00F5A961 /* RecipeCell.swift */,
 				20A511BB2077205900FDF6BB /* IngredientCell.swift */,
 				20A511BD2077206A00FDF6BB /* CategoryCell.swift */,
+				2056CBB5207CA27600F9A63D /* RecipeSuggestionCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -202,6 +207,7 @@
 			isa = PBXGroup;
 			children = (
 				20A4C3172071393600F5A961 /* PinterestAPIManager.swift */,
+				2056CBB3207C3B2700F9A63D /* Food2ForkAPIManager.swift */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -507,12 +513,14 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-What2Cook/Pods-What2Cook-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/Bolts/Bolts.framework",
 				"${BUILT_PRODUCTS_DIR}/Parse/Parse.framework",
 				"${BUILT_PRODUCTS_DIR}/SWRevealViewController/SWRevealViewController.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Bolts.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Parse.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SWRevealViewController.framework",
@@ -556,6 +564,8 @@
 				201BA62D2071354F00455146 /* AppDelegate.swift in Sources */,
 				20A4C322207317BC00F5A961 /* User.swift in Sources */,
 				20A4C31C2072005400F5A961 /* Recipe.swift in Sources */,
+				2056CBB4207C3B2700F9A63D /* Food2ForkAPIManager.swift in Sources */,
+				2056CBB6207CA27600F9A63D /* RecipeSuggestionCell.swift in Sources */,
 				20A4C3112071382100F5A961 /* SidebarViewController.swift in Sources */,
 				20A511C3207743E600FDF6BB /* ExpandableHeaderView.swift in Sources */,
 				20A4C3242073181F00F5A961 /* LoginViewController.swift in Sources */,

@@ -10,7 +10,30 @@ import UIKit
 
 class FridgeViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, ExpandableHeaderViewDelegate {
   
+  var recipes: [Recipe] = []
+  
   @IBOutlet weak var tableView: UITableView!
+  @IBAction func onSearch(_ sender: Any) {
+    print("pressed")
+    Food2ForkAPIManager().searchRecipes("chicken") { (recipes, error) in
+      if let recipes = recipes {
+        self.recipes = recipes
+        //self.tableView.reloadData()
+      } else if let error = error {
+        print("Error getting recipes: " + error.localizedDescription)
+      }
+    }
+    
+    /*
+     APIManager.shared.getHomeTimeLine { (tweets, error) in
+     if let tweets = tweets {
+     self.tweets = tweets
+     self.tableView.reloadData()
+     } else if let error = error {
+     print("Error getting home timeline: " + error.localizedDescription)
+     }
+ */
+  }
   
   // TODO: Replace placeholder data
   var sections = [

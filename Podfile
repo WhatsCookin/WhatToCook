@@ -8,6 +8,7 @@ target 'What2Cook' do
   # Pods for What2Cook
   pod 'Parse'
   pod 'SWRevealViewController'
+  pod 'Alamofire'
 
   target 'What2CookTests' do
     inherit! :search_paths

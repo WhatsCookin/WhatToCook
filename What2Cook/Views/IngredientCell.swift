@@ -19,8 +19,12 @@ class IngredientCell: UITableViewCell {
     super.init(coder: aDecoder)
   }*/
   
+  //var selected = false
+  
   override func setSelected(_ selected: Bool, animated: Bool) {
     super.setSelected(selected, animated: animated)
     self.accessoryType = selected ? .checkmark : .none
+   // this.selected = !selected
+    //print(selected)
   }
 }
