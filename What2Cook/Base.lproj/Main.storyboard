@@ -359,7 +359,7 @@
         <scene sceneID="hji-zy-3jl">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="qJ9-do-XSW" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Collection View" id="1CL-4t-mgp"/>
+                    <tabBarItem key="tabBarItem" title="Collection View" selectedImage="grid-box" id="1CL-4t-mgp"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="0zR-KZ-b2a">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
@@ -572,7 +572,7 @@
         <scene sceneID="ddb-0B-rpw">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="oc0-36-Yll" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Fridge" id="Q8L-NV-wSR"/>
+                    <tabBarItem key="tabBarItem" title="Fridge" selectedImage="fridge" id="Q8L-NV-wSR"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="D4f-9v-6N9">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
@@ -591,7 +591,7 @@
         <scene sceneID="GXx-VE-nvh">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="xqe-4V-kFM" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Single View" id="Sh1-VT-32v"/>
+                    <tabBarItem key="tabBarItem" title="Single View" selectedImage="single-box" id="Sh1-VT-32v"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="DzP-tx-MAV">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
@@ -610,7 +610,7 @@
         <scene sceneID="owR-xX-kuX">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Dpx-wG-qXy" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Friend's Recipes" id="IQ5-RX-BXh"/>
+                    <tabBarItem key="tabBarItem" title="Friend's Recipes" selectedImage="profile" id="IQ5-RX-BXh"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="6Fq-T4-LQ5">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
@@ -626,6 +626,12 @@
             <point key="canvasLocation" x="-327" y="2310"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="fridge" width="12" height="12"/>
+        <image name="grid-box" width="12" height="12"/>
+        <image name="profile" width="12" height="12"/>
+        <image name="single-box" width="12" height="12"/>
+    </resources>
     <inferredMetricsTieBreakers>
         <segue reference="WHA-Ej-15z"/>
     </inferredMetricsTieBreakers>
