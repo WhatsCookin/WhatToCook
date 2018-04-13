@@ -10,4 +10,17 @@ import UIKit
 
 class RecipeCell: UICollectionViewCell {
     
+    @IBOutlet weak var thumbImageView: UIImageView!
+    
+    @IBOutlet weak var titleLabel: UILabel!
+    
+    @IBOutlet weak var authorLabel: UILabel!
+    
+    var recipe: Recipe! {
+        didSet {
+            //thumbImageView.setImageWith(recipe.imageUrl!)
+            titleLabel.text = recipe.title
+            authorLabel.text = recipe.author
+        }
+    }
 }

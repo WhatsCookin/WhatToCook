@@ -7,20 +7,43 @@
 //
 
 import UIKit
-import SWRevealViewController
+//import SWRevealViewController
 
-class HomeViewController: UIViewController, UICollectionViewDataSource {
+class HomeViewController: UIViewController {
+
+//, UICollectionViewDataSource {
   
-  @IBOutlet weak var sidebarButton: UIBarButtonItem!
+  
+  @IBOutlet weak var sideMenuBarButton: UIBarButtonItem!
   @IBOutlet weak var collectionView: UICollectionView!
   
+  var varView = Int() // index of menu item selected
+    
   var recipes: [Recipe] = []
   
   override func viewDidLoad() {
     super.viewDidLoad()
 
     // Do any additional setup after loading the view.
-    collectionView.dataSource = self
+
+    if self.revealViewController() != nil {
+        sideMenuBarButton.target = self.revealViewController()
+        sideMenuBarButton.action = #selector(SWRevealViewController.revealToggle(_:))
+        self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
+        
+        if varView == 5 { //logout
+            print("logout item pressed")
+        }
+        else {
+            print("not logout item pressed")
+        }
+        
+    }
+    else {
+        print("RevealVC was nil!!!")
+    }
+    
+    /*collectionView.dataSource = self
     
     let layout = collectionView.collectionViewLayout as! UICollectionViewFlowLayout
     layout.minimumInteritemSpacing = 5
@@ -29,6 +52,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource {
     let interItemSpacingTotal = layout.minimumLineSpacing * (cellsPerLine - 1)
     let width = collectionView.frame.size.width / cellsPerLine - interItemSpacingTotal / cellsPerLine
     layout.itemSize = CGSize(width: width, height: width * 3 / 2)
+     */
 }
   
   override func didReceiveMemoryWarning() {
@@ -36,7 +60,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource {
     // Dispose of any resources that can be recreated.
   }
   
-  func fetchRecipes() {
+  /*func fetchRecipes() {
   }
   
   func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -46,9 +70,9 @@ class HomeViewController: UIViewController, UICollectionViewDataSource {
   func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
     let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "RecipeCell", for: indexPath) as! RecipeCell
     let recipe = recipes[indexPath.item]
-    /*if recipe.posterUrl != nil {
-      cell.posterImageView.af_setImage(withURL: recipe.posterUrl!)
-    }*/
+    //if recipe.posterUrl != nil {
+    //  cell.posterImageView.af_setImage(withURL: recipe.posterUrl!)
+    }
     return cell
   }
   
@@ -63,5 +87,5 @@ class HomeViewController: UIViewController, UICollectionViewDataSource {
       //Pass on the date to the DetailViewController
       recipeViewController.recipe = recipe
     }
-  }
+  }*/
 }

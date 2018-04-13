@@ -4,17 +4,14 @@ PODS:
     - Parse/Core (= 1.16.0)
   - Parse/Core (1.16.0):
     - Bolts/Tasks (~> 1.9)
-  - SWRevealViewController (2.3.0)
 
 DEPENDENCIES:
   - Parse
-  - SWRevealViewController
 
 SPEC CHECKSUMS:
   Bolts: ac6567323eac61e203f6a9763667d0f711be34c8
   Parse: 5b36dc2c2f0a2fd82a257ae018bc3d68cf2c24e7
-  SWRevealViewController: 6d3fd97f70112fd7cef9de14df4260eacce4c63a
 
-PODFILE CHECKSUM: dffa9db3faadff5a2645db727bcf7107b86e0d6c
+PODFILE CHECKSUM: fa9938b8e058ecde1bdc4a14f1242b3e605cda59
 
 COCOAPODS: 1.4.0

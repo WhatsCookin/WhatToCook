@@ -10,7 +10,8 @@ import Foundation
 
 class Recipe {
   var title: String?
-  var imageurl: String?
+  var imageUrl: String?
+  var author: String?
   var ingredients: String?
   var directions: String?
 }
