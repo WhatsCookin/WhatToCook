@@ -12,7 +12,7 @@ class Recipe {
   var image_url: String?  // URL of the image
   var source_url: String? // Original Url of the recipe on the publisher's site
   var f2f_url: String?  // Url of the recipe on Food2Fork.com
-  var title: String?  // Title of the recipe
+  var title: String!  // Title of the recipe
   var publisher: String?  // Name of the Publisher
   var publisher_url: String?  // Base url of the publisher
   var social_rank: String?  // The Social Ranking of the Recipe (As determined by our Ranking Algorithm)

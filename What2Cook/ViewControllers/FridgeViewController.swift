@@ -10,29 +10,26 @@ import UIKit
 
 class FridgeViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, ExpandableHeaderViewDelegate {
   
-  var recipes: [Recipe] = []
+  var recipesList: [Recipe] = []
   
   @IBOutlet weak var tableView: UITableView!
   @IBAction func onSearch(_ sender: Any) {
     print("pressed")
     Food2ForkAPIManager().searchRecipes("chicken") { (recipes, error) in
       if let recipes = recipes {
-        self.recipes = recipes
-        //self.tableView.reloadData()
+        print(recipes)
+        self.recipesList = recipes
+        
+        // Pass recipe data to new view
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let recipeSuggestionViewController = storyboard.instantiateViewController(withIdentifier: "Suggestion") as! RecipeSuggestionViewController
+        recipeSuggestionViewController.recipes = self.recipesList
+        self.present(recipeSuggestionViewController, animated: true, completion: nil)
+
       } else if let error = error {
         print("Error getting recipes: " + error.localizedDescription)
       }
     }
-    
-    /*
-     APIManager.shared.getHomeTimeLine { (tweets, error) in
-     if let tweets = tweets {
-     self.tweets = tweets
-     self.tableView.reloadData()
-     } else if let error = error {
-     print("Error getting home timeline: " + error.localizedDescription)
-     }
- */
   }
   
   // TODO: Replace placeholder data
@@ -112,4 +109,11 @@ class FridgeViewController: UIViewController, UITableViewDelegate, UITableViewDa
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     print("Selected: " + sections[indexPath.section].ingredients[indexPath.row])
   }
+  
+ /* override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    let recipeSuggestionViewController = segue.destination as! RecipeSuggestionViewController
+        
+        // Pass on the data to the Detail ViewController
+        recipeSuggestionViewController.recipes = recipes
+  }*/
 }

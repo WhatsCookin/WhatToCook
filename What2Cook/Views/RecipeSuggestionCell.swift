@@ -7,9 +7,20 @@
 //
 
 import UIKit
+import AlamofireImage
 
 class RecipeSuggestionCell: UITableViewCell {
-  var recipe: Recipe?
+  @IBOutlet weak var titleLabel: UILabel!
+  @IBOutlet weak var photoImageView: UIImageView!
+  
+  var recipe: Recipe! {
+    didSet {
+      titleLabel.text = recipe.title
+      if let url = URL(string: recipe.image_url!) {
+        photoImageView.af_setImage(withURL: url)
+      }
+    }
+  }
   
     override func awakeFromNib() {
         super.awakeFromNib()
