@@ -16,8 +16,6 @@ class HomeViewController: UIViewController {
   
   @IBOutlet weak var sideMenuBarButton: UIBarButtonItem!
   @IBOutlet weak var collectionView: UICollectionView!
-  
-  var varView = Int() // index of menu item selected
     
   var recipes: [Recipe] = []
   
@@ -31,12 +29,6 @@ class HomeViewController: UIViewController {
         sideMenuBarButton.action = #selector(SWRevealViewController.revealToggle(_:))
         self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
         
-        if varView == 5 { //logout
-            print("logout item pressed")
-        }
-        else {
-            print("not logout item pressed")
-        }
         
     }
     else {

@@ -21,14 +21,9 @@ class SideMenuViewController:UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "menuCell", for: indexPath) as UITableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: tableArray[indexPath.row], for: indexPath) as UITableViewCell
         cell.textLabel?.text = tableArray[indexPath.row]
         return cell
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let destVC = segue.destination as! HomeViewController
-        var indexPath:IndexPath = self.tableView.indexPathForSelectedRow!
-        destVC.varView = indexPath.row
-    }
 }

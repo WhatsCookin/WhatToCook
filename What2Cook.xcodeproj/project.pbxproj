@@ -26,6 +26,7 @@
 		637E7D1E207C3705006CEE03 /* AddRecipeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 637E7D1D207C3705006CEE03 /* AddRecipeViewController.swift */; };
 		639BF97220807AC600568379 /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 639BF97020807AC500568379 /* SWRevealViewController.m */; };
 		639BF9762080827E00568379 /* SideMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 639BF9752080827E00568379 /* SideMenuViewController.swift */; };
+		639BF978208099AB00568379 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 639BF977208099AB00568379 /* SettingsViewController.swift */; };
 		A55A3014CEB6E1189CD9706B /* Pods_What2CookTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D734C8EDDCCED6A3CF0A132 /* Pods_What2CookTests.framework */; };
 		D0C084F876509BC01C82048C /* Pods_What2Cook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4733198CBC5DDF83D9CAADBB /* Pods_What2Cook.framework */; };
 /* End PBXBuildFile section */
@@ -78,6 +79,7 @@
 		639BF97020807AC500568379 /* SWRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRevealViewController.m; sourceTree = "<group>"; };
 		639BF97120807AC600568379 /* SWRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRevealViewController.h; sourceTree = "<group>"; };
 		639BF9752080827E00568379 /* SideMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuViewController.swift; sourceTree = "<group>"; };
+		639BF977208099AB00568379 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		80C2D456C923FB56093ED40A /* Pods-What2CookTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-What2CookTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-What2CookTests/Pods-What2CookTests.release.xcconfig"; sourceTree = "<group>"; };
 		92F46B539B7718B89798DFA3 /* Pods-What2CookUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-What2CookUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-What2CookUITests/Pods-What2CookUITests.release.xcconfig"; sourceTree = "<group>"; };
 		B2399B1770D9F64931141269 /* Pods_What2CookUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_What2CookUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -182,6 +184,7 @@
 				20A511B72077146700FDF6BB /* FridgeViewController.swift */,
 				20A511B920771EA200FDF6BB /* FriendsViewController.swift */,
 				637E7D1D207C3705006CEE03 /* AddRecipeViewController.swift */,
+				639BF977208099AB00568379 /* SettingsViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -539,6 +542,7 @@
 				201BA62D2071354F00455146 /* AppDelegate.swift in Sources */,
 				639BF97220807AC600568379 /* SWRevealViewController.m in Sources */,
 				20A4C322207317BC00F5A961 /* User.swift in Sources */,
+				639BF978208099AB00568379 /* SettingsViewController.swift in Sources */,
 				20A4C31C2072005400F5A961 /* Recipe.swift in Sources */,
 				637E7D1E207C3705006CEE03 /* AddRecipeViewController.swift in Sources */,
 				20A4C3242073181F00F5A961 /* LoginViewController.swift in Sources */,
@@ -711,7 +715,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 6SW85PYBWB;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = What2Cook/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.hyelim.What2Cook;
@@ -730,7 +734,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 6SW85PYBWB;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = What2Cook/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.hyelim.What2Cook;
