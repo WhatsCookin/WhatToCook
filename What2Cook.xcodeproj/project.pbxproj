@@ -33,6 +33,8 @@
 		20A511BE2077206A00FDF6BB /* CategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20A511BD2077206A00FDF6BB /* CategoryCell.swift */; };
 		20A511C12077408C00FDF6BB /* Section.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20A511C02077408C00FDF6BB /* Section.swift */; };
 		20A511C3207743E600FDF6BB /* ExpandableHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20A511C2207743E600FDF6BB /* ExpandableHeaderView.swift */; };
+		20EBA33820819415000B6349 /* SpoonacularAPIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20EBA33720819415000B6349 /* SpoonacularAPIManager.swift */; };
+		20EBA33A20819534000B6349 /* Ingredient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20EBA33920819534000B6349 /* Ingredient.swift */; };
 		A55A3014CEB6E1189CD9706B /* Pods_What2CookTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D734C8EDDCCED6A3CF0A132 /* Pods_What2CookTests.framework */; };
 		D0C084F876509BC01C82048C /* Pods_What2Cook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4733198CBC5DDF83D9CAADBB /* Pods_What2Cook.framework */; };
 /* End PBXBuildFile section */
@@ -87,6 +89,8 @@
 		20A511BD2077206A00FDF6BB /* CategoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCell.swift; sourceTree = "<group>"; };
 		20A511C02077408C00FDF6BB /* Section.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Section.swift; sourceTree = "<group>"; };
 		20A511C2207743E600FDF6BB /* ExpandableHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpandableHeaderView.swift; sourceTree = "<group>"; };
+		20EBA33720819415000B6349 /* SpoonacularAPIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpoonacularAPIManager.swift; sourceTree = "<group>"; };
+		20EBA33920819534000B6349 /* Ingredient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ingredient.swift; sourceTree = "<group>"; };
 		22BD4EB1FCD557746C9B418A /* Pods-What2CookTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-What2CookTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-What2CookTests/Pods-What2CookTests.debug.xcconfig"; sourceTree = "<group>"; };
 		3D734C8EDDCCED6A3CF0A132 /* Pods_What2CookTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_What2CookTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4733198CBC5DDF83D9CAADBB /* Pods_What2Cook.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_What2Cook.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -214,6 +218,7 @@
 			children = (
 				20A4C3172071393600F5A961 /* PinterestAPIManager.swift */,
 				2056CBB3207C3B2700F9A63D /* Food2ForkAPIManager.swift */,
+				20EBA33720819415000B6349 /* SpoonacularAPIManager.swift */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -223,6 +228,7 @@
 			children = (
 				20A4C31B2072005400F5A961 /* Recipe.swift */,
 				20A4C321207317BC00F5A961 /* User.swift */,
+				20EBA33920819534000B6349 /* Ingredient.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -565,10 +571,12 @@
 				20A4C31E2072181300F5A961 /* SWRevealViewController.swift in Sources */,
 				20A4C3182071393600F5A961 /* PinterestAPIManager.swift in Sources */,
 				20A4C3132071384E00F5A961 /* RecipeViewController.swift in Sources */,
+				20EBA33820819415000B6349 /* SpoonacularAPIManager.swift in Sources */,
 				20A511BE2077206A00FDF6BB /* CategoryCell.swift in Sources */,
 				20A4C32020721E1A00F5A961 /* RecipeCell.swift in Sources */,
 				20A511BA20771EA200FDF6BB /* FriendsViewController.swift in Sources */,
 				20A511BC2077205900FDF6BB /* IngredientCell.swift in Sources */,
+				20EBA33A20819534000B6349 /* Ingredient.swift in Sources */,
 				20A511B82077146700FDF6BB /* FridgeViewController.swift in Sources */,
 				201BA62D2071354F00455146 /* AppDelegate.swift in Sources */,
 				20A4C322207317BC00F5A961 /* User.swift in Sources */,
