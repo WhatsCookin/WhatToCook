@@ -16,7 +16,7 @@ class RecipeSuggestionCell: UITableViewCell {
   var recipe: Recipe! {
     didSet {
       titleLabel.text = recipe.title
-      if let url = URL(string: recipe.image_url!) {
+      if let url = URL(string: recipe.image!) {
         photoImageView.af_setImage(withURL: url)
       }
     }

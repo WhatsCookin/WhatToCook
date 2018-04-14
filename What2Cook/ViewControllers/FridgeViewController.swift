@@ -15,7 +15,7 @@ class FridgeViewController: UIViewController, UITableViewDelegate, UITableViewDa
   @IBOutlet weak var tableView: UITableView!
   @IBAction func onSearch(_ sender: Any) {
     print("pressed")
-    Food2ForkAPIManager().searchRecipes("chicken") { (recipes, error) in
+    /*Food2ForkAPIManager().searchRecipes("chicken") { (recipes, error) in
       if let recipes = recipes {
         print(recipes)
         self.recipesList = recipes
@@ -26,6 +26,24 @@ class FridgeViewController: UIViewController, UITableViewDelegate, UITableViewDa
         recipeSuggestionViewController.recipes = self.recipesList
         self.present(recipeSuggestionViewController, animated: true, completion: nil)
 
+      } else if let error = error {
+        print("Error getting recipes: " + error.localizedDescription)
+      }
+    }*/
+    
+      var ingredients = ["chicken"]
+    
+    SpoonacularAPIManager().searchRecipes(ingredients) { (recipes, error) in
+      if let recipes = recipes {
+        print(recipes)
+        self.recipesList = recipes
+        
+        // Pass recipe data to new view
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let recipeSuggestionViewController = storyboard.instantiateViewController(withIdentifier: "Suggestion") as! RecipeSuggestionViewController
+        recipeSuggestionViewController.recipes = self.recipesList
+        self.present(recipeSuggestionViewController, animated: true, completion: nil)
+        
       } else if let error = error {
         print("Error getting recipes: " + error.localizedDescription)
       }
