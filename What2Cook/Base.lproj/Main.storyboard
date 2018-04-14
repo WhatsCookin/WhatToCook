@@ -200,6 +200,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="What's in my Fridge?" id="J5c-Gc-uLX"/>
                     <connections>
+                        <outlet property="searchBar" destination="ggM-oB-HvZ" id="fKx-Sk-T7c"/>
                         <outlet property="tableView" destination="lSc-V0-JIb" id="SzS-1r-CDn"/>
                     </connections>
                 </viewController>
