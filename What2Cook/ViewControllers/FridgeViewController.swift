@@ -11,12 +11,13 @@ import UIKit
 class FridgeViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate, ExpandableHeaderViewDelegate {
   
   var recipesList: [Recipe] = []
+  var ingredients: [String] = []
   
   @IBOutlet weak var searchBar: UISearchBar!
   
   @IBOutlet weak var tableView: UITableView!
   @IBAction func onSearch(_ sender: Any) {
-    let ingredients = ["tomatoes", "tortellini", "olives"]
+   // let ingredients = ["tomatoes", "tortellini", "olives"]
     
     SpoonacularAPIManager().searchRecipes(ingredients) { (recipes, error) in
       if let recipes = recipes {
@@ -116,7 +117,20 @@ class FridgeViewController: UIViewController, UITableViewDelegate, UITableViewDa
   }
   
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-    print("Selected: " + sections[indexPath.section].ingredients[indexPath.row])
+    let ingredientName = sections[indexPath.section].ingredients[indexPath.row]
+    print("Selected: " + ingredientName)
+ 
+      ingredients.append(ingredientName)
+    print(ingredients)
+
+  }
+  
+  func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
+    let ingredientName = sections[indexPath.section].ingredients[indexPath.row]
+    if let index = ingredients.index(of: ingredientName) {
+      ingredients.remove(at: index)
+    }
+    print(ingredients)
   }
   
  /* override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

@@ -49,7 +49,6 @@ class SpoonacularAPIManager {
     let headers: HTTPHeaders = [
       "X-Mashape-Key": key,
       ]
-    print("called")
     Alamofire.request(urlstring, headers: headers).responseJSON { response in
       if let ingredientDictionary = response.result.value as! NSArray? {
         let ingredients = ingredientDictionary.flatMap({ (dictionary) -> Ingredient in Ingredient(dictionary: dictionary as! [String : Any] )})
