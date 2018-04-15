@@ -32,6 +32,32 @@ class SpoonacularAPIManager {
         let recipes = recipeDictionary.flatMap({ (dictionary) -> Recipe in Recipe(dictionary: dictionary as! [String : Any] )})
       completion(recipes, nil)
       }
+      else {
+        print("Something went wrong")
+      }
+    }
+  }
+  
+  func autocompleteIngredientSearch(_ searchString: String, completion: @escaping([Ingredient]?, Error?) -> ()) {
+    let key = "69p5QHDqZfmshevTW4RVD0dwIh7Qp1L5vUZjsnVjlWJFfVpmAb"
+    
+    let numResults = 100
+    
+    let urlstring = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/food/ingredients/autocomplete?query=" + searchString + "&number=" + String(numResults)
+    
+    //You headers (for your api key)
+    let headers: HTTPHeaders = [
+      "X-Mashape-Key": key,
+      ]
+    print("called")
+    Alamofire.request(urlstring, headers: headers).responseJSON { response in
+      if let ingredientDictionary = response.result.value as! NSArray? {
+        let ingredients = ingredientDictionary.flatMap({ (dictionary) -> Ingredient in Ingredient(dictionary: dictionary as! [String : Any] )})
+        completion(ingredients, nil)
+      }
+      else {
+        print("Something went wrong")
+      }
     }
   }
 }

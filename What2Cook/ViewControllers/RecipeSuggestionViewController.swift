@@ -27,6 +27,7 @@ class RecipeSuggestionViewController: UIViewController, UITableViewDelegate, UIT
     tableView.delegate = self
     
     tableView.rowHeight = UITableViewAutomaticDimension
+    self.tableView.rowHeight = 100;
     tableView.estimatedRowHeight = 100
   }
   
@@ -45,5 +46,9 @@ class RecipeSuggestionViewController: UIViewController, UITableViewDelegate, UIT
     cell.recipe = recipes[indexPath.row]
     
     return cell
+  }
+  
+  func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+    return 100
   }
 }

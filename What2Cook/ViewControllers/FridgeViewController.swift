@@ -16,11 +16,10 @@ class FridgeViewController: UIViewController, UITableViewDelegate, UITableViewDa
   
   @IBOutlet weak var tableView: UITableView!
   @IBAction func onSearch(_ sender: Any) {
-    let ingredients = ["octopus", "egg", "crab"]
+    let ingredients = ["tomatoes", "tortellini", "olives"]
     
     SpoonacularAPIManager().searchRecipes(ingredients) { (recipes, error) in
       if let recipes = recipes {
-        print(recipes)
         self.recipesList = recipes
         
         // Pass recipe data to new view
@@ -56,6 +55,13 @@ class FridgeViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     // Do any additional setup after loading the view.
     self.tableView.allowsMultipleSelection = true
+    
+    // FOR TESTING
+    /*SpoonacularAPIManager().autocompleteIngredientSearch("a") { (ingredients, error) in
+      if let ingredients = ingredients {
+
+      }
+    }*/
   }
   
   override func didReceiveMemoryWarning() {

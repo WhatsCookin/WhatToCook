@@ -241,6 +241,13 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="You have everything you need" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lDA-ll-zqc">
+                                                    <rect key="frame" x="97" y="30" width="229" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="UkE-I3-htn" firstAttribute="leading" secondItem="Eyu-jh-ZXS" secondAttribute="trailing" constant="6" id="XTr-4Z-Vq3"/>
@@ -250,6 +257,7 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
+                                            <outlet property="missedIngredientLabel" destination="lDA-ll-zqc" id="oOS-de-tR8"/>
                                             <outlet property="photoImageView" destination="Eyu-jh-ZXS" id="Rfv-4h-cgK"/>
                                             <outlet property="titleLabel" destination="UkE-I3-htn" id="kcs-S7-zfE"/>
                                         </connections>
