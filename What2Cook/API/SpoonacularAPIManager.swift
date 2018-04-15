@@ -55,7 +55,7 @@ class SpoonacularAPIManager {
         completion(ingredients, nil)
       }
       else {
-        print("Something went wrong")
+        completion(nil, nil)
       }
     }
   }

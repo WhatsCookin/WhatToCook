@@ -13,11 +13,8 @@ class FridgeViewController: UIViewController, UITableViewDelegate, UITableViewDa
   var recipesList: [Recipe] = []
   var ingredients: [String] = []
   
-  @IBOutlet weak var searchBar: UISearchBar!
-  
   @IBOutlet weak var tableView: UITableView!
   @IBAction func onSearch(_ sender: Any) {
-   // let ingredients = ["tomatoes", "tortellini", "olives"]
     
     SpoonacularAPIManager().searchRecipes(ingredients) { (recipes, error) in
       if let recipes = recipes {
@@ -37,6 +34,9 @@ class FridgeViewController: UIViewController, UITableViewDelegate, UITableViewDa
   
   // TODO: Replace placeholder data
   var sections = [
+    Section(category: "Unlisted",
+            ingredients: ["Honey", "Bacon"],
+            expanded: true),
     Section(category: "Fruits",
             ingredients: ["Apple", "Peach", "Tomato"],
             expanded: false),
@@ -51,6 +51,23 @@ class FridgeViewController: UIViewController, UITableViewDelegate, UITableViewDa
             expanded: false)
   ]
   
+  func addIngredient(ingredient: String) {
+    for var section in sections {
+      if(section.category == "Unlisted") {
+        section.ingredients.append(ingredient)
+      }
+    }
+  }
+  
+  func addIngredient(ingredient: String, category: String) {
+    for var section in sections {
+      if(section.category == category) {
+        print("category: " + category)
+        section.ingredients.append(ingredient)
+      }
+    }
+  }
+  
   override func viewDidLoad() {
     super.viewDidLoad()
     
@@ -58,9 +75,8 @@ class FridgeViewController: UIViewController, UITableViewDelegate, UITableViewDa
     self.tableView.allowsMultipleSelection = true
     
     // FOR TESTING
-    /*SpoonacularAPIManager().autocompleteIngredientSearch("a") { (ingredients, error) in
+    /*SpoonacularAPIManager().autocompleteIngredientSearch("oil") { (ingredients, error) in
       if let ingredients = ingredients {
-
       }
     }*/
   }
@@ -97,7 +113,7 @@ class FridgeViewController: UIViewController, UITableViewDelegate, UITableViewDa
   func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
     let header = ExpandableHeaderView()
     header.customInit(title: sections[section].category, section: section, delegate: self)
-      return header
+    return header
   }
   
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -119,10 +135,10 @@ class FridgeViewController: UIViewController, UITableViewDelegate, UITableViewDa
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     let ingredientName = sections[indexPath.section].ingredients[indexPath.row]
     print("Selected: " + ingredientName)
- 
-      ingredients.append(ingredientName)
+    
+    ingredients.append(ingredientName)
     print(ingredients)
-
+    
   }
   
   func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
@@ -133,10 +149,10 @@ class FridgeViewController: UIViewController, UITableViewDelegate, UITableViewDa
     print(ingredients)
   }
   
- /* override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-    let recipeSuggestionViewController = segue.destination as! RecipeSuggestionViewController
-        
-        // Pass on the data to the Detail ViewController
-        recipeSuggestionViewController.recipes = recipes
-  }*/
+  override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+   let ingredientSearchViewController = segue.destination as! IngredientSearchViewController
+   
+   // Pass on the data to the Detail ViewController
+   ingredientSearchViewController.fridgeViewController = self
+   }
 }
