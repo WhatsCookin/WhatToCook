@@ -18,4 +18,9 @@ struct Section {
     self.ingredients = ingredients
     self.expanded = expanded
   }
+  
+  mutating func update (ingredients: [String], expanded: Bool!) {
+    self.ingredients = ingredients
+    self.expanded = expanded
+  }
 }

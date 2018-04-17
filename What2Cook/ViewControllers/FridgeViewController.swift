@@ -52,20 +52,24 @@ class FridgeViewController: UIViewController, UITableViewDelegate, UITableViewDa
   ]
   
   func addIngredient(ingredient: String) {
-    for var section in sections {
-      if(section.category == "Unlisted") {
-        section.ingredients.append(ingredient)
+    for i in 0...sections.count - 1 {
+      if(sections[i].category == "Unlisted") {
+        sections[i].ingredients.append(ingredient)
+        tableView.reloadData()
+        return
       }
     }
   }
   
   func addIngredient(ingredient: String, category: String) {
-    for var section in sections {
-      if(section.category == category) {
-        print("category: " + category)
-        section.ingredients.append(ingredient)
+    for i in 0...sections.count - 1 {
+      if(sections[i].category == category) {
+        sections[i].ingredients.append(ingredient)
+        tableView.reloadData()
+        return
       }
     }
+    print("need to create new category")
   }
   
   override func viewDidLoad() {
@@ -73,6 +77,8 @@ class FridgeViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     // Do any additional setup after loading the view.
     self.tableView.allowsMultipleSelection = true
+    self.tableView.delegate = self
+    self.tableView.dataSource = self
     
     // FOR TESTING
     /*SpoonacularAPIManager().autocompleteIngredientSearch("oil") { (ingredients, error) in
@@ -137,8 +143,6 @@ class FridgeViewController: UIViewController, UITableViewDelegate, UITableViewDa
     print("Selected: " + ingredientName)
     
     ingredients.append(ingredientName)
-    print(ingredients)
-    
   }
   
   func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
@@ -146,7 +150,6 @@ class FridgeViewController: UIViewController, UITableViewDelegate, UITableViewDa
     if let index = ingredients.index(of: ingredientName) {
       ingredients.remove(at: index)
     }
-    print(ingredients)
   }
   
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

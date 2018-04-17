@@ -16,7 +16,6 @@ class IngredientSearchViewController: UIViewController, UITextFieldDelegate {
   @IBOutlet weak var textLabel: UILabel!
   
   @IBAction func onAdd(_ sender: UIButton) {
-    
     let ingredientToAdd = textField.text
     SpoonacularAPIManager().autocompleteIngredientSearch(ingredientToAdd!) { (ingredients, error) in
       if ingredients!.count > 0 {
@@ -31,10 +30,21 @@ class IngredientSearchViewController: UIViewController, UITextFieldDelegate {
     }
   }
   
+  //TODO: Force correct capitalization - every word must be capitalized
+  /*func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+    var text = textField.text
+    if(text == "" || self.textField.text?.last == " ") {
+      text?.append(string.uppercased())
+      return false
+    }
+    return true
+  }*/
+  
   override func viewDidLoad() {
     super.viewDidLoad()
     
     // Do any additional setup after loading the view.
+    self.textField.delegate = self
   }
   
   override func didReceiveMemoryWarning() {
