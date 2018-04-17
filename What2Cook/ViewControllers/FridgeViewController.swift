@@ -8,35 +8,35 @@
 
 import UIKit
 
-class FridgeViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, ExpandableHeaderViewDelegate {
+class FridgeViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate, ExpandableHeaderViewDelegate {
   
-  var recipes: [Recipe] = []
+  var recipesList: [Recipe] = []
+  var ingredients: [String] = []
   
   @IBOutlet weak var tableView: UITableView!
   @IBAction func onSearch(_ sender: Any) {
-    print("pressed")
-    Food2ForkAPIManager().searchRecipes("chicken") { (recipes, error) in
+    
+    SpoonacularAPIManager().searchRecipes(ingredients) { (recipes, error) in
       if let recipes = recipes {
-        self.recipes = recipes
-        //self.tableView.reloadData()
+        self.recipesList = recipes
+        
+        // Pass recipe data to new view
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let recipeSuggestionViewController = storyboard.instantiateViewController(withIdentifier: "Suggestion") as! RecipeSuggestionViewController
+        recipeSuggestionViewController.recipes = self.recipesList
+        self.present(recipeSuggestionViewController, animated: true, completion: nil)
+        
       } else if let error = error {
         print("Error getting recipes: " + error.localizedDescription)
       }
     }
-    
-    /*
-     APIManager.shared.getHomeTimeLine { (tweets, error) in
-     if let tweets = tweets {
-     self.tweets = tweets
-     self.tableView.reloadData()
-     } else if let error = error {
-     print("Error getting home timeline: " + error.localizedDescription)
-     }
- */
   }
   
   // TODO: Replace placeholder data
   var sections = [
+    Section(category: "Unlisted",
+            ingredients: ["Honey", "Bacon"],
+            expanded: true),
     Section(category: "Fruits",
             ingredients: ["Apple", "Peach", "Tomato"],
             expanded: false),
@@ -51,11 +51,40 @@ class FridgeViewController: UIViewController, UITableViewDelegate, UITableViewDa
             expanded: false)
   ]
   
+  func addIngredient(ingredient: String) {
+    for i in 0...sections.count - 1 {
+      if(sections[i].category == "Unlisted") {
+        sections[i].ingredients.append(ingredient)
+        tableView.reloadData()
+        return
+      }
+    }
+  }
+  
+  func addIngredient(ingredient: String, category: String) {
+    for i in 0...sections.count - 1 {
+      if(sections[i].category == category) {
+        sections[i].ingredients.append(ingredient)
+        tableView.reloadData()
+        return
+      }
+    }
+    print("need to create new category")
+  }
+  
   override func viewDidLoad() {
     super.viewDidLoad()
     
     // Do any additional setup after loading the view.
     self.tableView.allowsMultipleSelection = true
+    self.tableView.delegate = self
+    self.tableView.dataSource = self
+    
+    // FOR TESTING
+    /*SpoonacularAPIManager().autocompleteIngredientSearch("oil") { (ingredients, error) in
+      if let ingredients = ingredients {
+      }
+    }*/
   }
   
   override func didReceiveMemoryWarning() {
@@ -90,7 +119,7 @@ class FridgeViewController: UIViewController, UITableViewDelegate, UITableViewDa
   func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
     let header = ExpandableHeaderView()
     header.customInit(title: sections[section].category, section: section, delegate: self)
-      return header
+    return header
   }
   
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -110,6 +139,23 @@ class FridgeViewController: UIViewController, UITableViewDelegate, UITableViewDa
   }
   
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-    print("Selected: " + sections[indexPath.section].ingredients[indexPath.row])
+    let ingredientName = sections[indexPath.section].ingredients[indexPath.row]
+    print("Selected: " + ingredientName)
+    
+    ingredients.append(ingredientName)
   }
+  
+  func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
+    let ingredientName = sections[indexPath.section].ingredients[indexPath.row]
+    if let index = ingredients.index(of: ingredientName) {
+      ingredients.remove(at: index)
+    }
+  }
+  
+  override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+   let ingredientSearchViewController = segue.destination as! IngredientSearchViewController
+   
+   // Pass on the data to the Detail ViewController
+   ingredientSearchViewController.fridgeViewController = self
+   }
 }

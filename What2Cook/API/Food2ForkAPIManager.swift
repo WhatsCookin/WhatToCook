@@ -13,7 +13,6 @@ class Food2ForkAPIManager {
   let searchUrl = "http://food2fork.com/api/search?key=84a7ad6ab8b00caae48359b7a8b980d6&q="
   
   func searchRecipes(_ ingredientString: String, completion: @escaping([Recipe]?, Error?) -> ()) {
-    var recipes: [Recipe] = []
     
     let urlString = searchUrl + ingredientString
     request(urlString, method: .post, encoding: URLEncoding.queryString).validate().responseJSON { (response) in
@@ -21,13 +20,7 @@ class Food2ForkAPIManager {
       let dictionary = response.result.value as? [String: Any] {
         let recipeDictionary = dictionary["recipes"] as! NSArray
         
-        //let recipes = recipeDictionary.flatMap({ (dictionary) -> Recipe in Recipe(dictionary: dictionary)})
-        
-        for element in recipeDictionary {
-          let recipe = Recipe(dictionary: element as! [String : Any])
-          recipes.append(recipe)
-        
-         }
+        let recipes = recipeDictionary.flatMap({ (dictionary) -> Recipe in Recipe(dictionary: dictionary as! [String : Any])})
         completion(recipes, nil)
       }
       else {

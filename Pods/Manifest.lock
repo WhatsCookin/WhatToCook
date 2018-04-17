@@ -1,5 +1,7 @@
 PODS:
   - Alamofire (4.6.0)
+  - AlamofireImage (3.3.0):
+    - Alamofire (~> 4.5)
   - Bolts/Tasks (1.9.0)
   - Parse (1.16.0):
     - Parse/Core (= 1.16.0)
@@ -9,15 +11,17 @@ PODS:
 
 DEPENDENCIES:
   - Alamofire
+  - AlamofireImage
   - Parse
   - SWRevealViewController
 
 SPEC CHECKSUMS:
   Alamofire: f41a599bd63041760b26d393ec1069d9d7b917f4
+  AlamofireImage: 2e784dc5d00f04903a52c1d169181469c805c3df
   Bolts: ac6567323eac61e203f6a9763667d0f711be34c8
   Parse: 5b36dc2c2f0a2fd82a257ae018bc3d68cf2c24e7
   SWRevealViewController: 6d3fd97f70112fd7cef9de14df4260eacce4c63a
 
-PODFILE CHECKSUM: 43fb9b4bd1a1fe1cac94357e448f658dbcf8e942
+PODFILE CHECKSUM: 433d41b437e0c1f34cecb6609406a316109cf58d
 
 COCOAPODS: 1.4.0
