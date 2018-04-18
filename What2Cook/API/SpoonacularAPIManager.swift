@@ -20,7 +20,7 @@ class SpoonacularAPIManager {
     
     let maxResults = 200
     
-    let urlstring = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/findByIngredients?ingredients=" + ingredientString + "&number=" + String(maxResults) + "&fillIngredients=true&ranking=2"
+    let urlstring = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/findByIngredients?ingredients=" + ingredientString + "&number=" + String(maxResults) + "&fillIngredients=true&ranking=1"
     
     //You headers (for your api key)
     let headers: HTTPHeaders = [
