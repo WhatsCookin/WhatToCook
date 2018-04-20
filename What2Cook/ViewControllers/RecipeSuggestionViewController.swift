@@ -51,4 +51,17 @@ class RecipeSuggestionViewController: UIViewController, UITableViewDelegate, UIT
   func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
     return 100
   }
+  
+  override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    let cell = sender as! UITableViewCell
+    // Get the index path from the cell that was tapped
+    if let indexPath = tableView.indexPath(for: cell) {
+      let recipe = recipes[indexPath.row]
+      let recipeViewController = segue.destination as! RecipeViewController
+      
+      print(recipe)
+      // Pass on the data to the Detail ViewController
+      recipeViewController.recipe = recipe
+    }
+  }
 }

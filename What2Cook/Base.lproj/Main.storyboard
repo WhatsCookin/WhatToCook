@@ -183,6 +183,10 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kxH-hh-nll">
+                                                    <rect key="frame" x="300" y="6" width="55" height="31"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                </imageView>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="LQE-Fn-l26">
                                                     <rect key="frame" x="15" y="0.0" width="345" height="43.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
@@ -249,37 +253,40 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Eyu-jh-ZXS">
-                                                    <rect key="frame" x="6" y="6" width="85" height="85"/>
+                                                    <rect key="frame" x="8" y="8" width="85" height="85"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="85" id="Qab-Mz-5Sg"/>
-                                                        <constraint firstAttribute="width" constant="85" id="Rel-jJ-3bn"/>
+                                                        <constraint firstAttribute="width" constant="85" id="Qqt-bf-xTe"/>
+                                                        <constraint firstAttribute="height" constant="85" id="TeJ-Qk-bzg"/>
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Recipe Name" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UkE-I3-htn">
-                                                    <rect key="frame" x="97" y="6" width="102" height="21"/>
+                                                    <rect key="frame" x="101" y="8" width="266" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="You have everything you need" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lDA-ll-zqc">
-                                                    <rect key="frame" x="97" y="30" width="229" height="21"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You have everything you need" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lDA-ll-zqc">
+                                                    <rect key="frame" x="101" y="37" width="229" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="UkE-I3-htn" firstAttribute="leading" secondItem="Eyu-jh-ZXS" secondAttribute="trailing" constant="6" id="XTr-4Z-Vq3"/>
-                                                <constraint firstItem="Eyu-jh-ZXS" firstAttribute="top" secondItem="Jqp-b0-ydo" secondAttribute="top" constant="6" id="gZz-Uc-nZx"/>
-                                                <constraint firstItem="UkE-I3-htn" firstAttribute="top" secondItem="Jqp-b0-ydo" secondAttribute="top" constant="6" id="hIs-AR-gcs"/>
-                                                <constraint firstItem="Eyu-jh-ZXS" firstAttribute="leading" secondItem="Jqp-b0-ydo" secondAttribute="leading" constant="6" id="vTa-Oz-cMj"/>
+                                                <constraint firstItem="UkE-I3-htn" firstAttribute="leading" secondItem="Eyu-jh-ZXS" secondAttribute="trailing" constant="8" id="Lhm-ZK-Lvf"/>
+                                                <constraint firstItem="Eyu-jh-ZXS" firstAttribute="top" secondItem="Jqp-b0-ydo" secondAttribute="top" constant="8" id="eEx-c1-08V"/>
+                                                <constraint firstItem="Eyu-jh-ZXS" firstAttribute="leading" secondItem="Jqp-b0-ydo" secondAttribute="leading" constant="8" id="f7q-R0-GRr"/>
+                                                <constraint firstItem="UkE-I3-htn" firstAttribute="top" secondItem="Jqp-b0-ydo" secondAttribute="top" constant="8" id="gSh-Fl-be0"/>
+                                                <constraint firstAttribute="trailing" secondItem="UkE-I3-htn" secondAttribute="trailing" constant="8" id="km3-kk-FGF"/>
+                                                <constraint firstItem="lDA-ll-zqc" firstAttribute="leading" secondItem="Eyu-jh-ZXS" secondAttribute="trailing" constant="8" id="pSd-hv-Y7J"/>
+                                                <constraint firstItem="lDA-ll-zqc" firstAttribute="top" secondItem="UkE-I3-htn" secondAttribute="bottom" constant="8" id="rij-lj-DSh"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="missedIngredientLabel" destination="lDA-ll-zqc" id="oOS-de-tR8"/>
                                             <outlet property="photoImageView" destination="Eyu-jh-ZXS" id="Rfv-4h-cgK"/>
                                             <outlet property="titleLabel" destination="UkE-I3-htn" id="kcs-S7-zfE"/>
+                                            <segue destination="Ycp-PI-w4Y" kind="show" id="TR0-bT-3xX"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -302,6 +309,33 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hmX-bq-oWw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1837.5999999999999" y="1505.3973013493255"/>
+        </scene>
+        <!--Recipe View Controller-->
+        <scene sceneID="gux-8k-Tp0">
+            <objects>
+                <viewController id="Ycp-PI-w4Y" customClass="RecipeViewController" customModule="What2Cook" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="x2X-dJ-Llq">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Nothing here yet" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ma7-D8-B0y">
+                                <rect key="frame" x="24" y="109" width="128" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="DGj-eD-hfd"/>
+                    </view>
+                    <connections>
+                        <outlet property="instructionsLabel" destination="ma7-D8-B0y" id="Pcj-CK-H8u"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="8Z4-Mt-91D" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2544.8000000000002" y="1506.296851574213"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="BTs-Mi-skm">
