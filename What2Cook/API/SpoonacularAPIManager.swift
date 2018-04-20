@@ -64,10 +64,12 @@ class SpoonacularAPIManager {
     }
   }
   
-  func getRecipeInformation(_ id: String, completion: @escaping(RecipeData?, Error?) -> ()) {
+  func setRecipeData(_ recipe: Recipe) {
     let key = "69p5QHDqZfmshevTW4RVD0dwIh7Qp1L5vUZjsnVjlWJFfVpmAb"
     
-    let urlstring = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/{id}/information?includeNutrition=true&id=" + id
+    let id = recipe.id!
+    
+    let urlstring = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/" + String(id) + "/information"
     
     //You headers (for your api key)
     let headers: HTTPHeaders = [
@@ -75,10 +77,9 @@ class SpoonacularAPIManager {
       ]
     
     Alamofire.request(urlstring, headers: headers).responseJSON { response in
-      if let dataDictionary = response.result.value as! NSArray? {
-        var data = dataDictionary.flatMap({ (dictionary) -> RecipeData in RecipeData(dictionary: dictionary as! [String : Any] )})
-        print(data)
-        completion(nil, nil)
+      if let dataDictionary = response.result.value as! NSDictionary? {
+        // TODO: Initialize a RecipeData object and use recipe.setRecipeData() to store it in the recipe object
+        print(dataDictionary)
       }
       else {
         print("Something went wrong")

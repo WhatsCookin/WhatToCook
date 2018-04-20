@@ -80,9 +80,10 @@ class FridgeViewController: UIViewController, UITableViewDelegate, UITableViewDa
     self.tableView.dataSource = self
     
     // FOR TESTING
-    /*SpoonacularAPIManager().autocompleteIngredientSearch("oil") { (ingredients, error) in
+    /*SpoonacularAPIManager().getRecipeInformation(479101) { (ingredients, error) in
       if let ingredients = ingredients {
       }
+      print(ingredients)
     }*/
   }
   
@@ -152,9 +153,9 @@ class FridgeViewController: UIViewController, UITableViewDelegate, UITableViewDa
   }
   
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-   let ingredientSearchViewController = segue.destination as! IngredientSearchViewController
-   
-   // Pass on the data to the Detail ViewController
-   ingredientSearchViewController.fridgeViewController = self
-   }
+    let ingredientSearchViewController = segue.destination as! IngredientSearchViewController
+    
+    // Pass on the data to the Detail ViewController
+    ingredientSearchViewController.fridgeViewController = self
+  }
 }

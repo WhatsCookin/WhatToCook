@@ -11,16 +11,12 @@ import Foundation
 class RecipeData {
   var sourceUrl: String!
   var spoonacularSourceUrl: String!
+  // TODO: Store the "steps" dictionary
   
   init(dictionary: [String: Any]) {
     sourceUrl = dictionary["sourceUrl"] as? String
     spoonacularSourceUrl = dictionary["spoonacularSourceUrl"] as? String
-  }
-  
-  static func recipes(with array: [[String: Any]]) -> [Recipe] {
-    return array.flatMap({ (dictionary) -> Recipe in
-      Recipe(dictionary: dictionary)
-    })
+    // TODO: Initialize the "steps" dictionary
   }
 }
 

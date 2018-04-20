@@ -11,11 +11,13 @@ import UIKit
 class RecipeViewController: UIViewController {
   
   var recipe: Recipe?
+  @IBOutlet weak var instructionsLabel: UILabel!
   
   override func viewDidLoad() {
     super.viewDidLoad()
     
     // Do any additional setup after loading the view.
+    SpoonacularAPIManager().setRecipeData(recipe!)
   }
   
   override func didReceiveMemoryWarning() {
