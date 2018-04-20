@@ -15,12 +15,13 @@ class SpoonacularAPIManager {
     
     var ingredientString = ""
     for ingredient in ingredients {
-      ingredientString += ingredient + ","
+      let noSpaceIngredient = ingredient.replacingOccurrences(of: " ", with: "%20")
+      ingredientString += noSpaceIngredient + ","
     }
     
     let maxResults = 200
     
-    let urlstring = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/findByIngredients?ingredients=" + ingredientString + "&number=" + String(maxResults) + "&fillIngredients=true&ranking=1"
+    let urlstring = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/findByIngredients?ingredients=" + ingredientString + "&number=" + String(maxResults) + "&fillIngredients=true&ranking=1&limitLicense=true"
     
     //You headers (for your api key)
     let headers: HTTPHeaders = [
@@ -43,12 +44,15 @@ class SpoonacularAPIManager {
     
     let numResults = 100
     
-    let urlstring = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/food/ingredients/autocomplete?query=" + searchString + "&number=" + String(numResults)
+    let noSpaceSearchString = searchString.replacingOccurrences(of: " ", with: "%20")
+    
+    let urlstring = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/food/ingredients/autocomplete?query=" + noSpaceSearchString + "&number=" + String(numResults)
     
     //You headers (for your api key)
     let headers: HTTPHeaders = [
       "X-Mashape-Key": key,
       ]
+    
     Alamofire.request(urlstring, headers: headers).responseJSON { response in
       if let ingredientDictionary = response.result.value as! NSArray? {
         let ingredients = ingredientDictionary.flatMap({ (dictionary) -> Ingredient in Ingredient(dictionary: dictionary as! [String : Any] )})
@@ -56,6 +60,28 @@ class SpoonacularAPIManager {
       }
       else {
         completion(nil, nil)
+      }
+    }
+  }
+  
+  func getRecipeInformation(_ id: String, completion: @escaping(RecipeData?, Error?) -> ()) {
+    let key = "69p5QHDqZfmshevTW4RVD0dwIh7Qp1L5vUZjsnVjlWJFfVpmAb"
+    
+    let urlstring = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/{id}/information?includeNutrition=true&id=" + id
+    
+    //You headers (for your api key)
+    let headers: HTTPHeaders = [
+      "X-Mashape-Key": key,
+      ]
+    
+    Alamofire.request(urlstring, headers: headers).responseJSON { response in
+      if let dataDictionary = response.result.value as! NSArray? {
+        var data = dataDictionary.flatMap({ (dictionary) -> RecipeData in RecipeData(dictionary: dictionary as! [String : Any] )})
+        print(data)
+        completion(nil, nil)
+      }
+      else {
+        print("Something went wrong")
       }
     }
   }

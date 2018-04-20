@@ -16,6 +16,8 @@ class Recipe {
   var likes: Int!
   var title: String!
   var imageType: String!
+  var missedIngredients: [String]!
+  var usedIngredients: [String]!
   
   init(dictionary: [String: Any]) {
     missedIngredientCount = dictionary["missedIngredientCount"] as? Int
@@ -25,6 +27,8 @@ class Recipe {
     likes = dictionary["likes"] as? Int
     title = dictionary["title"] as? String
     imageType = dictionary["imageType"] as? String
+    missedIngredients = dictionary["missedIngredients"] as? [String]
+    usedIngredients = dictionary["usedIngredients"] as? [String]
   }
   
   static func recipes(with array: [[String: Any]]) -> [Recipe] {

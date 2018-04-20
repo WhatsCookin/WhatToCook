@@ -16,12 +16,12 @@ class IngredientSearchViewController: UIViewController, UITextFieldDelegate {
   @IBOutlet weak var textLabel: UILabel!
   
   @IBAction func onAdd(_ sender: UIButton) {
-    let ingredientToAdd = textField.text
-    SpoonacularAPIManager().autocompleteIngredientSearch(ingredientToAdd!) { (ingredients, error) in
+    let ingredientToAdd = textField.text!
+    print(textField.text!)
+    SpoonacularAPIManager().autocompleteIngredientSearch(ingredientToAdd) { (ingredients, error) in
       if ingredients!.count > 0 {
-        print("passed")
         self.textLabel.text = "Added " + self.textField.text!
-        self.fridgeViewController?.addIngredient(ingredient: ingredientToAdd!)
+        self.fridgeViewController?.addIngredient(ingredient: ingredientToAdd)
       }
       else {
         print("failed")

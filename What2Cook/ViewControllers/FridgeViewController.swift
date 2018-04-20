@@ -15,7 +15,6 @@ class FridgeViewController: UIViewController, UITableViewDelegate, UITableViewDa
   
   @IBOutlet weak var tableView: UITableView!
   @IBAction func onSearch(_ sender: Any) {
-    
     SpoonacularAPIManager().searchRecipes(ingredients) { (recipes, error) in
       if let recipes = recipes {
         self.recipesList = recipes
