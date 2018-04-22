@@ -26,7 +26,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
       print("Welcome back \(currentUser.username!) 😀")
       
       let storyboard = UIStoryboard(name: "Main", bundle: nil)
-      let chatViewController = storyboard.instantiateViewController(withIdentifier: "TabBarController")
+      /*let chatViewController = storyboard.instantiateViewController(withIdentifier: "TabBarController")*/
+      let chatViewController = storyboard.instantiateViewController(withIdentifier: "SWRevealViewController")
       window?.rootViewController = chatViewController
     }
     return true

@@ -154,6 +154,20 @@ static CGFloat scaledValue( CGFloat v1, CGFloat min2, CGFloat max2, CGFloat min1
 }
 
 
+- (void)unloadRearView
+{
+    [_rearView removeFromSuperview];
+    _rearView = nil;
+}
+
+
+- (void)unloadRightView
+{
+    [_rightView removeFromSuperview];
+    _rightView = nil;
+}
+
+
 - (CGFloat)frontLocationForPosition:(FrontViewPosition)frontViewPosition
 {
     CGFloat revealWidth;
@@ -393,9 +407,16 @@ static CGFloat scaledValue( CGFloat v1, CGFloat min2, CGFloat max2, CGFloat min1
     return NO;  // not supported
 }
 
+
 - (BOOL)transitionWasCancelled
 {
     return NO; // not supported
+}
+
+
+- (CGAffineTransform)targetTransform
+{
+    return CGAffineTransformIdentity;
 }
 
 
@@ -547,13 +568,13 @@ static CGFloat scaledValue( CGFloat v1, CGFloat min2, CGFloat max2, CGFloat min1
     if ( _dragging || self.state == UIGestureRecognizerStateFailed)
         return;
     
-    const int kDirectionPanThreshold = 5;
+    const CGFloat kDirectionPanThreshold = 5;
     
     UITouch *touch = [touches anyObject];
     CGPoint nowPoint = [touch locationInView:self.view];
     
-    if (abs(nowPoint.x - _beginPoint.x) > kDirectionPanThreshold) _dragging = YES;
-    else if (abs(nowPoint.y - _beginPoint.y) > kDirectionPanThreshold) self.state = UIGestureRecognizerStateFailed;
+    if (ABS(nowPoint.x - _beginPoint.x) > kDirectionPanThreshold) _dragging = YES;
+    else if (ABS(nowPoint.y - _beginPoint.y) > kDirectionPanThreshold) self.state = UIGestureRecognizerStateFailed;
 }
 
 @end
@@ -1272,7 +1293,7 @@ const int FrontViewPositionNone = 0xff;
     NSTimeInterval duration = _toggleAnimationDuration;
 
     // Velocity driven change:
-    if (fabsf(velocity) > _quickFlickVelocity)
+    if (ABS(velocity) > _quickFlickVelocity)
     {
         // we may need to set the drag position and to adjust the animation duration
         CGFloat journey = xLocation;
@@ -1290,7 +1311,7 @@ const int FrontViewPositionNone = 0xff;
             }
         }
         
-        duration = fabsf(journey/velocity);
+        duration = ABS(journey/velocity);
     }
     
     // Position driven change:
@@ -1347,7 +1368,7 @@ const int FrontViewPositionNone = 0xff;
     
     NSTimeInterval duration = animated?_toggleAnimationDuration:0.0;
     NSTimeInterval firstDuration = duration;
-    int initialPosDif = abs( _frontViewPosition - preReplacementPosition );
+    NSInteger initialPosDif = ABS( _frontViewPosition - preReplacementPosition );
     if ( initialPosDif == 1 ) firstDuration *= 0.8;
     else if ( initialPosDif == 0 ) firstDuration = 0;
     
@@ -1384,9 +1405,8 @@ const int FrontViewPositionNone = 0xff;
     void (^animations)() = ^()
     {
         // Calling this in the animation block causes the status bar to appear/dissapear in sync with our own animation
-        if ( [self respondsToSelector:@selector(setNeedsStatusBarAppearanceUpdate)])
-            [self performSelector:@selector(setNeedsStatusBarAppearanceUpdate) withObject:nil];
-    
+        [self setNeedsStatusBarAppearanceUpdate];
+        
         // We call the layoutSubviews method on the contentView view and send a delegate, which will
         // occur inside of an animation block if any animated transition is being performed
         [_contentView layoutSubviews];
@@ -1541,7 +1561,17 @@ const int FrontViewPositionNone = 0xff;
     
     _rearViewPosition = newPosition;
     
-    return [self _deploymentForViewController:_rearViewController inView:_contentView.rearView appear:appear disappear:disappear];
+    void (^deploymentCompletion)() =
+        [self _deploymentForViewController:_rearViewController inView:_contentView.rearView appear:appear disappear:disappear];
+    
+    void (^completion)() = ^()
+    {
+        deploymentCompletion();
+        if ( disappear )
+            [_contentView unloadRearView];
+    };
+    
+    return completion;
 }
 
 // Deploy/Undeploy of the right view controller following the containment principles. Returns a block
@@ -1559,7 +1589,17 @@ const int FrontViewPositionNone = 0xff;
     
     _rightViewPosition = newPosition;
     
-    return [self _deploymentForViewController:_rightViewController inView:_contentView.rightView appear:appear disappear:disappear];
+    void (^deploymentCompletion)() =
+        [self _deploymentForViewController:_rightViewController inView:_contentView.rightView appear:appear disappear:disappear];
+    
+    void (^completion)() = ^()
+    {
+        deploymentCompletion();
+        if ( disappear )
+            [_contentView unloadRightView];
+    };
+
+    return completion;
 }
 
 
@@ -1586,9 +1626,9 @@ const int FrontViewPositionNone = 0xff;
     controllerView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     controllerView.frame = frame;
     
-    if ( [controller respondsToSelector:@selector(automaticallyAdjustsScrollViewInsets)] && [controllerView isKindOfClass:[UIScrollView class]] )
+    if ( [controllerView isKindOfClass:[UIScrollView class]] )
     {
-        BOOL adjust = (BOOL)[controller performSelector:@selector(automaticallyAdjustsScrollViewInsets) withObject:nil];
+        BOOL adjust = controller.automaticallyAdjustsScrollViewInsets;
         
         if ( adjust )
         {

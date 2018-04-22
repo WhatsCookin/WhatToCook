@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import SWRevealViewController
 
 class HomeViewController: UIViewController, UICollectionViewDataSource {
   
@@ -29,6 +28,17 @@ class HomeViewController: UIViewController, UICollectionViewDataSource {
     let interItemSpacingTotal = layout.minimumLineSpacing * (cellsPerLine - 1)
     let width = collectionView.frame.size.width / cellsPerLine - interItemSpacingTotal / cellsPerLine
     layout.itemSize = CGSize(width: width, height: width * 3 / 2)
+    
+    // Set side menu button
+    if self.revealViewController() != nil {
+        sidebarButton.target = self.revealViewController()
+        sidebarButton.action = #selector(SWRevealViewController.revealToggle(_:))
+        self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
+    }
+    else {
+        print("RevealVC was nil!!!")
+    }
+    
 }
   
   override func didReceiveMemoryWarning() {
