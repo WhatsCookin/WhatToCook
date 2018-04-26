@@ -86,4 +86,29 @@ class SpoonacularAPIManager {
       }
     }
   }
+    
+  func getPopularRecipes(completion: @escaping([RecipeItem]?, Error?) -> ()) {
+    let key = "69p5QHDqZfmshevTW4RVD0dwIh7Qp1L5vUZjsnVjlWJFfVpmAb"
+    
+    let numRecipes = 10 // number of popular recipes to be returned
+    
+    let urlstring = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/random?number=" + String(numRecipes)
+    
+    //You headers (for your api key)
+    let headers: HTTPHeaders = [
+    "X-Mashape-Key": key,
+    ]
+    
+    Alamofire.request(urlstring, headers: headers).responseJSON { response in
+        if let recipeDictionary = response.result.value as! NSArray? {
+            let recipes = recipeDictionary.flatMap({ (dictionary) -> RecipeItem in RecipeItem(dictionary: dictionary as! [String : Any] )})
+            completion(recipes, nil)
+        }
+        else {
+            print("Something went wrong")
+        }
+    }
+    
+  }
+    
 }
