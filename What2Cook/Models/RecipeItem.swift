@@ -30,9 +30,9 @@ class RecipeItem { // recipe to display - TODO: change to combine recipe and rec
         
     }
     
-    static func recipes(with array: [[String: Any]]) -> [Recipe] {
-        return array.flatMap({ (dictionary) -> Recipe in
-            Recipe(dictionary: dictionary)
+    static func recipes(with array: [[String: Any]]) -> [RecipeItem] {
+        return array.flatMap({ (dictionary) -> RecipeItem in
+            RecipeItem(dictionary: dictionary)
         })
     }
     

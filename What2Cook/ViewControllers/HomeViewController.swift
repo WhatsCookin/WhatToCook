@@ -13,7 +13,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource {
   @IBOutlet weak var sidebarButton: UIBarButtonItem!
   @IBOutlet weak var collectionView: UICollectionView!
   
-  var recipes: [Recipe] = []
+  var recipes: [RecipeItem] = []
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -39,14 +39,24 @@ class HomeViewController: UIViewController, UICollectionViewDataSource {
         print("RevealVC was nil!!!")
     }
     
-}
+    loadRecipes()
+    
+  }
+    
+    func loadRecipes() {
+        print("Calling loadRecipes()")
+        SpoonacularAPIManager().getPopularRecipes() { (recipes, error) in
+            if let recipes = recipes {
+               self.recipes = recipes
+                
+            } else if let error = error {
+                print("Error getting recipes: " + error.localizedDescription)
+            }
+        }    }
   
   override func didReceiveMemoryWarning() {
     super.didReceiveMemoryWarning()
     // Dispose of any resources that can be recreated.
-  }
-  
-  func fetchRecipes() {
   }
   
   func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -55,7 +65,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource {
   
   func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
     let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "RecipeCell", for: indexPath) as! RecipeCell
-    let recipe = recipes[indexPath.item]
+    cell.recipe = recipes[indexPath.item]
     /*if recipe.posterUrl != nil {
       cell.posterImageView.af_setImage(withURL: recipe.posterUrl!)
     }*/
@@ -63,7 +73,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource {
   }
   
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-    let cell = sender as! UICollectionViewCell
+    /*let cell = sender as! UICollectionViewCell
     
     // Get the index path from the cell that was tapped
     if let indexPath = collectionView.indexPath(for: cell) {
@@ -72,6 +82,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource {
       
       //Pass on the date to the DetailViewController
       recipeViewController.recipe = recipe
+        */
     }
   }
-}
+

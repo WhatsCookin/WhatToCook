@@ -10,7 +10,9 @@ import UIKit
 
 class IngredientListCell: UITableViewCell {
 
-    @IBOutlet weak var ingredient: UILabel
+    /*@IBOutlet weak var ingredient: UILabel
+    
+    var recipe
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -21,6 +23,6 @@ class IngredientListCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state
-    }
+    }*/
 
 }

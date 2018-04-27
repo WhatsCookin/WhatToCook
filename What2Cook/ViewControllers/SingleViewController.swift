@@ -25,19 +25,10 @@ class SingleViewController: UIViewController, UITableViewDelegate, UITableViewDa
         // Do any additional setup after loading the view.
         tableView.delegate = self
         tableView.dataSource = self
+        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.estimatedRowHeight = 50
         
-        loadRecipes()
-    }
-    
-    func loadRecipes() {
-        SpoonacularAPIManager().getPopularRecipes() { (recipes, error) in
-            if let recipes = recipes {
-                self.recipesList = recipes
-            } else if let error = error {
-                print("Error getting recipes: " + error.localizedDescription)
-            }
-        }
-        
+        //loadRecipes()
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -45,8 +36,8 @@ class SingleViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "IngredientListCell")!
-        //cell.textLabel?.text = sections[indexPath.section].ingredients[indexPath.row]
+        let cell = tableView.dequeueReusableCell(withIdentifier: "IngredientListCell", for: indexPath) as! IngredientListCell
+        //cell.recipe = recipesList[indexPath.row]
         return cell
     }
     

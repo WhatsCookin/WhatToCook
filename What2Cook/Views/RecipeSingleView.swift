@@ -8,8 +8,10 @@
 
 import Foundation
 
+// DELETE THIS LATER
+
 class RecipeSingleView: UIView {
-    @IBOutlet weak var recipeImage: UIImageView!
+    /*@IBOutlet weak var recipeImage: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var timeLabel: UILabel!
     @IBOutlet weak var likesLabel: UILabel!
@@ -25,7 +27,7 @@ class RecipeSingleView: UIView {
             likesLabel.text = recipe.likes
             servingsLabel.text = recipe.servings
         }
-    }
+    }*/
     
     
 }
