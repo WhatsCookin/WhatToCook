@@ -140,7 +140,6 @@ class FridgeViewController: UIViewController, UITableViewDelegate, UITableViewDa
   
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     let ingredientName = sections[indexPath.section].ingredients[indexPath.row]
-    print("Selected: " + ingredientName)
     
     ingredients.append(ingredientName)
   }

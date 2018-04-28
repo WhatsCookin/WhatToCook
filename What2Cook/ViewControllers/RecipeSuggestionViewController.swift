@@ -59,7 +59,6 @@ class RecipeSuggestionViewController: UIViewController, UITableViewDelegate, UIT
       let recipe = recipes[indexPath.row]
       let recipeViewController = segue.destination as! RecipeViewController
       
-      print(recipe)
       // Pass on the data to the Detail ViewController
       recipeViewController.recipe = recipe
     }

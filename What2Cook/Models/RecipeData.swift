@@ -11,12 +11,21 @@ import Foundation
 class RecipeData {
   var sourceUrl: String!
   var spoonacularSourceUrl: String!
-  // TODO: Store the "steps" dictionary
+  var analyzedInstructions: [[String: Any]]!
+  var steps: [String: Any]!
   
   init(dictionary: [String: Any]) {
     sourceUrl = dictionary["sourceUrl"] as? String
     spoonacularSourceUrl = dictionary["spoonacularSourceUrl"] as? String
-    // TODO: Initialize the "steps" dictionary
+    analyzedInstructions = dictionary["analyzedInstructions"] as? [[String: Any]]
+    let firstElemAnalyzed = analyzedInstructions[0]
+    let steps = firstElemAnalyzed["steps"] as? [[String: Any]]
+    
+    let firstElemSteps = steps![0]
+
+    let stringStep = firstElemSteps["step"] as! String
+    
+    print(stringStep)
   }
 }
 
