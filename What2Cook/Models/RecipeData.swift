@@ -12,20 +12,20 @@ class RecipeData {
   var sourceUrl: String!
   var spoonacularSourceUrl: String!
   var analyzedInstructions: [[String: Any]]!
-  var steps: [String: Any]!
+  var stepsArray: [String] = []
   
   init(dictionary: [String: Any]) {
     sourceUrl = dictionary["sourceUrl"] as? String
     spoonacularSourceUrl = dictionary["spoonacularSourceUrl"] as? String
     analyzedInstructions = dictionary["analyzedInstructions"] as? [[String: Any]]
     let firstElemAnalyzed = analyzedInstructions[0]
-    let steps = firstElemAnalyzed["steps"] as? [[String: Any]]
+    let steps = firstElemAnalyzed["steps"] as! [[String: Any]]
     
-    let firstElemSteps = steps![0]
-
-    let stringStep = firstElemSteps["step"] as! String
-    
-    print(stringStep)
+    for i in 0...steps.count - 1 {
+      let firstElemSteps = steps[i]
+      let stringStep = firstElemSteps["step"] as! String
+      stepsArray.append(stringStep)
+    }
   }
 }
 

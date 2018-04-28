@@ -79,6 +79,8 @@ class SpoonacularAPIManager {
     Alamofire.request(urlstring, headers: headers).responseJSON { response in
       if let dataDictionary = response.result.value as! [String: Any]? {
         let recipeData = RecipeData(dictionary: dataDictionary)
+        recipe.setRecipeData(recipeData: recipeData)
+        print("RecipeData is initialized")
       }
       else {
         print("Something went wrong")
