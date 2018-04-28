@@ -8,7 +8,7 @@
 
 import UIKit
 
-class HomeViewController: UIViewController, UICollectionViewDataSource {
+class HomeViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
   
   @IBOutlet weak var sidebarButton: UIBarButtonItem!
   @IBOutlet weak var collectionView: UICollectionView!
@@ -20,6 +20,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource {
 
     // Do any additional setup after loading the view.
     collectionView.dataSource = self
+    collectionView.delegate = self
     
     let layout = collectionView.collectionViewLayout as! UICollectionViewFlowLayout
     layout.minimumInteritemSpacing = 5
@@ -40,7 +41,6 @@ class HomeViewController: UIViewController, UICollectionViewDataSource {
     }
     
     loadRecipes()
-    
   }
     
     func loadRecipes() {
@@ -48,11 +48,13 @@ class HomeViewController: UIViewController, UICollectionViewDataSource {
         SpoonacularAPIManager().getPopularRecipes() { (recipes, error) in
             if let recipes = recipes {
                self.recipes = recipes
-                
+               
             } else if let error = error {
                 print("Error getting recipes: " + error.localizedDescription)
             }
-        }    }
+        }
+        
+    }
   
   override func didReceiveMemoryWarning() {
     super.didReceiveMemoryWarning()
@@ -65,9 +67,12 @@ class HomeViewController: UIViewController, UICollectionViewDataSource {
   
   func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
     let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "RecipeCell", for: indexPath) as! RecipeCell
-    cell.recipe = recipes[indexPath.item]
-    /*if recipe.posterUrl != nil {
-      cell.posterImageView.af_setImage(withURL: recipe.posterUrl!)
+    
+    print("testing 123 i am in collectionview")
+    //cell.recipe = recipes[indexPath.item] as RecipeItem
+    /*if let recipe = recipes[indexPath.item]
+        let url = URL(string: recipe.image)
+        cell.recipeImage.af_setImage(withURL: url!)
     }*/
     return cell
   }

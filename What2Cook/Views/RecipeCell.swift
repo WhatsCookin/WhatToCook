@@ -21,7 +21,8 @@ class RecipeCell: UICollectionViewCell {
     var recipe: RecipeItem! {
         didSet {
             if let url = URL(string: recipe.image!) {
-                recipeImage.af_setImage(withURL: url)
+               print(recipe.image)
+               recipeImage.af_setImage(withURL: url)
             }
             //nameLabel.text = recipe.name
             //timeLabel.text = "Time: " + String(recipe.time)
