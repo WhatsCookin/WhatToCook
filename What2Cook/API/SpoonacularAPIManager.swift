@@ -90,7 +90,7 @@ class SpoonacularAPIManager {
     }
   }
     
-  func getPopularRecipes(completion: @escaping([RecipeItem]?, Error?) -> ()) {
+    func getPopularRecipes(completion: @escaping([RecipeItem]?, Error?) -> ()) {
     //let key = "69p5QHDqZfmshevTW4RVD0dwIh7Qp1L5vUZjsnVjlWJFfVpmAb"
     
     let numRecipes = 2 // number of popular recipes to be returned
@@ -103,10 +103,15 @@ class SpoonacularAPIManager {
     ]
     
     Alamofire.request(urlstring, headers: headers).responseJSON { response in
-        if let recipeDictionary = response.result.value as! NSDictionary? {
-            let recipes = recipeDictionary["recipes"] as! [RecipeItem]
-            
-            
+        if let recipeDictionary = response.result.value as! [String: Any]? {
+            //let recipes = recipeDictionary["recipes"] as! [RecipeItem]
+            //print(type(of: recipeDictionary["recipes"]))
+            print(recipeDictionary["recipes"] ?? "recipeDict is empty")
+            //let recipes = recipeDictionary["recipes"] as! [[String: Any]]
+            let recipeArray = recipeDictionary["recipes"] as! NSArray
+            let recipes = recipeArray.flatMap({ (dictionary) -> RecipeItem in
+                RecipeItem(dictionary: dictionary as! [String: Any])
+            })
             completion(recipes, nil)
         }
         else {

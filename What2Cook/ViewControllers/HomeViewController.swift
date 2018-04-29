@@ -47,13 +47,13 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
         print("Calling loadRecipes()")
         SpoonacularAPIManager().getPopularRecipes() { (recipes, error) in
             if let recipes = recipes {
-               self.recipes = recipes
+                self.recipes = recipes
+                self.collectionView.reloadData()
                
             } else if let error = error {
                 print("Error getting recipes: " + error.localizedDescription)
             }
         }
-        
     }
   
   override func didReceiveMemoryWarning() {
@@ -67,13 +67,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
   
   func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
     let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "RecipeCell", for: indexPath) as! RecipeCell
-    
-    print("testing 123 i am in collectionview")
-    //cell.recipe = recipes[indexPath.item] as RecipeItem
-    /*if let recipe = recipes[indexPath.item]
-        let url = URL(string: recipe.image)
-        cell.recipeImage.af_setImage(withURL: url!)
-    }*/
+    cell.recipe = recipes[indexPath.item] as RecipeItem
     return cell
   }
   
