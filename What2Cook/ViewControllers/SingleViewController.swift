@@ -15,14 +15,29 @@ class SingleViewController: UIViewController, UITableViewDelegate, UITableViewDa
     @IBOutlet weak var recipeImage: UIImageView!
     @IBOutlet weak var recipeName: UILabel!
     @IBOutlet weak var recipeTime: UILabel!
+    @IBOutlet weak var recipeLikes: UILabel!
+    @IBOutlet weak var recipeServings: UILabel!
     
-    var recipesList: [RecipeItem] = [] // change later to combine recipe and recipe item
+    var recipe: RecipeItem?
+    
     var ingredients: [String] = []
+    var directions: [String] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        
+        if let recipe = recipe {
+            recipeName.text = recipe.name
+            recipeTime.text = "5 min"
+            //recipeLikes.text = recipe.likes
+            //recipeServings.text = recipe.servings
+            
+            let url = URL(string: recipe.image!)
+            recipeImage.af_setImage(withURL: url!)
+        }
+        
         tableView.delegate = self
         tableView.dataSource = self
         tableView.rowHeight = UITableViewAutomaticDimension
@@ -32,7 +47,7 @@ class SingleViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 0
+        return 1
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

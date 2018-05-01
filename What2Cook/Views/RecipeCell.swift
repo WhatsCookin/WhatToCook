@@ -11,7 +11,7 @@ import AlamofireImage
 
 class RecipeCell: UICollectionViewCell {
     @IBOutlet weak var recipeImage: UIImageView!
-    //@IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var nameLabel: UILabel!
     //@IBOutlet weak var timeLabel: UILabel!
     //@IBOutlet weak var likesLabel: UILabel!
     //@IBOutlet weak var servingsLabel: UILabel!
@@ -23,7 +23,7 @@ class RecipeCell: UICollectionViewCell {
             if let url = URL(string: recipe.image!) {
                recipeImage.af_setImage(withURL: url)
             }
-            //nameLabel.text = recipe.name
+            nameLabel.text = recipe.name
             //timeLabel.text = "Time: " + String(recipe.time)
             //likesLabel.text = "Likes: " + String(recipe.likes)
             //servingsLabel.text = " Servings: " + String(recipe.servings)
