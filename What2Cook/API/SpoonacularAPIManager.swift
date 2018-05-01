@@ -9,9 +9,12 @@
 import Foundation
 import Alamofire
 
-class SpoonacularAPIManager {  
+class SpoonacularAPIManager {
+    
+  let key = "69p5QHDqZfmshevTW4RVD0dwIh7Qp1L5vUZjsnVjlWJFfVpmAb"
+    
   func searchRecipes(_ ingredients: [String], completion: @escaping([Recipe]?, Error?) -> ()) {
-    let key = "69p5QHDqZfmshevTW4RVD0dwIh7Qp1L5vUZjsnVjlWJFfVpmAb"
+    //let key = "69p5QHDqZfmshevTW4RVD0dwIh7Qp1L5vUZjsnVjlWJFfVpmAb"
     
     var ingredientString = ""
     for ingredient in ingredients {
@@ -40,7 +43,7 @@ class SpoonacularAPIManager {
   }
   
   func autocompleteIngredientSearch(_ searchString: String, completion: @escaping([Ingredient]?, Error?) -> ()) {
-    let key = "69p5QHDqZfmshevTW4RVD0dwIh7Qp1L5vUZjsnVjlWJFfVpmAb"
+    //let key = "69p5QHDqZfmshevTW4RVD0dwIh7Qp1L5vUZjsnVjlWJFfVpmAb"
     
     let numResults = 100
     
@@ -65,7 +68,7 @@ class SpoonacularAPIManager {
   }
   
   func setRecipeData(_ recipe: Recipe) {
-    let key = "69p5QHDqZfmshevTW4RVD0dwIh7Qp1L5vUZjsnVjlWJFfVpmAb"
+    //let key = "69p5QHDqZfmshevTW4RVD0dwIh7Qp1L5vUZjsnVjlWJFfVpmAb"
     
     let id = recipe.id!
     
@@ -87,4 +90,32 @@ class SpoonacularAPIManager {
       }
     }
   }
+    
+    func getPopularRecipes(completion: @escaping([RecipeItem]?, Error?) -> ()) {
+    //let key = "69p5QHDqZfmshevTW4RVD0dwIh7Qp1L5vUZjsnVjlWJFfVpmAb"
+    
+    let numRecipes = 200 // number of popular recipes to be returned
+    
+    let urlstring = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/random?number=" + String(numRecipes)
+    
+    //You headers (for your api key)
+    let headers: HTTPHeaders = [
+    "X-Mashape-Key": key,
+    ]
+    
+    Alamofire.request(urlstring, headers: headers).responseJSON { response in
+        if let recipeDictionary = response.result.value as! [String: Any]? {
+            let recipeArray = recipeDictionary["recipes"] as! NSArray
+            let recipes = recipeArray.flatMap({ (dictionary) -> RecipeItem in
+                RecipeItem(dictionary: dictionary as! [String: Any])
+            })
+            completion(recipes, nil)
+        }
+        else {
+            print("Something went wrong")
+        }
+    }
+    
+  }
+    
 }
