@@ -20,7 +20,7 @@ class SingleViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     var recipe: RecipeItem?
     
-    var ingredients: [String] = []
+    var ingredients: [[String:Any]] = [[:]]
     var directions: [String] = []
     
     override func viewDidLoad() {
@@ -36,6 +36,9 @@ class SingleViewController: UIViewController, UITableViewDelegate, UITableViewDa
             
             let url = URL(string: recipe.image!)
             recipeImage.af_setImage(withURL: url!)
+            
+            ingredients = recipe.ingredients
+            
         }
         
         tableView.delegate = self
@@ -47,12 +50,13 @@ class SingleViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        return ingredients.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "IngredientListCell", for: indexPath) as! IngredientListCell
-        //cell.recipe = recipesList[indexPath.row]
+        
+        cell.ingredient = ingredients[indexPath.row]
         return cell
     }
     

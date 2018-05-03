@@ -164,6 +164,9 @@
                                                                 <constraint firstItem="Har-nx-Yc0" firstAttribute="centerY" secondItem="csh-Cp-suc" secondAttribute="centerY" id="qAl-g1-0BV"/>
                                                             </constraints>
                                                         </tableViewCellContentView>
+                                                        <connections>
+                                                            <outlet property="ingredientLabel" destination="n35-YT-RSm" id="VE2-FN-wSC"/>
+                                                        </connections>
                                                     </tableViewCell>
                                                 </prototypes>
                                             </tableView>
