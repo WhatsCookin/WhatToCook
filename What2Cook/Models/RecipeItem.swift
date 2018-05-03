@@ -27,6 +27,7 @@ class RecipeItem { // recipe to display - TODO: change to combine recipe and rec
         imageType = dictionary["imageType"] as? String
         likes = dictionary["aggregateLikes"] as? Int
         servings = dictionary["servings"] as? Int
+        time = dictionary["readyInMinutes"] as? Int
         ingredients = dictionary["extendedIngredients"] as? [[String:Any]]
     }
     

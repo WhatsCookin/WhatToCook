@@ -30,9 +30,9 @@ class SingleViewController: UIViewController, UITableViewDelegate, UITableViewDa
         
         if let recipe = recipe {
             recipeName.text = recipe.name
-            recipeTime.text = "5 min"
-            //recipeLikes.text = recipe.likes
-            //recipeServings.text = recipe.servings
+            recipeTime.text = String(recipe.time)
+            recipeLikes.text = String(recipe.likes)
+            recipeServings.text = String(recipe.servings)
             
             let url = URL(string: recipe.image!)
             recipeImage.af_setImage(withURL: url!)
