@@ -30,4 +30,10 @@ class SidebarViewController: UITableViewController {
     super.didReceiveMemoryWarning()
     // Dispose of any resources that can be recreated.
   }
+  
+  override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    if(tableArray[indexPath.row] == "Logout") {
+    NotificationCenter.default.post(name: NSNotification.Name("didLogout"), object: nil)
+    }
+  }
 }

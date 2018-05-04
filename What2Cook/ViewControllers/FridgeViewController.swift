@@ -55,6 +55,7 @@ class FridgeViewController: UIViewController, UITableViewDelegate, UITableViewDa
       if(sections[i].category == "Unlisted") {
         sections[i].ingredients.append(ingredient)
         tableView.reloadData()
+        print(sections)
         return
       }
     }
@@ -65,10 +66,19 @@ class FridgeViewController: UIViewController, UITableViewDelegate, UITableViewDa
       if(sections[i].category == category) {
         sections[i].ingredients.append(ingredient)
         tableView.reloadData()
+        print(sections)
         return
       }
     }
     print("need to create new category")
+  }
+  
+  func addSection(name: String) {
+    let newSection = Section(category: name, ingredients: [], expanded: false)
+    sections.append(newSection)
+    tableView.reloadData()
+    print(sections)
+    return
   }
   
   override func viewDidLoad() {
@@ -78,6 +88,9 @@ class FridgeViewController: UIViewController, UITableViewDelegate, UITableViewDa
     self.tableView.allowsMultipleSelection = true
     self.tableView.delegate = self
     self.tableView.dataSource = self
+    
+    addSection(name: "Dairy")
+    addSection(name: "Fish")
     
     // FOR TESTING
     /*SpoonacularAPIManager().getRecipeInformation(479101) { (ingredients, error) in
@@ -152,9 +165,10 @@ class FridgeViewController: UIViewController, UITableViewDelegate, UITableViewDa
   }
   
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-    let ingredientSearchViewController = segue.destination as! IngredientSearchViewController
+    let ingredientSearchViewController = segue.destination as? IngredientSearchViewController
+    ingredientSearchViewController?.fridgeViewController = self
     
-    // Pass on the data to the Detail ViewController
-    ingredientSearchViewController.fridgeViewController = self
+    let categoryViewController = segue.destination as? CategoryViewController
+    categoryViewController?.fridgeViewController = self
   }
 }
