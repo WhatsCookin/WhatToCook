@@ -8,20 +8,29 @@
 
 import UIKit
 
-class IngredientSearchViewController: UIViewController, UITextFieldDelegate {
+class IngredientSearchViewController: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, UIPickerViewDataSource {
   
   var fridgeViewController: FridgeViewController?
   
+  @IBOutlet weak var categoryTextField: UITextField!
   @IBOutlet weak var textField: UITextField!
   @IBOutlet weak var textLabel: UILabel!
+  @IBOutlet weak var categoryDropDown: UIPickerView!
   
   @IBAction func onAdd(_ sender: UIButton) {
-    let ingredientToAdd = textField.text!
+    let ingredientToAdd = textField.text!.capitalized
     print(textField.text!)
     SpoonacularAPIManager().autocompleteIngredientSearch(ingredientToAdd) { (ingredients, error) in
       if ingredients!.count > 0 {
         self.textLabel.text = "Added " + self.textField.text!
-        self.fridgeViewController?.addIngredient(ingredient: ingredientToAdd)
+        
+        if self.categoryTextField.text != "" {
+          let categoryToAddIn = self.categoryTextField.text
+          self.fridgeViewController?.addIngredient(ingredient: ingredientToAdd, category: categoryToAddIn!)
+        }
+        else {
+          self.fridgeViewController?.addIngredient(ingredient: ingredientToAdd)
+        }
       }
       else {
         print("failed")
@@ -30,21 +39,44 @@ class IngredientSearchViewController: UIViewController, UITextFieldDelegate {
     }
   }
   
-  //TODO: Force correct capitalization - every word must be capitalized
-  /*func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-    var text = textField.text
-    if(text == "" || self.textField.text?.last == " ") {
-      text?.append(string.uppercased())
-      return false
+  func numberOfComponents(in pickerView: UIPickerView) -> Int {
+    return 1
+  }
+  
+  func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+    let rowCount = fridgeViewController?.sections.count
+    return rowCount!
+  }
+  
+  func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+    let rowTitle = fridgeViewController?.sections[row].category
+    return rowTitle
+  }
+  
+  func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+    let chosenCategory = self.fridgeViewController?.sections[row].category
+    if chosenCategory == "Unlisted" {
+      self.categoryTextField.text = ""
     }
-    return true
-  }*/
+    else {
+      self.categoryTextField.text = chosenCategory
+    }
+    self.categoryDropDown.isHidden = true
+  }
+  
+  func textFieldDidBeginEditing(_ textField: UITextField) {
+    if(textField == categoryTextField) {
+      self.categoryDropDown.isHidden = false
+      dismissKeyboard()
+    }
+  }
   
   override func viewDidLoad() {
     super.viewDidLoad()
     
     // Do any additional setup after loading the view.
     self.textField.delegate = self
+    self.hideKeyboardWhenTappedAround() 
   }
   
   override func didReceiveMemoryWarning() {

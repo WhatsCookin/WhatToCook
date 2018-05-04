@@ -52,7 +52,8 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
     
     func loadRecipes() {
         print("Calling loadRecipes()")
-        SpoonacularAPIManager().getPopularRecipes() { (recipes, error) in
+      // Commented out to avoid exceeding API call limit
+        /*SpoonacularAPIManager().getPopularRecipes() { (recipes, error) in
             if let recipes = recipes {
                 self.recipes = recipes
                 self.collectionView.reloadData()
@@ -61,7 +62,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
             } else if let error = error {
                 print("Error getting recipes: " + error.localizedDescription)
             }
-        }
+        }*/
     }
     
     @objc func didPullToRefresh(_ refreshControl: UIRefreshControl) {
