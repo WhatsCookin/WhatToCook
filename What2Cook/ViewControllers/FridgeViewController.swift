@@ -55,7 +55,6 @@ class FridgeViewController: UIViewController, UITableViewDelegate, UITableViewDa
       if(sections[i].category == "Unlisted") {
         sections[i].ingredients.append(ingredient)
         tableView.reloadData()
-        print(sections)
         return
       }
     }
@@ -66,19 +65,42 @@ class FridgeViewController: UIViewController, UITableViewDelegate, UITableViewDa
       if(sections[i].category == category) {
         sections[i].ingredients.append(ingredient)
         tableView.reloadData()
-        print(sections)
         return
       }
     }
     print("need to create new category")
   }
   
+  func removeIngredient(ingredient: String) {
+    for i in 0...sections.count - 1 {
+      for j in 0...sections[i].ingredients.count {
+        var ingredients = sections[i].ingredients
+        if ingredients![j] == ingredient {
+          ingredients?.remove(at: j)
+        }
+      }
+    }
+  }
+  
+  func ingredientAlreadyAdded(ingredient: String) -> Bool {
+    for i in 0...sections.count - 1 {
+      let ingredients = sections[i].ingredients
+      if ingredients!.count > 0 {
+        for j in 0...(ingredients?.count)! - 1 {
+          let currentIngredient = ingredients![j]
+          if currentIngredient == ingredient {
+            return true
+          }
+        }
+      }
+    }
+    return false
+  }
+  
   func addSection(name: String) {
     let newSection = Section(category: name, ingredients: [], expanded: false)
     sections.append(newSection)
     tableView.reloadData()
-    print(sections)
-    print("\n")
     return
   }
   
@@ -89,9 +111,6 @@ class FridgeViewController: UIViewController, UITableViewDelegate, UITableViewDa
     self.tableView.allowsMultipleSelection = true
     self.tableView.delegate = self
     self.tableView.dataSource = self
-    
-    addSection(name: "Dairy")
-    addSection(name: "Fish")
     
     // FOR TESTING
     /*SpoonacularAPIManager().getRecipeInformation(479101) { (ingredients, error) in

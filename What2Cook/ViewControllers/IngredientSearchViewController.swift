@@ -19,23 +19,27 @@ class IngredientSearchViewController: UIViewController, UITextFieldDelegate, UIP
   
   @IBAction func onAdd(_ sender: UIButton) {
     let ingredientToAdd = textField.text!.capitalized
-    print(textField.text!)
-    SpoonacularAPIManager().autocompleteIngredientSearch(ingredientToAdd) { (ingredients, error) in
-      if ingredients!.count > 0 {
-        self.textLabel.text = "Added " + self.textField.text!
-        
-        if self.categoryTextField.text != "" {
-          let categoryToAddIn = self.categoryTextField.text
-          self.fridgeViewController?.addIngredient(ingredient: ingredientToAdd, category: categoryToAddIn!)
+    // Check that the ingredient is not already in the fridge
+    if !((fridgeViewController?.ingredientAlreadyAdded(ingredient: ingredientToAdd))!) {
+      SpoonacularAPIManager().autocompleteIngredientSearch(ingredientToAdd) { (ingredients, error) in
+        if ingredients!.count > 0 {
+          self.textLabel.text = "Added " + self.textField.text!
+          
+          if self.categoryTextField.text != "" {
+            let categoryToAddIn = self.categoryTextField.text
+            self.fridgeViewController?.addIngredient(ingredient: ingredientToAdd, category: categoryToAddIn!)
+          }
+          else {
+            self.fridgeViewController?.addIngredient(ingredient: ingredientToAdd)
+          }
         }
         else {
-          self.fridgeViewController?.addIngredient(ingredient: ingredientToAdd)
+          self.displayError(title: "Cannot Add Ingredient", message: "Ingredient not found.")
         }
       }
-      else {
-        print("failed")
-        self.textLabel.text = "Ingredient not found"
-      }
+    }
+    else {
+      displayError(title: "Cannot Add Ingredient", message: "You already have that ingredient.")
     }
   }
   
@@ -65,7 +69,10 @@ class IngredientSearchViewController: UIViewController, UITextFieldDelegate, UIP
   }
   
   func textFieldDidBeginEditing(_ textField: UITextField) {
-    if(textField == categoryTextField) {
+    if(textField == self.textField) {
+      self.textField.text = ""
+    }
+    else if(textField == categoryTextField) {
       self.categoryDropDown.isHidden = false
       dismissKeyboard()
     }

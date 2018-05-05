@@ -9,8 +9,8 @@
 import UIKit
 import Parse
 
-// Allows any view to hide keyboard when view is tapped
 extension UIViewController {
+  // Allows any view to hide keyboard when view is tapped
   func hideKeyboardWhenTappedAround() {
     let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UIViewController.dismissKeyboard))
     tap.cancelsTouchesInView = false
@@ -19,6 +19,20 @@ extension UIViewController {
   
   @objc func dismissKeyboard() {
     view.endEditing(true)
+  }
+  
+  func displayError(title: String, message: String) {
+    let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+    
+    // create an OK action
+    let OKAction = UIAlertAction(title: "OK", style: .default) { (action) in
+      // handle response here.
+    }
+    // add the OK action to the alert controller
+    alertController.addAction(OKAction)
+    present(alertController, animated: true) {
+      // optional code for what happens after the alert controller has finished presenting
+    }
   }
 }
 

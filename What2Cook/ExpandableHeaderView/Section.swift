@@ -12,6 +12,7 @@ struct Section {
   var category: String!
   var ingredients: [String]!
   var expanded: Bool!
+  var color: UIColor?
   
   init (category: String, ingredients: [String], expanded: Bool!) {
     self.category = category
