@@ -55,7 +55,6 @@ class FridgeViewController: UIViewController, UITableViewDelegate, UITableViewDa
       if(sections[i].category == "Unlisted") {
         sections[i].ingredients.append(ingredient)
         tableView.reloadData()
-        print(sections)
         return
       }
     }
@@ -66,7 +65,6 @@ class FridgeViewController: UIViewController, UITableViewDelegate, UITableViewDa
       if(sections[i].category == category) {
         sections[i].ingredients.append(ingredient)
         tableView.reloadData()
-        print(sections)
         return
       }
     }
@@ -103,8 +101,6 @@ class FridgeViewController: UIViewController, UITableViewDelegate, UITableViewDa
     let newSection = Section(category: name, ingredients: [], expanded: false)
     sections.append(newSection)
     tableView.reloadData()
-    print(sections)
-    print("\n")
     return
   }
   

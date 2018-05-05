@@ -9,8 +9,8 @@
 import UIKit
 import Parse
 
-// Allows any view to hide keyboard when view is tapped
 extension UIViewController {
+  // Allows any view to hide keyboard when view is tapped
   func hideKeyboardWhenTappedAround() {
     let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UIViewController.dismissKeyboard))
     tap.cancelsTouchesInView = false
