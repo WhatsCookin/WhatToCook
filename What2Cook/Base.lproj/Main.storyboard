@@ -312,7 +312,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zSJ-iU-Mmp" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1032.8" y="2236.7316341829087"/>
+            <point key="canvasLocation" x="1047" y="2237"/>
         </scene>
         <!--Category View Controller-->
         <scene sceneID="QWg-gC-n2G">
@@ -342,7 +342,6 @@
                                 <state key="normal" title="Add"/>
                                 <connections>
                                     <action selector="onAdd:" destination="ZeA-qU-FZj" eventType="touchUpInside" id="xbZ-JE-0fn"/>
-                                    <segue destination="Yfd-vf-QZE" kind="show" id="Qti-Wu-A5i"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -355,7 +354,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4CW-yw-v2s" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1032.8" y="1584.5577211394304"/>
+            <point key="canvasLocation" x="1046" y="1579"/>
         </scene>
         <!--What's in my Fridge?-->
         <scene sceneID="bP8-Dq-DqY">
@@ -432,7 +431,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cWl-7S-lCH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="377" y="2237"/>
+            <point key="canvasLocation" x="377" y="2202"/>
         </scene>
         <!--Sign Up View Controller-->
         <scene sceneID="51B-ib-w8j">
@@ -960,7 +959,6 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="NM3-9G-I46"/>
-        <segue reference="Qti-Wu-A5i"/>
         <segue reference="w31-IS-YoO"/>
     </inferredMetricsTieBreakers>
 </document>
