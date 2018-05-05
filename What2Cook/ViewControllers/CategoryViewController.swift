@@ -16,6 +16,9 @@ class CategoryViewController: UIViewController {
     let categoryName = categoryTextField.text
     if(categoryName != "") {
       fridgeViewController?.addSection(name: categoryName!)
+      print(fridgeViewController?.sections)
+      print("\n")
+      self.navigationController?.popViewController(animated: true)
     }
   }
   

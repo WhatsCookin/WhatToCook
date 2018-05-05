@@ -78,6 +78,7 @@ class FridgeViewController: UIViewController, UITableViewDelegate, UITableViewDa
     sections.append(newSection)
     tableView.reloadData()
     print(sections)
+    print("\n")
     return
   }
   
