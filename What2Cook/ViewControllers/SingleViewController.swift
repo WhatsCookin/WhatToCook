@@ -10,8 +10,8 @@ import UIKit
 
 class SingleViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
-    @IBOutlet weak var tableView: UITableView! // tableView for ingredients in the recipe
-    
+    @IBOutlet weak var tableViewIngredients: UITableView! // tableView for ingredients in the recipe
+    @IBOutlet weak var tableViewDirections: UITableView! // tableview for directions in the recipe
     @IBOutlet weak var recipeImage: UIImageView!
     @IBOutlet weak var recipeName: UILabel!
     @IBOutlet weak var recipeTime: UILabel!
@@ -21,7 +21,7 @@ class SingleViewController: UIViewController, UITableViewDelegate, UITableViewDa
     var recipe: RecipeItem?
     
     var ingredients: [[String:Any]] = [[:]]
-    var directions: [String] = []
+    var directions: [[String:Any]] = [[:]]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,26 +38,45 @@ class SingleViewController: UIViewController, UITableViewDelegate, UITableViewDa
             recipeImage.af_setImage(withURL: url!)
             
             ingredients = recipe.ingredients
-            
+            directions = recipe.directions
         }
         
-        tableView.delegate = self
-        tableView.dataSource = self
-        tableView.rowHeight = UITableViewAutomaticDimension
-        tableView.estimatedRowHeight = 50
+        tableViewIngredients.delegate = self
+        tableViewIngredients.dataSource = self
+        tableViewIngredients.rowHeight = UITableViewAutomaticDimension
+        tableViewIngredients.estimatedRowHeight = 50
+        
+        tableViewDirections.delegate = self
+        tableViewDirections.dataSource = self
+        tableViewDirections.rowHeight = UITableViewAutomaticDimension
+        tableViewDirections.estimatedRowHeight = 70
         
         //loadRecipes()
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return ingredients.count
+        let count: Int?
+        if tableView == self.tableViewIngredients {
+            count = ingredients.count
+        }
+        else {
+            count = directions.count
+        }
+        return count!
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "IngredientListCell", for: indexPath) as! IngredientListCell
-        
-        cell.ingredient = ingredients[indexPath.row]
-        return cell
+        if tableView == self.tableViewIngredients {
+            let cell = tableViewIngredients.dequeueReusableCell(withIdentifier: "IngredientListCell", for: indexPath) as! IngredientListCell
+            
+            cell.ingredient = ingredients[indexPath.row]
+            return cell
+        }
+        else {
+            let cell = tableViewDirections.dequeueReusableCell(withIdentifier: "DirectionListCell", for: indexPath) as! DirectionListCell
+            cell.direction = directions[indexPath.row]
+            return cell
+        }
     }
     
     override func didReceiveMemoryWarning() {

@@ -187,7 +187,7 @@
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <prototypes>
-                                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="VLG-ZA-ddi">
+                                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="DirectionListCell" id="VLG-ZA-ddi" customClass="DirectionListCell" customModule="What2Cook" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                                         <autoresizingMask key="autoresizingMask"/>
                                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="VLG-ZA-ddi" id="N3q-Bx-7Zt">
@@ -214,6 +214,9 @@
                                                                 <constraint firstItem="N67-RJ-i7o" firstAttribute="centerY" secondItem="N3q-Bx-7Zt" secondAttribute="centerY" id="CyC-sC-lj7"/>
                                                             </constraints>
                                                         </tableViewCellContentView>
+                                                        <connections>
+                                                            <outlet property="directionLabel" destination="aQF-dX-0JJ" id="Zui-ht-brm"/>
+                                                        </connections>
                                                     </tableViewCell>
                                                 </prototypes>
                                             </tableView>
@@ -273,7 +276,8 @@
                         <outlet property="recipeName" destination="GJb-Ov-KuS" id="9uh-YL-91p"/>
                         <outlet property="recipeServings" destination="tPN-gy-6o6" id="EOw-2V-fb3"/>
                         <outlet property="recipeTime" destination="djf-dV-Xcx" id="TAV-zS-qvz"/>
-                        <outlet property="tableView" destination="epD-19-AbG" id="S3V-ty-VSY"/>
+                        <outlet property="tableViewDirections" destination="Gax-cA-lEF" id="eCA-9K-6Y5"/>
+                        <outlet property="tableViewIngredients" destination="epD-19-AbG" id="DR9-OG-nDT"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bbI-7s-iT9" userLabel="First Responder" sceneMemberID="firstResponder"/>

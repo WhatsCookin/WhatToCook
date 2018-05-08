@@ -39,6 +39,7 @@
 		637E15C3208D49DC007104C4 /* SingleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 637E15C2208D49DC007104C4 /* SingleViewController.swift */; };
 		637E15C5208D5319007104C4 /* IngredientListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 637E15C4208D5319007104C4 /* IngredientListCell.swift */; };
 		63888FDE208EB5F2000105C1 /* RecipeItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63888FDD208EB5F2000105C1 /* RecipeItem.swift */; };
+		638D387020A13E46000C473D /* DirectionListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 638D386F20A13E46000C473D /* DirectionListCell.swift */; };
 		63AE43B7208C1D1C00644354 /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 63AE43B6208C1D1C00644354 /* SWRevealViewController.m */; };
 		A55A3014CEB6E1189CD9706B /* Pods_What2CookTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D734C8EDDCCED6A3CF0A132 /* Pods_What2CookTests.framework */; };
 		D0C084F876509BC01C82048C /* Pods_What2Cook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4733198CBC5DDF83D9CAADBB /* Pods_What2Cook.framework */; };
@@ -103,6 +104,7 @@
 		637E15C2208D49DC007104C4 /* SingleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleViewController.swift; sourceTree = "<group>"; };
 		637E15C4208D5319007104C4 /* IngredientListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientListCell.swift; sourceTree = "<group>"; };
 		63888FDD208EB5F2000105C1 /* RecipeItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeItem.swift; sourceTree = "<group>"; };
+		638D386F20A13E46000C473D /* DirectionListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DirectionListCell.swift; sourceTree = "<group>"; };
 		63AE43B4208C1D0500644354 /* SWRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRevealViewController.h; sourceTree = "<group>"; };
 		63AE43B5208C1D1A00644354 /* What2Cook-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "What2Cook-Bridging-Header.h"; sourceTree = "<group>"; };
 		63AE43B6208C1D1C00644354 /* SWRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRevealViewController.m; sourceTree = "<group>"; };
@@ -226,6 +228,7 @@
 				20A511BD2077206A00FDF6BB /* CategoryCell.swift */,
 				2056CBB5207CA27600F9A63D /* RecipeSuggestionCell.swift */,
 				637E15C4208D5319007104C4 /* IngredientListCell.swift */,
+				638D386F20A13E46000C473D /* DirectionListCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -595,6 +598,7 @@
 				20A511BE2077206A00FDF6BB /* CategoryCell.swift in Sources */,
 				20A4C32020721E1A00F5A961 /* RecipeCell.swift in Sources */,
 				6326EFBD209292EB00193EB9 /* RecipeSingleView.swift in Sources */,
+				638D387020A13E46000C473D /* DirectionListCell.swift in Sources */,
 				20A511BA20771EA200FDF6BB /* FriendsViewController.swift in Sources */,
 				20A511BC2077205900FDF6BB /* IngredientCell.swift in Sources */,
 				63AE43B7208C1D1C00644354 /* SWRevealViewController.m in Sources */,
