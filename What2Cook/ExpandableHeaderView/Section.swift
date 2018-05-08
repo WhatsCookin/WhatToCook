@@ -12,14 +12,10 @@ struct Section {
   var category: String!
   var ingredients: [String]!
   var expanded: Bool!
+  var color: UIColor?
   
   init (category: String, ingredients: [String], expanded: Bool!) {
     self.category = category
-    self.ingredients = ingredients
-    self.expanded = expanded
-  }
-  
-  mutating func update (ingredients: [String], expanded: Bool!) {
     self.ingredients = ingredients
     self.expanded = expanded
   }

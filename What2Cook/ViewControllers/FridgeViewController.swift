@@ -71,6 +71,39 @@ class FridgeViewController: UIViewController, UITableViewDelegate, UITableViewDa
     print("need to create new category")
   }
   
+  func removeIngredient(ingredient: String) {
+    for i in 0...sections.count - 1 {
+      for j in 0...sections[i].ingredients.count {
+        var ingredients = sections[i].ingredients
+        if ingredients![j] == ingredient {
+          ingredients?.remove(at: j)
+        }
+      }
+    }
+  }
+  
+  func ingredientAlreadyAdded(ingredient: String) -> Bool {
+    for i in 0...sections.count - 1 {
+      let ingredients = sections[i].ingredients
+      if ingredients!.count > 0 {
+        for j in 0...(ingredients?.count)! - 1 {
+          let currentIngredient = ingredients![j]
+          if currentIngredient == ingredient {
+            return true
+          }
+        }
+      }
+    }
+    return false
+  }
+  
+  func addSection(name: String) {
+    let newSection = Section(category: name, ingredients: [], expanded: false)
+    sections.append(newSection)
+    tableView.reloadData()
+    return
+  }
+  
   override func viewDidLoad() {
     super.viewDidLoad()
     
@@ -152,9 +185,10 @@ class FridgeViewController: UIViewController, UITableViewDelegate, UITableViewDa
   }
   
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-    let ingredientSearchViewController = segue.destination as! IngredientSearchViewController
+    let ingredientSearchViewController = segue.destination as? IngredientSearchViewController
+    ingredientSearchViewController?.fridgeViewController = self
     
-    // Pass on the data to the Detail ViewController
-    ingredientSearchViewController.fridgeViewController = self
+    let categoryViewController = segue.destination as? CategoryViewController
+    categoryViewController?.fridgeViewController = self
   }
 }

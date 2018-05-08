@@ -22,29 +22,11 @@ class LoginViewController: UIViewController {
       PFUser.logInWithUsername(inBackground: username, password: password) { (user: PFUser?, error: Error?) in
         if let error = error {
           print("User log in failed: \(error.localizedDescription)")
+          self.displayError(title: "Couldn't Log In", message: "Wrong username or password.")
         } else {
           print("User logged in successfully")
           // display view controller that needs to shown after successful login
           self.performSegue(withIdentifier: "loginSegue", sender: nil)
-        }
-      }
-    }
-  }
-  @IBAction func onSignUp(_ sender: Any) {
-    // initialize a user object
-    let newUser = PFUser()
-    
-    // set user properties
-    newUser.username = usernameLabel.text
-    newUser.password = passwordLabel.text
-    
-    if(check()) {
-      // call sign up function on the object
-      newUser.signUpInBackground { (success: Bool, error: Error?) in
-        if let error = error {
-          print(error.localizedDescription)
-        } else {
-          print("User Registered successfully")
         }
       }
     }
@@ -54,6 +36,7 @@ class LoginViewController: UIViewController {
     super.viewDidLoad()
     
     // Do any additional setup after loading the view.
+    self.hideKeyboardWhenTappedAround() 
   }
   
   override func didReceiveMemoryWarning() {
@@ -63,18 +46,7 @@ class LoginViewController: UIViewController {
   
   func check() -> Bool {
     if((usernameLabel.text?.isEmpty)! || (passwordLabel.text?.isEmpty)!) {
-      print("empty")
-      let alertController = UIAlertController(title: "Both Fields Required", message: "Please enter your username and password", preferredStyle: .alert)
-      
-      // create an OK action
-      let OKAction = UIAlertAction(title: "OK", style: .default) { (action) in
-        // handle response here.
-      }
-      // add the OK action to the alert controller
-      alertController.addAction(OKAction)
-      present(alertController, animated: true) {
-        // optional code for what happens after the alert controller has finished presenting
-      }
+      displayError(title: "Both Fields Required", message: "Please enter your username and password")
       return false
     }
     return true

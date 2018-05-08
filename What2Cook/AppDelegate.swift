@@ -9,6 +9,33 @@
 import UIKit
 import Parse
 
+extension UIViewController {
+  // Allows any view to hide keyboard when view is tapped
+  func hideKeyboardWhenTappedAround() {
+    let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UIViewController.dismissKeyboard))
+    tap.cancelsTouchesInView = false
+    view.addGestureRecognizer(tap)
+  }
+  
+  @objc func dismissKeyboard() {
+    view.endEditing(true)
+  }
+  
+  func displayError(title: String, message: String) {
+    let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+    
+    // create an OK action
+    let OKAction = UIAlertAction(title: "OK", style: .default) { (action) in
+      // handle response here.
+    }
+    // add the OK action to the alert controller
+    alertController.addAction(OKAction)
+    present(alertController, animated: true) {
+      // optional code for what happens after the alert controller has finished presenting
+    }
+  }
+}
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
@@ -26,13 +53,32 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
       print("Welcome back \(currentUser.username!) 😀")
       
       let storyboard = UIStoryboard(name: "Main", bundle: nil)
-      /*let chatViewController = storyboard.instantiateViewController(withIdentifier: "TabBarController")*/
-      let chatViewController = storyboard.instantiateViewController(withIdentifier: "SWRevealViewController")
-      window?.rootViewController = chatViewController
+      let homeViewController = storyboard.instantiateViewController(withIdentifier: "SWRevealViewController")
+      window?.rootViewController = homeViewController
+    }
+    
+    NotificationCenter.default.addObserver(forName: Notification.Name("didLogout"), object: nil, queue: OperationQueue.main) { (Notification) in
+      print("Logout notification received")
+      self.logOut()
     }
     return true
   }
 
+  func logOut() {
+    // Logout the current user
+    PFUser.logOutInBackground(block: { (error) in
+      if let error = error {
+        print(error.localizedDescription)
+      } else {
+        print("Successful loggout")
+        // Load and show the login view controller
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let loginViewController = storyboard.instantiateViewController(withIdentifier: "loginViewController")
+        self.window?.rootViewController = loginViewController
+      }
+    })
+  }
+  
   func applicationWillResignActive(_ application: UIApplication) {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
     // Use this method to pause ongoing tasks, disable timers, and invalidate graphics rendering callbacks. Games should use this method to pause the game.
