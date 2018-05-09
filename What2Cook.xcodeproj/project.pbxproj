@@ -37,6 +37,7 @@
 		20BADE2A209BE66500FE5BB4 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20BADE29209BE66500FE5BB4 /* SignUpViewController.swift */; };
 		20EBA33820819415000B6349 /* SpoonacularAPIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20EBA33720819415000B6349 /* SpoonacularAPIManager.swift */; };
 		20EBA33A20819534000B6349 /* Ingredient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20EBA33920819534000B6349 /* Ingredient.swift */; };
+		20EDAF8D20A2952A00195F93 /* ExpandableHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 20EDAF8C20A2952A00195F93 /* ExpandableHeaderView.xib */; };
 		6326EFBD209292EB00193EB9 /* RecipeSingleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6326EFBC209292EB00193EB9 /* RecipeSingleView.swift */; };
 		637E15C3208D49DC007104C4 /* SingleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 637E15C2208D49DC007104C4 /* SingleViewController.swift */; };
 		637E15C5208D5319007104C4 /* IngredientListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 637E15C4208D5319007104C4 /* IngredientListCell.swift */; };
@@ -101,6 +102,7 @@
 		20BADE29209BE66500FE5BB4 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		20EBA33720819415000B6349 /* SpoonacularAPIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpoonacularAPIManager.swift; sourceTree = "<group>"; };
 		20EBA33920819534000B6349 /* Ingredient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ingredient.swift; sourceTree = "<group>"; };
+		20EDAF8C20A2952A00195F93 /* ExpandableHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ExpandableHeaderView.xib; sourceTree = "<group>"; };
 		22BD4EB1FCD557746C9B418A /* Pods-What2CookTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-What2CookTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-What2CookTests/Pods-What2CookTests.debug.xcconfig"; sourceTree = "<group>"; };
 		3D734C8EDDCCED6A3CF0A132 /* Pods_What2CookTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_What2CookTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4733198CBC5DDF83D9CAADBB /* Pods_What2Cook.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_What2Cook.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -266,6 +268,7 @@
 			children = (
 				20A511C02077408C00FDF6BB /* Section.swift */,
 				20A511C2207743E600FDF6BB /* ExpandableHeaderView.swift */,
+				20EDAF8C20A2952A00195F93 /* ExpandableHeaderView.xib */,
 			);
 			path = ExpandableHeaderView;
 			sourceTree = "<group>";
@@ -411,6 +414,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				201BA6372071354F00455146 /* LaunchScreen.storyboard in Resources */,
+				20EDAF8D20A2952A00195F93 /* ExpandableHeaderView.xib in Resources */,
 				201BA6342071354F00455146 /* Assets.xcassets in Resources */,
 				201BA6322071354F00455146 /* Main.storyboard in Resources */,
 			);
