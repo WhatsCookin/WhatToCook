@@ -166,7 +166,6 @@ class FridgeViewController: UIViewController, UITableViewDelegate, UITableViewDa
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     let cell = tableView.dequeueReusableCell(withIdentifier: "IngredientCell")!
     cell.textLabel?.text = sections[indexPath.section].ingredients[indexPath.row]
-    //cell.accessoryType = (indexPath == selectIndexPath) ? .checkmark:.none  //asd
     return cell
   }
   
@@ -188,7 +187,6 @@ class FridgeViewController: UIViewController, UITableViewDelegate, UITableViewDa
     let ingredientName = sections[indexPath.section].ingredients[indexPath.row]
     
     ingredients.append(ingredientName)
-    // TODO 17
   }
   
   func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
