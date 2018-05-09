@@ -104,8 +104,15 @@ class FridgeViewController: UIViewController, UITableViewDelegate, UITableViewDa
     return
   }
   
+  var selectIndexPath: IndexPath!
+  
   override func viewDidLoad() {
     super.viewDidLoad()
+    
+    selectIndexPath = IndexPath(row: -1, section: -1)
+    
+    let nib = UINib(nibName: "ExpandableHeaderView", bundle: nil)
+    tableView.register(nib, forHeaderFooterViewReuseIdentifier: "expandableHeaderView")
     
     // Do any additional setup after loading the view.
     self.tableView.allowsMultipleSelection = true
@@ -133,8 +140,8 @@ class FridgeViewController: UIViewController, UITableViewDelegate, UITableViewDa
     return sections[section].ingredients.count
   }
   
-  func tableView(_ tableView: UITableView, estimatedHeightForHeaderInSection section: Int) -> CGFloat {
-    return 44
+  func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+    return 58
   }
   
   func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -150,14 +157,16 @@ class FridgeViewController: UIViewController, UITableViewDelegate, UITableViewDa
   }
   
   func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-    let header = ExpandableHeaderView()
-    header.customInit(title: sections[section].category, section: section, delegate: self)
+    //let header = ExpandableHeaderView()
+    let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: "expandableHeaderView") as! ExpandableHeaderView
+    header.customInit(title: sections[section].category, section: section, delegate: self, tableView: tableView)
     return header
   }
   
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     let cell = tableView.dequeueReusableCell(withIdentifier: "IngredientCell")!
     cell.textLabel?.text = sections[indexPath.section].ingredients[indexPath.row]
+    //cell.accessoryType = (indexPath == selectIndexPath) ? .checkmark:.none  //asd
     return cell
   }
   
@@ -171,10 +180,15 @@ class FridgeViewController: UIViewController, UITableViewDelegate, UITableViewDa
     tableView.endUpdates()
   }
   
+  func isExpanded(header: ExpandableHeaderView, section: Int) -> Bool {
+    return sections[section].expanded
+  }
+  
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     let ingredientName = sections[indexPath.section].ingredients[indexPath.row]
     
     ingredients.append(ingredientName)
+    // TODO 17
   }
   
   func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
