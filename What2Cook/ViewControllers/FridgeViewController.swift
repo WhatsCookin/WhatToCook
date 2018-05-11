@@ -12,6 +12,7 @@ class FridgeViewController: UIViewController, UITableViewDelegate, UITableViewDa
   
   var recipesList: [Recipe] = []
   var ingredients: [String] = []
+  var selectIndexPath: IndexPath!
   
   @IBOutlet weak var tableView: UITableView!
   @IBAction func onSearch(_ sender: Any) {
@@ -82,13 +83,7 @@ class FridgeViewController: UIViewController, UITableViewDelegate, UITableViewDa
   }
   
   func addIngredient(ingredient: String) {
-    for i in 0...sections.count - 1 {
-      if(sections[i].category == "Unlisted") {
-        sections[i].ingredients.append(ingredient)
-        tableView.reloadData()
-        return
-      }
-    }
+    addIngredient(ingredient: ingredient, category: "Unlisted")
   }
   
   func addIngredient(ingredient: String, category: String) {
@@ -99,20 +94,16 @@ class FridgeViewController: UIViewController, UITableViewDelegate, UITableViewDa
         return
       }
     }
-    print("need to create new category")
   }
   
   func removeIngredient(ingredient: String) {
-    print("called with " + ingredient)
     for i in 0...sections.count - 1 {
       let size = sections[i].ingredients.count - 1
       if(size >= 0) {
         for j in 0...size {
           var ingredients = sections[i].ingredients
           if ingredients![j] == ingredient {
-            print(ingredients![j])
             sections[i].ingredients.remove(at: j)
-            print("removed")
             tableView.reloadData()
             return
           }
@@ -150,9 +141,16 @@ class FridgeViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
   }
   
-  var selectIndexPath: IndexPath!
+  func deselectAll() {
+    ingredients = []
+  }
   
-  override func viewDidLoad() {
+  func selectAll() {
+    //let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: "expandableHeaderView") as! ExpandableHeaderView
+    //header.selectAll(tableView!, numberOfSections: sections.count)
+  }
+    
+    override func viewDidLoad() {
     super.viewDidLoad()
     
     selectIndexPath = IndexPath(row: -1, section: -1)
@@ -212,7 +210,6 @@ class FridgeViewController: UIViewController, UITableViewDelegate, UITableViewDa
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     let cell = tableView.dequeueReusableCell(withIdentifier: "IngredientCell")!
     cell.textLabel?.text = sections[indexPath.section].ingredients[indexPath.row]
-    //cell.removeButton.tag = indexPath.row
     return cell
   }
   
@@ -243,6 +240,7 @@ class FridgeViewController: UIViewController, UITableViewDelegate, UITableViewDa
   }
   
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    deselectAll()
     let ingredientSearchViewController = segue.destination as? IngredientSearchViewController
     ingredientSearchViewController?.fridgeViewController = self
     
