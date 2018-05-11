@@ -11,6 +11,9 @@ import UIKit
 protocol ExpandableHeaderViewDelegate {
   func toggleSection(header: ExpandableHeaderView, section: Int)
   func isExpanded(header: ExpandableHeaderView, section: Int) -> Bool
+  func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
+  func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath)
+
 }
 
 class ExpandableHeaderView: UITableViewHeaderFooterView {
@@ -35,12 +38,14 @@ class ExpandableHeaderView: UITableViewHeaderFooterView {
         for i in 0...numRows - 1 {
           let indexPath = IndexPath(row: i, section: section)
           tableView?.selectRow(at: indexPath, animated: true, scrollPosition: .bottom)
+          tableView?.delegate?.tableView!(tableView!, didSelectRowAt: indexPath)
         }
       }
       else {
         for i in 0...numRows - 1 {
           let indexPath = IndexPath(row: i, section: section)
           tableView?.deselectRow(at: indexPath, animated: true)
+          tableView?.delegate?.tableView!(tableView!, didDeselectRowAt: indexPath)
         }
       }
     }

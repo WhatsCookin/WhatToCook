@@ -33,12 +33,18 @@ class FridgeViewController: UIViewController, UITableViewDelegate, UITableViewDa
   
   @IBAction func onDelete(_ sender: UIButton) {
     for ingredient in ingredients {
-      print(ingredient)
       removeIngredient(ingredient: ingredient)
     }
+    ingredients = []
   }
   
   @IBAction func onMove(_ sender: UIButton) {
+    let moveToCategoryVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "MoveToCategory") as! MoveToCategoryViewController
+    moveToCategoryVC.fridgeViewController = self
+    self.addChildViewController(moveToCategoryVC)
+    moveToCategoryVC.view.frame = self.view.frame
+    self.view.addSubview(moveToCategoryVC.view)
+    moveToCategoryVC.didMove(toParentViewController: self)
   }
   
   
@@ -83,14 +89,16 @@ class FridgeViewController: UIViewController, UITableViewDelegate, UITableViewDa
   }
   
   func removeIngredient(ingredient: String) {
+    print("called with " + ingredient)
     for i in 0...sections.count - 1 {
       let size = sections[i].ingredients.count - 1
-      if(size > 0) {
+      if(size >= 0) {
         for j in 0...size {
           var ingredients = sections[i].ingredients
           if ingredients![j] == ingredient {
-            
+            print(ingredients![j])
             sections[i].ingredients.remove(at: j)
+            print("removed")
             tableView.reloadData()
             return
           }
@@ -119,6 +127,13 @@ class FridgeViewController: UIViewController, UITableViewDelegate, UITableViewDa
     sections.append(newSection)
     tableView.reloadData()
     return
+  }
+  
+  func moveIngredients(ingredients: Array<String>, categoryName: String) {
+    for ingredient in ingredients {
+      removeIngredient(ingredient: ingredient)
+      addIngredient(ingredient: ingredient, category: categoryName)
+    }
   }
   
   var selectIndexPath: IndexPath!
@@ -203,7 +218,6 @@ class FridgeViewController: UIViewController, UITableViewDelegate, UITableViewDa
   
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     let ingredientName = sections[indexPath.section].ingredients[indexPath.row]
-    
     ingredients.append(ingredientName)
   }
   
