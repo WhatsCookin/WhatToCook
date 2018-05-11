@@ -479,6 +479,22 @@
                                     <segue destination="ZeA-qU-FZj" kind="show" id="D4q-hk-owZ"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3ll-f9-Tmx">
+                                <rect key="frame" x="250" y="573" width="118" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Move Ingredients"/>
+                                <connections>
+                                    <action selector="onMove:" destination="Yfd-vf-QZE" eventType="touchUpInside" id="EWp-49-3Hd"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6bp-ky-fDu">
+                                <rect key="frame" x="16" y="573" width="126" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Delete Ingredients"/>
+                                <connections>
+                                    <action selector="onDelete:" destination="Yfd-vf-QZE" eventType="touchUpInside" id="Ojx-wm-xeo"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="MHv-Yy-dNs"/>

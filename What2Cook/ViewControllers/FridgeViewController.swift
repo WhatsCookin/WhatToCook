@@ -31,6 +31,17 @@ class FridgeViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
   }
   
+  @IBAction func onDelete(_ sender: UIButton) {
+    for ingredient in ingredients {
+      print(ingredient)
+      removeIngredient(ingredient: ingredient)
+    }
+  }
+  
+  @IBAction func onMove(_ sender: UIButton) {
+  }
+  
+  
   // TODO: Replace placeholder data
   var sections = [
     Section(category: "Unlisted",
@@ -73,10 +84,16 @@ class FridgeViewController: UIViewController, UITableViewDelegate, UITableViewDa
   
   func removeIngredient(ingredient: String) {
     for i in 0...sections.count - 1 {
-      for j in 0...sections[i].ingredients.count {
-        var ingredients = sections[i].ingredients
-        if ingredients![j] == ingredient {
-          ingredients?.remove(at: j)
+      let size = sections[i].ingredients.count - 1
+      if(size > 0) {
+        for j in 0...size {
+          var ingredients = sections[i].ingredients
+          if ingredients![j] == ingredient {
+            
+            sections[i].ingredients.remove(at: j)
+            tableView.reloadData()
+            return
+          }
         }
       }
     }
@@ -166,6 +183,7 @@ class FridgeViewController: UIViewController, UITableViewDelegate, UITableViewDa
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     let cell = tableView.dequeueReusableCell(withIdentifier: "IngredientCell")!
     cell.textLabel?.text = sections[indexPath.section].ingredients[indexPath.row]
+    //cell.removeButton.tag = indexPath.row
     return cell
   }
   
