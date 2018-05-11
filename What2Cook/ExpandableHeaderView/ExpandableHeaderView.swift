@@ -25,8 +25,6 @@ class ExpandableHeaderView: UITableViewHeaderFooterView {
   @IBOutlet weak var checkbox: UIButton!
   
   @IBAction func onCheck(_ sender: UIButton) {
-    let numRows = (tableView?.numberOfRows(inSection: section))!
-    
     // Expand view if not already expanded
     if !((delegate?.isExpanded(header: self, section: section))!) {
       delegate?.toggleSection(header: self, section: section)
@@ -64,7 +62,7 @@ class ExpandableHeaderView: UITableViewHeaderFooterView {
     }
   }
   
-  func selectAll(numberOfSections: Int) {
+  /*func selectAll(numberOfSections: Int) {
     for section in 0..<numberOfSections {
       selectSection(section: section)
     }
@@ -74,7 +72,7 @@ class ExpandableHeaderView: UITableViewHeaderFooterView {
     for section in 0..<numberOfSections {
       deselectSection(section: section)
     }
-  }
+  }*/
   
   override init(reuseIdentifier: String?) {
     super.init(reuseIdentifier: reuseIdentifier)

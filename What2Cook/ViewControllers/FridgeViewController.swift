@@ -33,6 +33,16 @@ class FridgeViewController: UIViewController, UITableViewDelegate, UITableViewDa
       }
     }
   }
+  @IBAction func onSelectAll(_ sender: UIButton) {
+    if sender.titleLabel?.text == "Select All" {
+      selectAll()
+      sender.setTitle("Deselect All", for: .normal)
+    }
+    else {
+      deselectAll()
+      sender.setTitle("Select All", for: .normal)
+    }
+  }
   
   @IBAction func onDelete(_ sender: UIButton) {
     if checkForSelection() {
@@ -142,12 +152,24 @@ class FridgeViewController: UIViewController, UITableViewDelegate, UITableViewDa
   }
   
   func deselectAll() {
-    ingredients = []
+    let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: "expandableHeaderView") as! ExpandableHeaderView
+    header.tableView = tableView
+    for section in 0..<sections.count {
+      header.deselectSection(section: section)
+    }
+    print(ingredients)
   }
   
   func selectAll() {
-    //let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: "expandableHeaderView") as! ExpandableHeaderView
-    //header.selectAll(tableView!, numberOfSections: sections.count)
+    let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: "expandableHeaderView") as! ExpandableHeaderView
+    header.tableView = tableView
+    for section in 0..<sections.count {
+      if !isExpanded(header: header, section: section) {
+        toggleSection(header: header, section: section)
+      }
+      header.selectSection(section: section)
+    }
+    print(ingredients)
   }
     
     override func viewDidLoad() {

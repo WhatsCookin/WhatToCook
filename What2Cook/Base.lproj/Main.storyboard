@@ -564,6 +564,14 @@
                                     <action selector="onDelete:" destination="Yfd-vf-QZE" eventType="touchUpInside" id="Ojx-wm-xeo"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iQ9-qi-pQf">
+                                <rect key="frame" x="155" y="75" width="65" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Select All"/>
+                                <connections>
+                                    <action selector="onSelectAll:" destination="Yfd-vf-QZE" eventType="touchUpInside" id="4Yv-FY-DZ0"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="MHv-Yy-dNs"/>
@@ -575,7 +583,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cWl-7S-lCH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="377" y="2237"/>
+            <point key="canvasLocation" x="376.80000000000001" y="2236.7316341829087"/>
         </scene>
         <!--Sign Up View Controller-->
         <scene sceneID="51B-ib-w8j">
