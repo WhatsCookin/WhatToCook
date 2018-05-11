@@ -15,36 +15,42 @@ class FridgeViewController: UIViewController, UITableViewDelegate, UITableViewDa
   
   @IBOutlet weak var tableView: UITableView!
   @IBAction func onSearch(_ sender: Any) {
-    SpoonacularAPIManager().searchRecipes(ingredients) { (recipes, error) in
-      if let recipes = recipes {
-        self.recipesList = recipes
-        
-        // Pass recipe data to new view
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let recipeSuggestionViewController = storyboard.instantiateViewController(withIdentifier: "Suggestion") as! RecipeSuggestionViewController
-        recipeSuggestionViewController.recipes = self.recipesList
-        self.present(recipeSuggestionViewController, animated: true, completion: nil)
-        
-      } else if let error = error {
-        print("Error getting recipes: " + error.localizedDescription)
+    if checkForSelection() {
+      SpoonacularAPIManager().searchRecipes(ingredients) { (recipes, error) in
+        if let recipes = recipes {
+          self.recipesList = recipes
+          
+          // Pass recipe data to new view
+          let storyboard = UIStoryboard(name: "Main", bundle: nil)
+          let recipeSuggestionViewController = storyboard.instantiateViewController(withIdentifier: "Suggestion") as! RecipeSuggestionViewController
+          recipeSuggestionViewController.recipes = self.recipesList
+          self.present(recipeSuggestionViewController, animated: true, completion: nil)
+          
+        } else if let error = error {
+          print("Error getting recipes: " + error.localizedDescription)
+        }
       }
     }
   }
   
   @IBAction func onDelete(_ sender: UIButton) {
-    for ingredient in ingredients {
-      removeIngredient(ingredient: ingredient)
+    if checkForSelection() {
+      for ingredient in ingredients {
+        removeIngredient(ingredient: ingredient)
+      }
+      ingredients = []
     }
-    ingredients = []
   }
   
   @IBAction func onMove(_ sender: UIButton) {
-    let moveToCategoryVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "MoveToCategory") as! MoveToCategoryViewController
-    moveToCategoryVC.fridgeViewController = self
-    self.addChildViewController(moveToCategoryVC)
-    moveToCategoryVC.view.frame = self.view.frame
-    self.view.addSubview(moveToCategoryVC.view)
-    moveToCategoryVC.didMove(toParentViewController: self)
+    if checkForSelection() {
+      let moveToCategoryVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "MoveToCategory") as! MoveToCategoryViewController
+      moveToCategoryVC.fridgeViewController = self
+      self.addChildViewController(moveToCategoryVC)
+      moveToCategoryVC.view.frame = self.view.frame
+      self.view.addSubview(moveToCategoryVC.view)
+      moveToCategoryVC.didMove(toParentViewController: self)
+    }
   }
   
   
@@ -66,6 +72,14 @@ class FridgeViewController: UIViewController, UITableViewDelegate, UITableViewDa
             ingredients: [],
             expanded: false)
   ]
+  
+  func checkForSelection() -> Bool {
+    if(ingredients.count == 0) {
+      displayError(title: "No Ingredients Selected", message: "Please select ingredients first.")
+      return false
+    }
+    return true
+  }
   
   func addIngredient(ingredient: String) {
     for i in 0...sections.count - 1 {
