@@ -10,6 +10,7 @@ import Foundation
 import UIKit
 
 class IngredientCell: UITableViewCell {
+  
   /*override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
     super.init(style: style, reuseIdentifier: reuseIdentifier)
     self.selectionStyle = .none
@@ -24,7 +25,5 @@ class IngredientCell: UITableViewCell {
   override func setSelected(_ selected: Bool, animated: Bool) {
     super.setSelected(selected, animated: animated)
     self.accessoryType = selected ? .checkmark : .none
-   // this.selected = !selected
-    //print(selected)
   }
 }

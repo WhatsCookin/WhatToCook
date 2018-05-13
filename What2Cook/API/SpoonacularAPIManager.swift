@@ -22,7 +22,7 @@ class SpoonacularAPIManager {
       ingredientString += noSpaceIngredient + ","
     }
     
-    let maxResults = 200
+    let maxResults = 10
     
     let urlstring = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/findByIngredients?ingredients=" + ingredientString + "&number=" + String(maxResults) + "&fillIngredients=true&ranking=1&limitLicense=true"
     
@@ -45,7 +45,7 @@ class SpoonacularAPIManager {
   func autocompleteIngredientSearch(_ searchString: String, completion: @escaping([Ingredient]?, Error?) -> ()) {
     //let key = "69p5QHDqZfmshevTW4RVD0dwIh7Qp1L5vUZjsnVjlWJFfVpmAb"
     
-    let numResults = 100
+    let numResults = 1
     
     let noSpaceSearchString = searchString.replacingOccurrences(of: " ", with: "%20")
     

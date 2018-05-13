@@ -19,6 +19,7 @@
 		2056CBB4207C3B2700F9A63D /* Food2ForkAPIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2056CBB3207C3B2700F9A63D /* Food2ForkAPIManager.swift */; };
 		2056CBB6207CA27600F9A63D /* RecipeSuggestionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2056CBB5207CA27600F9A63D /* RecipeSuggestionCell.swift */; };
 		206C55C3208A15FF00AB9115 /* RecipeData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 206C55C2208A15FF00AB9115 /* RecipeData.swift */; };
+		2083719B20A5369200799AF3 /* MoveToCategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2083719A20A5369200799AF3 /* MoveToCategoryViewController.swift */; };
 		20868FA1209A8FA600540B2A /* CategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20868FA0209A8FA600540B2A /* CategoryViewController.swift */; };
 		20A4C30F207137FC00F5A961 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20A4C30E207137FC00F5A961 /* HomeViewController.swift */; };
 		20A4C3112071382100F5A961 /* SidebarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20A4C3102071382100F5A961 /* SidebarViewController.swift */; };
@@ -84,6 +85,7 @@
 		2056CBB3207C3B2700F9A63D /* Food2ForkAPIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Food2ForkAPIManager.swift; sourceTree = "<group>"; };
 		2056CBB5207CA27600F9A63D /* RecipeSuggestionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeSuggestionCell.swift; sourceTree = "<group>"; };
 		206C55C2208A15FF00AB9115 /* RecipeData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeData.swift; sourceTree = "<group>"; };
+		2083719A20A5369200799AF3 /* MoveToCategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoveToCategoryViewController.swift; sourceTree = "<group>"; };
 		20868FA0209A8FA600540B2A /* CategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryViewController.swift; sourceTree = "<group>"; };
 		20A4C30E207137FC00F5A961 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		20A4C3102071382100F5A961 /* SidebarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SidebarViewController.swift; sourceTree = "<group>"; };
@@ -223,6 +225,7 @@
 				637E15C2208D49DC007104C4 /* SingleViewController.swift */,
 				20868FA0209A8FA600540B2A /* CategoryViewController.swift */,
 				20BADE29209BE66500FE5BB4 /* SignUpViewController.swift */,
+				2083719A20A5369200799AF3 /* MoveToCategoryViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -597,6 +600,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2083719B20A5369200799AF3 /* MoveToCategoryViewController.swift in Sources */,
 				63888FDE208EB5F2000105C1 /* RecipeItem.swift in Sources */,
 				20A511C12077408C00FDF6BB /* Section.swift in Sources */,
 				2018828E2081793000C92CE5 /* IngredientSearchViewController.swift in Sources */,
