@@ -118,9 +118,8 @@
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Time" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="djf-dV-Xcx">
-                                                <rect key="frame" x="325" y="8" width="38" height="21"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Time" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="djf-dV-Xcx">
+                                                <rect key="frame" x="329" y="8" width="38" height="21"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
@@ -241,14 +240,21 @@
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
+                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="A4c-Nu-5cb">
+                                                <rect key="frame" x="8" y="8" width="30" height="30"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <state key="normal" backgroundImage="unbookmarked"/>
+                                            </button>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
+                                            <constraint firstAttribute="trailing" secondItem="djf-dV-Xcx" secondAttribute="trailing" constant="8" id="Eou-4U-RVf"/>
+                                            <constraint firstItem="djf-dV-Xcx" firstAttribute="top" secondItem="0n7-lg-0LR" secondAttribute="top" constant="8" id="Juc-T2-2O6"/>
                                             <constraint firstAttribute="height" constant="1000" id="L6M-ZS-2Le"/>
                                         </constraints>
                                     </view>
                                 </subviews>
-                                <color key="backgroundColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" red="0.92143100499999997" green="0.92145264149999995" blue="0.92144101860000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="0n7-lg-0LR" secondAttribute="trailing" id="Den-ev-IgD"/>
                                     <constraint firstAttribute="bottom" secondItem="0n7-lg-0LR" secondAttribute="bottom" constant="1097" id="FFQ-gI-vSd"/>
@@ -1109,6 +1115,7 @@
         <image name="fridge" width="25" height="25"/>
         <image name="friends" width="26" height="26"/>
         <image name="grid" width="25" height="25"/>
+        <image name="unbookmarked" width="25" height="25"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="NM3-9G-I46"/>
