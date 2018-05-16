@@ -30,11 +30,11 @@ class SingleViewController: UIViewController, UITableViewDelegate, UITableViewDa
         
         if let recipe = recipe {
             recipeName.text = recipe.name
-            recipeTime.text = String(recipe.time)
-            recipeLikes.text = String(recipe.likes)
+            recipeTime.text = String(recipe.time) + " min"
+            recipeLikes.text = String(recipe.likes) + " likes"
             recipeServings.text = String(recipe.servings)
             
-            let url = URL(string: recipe.image!)
+            let url = URL(string: recipe.image)
             recipeImage.af_setImage(withURL: url!)
             
             ingredients = recipe.ingredients
@@ -49,9 +49,9 @@ class SingleViewController: UIViewController, UITableViewDelegate, UITableViewDa
         tableViewDirections.delegate = self
         tableViewDirections.dataSource = self
         tableViewDirections.rowHeight = UITableViewAutomaticDimension
-        tableViewDirections.estimatedRowHeight = 70
+        tableViewDirections.estimatedRowHeight = 80
         
-        //loadRecipes()
+        //recipeImage.gradientSingle(colors: [UIColor.clear.cgColor, UIColor.black.cgColor],opacity: 1, location: [0.70,1])
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -84,6 +84,10 @@ class SingleViewController: UIViewController, UITableViewDelegate, UITableViewDa
         // Dispose of any resources that can be recreated.
     }
 
+    override func viewDidLayoutSubviews() {
+        recipeImage.gradient(colors: [UIColor.clear.cgColor, UIColor.black.cgColor],opacity: 1, location: [0.70,1])
+    }
+    
     /*
     // MARK: - Navigation
 
@@ -95,3 +99,5 @@ class SingleViewController: UIViewController, UITableViewDelegate, UITableViewDa
     */
 
 }
+
+
