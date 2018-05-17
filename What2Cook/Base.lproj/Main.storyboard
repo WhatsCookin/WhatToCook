@@ -56,7 +56,7 @@
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Recipe Name goes here blah blah blah" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aLU-EJ-adO">
                                                     <rect key="frame" x="11" y="177" width="165" height="36"/>
-                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -118,7 +118,7 @@
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="44" id="tzz-c7-tm8"/>
                                                 </constraints>
-                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
@@ -255,6 +255,7 @@
                                             </tableView>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <gestureRecognizers/>
                                         <constraints>
                                             <constraint firstItem="swF-2v-n7q" firstAttribute="top" secondItem="4v1-OE-WCC" secondAttribute="bottom" constant="14" id="0nD-rm-qUt"/>
                                             <constraint firstItem="C8D-cB-qGa" firstAttribute="leading" secondItem="0n7-lg-0LR" secondAttribute="leading" constant="8" id="2pn-Yo-Zc8"/>
@@ -291,6 +292,9 @@
                                             <constraint firstItem="epD-19-AbG" firstAttribute="top" secondItem="swF-2v-n7q" secondAttribute="bottom" constant="8" id="vwy-7c-lg0"/>
                                             <constraint firstItem="Gax-cA-lEF" firstAttribute="top" secondItem="Tof-oi-2RO" secondAttribute="bottom" constant="3" id="xIc-gA-uRl"/>
                                         </constraints>
+                                        <connections>
+                                            <outletCollection property="gestureRecognizers" destination="U3M-Aq-J5l" appends="YES" id="2QV-rl-2g4"/>
+                                        </connections>
                                     </view>
                                 </subviews>
                                 <color key="backgroundColor" red="0.21176470588235294" green="0.21176470588235294" blue="0.21176470588235294" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -326,6 +330,7 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bbI-7s-iT9" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <swipeGestureRecognizer direction="right" id="U3M-Aq-J5l"/>
             </objects>
             <point key="canvasLocation" x="1077.5999999999999" y="433.58320839580216"/>
         </scene>

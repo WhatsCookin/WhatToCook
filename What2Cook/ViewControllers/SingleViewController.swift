@@ -19,6 +19,8 @@ class SingleViewController: UIViewController, UITableViewDelegate, UITableViewDa
     @IBOutlet weak var recipeServings: UILabel!
     
     var recipe: RecipeItem?
+    var recipeList: [RecipeItem]?
+    var recipeIndex: Int?
     
     var ingredients: [[String:Any]] = [[:]]
     var directions: [[String:Any]] = [[:]]
@@ -49,9 +51,70 @@ class SingleViewController: UIViewController, UITableViewDelegate, UITableViewDa
         tableViewDirections.delegate = self
         tableViewDirections.dataSource = self
         tableViewDirections.rowHeight = UITableViewAutomaticDimension
-        tableViewDirections.estimatedRowHeight = 80
+        tableViewDirections.estimatedRowHeight = 100
         
-        //recipeImage.gradientSingle(colors: [UIColor.clear.cgColor, UIColor.black.cgColor],opacity: 1, location: [0.70,1])
+        let swipeLeft = UISwipeGestureRecognizer(target: self, action: #selector(didSwipe(sender:)))
+        swipeLeft.direction = .left
+        self.view.addGestureRecognizer(swipeLeft)
+        
+        let swipeRight = UISwipeGestureRecognizer(target: self, action: #selector(didSwipe(sender:)))
+        swipeRight.direction = .right
+        self.view.addGestureRecognizer(swipeRight)
+    }
+    
+    /*@objc func didSwipeLeft(sender: UISwipeGestureRecognizer) {
+        if sender.state == .ended {
+            // Perform action.
+            print("Swiped Left")
+            if (recipeIndex! + 1 < recipeList!.count) {
+                recipeIndex = recipeIndex! + 1
+                recipe = recipeList?[recipeIndex!]
+                viewDidLoad()
+                tableViewIngredients.reloadData()
+                tableViewDirections.reloadData()
+            }
+        }
+        
+    }
+    
+    @objc func didSwipeRight(sender: UISwipeGestureRecognizer) {
+        if sender.state == .ended {
+            // Perform action.
+            print("Swiped Right")
+            if (recipeIndex! - 1 > -1) {
+                recipeIndex = recipeIndex! - 1
+                recipe = recipeList?[recipeIndex!]
+                viewDidLoad()
+                tableViewIngredients.reloadData()
+                tableViewDirections.reloadData()
+            }
+        }
+        
+    }*/
+    
+    @objc func didSwipe(sender: UISwipeGestureRecognizer) {
+        switch sender.direction {
+        case UISwipeGestureRecognizerDirection.left:
+            print("swipe left")
+            if (recipeIndex! + 1 < recipeList!.count) {
+                recipeIndex = recipeIndex! + 1
+                recipe = recipeList?[recipeIndex!]
+                viewDidLoad()
+                tableViewIngredients.reloadData()
+                tableViewDirections.reloadData()
+            }
+        case UISwipeGestureRecognizerDirection.right:
+            print("swipe right")
+            if (recipeIndex! - 1 > -1) {
+                recipeIndex = recipeIndex! - 1
+                recipe = recipeList?[recipeIndex!]
+                viewDidLoad()
+                tableViewIngredients.reloadData()
+                tableViewDirections.reloadData()
+            }
+        default:
+            break
+        }
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

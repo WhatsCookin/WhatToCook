@@ -106,6 +106,9 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
       
       //Pass on the date to the DetailViewController
       singleViewController.recipe = recipe
+        
+      singleViewController.recipeList = recipes
+      singleViewController.recipeIndex = indexPath.row
     }
   }
     

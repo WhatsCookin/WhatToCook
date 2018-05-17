@@ -67,7 +67,7 @@ class SpoonacularAPIManager {
     }
   }
   
-  func setRecipeData(_ recipe: Recipe) {
+  /*func setRecipeData(_ recipe: Recipe) {
     //let key = "69p5QHDqZfmshevTW4RVD0dwIh7Qp1L5vUZjsnVjlWJFfVpmAb"
     
     let id = recipe.id!
@@ -89,7 +89,7 @@ class SpoonacularAPIManager {
         print("Something went wrong")
       }
     }
-  }
+  }*/
     
     func getPopularRecipes(completion: @escaping([RecipeItem]?, Error?) -> ()) {
     //let key = "69p5QHDqZfmshevTW4RVD0dwIh7Qp1L5vUZjsnVjlWJFfVpmAb"
