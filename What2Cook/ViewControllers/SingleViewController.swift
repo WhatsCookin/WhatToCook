@@ -7,8 +7,9 @@
 //
 
 import UIKit
+import AVFoundation
 
-class SingleViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class SingleViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, AVSpeechSynthesizerDelegate {
 
     @IBOutlet weak var tableViewIngredients: UITableView! // tableView for ingredients in the recipe
     @IBOutlet weak var tableViewDirections: UITableView! // tableview for directions in the recipe
@@ -24,6 +25,29 @@ class SingleViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     var ingredients: [[String:Any]] = [[:]]
     var directions: [[String:Any]] = [[:]]
+    
+    var synthesizer = AVSpeechSynthesizer()
+    var totalUtterance: Int = 0
+    var toRead: [String] = []
+    
+    @IBAction func play(_ sender: Any) {
+        if !self.synthesizer.isSpeaking && toRead.count > 0{
+            self.totalUtterance = toRead.count
+            
+            for direction in toRead {
+                let speechUtterance = AVSpeechUtterance(string: direction)
+                let voice = AVSpeechSynthesisVoice(language: "en-EN")
+                speechUtterance.voice = voice
+                let voices = AVSpeechSynthesisVoice.speechVoices()
+                print(voices)
+                self.synthesizer.speak(speechUtterance)
+            }
+            
+        }
+        else {
+            self.synthesizer.continueSpeaking()
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -138,6 +162,7 @@ class SingleViewController: UIViewController, UITableViewDelegate, UITableViewDa
         else {
             let cell = tableViewDirections.dequeueReusableCell(withIdentifier: "DirectionListCell", for: indexPath) as! DirectionListCell
             cell.direction = directions[indexPath.row]
+            toRead.append(directions[indexPath.row]["step"] as! String)
             return cell
         }
     }
@@ -150,6 +175,8 @@ class SingleViewController: UIViewController, UITableViewDelegate, UITableViewDa
     override func viewDidLayoutSubviews() {
         recipeImage.gradient(colors: [UIColor.clear.cgColor, UIColor.black.cgColor],opacity: 1, location: [0.70,1])
     }
+    
+    
     
     /*
     // MARK: - Navigation

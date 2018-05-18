@@ -253,6 +253,14 @@
                                                     </tableViewCell>
                                                 </prototypes>
                                             </tableView>
+                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Z9N-XS-UpZ">
+                                                <rect key="frame" x="342" y="719" width="25" height="25"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <state key="normal" image="sound"/>
+                                                <connections>
+                                                    <action selector="play:" destination="kxA-1q-EIY" eventType="touchUpInside" id="h1m-JU-RoM"/>
+                                                </connections>
+                                            </button>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <gestureRecognizers/>
@@ -1089,6 +1097,7 @@
         <image name="fridge" width="25" height="25"/>
         <image name="friends" width="26" height="26"/>
         <image name="grid" width="25" height="25"/>
+        <image name="sound" width="25" height="25"/>
         <image name="unbookmarked" width="25" height="25"/>
     </resources>
     <inferredMetricsTieBreakers>
