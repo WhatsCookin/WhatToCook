@@ -38,8 +38,8 @@ class SingleViewController: UIViewController, UITableViewDelegate, UITableViewDa
                 let speechUtterance = AVSpeechUtterance(string: direction)
                 let voice = AVSpeechSynthesisVoice(language: "en-EN")
                 speechUtterance.voice = voice
-                let voices = AVSpeechSynthesisVoice.speechVoices()
-                print(voices)
+                speechUtterance.rate = 0.45 // 0.5 default speech rate
+                _ = AVSpeechSynthesisVoice.speechVoices()
                 self.synthesizer.speak(speechUtterance)
             }
             
@@ -67,6 +67,14 @@ class SingleViewController: UIViewController, UITableViewDelegate, UITableViewDa
             directions = recipe.directions
         }
         
+        let swipeLeft = UISwipeGestureRecognizer(target: self, action: #selector(didSwipe(sender:)))
+        swipeLeft.direction = .left
+        self.view.addGestureRecognizer(swipeLeft)
+        
+        let swipeRight = UISwipeGestureRecognizer(target: self, action: #selector(didSwipe(sender:)))
+        swipeRight.direction = .right
+        self.view.addGestureRecognizer(swipeRight)
+        
         tableViewIngredients.delegate = self
         tableViewIngredients.dataSource = self
         tableViewIngredients.rowHeight = UITableViewAutomaticDimension
@@ -77,44 +85,7 @@ class SingleViewController: UIViewController, UITableViewDelegate, UITableViewDa
         tableViewDirections.rowHeight = UITableViewAutomaticDimension
         tableViewDirections.estimatedRowHeight = 100
         
-        let swipeLeft = UISwipeGestureRecognizer(target: self, action: #selector(didSwipe(sender:)))
-        swipeLeft.direction = .left
-        self.view.addGestureRecognizer(swipeLeft)
-        
-        let swipeRight = UISwipeGestureRecognizer(target: self, action: #selector(didSwipe(sender:)))
-        swipeRight.direction = .right
-        self.view.addGestureRecognizer(swipeRight)
     }
-    
-    /*@objc func didSwipeLeft(sender: UISwipeGestureRecognizer) {
-        if sender.state == .ended {
-            // Perform action.
-            print("Swiped Left")
-            if (recipeIndex! + 1 < recipeList!.count) {
-                recipeIndex = recipeIndex! + 1
-                recipe = recipeList?[recipeIndex!]
-                viewDidLoad()
-                tableViewIngredients.reloadData()
-                tableViewDirections.reloadData()
-            }
-        }
-        
-    }
-    
-    @objc func didSwipeRight(sender: UISwipeGestureRecognizer) {
-        if sender.state == .ended {
-            // Perform action.
-            print("Swiped Right")
-            if (recipeIndex! - 1 > -1) {
-                recipeIndex = recipeIndex! - 1
-                recipe = recipeList?[recipeIndex!]
-                viewDidLoad()
-                tableViewIngredients.reloadData()
-                tableViewDirections.reloadData()
-            }
-        }
-        
-    }*/
     
     @objc func didSwipe(sender: UISwipeGestureRecognizer) {
         switch sender.direction {
