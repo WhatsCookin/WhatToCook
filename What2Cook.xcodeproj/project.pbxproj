@@ -16,6 +16,8 @@
 		201BA6372071354F00455146 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 201BA6352071354F00455146 /* LaunchScreen.storyboard */; };
 		201BA6422071354F00455146 /* What2CookTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 201BA6412071354F00455146 /* What2CookTests.swift */; };
 		201BA64D2071354F00455146 /* What2CookUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 201BA64C2071354F00455146 /* What2CookUITests.swift */; };
+		2051813020AC0F6000CED2E2 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2051812F20AC0F6000CED2E2 /* User.swift */; };
+		2051813220AC14E800CED2E2 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2051813120AC14E800CED2E2 /* ProfileViewController.swift */; };
 		2056CBB4207C3B2700F9A63D /* Food2ForkAPIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2056CBB3207C3B2700F9A63D /* Food2ForkAPIManager.swift */; };
 		2056CBB6207CA27600F9A63D /* RecipeSuggestionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2056CBB5207CA27600F9A63D /* RecipeSuggestionCell.swift */; };
 		206C55C3208A15FF00AB9115 /* RecipeData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 206C55C2208A15FF00AB9115 /* RecipeData.swift */; };
@@ -27,7 +29,6 @@
 		20A4C3182071393600F5A961 /* PinterestAPIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20A4C3172071393600F5A961 /* PinterestAPIManager.swift */; };
 		20A4C31C2072005400F5A961 /* Recipe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20A4C31B2072005400F5A961 /* Recipe.swift */; };
 		20A4C32020721E1A00F5A961 /* RecipeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20A4C31F20721E1A00F5A961 /* RecipeCell.swift */; };
-		20A4C322207317BC00F5A961 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20A4C321207317BC00F5A961 /* User.swift */; };
 		20A4C3242073181F00F5A961 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20A4C3232073181F00F5A961 /* LoginViewController.swift */; };
 		20A511B82077146700FDF6BB /* FridgeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20A511B72077146700FDF6BB /* FridgeViewController.swift */; };
 		20A511BA20771EA200FDF6BB /* FriendsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20A511B920771EA200FDF6BB /* FriendsViewController.swift */; };
@@ -36,6 +37,7 @@
 		20A511C12077408C00FDF6BB /* Section.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20A511C02077408C00FDF6BB /* Section.swift */; };
 		20A511C3207743E600FDF6BB /* ExpandableHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20A511C2207743E600FDF6BB /* ExpandableHeaderView.swift */; };
 		20BADE2A209BE66500FE5BB4 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20BADE29209BE66500FE5BB4 /* SignUpViewController.swift */; };
+		20E46B3820B14D7A0083A061 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20E46B3720B14D7A0083A061 /* DataManager.swift */; };
 		20EBA33820819415000B6349 /* SpoonacularAPIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20EBA33720819415000B6349 /* SpoonacularAPIManager.swift */; };
 		20EBA33A20819534000B6349 /* Ingredient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20EBA33920819534000B6349 /* Ingredient.swift */; };
 		20EDAF8D20A2952A00195F93 /* ExpandableHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 20EDAF8C20A2952A00195F93 /* ExpandableHeaderView.xib */; };
@@ -82,6 +84,8 @@
 		201BA6482071354F00455146 /* What2CookUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = What2CookUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		201BA64C2071354F00455146 /* What2CookUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = What2CookUITests.swift; sourceTree = "<group>"; };
 		201BA64E2071354F00455146 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2051812F20AC0F6000CED2E2 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		2051813120AC14E800CED2E2 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		2056CBB3207C3B2700F9A63D /* Food2ForkAPIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Food2ForkAPIManager.swift; sourceTree = "<group>"; };
 		2056CBB5207CA27600F9A63D /* RecipeSuggestionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeSuggestionCell.swift; sourceTree = "<group>"; };
 		206C55C2208A15FF00AB9115 /* RecipeData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeData.swift; sourceTree = "<group>"; };
@@ -93,7 +97,6 @@
 		20A4C3172071393600F5A961 /* PinterestAPIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinterestAPIManager.swift; sourceTree = "<group>"; };
 		20A4C31B2072005400F5A961 /* Recipe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Recipe.swift; sourceTree = "<group>"; };
 		20A4C31F20721E1A00F5A961 /* RecipeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeCell.swift; sourceTree = "<group>"; };
-		20A4C321207317BC00F5A961 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		20A4C3232073181F00F5A961 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		20A511B72077146700FDF6BB /* FridgeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FridgeViewController.swift; sourceTree = "<group>"; };
 		20A511B920771EA200FDF6BB /* FriendsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsViewController.swift; sourceTree = "<group>"; };
@@ -102,6 +105,7 @@
 		20A511C02077408C00FDF6BB /* Section.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Section.swift; sourceTree = "<group>"; };
 		20A511C2207743E600FDF6BB /* ExpandableHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpandableHeaderView.swift; sourceTree = "<group>"; };
 		20BADE29209BE66500FE5BB4 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
+		20E46B3720B14D7A0083A061 /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		20EBA33720819415000B6349 /* SpoonacularAPIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpoonacularAPIManager.swift; sourceTree = "<group>"; };
 		20EBA33920819534000B6349 /* Ingredient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ingredient.swift; sourceTree = "<group>"; };
 		20EDAF8C20A2952A00195F93 /* ExpandableHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ExpandableHeaderView.xib; sourceTree = "<group>"; };
@@ -183,6 +187,7 @@
 				20A4C314207138D800F5A961 /* ViewControllers */,
 				201BA62C2071354F00455146 /* AppDelegate.swift */,
 				201BA6302071354F00455146 /* Main.storyboard */,
+				20E46B3720B14D7A0083A061 /* DataManager.swift */,
 				201BA6332071354F00455146 /* Assets.xcassets */,
 				201BA6352071354F00455146 /* LaunchScreen.storyboard */,
 				201BA6382071354F00455146 /* Info.plist */,
@@ -226,6 +231,7 @@
 				20868FA0209A8FA600540B2A /* CategoryViewController.swift */,
 				20BADE29209BE66500FE5BB4 /* SignUpViewController.swift */,
 				2083719A20A5369200799AF3 /* MoveToCategoryViewController.swift */,
+				2051813120AC14E800CED2E2 /* ProfileViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -257,8 +263,8 @@
 		20A4C31A2071395500F5A961 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				2051812F20AC0F6000CED2E2 /* User.swift */,
 				20A4C31B2072005400F5A961 /* Recipe.swift */,
-				20A4C321207317BC00F5A961 /* User.swift */,
 				20EBA33920819534000B6349 /* Ingredient.swift */,
 				206C55C2208A15FF00AB9115 /* RecipeData.swift */,
 				63888FDD208EB5F2000105C1 /* RecipeItem.swift */,
@@ -604,7 +610,9 @@
 				63888FDE208EB5F2000105C1 /* RecipeItem.swift in Sources */,
 				20A511C12077408C00FDF6BB /* Section.swift in Sources */,
 				2018828E2081793000C92CE5 /* IngredientSearchViewController.swift in Sources */,
+				2051813020AC0F6000CED2E2 /* User.swift in Sources */,
 				206C55C3208A15FF00AB9115 /* RecipeData.swift in Sources */,
+				2051813220AC14E800CED2E2 /* ProfileViewController.swift in Sources */,
 				20A4C3182071393600F5A961 /* PinterestAPIManager.swift in Sources */,
 				20A4C3132071384E00F5A961 /* RecipeViewController.swift in Sources */,
 				20EBA33820819415000B6349 /* SpoonacularAPIManager.swift in Sources */,
@@ -617,11 +625,11 @@
 				20A511BC2077205900FDF6BB /* IngredientCell.swift in Sources */,
 				63AE43B7208C1D1C00644354 /* SWRevealViewController.m in Sources */,
 				20EBA33A20819534000B6349 /* Ingredient.swift in Sources */,
+				20E46B3820B14D7A0083A061 /* DataManager.swift in Sources */,
 				20A511B82077146700FDF6BB /* FridgeViewController.swift in Sources */,
 				20BADE2A209BE66500FE5BB4 /* SignUpViewController.swift in Sources */,
 				20868FA1209A8FA600540B2A /* CategoryViewController.swift in Sources */,
 				201BA62D2071354F00455146 /* AppDelegate.swift in Sources */,
-				20A4C322207317BC00F5A961 /* User.swift in Sources */,
 				20A4C31C2072005400F5A961 /* Recipe.swift in Sources */,
 				2056CBB4207C3B2700F9A63D /* Food2ForkAPIManager.swift in Sources */,
 				2056CBB6207CA27600F9A63D /* RecipeSuggestionCell.swift in Sources */,

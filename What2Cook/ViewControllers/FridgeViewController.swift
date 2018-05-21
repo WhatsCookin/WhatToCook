@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Parse
 
 class FridgeViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate, ExpandableHeaderViewDelegate {
   
@@ -100,7 +101,7 @@ class FridgeViewController: UIViewController, UITableViewDelegate, UITableViewDa
     for i in 0...sections.count - 1 {
       if(sections[i].category == category) {
         sections[i].ingredients.append(ingredient)
-        tableView.reloadData()
+        save()
         return
       }
     }
@@ -114,7 +115,7 @@ class FridgeViewController: UIViewController, UITableViewDelegate, UITableViewDa
           var ingredients = sections[i].ingredients
           if ingredients![j] == ingredient {
             sections[i].ingredients.remove(at: j)
-            tableView.reloadData()
+            save()
             return
           }
         }
@@ -140,7 +141,7 @@ class FridgeViewController: UIViewController, UITableViewDelegate, UITableViewDa
   func addSection(name: String) {
     let newSection = Section(category: name, ingredients: [], expanded: false)
     sections.append(newSection)
-    tableView.reloadData()
+    save()
     return
   }
   
@@ -174,6 +175,27 @@ class FridgeViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     override func viewDidLoad() {
     super.viewDidLoad()
+      
+      let user = PFUser.current()
+      /*if user!["sections"] != nil {
+        user?.add("???", forKey: "sections")
+      }
+      else {
+        //user!["sections"] = sections
+      }*/
+      user?.add(5, forKey: "sections")
+      print(user!["sections"])
+ 
+      //let array = sections.mutableCopy() as NSMutableArray
+      
+      user!.saveInBackground(block: { (success, error) in
+        if (success) {
+          print("The user data has been saved")
+        } else {
+          print("There was a problem with saving the user data")
+        }
+      })
+      
     
     selectIndexPath = IndexPath(row: -1, section: -1)
     
@@ -191,6 +213,21 @@ class FridgeViewController: UIViewController, UITableViewDelegate, UITableViewDa
       }
       print(ingredients)
     }*/
+  }
+  
+  func save() {
+    tableView.reloadData()
+    let user = PFUser.current()
+    //user?.setObject(sections, forKey: "sections")
+    //print(user!["sections"])
+    //print(user!["key"])
+    user?.saveInBackground(block: { (success, error) in
+      if (success) {
+        print("The user data has been saved")
+      } else {
+        print("There was a problem with saving the user data")
+      }
+    })
   }
   
   override func didReceiveMemoryWarning() {
