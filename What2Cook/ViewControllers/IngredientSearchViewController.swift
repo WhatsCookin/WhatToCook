@@ -8,7 +8,6 @@
 
 import UIKit
 import Speech
-import SwiftString
 
 class IngredientSearchViewController: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, UIPickerViewDataSource, SFSpeechRecognizerDelegate {
   
@@ -113,7 +112,9 @@ class IngredientSearchViewController: UIViewController, UITextFieldDelegate, UIP
         self.microphoneButton.isEnabled = isButtonEnabled
       }
     }
-    
+  }
+  
+  func startRecording() {
     if recognitionTask != nil {
       recognitionTask?.cancel()
       recognitionTask = nil
@@ -147,33 +148,37 @@ class IngredientSearchViewController: UIViewController, UITextFieldDelegate, UIP
         //self.textView.text = voiceCommand
         print(voiceCommand)
         
-        //if(voiceCommand.prefix(4) == "Add " && voiceCommand.count > 4) {
         if voiceCommand == "Add" {
           voiceCommand = " add"
         }
-        if let addRange = voiceCommand.range(of: " add ") {
-          print("1")
-          voiceCommand = String(voiceCommand[...5])
-          if let toRange = voiceCommand.range(of: " to ") {
-            print("2")
+        if (voiceCommand.range(of: " add ") != nil) {
+          let addRange = voiceCommand.rangeEndIndex(toFind: " add ")
+          voiceCommand = voiceCommand.substring(from: addRange)!
+          if (voiceCommand.range(of: " to ") != nil) {
+            let toStartRange = voiceCommand.rangeStartIndex(toFind: " to ")
+            
             // Parse Ingredient
-            var ingredient = String(voiceCommand[..<range.lowerBound])
-            ingredient = ingredient.suffix(ingredient.count - 4)
+            var ingredient = voiceCommand.substring(to: toStartRange)!
             print(ingredient)
             self.textField.text = String(ingredient)
             
             // Parse Category
-            let category = voiceCommand.suffix((voiceCommand.count) - 4 - ingredient.count - 4)
-            print(category)
+            let toEndRange = voiceCommand.rangeEndIndex(toFind: " to ")
+            let category = voiceCommand.substring(from: toEndRange)!
             self.categoryTextField.text = String(category)
+            self.add(ingredient: String(ingredient))
+            voiceCommand = ""
           }
           else {
-            print("3")
-            let ingredient = voiceCommand.suffix((voiceCommand.count) - 4)
+            print(voiceCommand)
+            let ingredient = voiceCommand
             print(ingredient)
-              self.textField.text = String(ingredient)
+            self.textField.text = String(ingredient)
             self.add(ingredient: String(ingredient))
+            voiceCommand = ""
           }
+          
+          print(voiceCommand)
           
           isFinal = (result?.isFinal)!
         }
@@ -217,7 +222,7 @@ class IngredientSearchViewController: UIViewController, UITextFieldDelegate, UIP
   
   func add(ingredient: String) {
     // Correct capitalization
-    ingredient = ingredient.lowercased()
+    //ingredient = ingredient.lowercased()
     
     let ingredientToAdd = ingredient
     // Check that the ingredient is not already in the fridge

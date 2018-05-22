@@ -9,6 +9,67 @@
 import UIKit
 import Parse
 
+extension String {
+  func between(_ left: String, _ right: String) -> String? {
+    guard
+      let leftRange = range(of: left), let rightRange = range(of: right, options: .backwards)
+      , left != right && leftRange.upperBound < rightRange.lowerBound
+      else { return nil }
+    
+    let sub = self.substring(from: leftRange.upperBound)
+    let closestToLeftRange = sub.range(of: right)!
+    return sub.substring(to: closestToLeftRange.lowerBound)
+  }
+  
+  var length: Int {
+    get {
+      return self.characters.count
+    }
+  }
+  
+  func substring(to : Int) -> String? {
+    if (to >= length) {
+      return nil
+    }
+    let toIndex = self.index(self.startIndex, offsetBy: to)
+    return self.substring(to: toIndex)
+  }
+  
+  func substring(from : Int) -> String? {
+    if (from >= length) {
+      return nil
+    }
+    let fromIndex = self.index(self.startIndex, offsetBy: from)
+    return self.substring(from: fromIndex)
+  }
+  
+  func substring(_ r: Range<Int>) -> String {
+    let fromIndex = self.index(self.startIndex, offsetBy: r.lowerBound)
+    let toIndex = self.index(self.startIndex, offsetBy: r.upperBound)
+    return self.substring(with: Range<String.Index>(uncheckedBounds: (lower: fromIndex, upper: toIndex)))
+  }
+  
+  func character(_ at: Int) -> Character {
+    return self[self.index(self.startIndex, offsetBy: at)]
+  }
+  
+  func rangeStartIndex(toFind: String) -> Int {
+    if let range = self.range(of: toFind) {
+      let startPos = self.distance(from: self.startIndex, to: range.lowerBound)
+      return startPos
+    }
+    return -1
+  }
+  
+  func rangeEndIndex(toFind: String) -> Int {
+    if let range = self.range(of: toFind) {
+      let endPos = self.distance(from: self.startIndex, to: range.upperBound)
+      return endPos
+    }
+    return -1
+}
+}
+
 extension UIViewController {
   // Allows any view to hide keyboard when view is tapped
   func hideKeyboardWhenTappedAround() {
