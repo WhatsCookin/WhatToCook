@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct Section {
+class Section {
   var category: String!
   var ingredients: [String]!
   var expanded: Bool!
@@ -18,5 +18,15 @@ struct Section {
     self.category = category
     self.ingredients = ingredients
     self.expanded = expanded
+  }
+  
+  init(d: [String : String]) {
+    self.category  = d["category"]
+  }
+  
+  public func toDictionary() -> [String: String] {
+    var d = [String: String]()
+    d["category"] = category
+    return d
   }
 }

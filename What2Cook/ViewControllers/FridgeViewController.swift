@@ -176,17 +176,8 @@ class FridgeViewController: UIViewController, UITableViewDelegate, UITableViewDa
     override func viewDidLoad() {
     super.viewDidLoad()
       
-      let user = PFUser.current()
-      /*if user!["sections"] != nil {
-        user?.add("???", forKey: "sections")
-      }
-      else {
-        //user!["sections"] = sections
-      }*/
-      user?.add(5, forKey: "sections")
-      print(user!["sections"])
- 
-      //let array = sections.mutableCopy() as NSMutableArray
+ /*     let user = PFUser.current()
+      user?.add([sections[0].toDictionary()], forKey: "sections")
       
       user!.saveInBackground(block: { (success, error) in
         if (success) {
@@ -194,7 +185,11 @@ class FridgeViewController: UIViewController, UITableViewDelegate, UITableViewDa
         } else {
           print("There was a problem with saving the user data")
         }
-      })
+      })*/
+      
+//      print(user?.object(forKey: "sections"))
+  //    var arr = user?.object(forKey: "sections") as! NSArray
+//      Section(d: arr[0] as! [String : String])
       
     
     selectIndexPath = IndexPath(row: -1, section: -1)
