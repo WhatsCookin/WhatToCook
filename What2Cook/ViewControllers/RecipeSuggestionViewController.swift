@@ -53,7 +53,7 @@ class RecipeSuggestionViewController: UIViewController, UITableViewDelegate, UIT
   }
   
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-    let cell = sender as! UITableViewCell
+   /* let cell = sender as! UITableViewCell
     // Get the index path from the cell that was tapped
     if let indexPath = tableView.indexPath(for: cell) {
       let recipe = recipes[indexPath.row]
@@ -62,7 +62,7 @@ class RecipeSuggestionViewController: UIViewController, UITableViewDelegate, UIT
    //   SpoonacularAPIManager().setRecipeData(recipe)
       
       // Pass on the data to the Detail ViewController
-      recipeViewController.recipeId = recipe.id
+     // recipeViewController.recipeId = recipe.id
     }*/
   }
 }
