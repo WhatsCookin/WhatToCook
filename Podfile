@@ -9,6 +9,7 @@ target 'What2Cook' do
   pod 'Parse'
   pod 'Alamofire'
   pod 'AlamofireImage'
+  pod 'SwiftString'
 
   target 'What2CookTests' do
     inherit! :search_paths

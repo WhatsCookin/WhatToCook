@@ -7,18 +7,21 @@ PODS:
     - Parse/Core (= 1.16.0)
   - Parse/Core (1.16.0):
     - Bolts/Tasks (~> 1.9)
+  - SwiftString (0.5)
 
 DEPENDENCIES:
   - Alamofire
   - AlamofireImage
   - Parse
+  - SwiftString
 
 SPEC CHECKSUMS:
   Alamofire: f41a599bd63041760b26d393ec1069d9d7b917f4
   AlamofireImage: 2e784dc5d00f04903a52c1d169181469c805c3df
   Bolts: ac6567323eac61e203f6a9763667d0f711be34c8
   Parse: 5b36dc2c2f0a2fd82a257ae018bc3d68cf2c24e7
+  SwiftString: ec9c31c55b2aa147a1154f5f5f8483dc71e3165f
 
-PODFILE CHECKSUM: bff25b2c2455472b188a648a997424ee6538919a
+PODFILE CHECKSUM: aa5b18526b313f95c4b3be0a8ea81f8c440342c8
 
 COCOAPODS: 1.4.0
