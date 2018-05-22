@@ -10,7 +10,9 @@ import UIKit
 
 class RecipeViewController: UIViewController {
   
-  var recipe: Recipe!
+ // DELETE LATER
+    
+  /*var recipe: Recipe!
   @IBOutlet weak var instructionsLabel: UILabel!
   @IBOutlet weak var recipeTitleLabel: UILabel!
   @IBOutlet weak var recipeImageView: UIImageView!
@@ -46,5 +48,5 @@ class RecipeViewController: UIViewController {
       instructionsText += "Step " + String(i + 1) + ": " + recipe.recipeData!.stepsArray[i] + "\n\n"
     }
     instructionsLabel.text = instructionsText
-  }
+  }*/
 }

@@ -16,7 +16,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
   var recipes: [RecipeItem] = []
   var refreshControl: UIRefreshControl!
     
-  var gradient: CAGradientLayer!
+  //var gradient: CAGradientLayer!
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -30,12 +30,12 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
     collectionView.delegate = self
     
     let layout = collectionView.collectionViewLayout as! UICollectionViewFlowLayout
-    layout.minimumInteritemSpacing = 5
+    layout.minimumInteritemSpacing = 0
     layout.minimumLineSpacing = layout.minimumInteritemSpacing
     let cellsPerLine: CGFloat = 2
     let interItemSpacingTotal = layout.minimumLineSpacing * (cellsPerLine - 1)
     let width = collectionView.frame.size.width / cellsPerLine - interItemSpacingTotal / cellsPerLine
-    layout.itemSize = CGSize(width: width, height: width * 3 / 2)
+    layout.itemSize = CGSize(width: width, height: width * 1.25)
     
     // Set side menu button
     if self.revealViewController() != nil {
@@ -53,7 +53,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
     func loadRecipes() {
         print("Calling loadRecipes()")
       // Commented out to avoid exceeding API call limit
-        /*SpoonacularAPIManager().getPopularRecipes() { (recipes, error) in
+        SpoonacularAPIManager().getPopularRecipes() { (recipes, error) in
             if let recipes = recipes {
                 self.recipes = recipes
                 self.collectionView.reloadData()
@@ -62,7 +62,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
             } else if let error = error {
                 print("Error getting recipes: " + error.localizedDescription)
             }
-        }*/
+        }
     }
     
     @objc func didPullToRefresh(_ refreshControl: UIRefreshControl) {
@@ -106,6 +106,9 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
       
       //Pass on the date to the DetailViewController
       singleViewController.recipe = recipe
+        
+      singleViewController.recipeList = recipes
+      singleViewController.recipeIndex = indexPath.row
     }
   }
     

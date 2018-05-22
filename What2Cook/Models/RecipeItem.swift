@@ -31,9 +31,13 @@ class RecipeItem { // recipe to display - TODO: change to combine recipe and rec
         time = dictionary["readyInMinutes"] as? Int
         ingredients = dictionary["extendedIngredients"] as? [[String:Any]]
         let analyzedInstructions = dictionary["analyzedInstructions"] as! [[String:Any]]
-        let firstElem = analyzedInstructions[0]
-        directions = firstElem["steps"] as? [[String:Any]]
-        
+        if analyzedInstructions.isEmpty {
+            directions = [[:]]
+        }
+        else {
+            let firstElem = analyzedInstructions[0]
+            directions = firstElem["steps"] as? [[String:Any]]
+        }
     }
     
     static func recipes(with array: [[String: Any]]) -> [RecipeItem] {

@@ -18,9 +18,11 @@ class RecipeCell: UICollectionViewCell {
     
     @IBOutlet weak var ratingsImageView: UIImageView!
     
+    var gradient: CAGradientLayer = CAGradientLayer()
+    
     var recipe: RecipeItem! {
         didSet {
-            if let url = URL(string: recipe.image!) {
+            if let url = URL(string: recipe.image) {
                recipeImage.af_setImage(withURL: url)
             }
             nameLabel.text = recipe.name
@@ -28,5 +30,21 @@ class RecipeCell: UICollectionViewCell {
             //likesLabel.text = "Likes: " + String(recipe.likes)
             //servingsLabel.text = " Servings: " + String(recipe.servings)
         }
+    }
+    
+    override func layoutSubviews() {
+        //reload images
+        recipeImage.gradient(colors: [UIColor.clear.cgColor, UIColor.black.cgColor], /*startPoint: CGPoint(x: 0.0, y: 0.0), endPoint: CGPoint(x: 0.0, y: 1.0),*/ opacity: 1, location: [0.70,1])
+    }
+}
+extension UIImageView
+{
+    func gradient(colors: [CGColor], opacity: Float, location: [NSNumber]?) {
+        let gradientLayer = CAGradientLayer()
+        gradientLayer.frame = bounds
+        gradientLayer.colors = colors
+        gradientLayer.opacity = opacity
+        gradientLayer.locations = location
+        layer.addSublayer(gradientLayer)
     }
 }

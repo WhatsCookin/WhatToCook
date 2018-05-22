@@ -7,8 +7,9 @@
 //
 
 import UIKit
+import AVFoundation
 
-class SingleViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class SingleViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, AVSpeechSynthesizerDelegate {
 
     @IBOutlet weak var tableViewIngredients: UITableView! // tableView for ingredients in the recipe
     @IBOutlet weak var tableViewDirections: UITableView! // tableview for directions in the recipe
@@ -19,9 +20,34 @@ class SingleViewController: UIViewController, UITableViewDelegate, UITableViewDa
     @IBOutlet weak var recipeServings: UILabel!
     
     var recipe: RecipeItem?
+    var recipeList: [RecipeItem]?
+    var recipeIndex: Int?
     
     var ingredients: [[String:Any]] = [[:]]
     var directions: [[String:Any]] = [[:]]
+    
+    var synthesizer = AVSpeechSynthesizer()
+    var totalUtterance: Int = 0
+    var toRead: [String] = []
+    
+    @IBAction func play(_ sender: Any) {
+        if !self.synthesizer.isSpeaking && toRead.count > 0{
+            self.totalUtterance = toRead.count
+            
+            for direction in toRead {
+                let speechUtterance = AVSpeechUtterance(string: direction)
+                let voice = AVSpeechSynthesisVoice(language: "en-EN")
+                speechUtterance.voice = voice
+                speechUtterance.rate = 0.45 // 0.5 default speech rate
+                _ = AVSpeechSynthesisVoice.speechVoices()
+                self.synthesizer.speak(speechUtterance)
+            }
+            
+        }
+        else {
+            self.synthesizer.continueSpeaking()
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,16 +56,24 @@ class SingleViewController: UIViewController, UITableViewDelegate, UITableViewDa
         
         if let recipe = recipe {
             recipeName.text = recipe.name
-            recipeTime.text = String(recipe.time)
-            recipeLikes.text = String(recipe.likes)
+            recipeTime.text = String(recipe.time) + " min"
+            recipeLikes.text = String(recipe.likes) + " likes"
             recipeServings.text = String(recipe.servings)
             
-            let url = URL(string: recipe.image!)
+            let url = URL(string: recipe.image)
             recipeImage.af_setImage(withURL: url!)
             
             ingredients = recipe.ingredients
             directions = recipe.directions
         }
+        
+        let swipeLeft = UISwipeGestureRecognizer(target: self, action: #selector(didSwipe(sender:)))
+        swipeLeft.direction = .left
+        self.view.addGestureRecognizer(swipeLeft)
+        
+        let swipeRight = UISwipeGestureRecognizer(target: self, action: #selector(didSwipe(sender:)))
+        swipeRight.direction = .right
+        self.view.addGestureRecognizer(swipeRight)
         
         tableViewIngredients.delegate = self
         tableViewIngredients.dataSource = self
@@ -49,9 +83,33 @@ class SingleViewController: UIViewController, UITableViewDelegate, UITableViewDa
         tableViewDirections.delegate = self
         tableViewDirections.dataSource = self
         tableViewDirections.rowHeight = UITableViewAutomaticDimension
-        tableViewDirections.estimatedRowHeight = 70
+        tableViewDirections.estimatedRowHeight = 100
         
-        //loadRecipes()
+    }
+    
+    @objc func didSwipe(sender: UISwipeGestureRecognizer) {
+        switch sender.direction {
+        case UISwipeGestureRecognizerDirection.left:
+            print("swipe left")
+            if (recipeIndex! + 1 < recipeList!.count) {
+                recipeIndex = recipeIndex! + 1
+                recipe = recipeList?[recipeIndex!]
+                viewDidLoad()
+                tableViewIngredients.reloadData()
+                tableViewDirections.reloadData()
+            }
+        case UISwipeGestureRecognizerDirection.right:
+            print("swipe right")
+            if (recipeIndex! - 1 > -1) {
+                recipeIndex = recipeIndex! - 1
+                recipe = recipeList?[recipeIndex!]
+                viewDidLoad()
+                tableViewIngredients.reloadData()
+                tableViewDirections.reloadData()
+            }
+        default:
+            break
+        }
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -75,6 +133,7 @@ class SingleViewController: UIViewController, UITableViewDelegate, UITableViewDa
         else {
             let cell = tableViewDirections.dequeueReusableCell(withIdentifier: "DirectionListCell", for: indexPath) as! DirectionListCell
             cell.direction = directions[indexPath.row]
+            toRead.append(directions[indexPath.row]["step"] as! String)
             return cell
         }
     }
@@ -84,6 +143,12 @@ class SingleViewController: UIViewController, UITableViewDelegate, UITableViewDa
         // Dispose of any resources that can be recreated.
     }
 
+    override func viewDidLayoutSubviews() {
+        recipeImage.gradient(colors: [UIColor.clear.cgColor, UIColor.black.cgColor],opacity: 1, location: [0.70,1])
+    }
+    
+    
+    
     /*
     // MARK: - Navigation
 
@@ -95,3 +160,5 @@ class SingleViewController: UIViewController, UITableViewDelegate, UITableViewDa
     */
 
 }
+
+

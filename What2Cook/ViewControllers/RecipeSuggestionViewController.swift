@@ -52,7 +52,7 @@ class RecipeSuggestionViewController: UIViewController, UITableViewDelegate, UIT
     return 100
   }
   
-  override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+  override func prepare(for segue: UIStoryboardSegue, sender: Any?) {/*
     let cell = sender as! UITableViewCell
     // Get the index path from the cell that was tapped
     if let indexPath = tableView.indexPath(for: cell) {
@@ -63,6 +63,6 @@ class RecipeSuggestionViewController: UIViewController, UITableViewDelegate, UIT
       
       // Pass on the data to the Detail ViewController
       recipeViewController.recipe = recipe
-    }
+    }*/
   }
 }

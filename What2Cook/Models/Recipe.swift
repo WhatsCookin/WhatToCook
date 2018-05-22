@@ -14,7 +14,7 @@ class Recipe {
   var image: String!
   var usedIngredientCount: Int!
   var likes: Int!
-  var title: String!
+  var name: String!
   var imageType: String!
   var missedIngredients: [String]!
   var usedIngredients: [String]!
@@ -26,7 +26,7 @@ class Recipe {
     image = dictionary["image"] as? String
     usedIngredientCount = dictionary["usedIngredientCount"] as? Int
     likes = dictionary["likes"] as? Int
-    title = dictionary["title"] as? String
+    name = dictionary["title"] as? String
     imageType = dictionary["imageType"] as? String
     missedIngredients = dictionary["missedIngredients"] as? [String]
     usedIngredients = dictionary["usedIngredients"] as? [String]
@@ -35,10 +35,11 @@ class Recipe {
   func setRecipeData(recipeData: RecipeData) {
     self.recipeData = recipeData
   }
+
   
-  static func recipes(with array: [[String: Any]]) -> [Recipe] {
-    return array.flatMap({ (dictionary) -> Recipe in
-      Recipe(dictionary: dictionary)
+    static func recipes(with array: [[String: Any]]) -> [Recipe] {
+        return array.flatMap({ (dictionary) -> Recipe in
+            Recipe(dictionary: dictionary)
     })
   }
 }
