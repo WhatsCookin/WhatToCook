@@ -28,14 +28,12 @@
 		20A4C3242073181F00F5A961 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20A4C3232073181F00F5A961 /* LoginViewController.swift */; };
 		20A511B82077146700FDF6BB /* FridgeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20A511B72077146700FDF6BB /* FridgeViewController.swift */; };
 		20A511BC2077205900FDF6BB /* IngredientCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20A511BB2077205900FDF6BB /* IngredientCell.swift */; };
-		20A511BE2077206A00FDF6BB /* CategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20A511BD2077206A00FDF6BB /* CategoryCell.swift */; };
 		20A511C12077408C00FDF6BB /* Section.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20A511C02077408C00FDF6BB /* Section.swift */; };
 		20A511C3207743E600FDF6BB /* ExpandableHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20A511C2207743E600FDF6BB /* ExpandableHeaderView.swift */; };
 		20BADE2A209BE66500FE5BB4 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20BADE29209BE66500FE5BB4 /* SignUpViewController.swift */; };
 		20EBA33820819415000B6349 /* SpoonacularAPIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20EBA33720819415000B6349 /* SpoonacularAPIManager.swift */; };
 		20EBA33A20819534000B6349 /* Ingredient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20EBA33920819534000B6349 /* Ingredient.swift */; };
 		20EDAF8D20A2952A00195F93 /* ExpandableHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 20EDAF8C20A2952A00195F93 /* ExpandableHeaderView.xib */; };
-		6326EFBD209292EB00193EB9 /* RecipeSingleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6326EFBC209292EB00193EB9 /* RecipeSingleView.swift */; };
 		637E15C3208D49DC007104C4 /* SingleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 637E15C2208D49DC007104C4 /* SingleViewController.swift */; };
 		637E15C5208D5319007104C4 /* IngredientListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 637E15C4208D5319007104C4 /* IngredientListCell.swift */; };
 		63888FDE208EB5F2000105C1 /* RecipeItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63888FDD208EB5F2000105C1 /* RecipeItem.swift */; };
@@ -90,7 +88,6 @@
 		20A4C3232073181F00F5A961 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		20A511B72077146700FDF6BB /* FridgeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FridgeViewController.swift; sourceTree = "<group>"; };
 		20A511BB2077205900FDF6BB /* IngredientCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientCell.swift; sourceTree = "<group>"; };
-		20A511BD2077206A00FDF6BB /* CategoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCell.swift; sourceTree = "<group>"; };
 		20A511C02077408C00FDF6BB /* Section.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Section.swift; sourceTree = "<group>"; };
 		20A511C2207743E600FDF6BB /* ExpandableHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpandableHeaderView.swift; sourceTree = "<group>"; };
 		20BADE29209BE66500FE5BB4 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
@@ -100,7 +97,6 @@
 		22BD4EB1FCD557746C9B418A /* Pods-What2CookTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-What2CookTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-What2CookTests/Pods-What2CookTests.debug.xcconfig"; sourceTree = "<group>"; };
 		3D734C8EDDCCED6A3CF0A132 /* Pods_What2CookTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_What2CookTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4733198CBC5DDF83D9CAADBB /* Pods_What2Cook.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_What2Cook.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		6326EFBC209292EB00193EB9 /* RecipeSingleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeSingleView.swift; sourceTree = "<group>"; };
 		637E15C2208D49DC007104C4 /* SingleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleViewController.swift; sourceTree = "<group>"; };
 		637E15C4208D5319007104C4 /* IngredientListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientListCell.swift; sourceTree = "<group>"; };
 		63888FDD208EB5F2000105C1 /* RecipeItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeItem.swift; sourceTree = "<group>"; };
@@ -224,9 +220,7 @@
 			isa = PBXGroup;
 			children = (
 				20A4C31F20721E1A00F5A961 /* RecipeCell.swift */,
-				6326EFBC209292EB00193EB9 /* RecipeSingleView.swift */,
 				20A511BB2077205900FDF6BB /* IngredientCell.swift */,
-				20A511BD2077206A00FDF6BB /* CategoryCell.swift */,
 				2056CBB5207CA27600F9A63D /* RecipeSuggestionCell.swift */,
 				637E15C4208D5319007104C4 /* IngredientListCell.swift */,
 				638D386F20A13E46000C473D /* DirectionListCell.swift */,
@@ -595,9 +589,7 @@
 				206C55C3208A15FF00AB9115 /* RecipeData.swift in Sources */,
 				20EBA33820819415000B6349 /* SpoonacularAPIManager.swift in Sources */,
 				637E15C3208D49DC007104C4 /* SingleViewController.swift in Sources */,
-				20A511BE2077206A00FDF6BB /* CategoryCell.swift in Sources */,
 				20A4C32020721E1A00F5A961 /* RecipeCell.swift in Sources */,
-				6326EFBD209292EB00193EB9 /* RecipeSingleView.swift in Sources */,
 				638D387020A13E46000C473D /* DirectionListCell.swift in Sources */,
 				20A511BC2077205900FDF6BB /* IngredientCell.swift in Sources */,
 				63AE43B7208C1D1C00644354 /* SWRevealViewController.m in Sources */,

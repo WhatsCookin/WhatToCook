@@ -186,7 +186,7 @@ class FridgeViewController: UIViewController, UITableViewDelegate, UITableViewDa
     self.tableView.dataSource = self
     
     // FOR TESTING
-    /*SpoonacularAPIManager().getRecipeInformation(479101) { (ingredients, error) in
+/*    SpoonacularAPIManager().getRecipeInformation(479101) { (ingredients, error) in
       if let ingredients = ingredients {
       }
       print(ingredients)

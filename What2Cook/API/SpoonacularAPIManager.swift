@@ -117,5 +117,10 @@ class SpoonacularAPIManager {
     }*/
     
   }
+  
+  func getRecipeInformation(com) {
+    let urlstring = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/" + recipeId + "/information"
+
+  }
     
 }

@@ -36,7 +36,6 @@ class Recipe {
     self.recipeData = recipeData
   }
 
-  
     static func recipes(with array: [[String: Any]]) -> [Recipe] {
         return array.flatMap({ (dictionary) -> Recipe in
             Recipe(dictionary: dictionary)
