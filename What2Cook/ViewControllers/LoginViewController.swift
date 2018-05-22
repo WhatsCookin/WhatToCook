@@ -51,4 +51,8 @@ class LoginViewController: UIViewController {
     }
     return true
   }
+  
+  override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    dismissKeyboard()
+  }
 }

@@ -63,6 +63,10 @@ class MoveToCategoryViewController: UIViewController, UITextFieldDelegate, UIPic
     self.hideKeyboardWhenTappedAround()
   }
   
+  override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    dismissKeyboard()
+  }
+  
     /*
     // MARK: - Navigation
 
