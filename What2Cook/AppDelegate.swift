@@ -57,6 +57,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
       window?.rootViewController = homeViewController
     }
     
+    
     NotificationCenter.default.addObserver(forName: Notification.Name("didLogout"), object: nil, queue: OperationQueue.main) { (Notification) in
       print("Logout notification received")
       self.logOut()
