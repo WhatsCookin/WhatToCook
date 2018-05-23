@@ -45,13 +45,6 @@ class SingleViewController: UIViewController, UITableViewDelegate, UITableViewDa
   private var recognitionTask: SFSpeechRecognitionTask?
   private let audioEngine = AVAudioEngine()
   
-  @IBAction func onNext(_ sender: UIButton) {
-    nextStep()
-  }
-  @IBAction func onPrev(_ sender: UIButton) {
-    previousStep()
-  }
-  
   func playMessage(message: String) {
     synthesizer.stopSpeaking(at: .immediate)
     let speechUtterance = AVSpeechUtterance(string: message)
