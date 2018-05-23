@@ -68,20 +68,9 @@ class FridgeViewController: UIViewController, UITableViewDelegate, UITableViewDa
   // TODO: Replace placeholder data
   var sections = [
     Section(category: "Unlisted",
-            ingredients: ["Honey", "Bacon"],
-            expanded: true),
-    Section(category: "Fruits",
-            ingredients: ["Apple", "Peach", "Tomato"],
-            expanded: false),
-    Section(category: "Vegetables",
-            ingredients: ["Cabbage", "Carrot"],
-            expanded: false),
-    Section(category: "Meat",
-            ingredients: ["Chicken", "Beef"],
-            expanded: false),
-    Section(category: "Spices",
             ingredients: [],
-            expanded: false)
+            expanded: true),
+    
   ]
   
   func checkForSelection() -> Bool {
@@ -97,7 +86,7 @@ class FridgeViewController: UIViewController, UITableViewDelegate, UITableViewDa
   }
   
   func addIngredient(ingredient: String, category: String) {
-    for i in 0...sections.count - 1 {
+    for i in 0..<sections.count {
       if(sections[i].category == category) {
         sections[i].ingredients.append(ingredient)
         tableView.reloadData()
@@ -107,34 +96,34 @@ class FridgeViewController: UIViewController, UITableViewDelegate, UITableViewDa
   }
   
   func removeIngredient(ingredient: String) {
-    for i in 0...sections.count - 1 {
-      let size = sections[i].ingredients.count - 1
-      if(size >= 0) {
-        for j in 0...size {
-          var ingredients = sections[i].ingredients
-          if ingredients![j] == ingredient {
-            sections[i].ingredients.remove(at: j)
-            tableView.reloadData()
-            return
-          }
-        }
+    for i in 0..<sections.count {
+      if let index = sections[i].ingredients.index(of: ingredient) {
+        sections[i].ingredients.remove(at: index)
+        tableView.reloadData()
+        return
       }
     }
   }
   
   func ingredientAlreadyAdded(ingredient: String) -> Bool {
-    for i in 0...sections.count - 1 {
-      let ingredients = sections[i].ingredients
-      if ingredients!.count > 0 {
-        for j in 0...(ingredients?.count)! - 1 {
-          let currentIngredient = ingredients![j]
-          if currentIngredient == ingredient {
-            return true
-          }
-        }
+    for i in 0..<sections.count {
+      if sections[i].ingredients.index(of: ingredient) != nil {
+        return true
       }
     }
     return false
+  }
+  
+  func checkCategoryExists(category: String) -> Int {
+    for i in 0..<sections.count {
+      let existingCategory = sections[i].category.lowercased()  // Ignore capitalization
+      print("1 - " + existingCategory)
+      print("1 - " + category.lowercased())
+      if existingCategory == category.lowercased() {
+        return i
+      }
+    }
+    return -1
   }
   
   func addSection(name: String) {
@@ -142,6 +131,14 @@ class FridgeViewController: UIViewController, UITableViewDelegate, UITableViewDa
     sections.append(newSection)
     tableView.reloadData()
     return
+  }
+  
+  func removeSection(name: String) {
+    for i in 0..<sections.count {
+      if sections[i].category == name {
+        sections.remove(at: i)
+      }
+    }
   }
   
   func moveIngredients(ingredients: Array<String>, categoryName: String) {
@@ -157,7 +154,6 @@ class FridgeViewController: UIViewController, UITableViewDelegate, UITableViewDa
     for section in 0..<sections.count {
       header.deselectSection(section: section)
     }
-    print(ingredients)
   }
   
   func selectAll() {
@@ -169,11 +165,12 @@ class FridgeViewController: UIViewController, UITableViewDelegate, UITableViewDa
       }
       header.selectSection(section: section)
     }
-    print(ingredients)
   }
     
     override func viewDidLoad() {
     super.viewDidLoad()
+      
+    hideKeyboardWhenTappedAround()
     
     selectIndexPath = IndexPath(row: -1, section: -1)
     
@@ -223,7 +220,6 @@ class FridgeViewController: UIViewController, UITableViewDelegate, UITableViewDa
   }
   
   func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-    //let header = ExpandableHeaderView()
     let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: "expandableHeaderView") as! ExpandableHeaderView
     header.customInit(title: sections[section].category, section: section, delegate: self, tableView: tableView)
     return header
@@ -263,6 +259,7 @@ class FridgeViewController: UIViewController, UITableViewDelegate, UITableViewDa
   
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     deselectAll()
+    dismissKeyboard()
     let ingredientSearchViewController = segue.destination as? IngredientSearchViewController
     ingredientSearchViewController?.fridgeViewController = self
     

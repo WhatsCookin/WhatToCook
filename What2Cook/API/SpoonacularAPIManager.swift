@@ -44,7 +44,6 @@ class SpoonacularAPIManager {
   
   func autocompleteIngredientSearch(_ searchString: String, completion: @escaping([Ingredient]?, Error?) -> ()) {
     //let key = "69p5QHDqZfmshevTW4RVD0dwIh7Qp1L5vUZjsnVjlWJFfVpmAb"
-    
     let numResults = 1
     
     let noSpaceSearchString = searchString.replacingOccurrences(of: " ", with: "%20")
@@ -94,7 +93,7 @@ class SpoonacularAPIManager {
     func getPopularRecipes(completion: @escaping([RecipeItem]?, Error?) -> ()) {
     //let key = "69p5QHDqZfmshevTW4RVD0dwIh7Qp1L5vUZjsnVjlWJFfVpmAb"
     
-    /*let numRecipes = 10 // number of popular recipes to be returned
+    let numRecipes = 6 // number of popular recipes to be returned
     
     let urlstring = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/random?number=" + String(numRecipes)
     
@@ -105,6 +104,7 @@ class SpoonacularAPIManager {
     
     Alamofire.request(urlstring, headers: headers).responseJSON { response in
         if let recipeDictionary = response.result.value as! [String: Any]? {
+          print(recipeDictionary)
             let recipeArray = recipeDictionary["recipes"] as! NSArray
             let recipes = recipeArray.flatMap({ (dictionary) -> RecipeItem in
                 RecipeItem(dictionary: dictionary as! [String: Any])
@@ -114,7 +114,7 @@ class SpoonacularAPIManager {
         else {
             print("Something went wrong")
         }
-    }*/
+    }
     
   }
   
