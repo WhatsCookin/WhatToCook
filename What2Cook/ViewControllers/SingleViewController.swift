@@ -23,23 +23,68 @@ class SingleViewController: UIViewController, UITableViewDelegate, UITableViewDa
   }
   @IBAction func onBookmark(_ sender: UIButton) {
     if(sender.isSelected == false) {
-      var user = PFUser.current()
+      let user = PFUser.current()
       // get array from pfuser
+
+      
       //var query : PFQuery = PFUser.query()
-      var query = PFUser.query()
-      var bookmarks = query?.whereKeyExists("bookmarks")
+      //var query = PFUser.query()
+    //  var bookmarks = query?.whereKeyExists("bookmarks")
       
       // store object in array
+      let bookmarks = NSMutableArray.init()
       bookmarks.add(recipe?.toDictionary())
+      user!["bookmarks"] = bookmarks
+      user!.saveInBackground(block: { (success, error) in
+        if (success) {
+          print("The user data has been saved")
+        } else {
+          print("There was a problem with saving the user data")
+        }
+      })
       
       // store recipe in pfuser
       //user.addObject(bookmarks)
+      
+      /*
+       
+       
+       
+       let user = PFUser.current()
+       user?.add([sections[0].toDictionary()], forKey: "sections")
+       
+       user!.saveInBackground(block: { (success, error) in
+       if (success) {
+       print("The user data has been saved")
+       } else {
+       print("There was a problem with saving the user data")
+       }
+       })*/
+      
+      //      print(user?.object(forKey: "sections"))
+      //    var arr = user?.object(forKey: "sections") as! NSArray
+      //      Section(d: arr[0] as! [String : String])
+/*
+    func save() {
+      tableView.reloadData()
+      let user = PFUser.current()
+      //user?.setObject(sections, forKey: "sections")
+      //print(user!["sections"])
+      //print(user!["key"])
+      user?.saveInBackground(block: { (success, error) in
+        if (success) {
+          print("The user data has been saved")
+        } else {
+          print("There was a problem with saving the user data")
+        }
+      })
     }
+    }*/
     if(sender.isSelected == true) {
       // remove recipe from pfuser
     }
     sender.isSelected = sender.isSelected
-  }
+    }}
   
   @IBOutlet weak var recipeImage: UIImageView!
   @IBOutlet weak var recipeName: UILabel!
