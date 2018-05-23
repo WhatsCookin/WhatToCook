@@ -263,23 +263,7 @@
                                                 </constraints>
                                                 <state key="normal" image="sound"/>
                                                 <connections>
-                                                    <action selector="play:" destination="kxA-1q-EIY" eventType="touchUpInside" id="h1m-JU-RoM"/>
-                                                </connections>
-                                            </button>
-                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BOk-OE-Lhp">
-                                                <rect key="frame" x="286" y="715" width="32" height="30"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <state key="normal" title="Next"/>
-                                                <connections>
-                                                    <action selector="onNext:" destination="kxA-1q-EIY" eventType="touchUpInside" id="bhF-R0-Gnb"/>
-                                                </connections>
-                                            </button>
-                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cf6-Re-pcT">
-                                                <rect key="frame" x="223" y="715" width="31" height="30"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <state key="normal" title="Prev"/>
-                                                <connections>
-                                                    <action selector="onPrev:" destination="kxA-1q-EIY" eventType="touchUpInside" id="7di-Vi-2BI"/>
+                                                    <action selector="microphoneTapped:" destination="kxA-1q-EIY" eventType="touchUpInside" id="jbt-eE-uUh"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -350,6 +334,7 @@
                     <navigationItem key="navigationItem" title="What2Cook" id="kHf-GS-iS7"/>
                     <size key="freeformSize" width="375" height="1500"/>
                     <connections>
+                        <outlet property="microphoneButton" destination="Z9N-XS-UpZ" id="ihw-ij-o2g"/>
                         <outlet property="recipeImage" destination="4v1-OE-WCC" id="2TG-ru-2aY"/>
                         <outlet property="recipeLikes" destination="nih-hK-07m" id="hmW-br-uTD"/>
                         <outlet property="recipeName" destination="GJb-Ov-KuS" id="9uh-YL-91p"/>
