@@ -11,8 +11,10 @@ import UIKit
 class RecipeSuggestionViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
   
   var recipes: [Recipe]!
-  var recipeItem: RecipeItem
-  var recipeItems: [RecipeItem] = []
+  var recipeItem: RecipeItem?
+  //var recipeItems: [RecipeItem] = []
+
+  var finishedLoading: Bool? //api call finished
   
   @IBOutlet weak var tableView: UITableView! {
     didSet {
@@ -23,6 +25,8 @@ class RecipeSuggestionViewController: UIViewController, UITableViewDelegate, UIT
   
   override func viewDidLoad() {
     super.viewDidLoad()
+    
+    finishedLoading = false
     
     // Do any additional setup after loading the view.
     tableView.dataSource = self
@@ -54,7 +58,7 @@ class RecipeSuggestionViewController: UIViewController, UITableViewDelegate, UIT
     return 100
   }
     
-  func loadRecipeItems() {
+  /*func loadRecipeItems() {
     for recipe in self.recipes {
         let id = recipe.id!
         SpoonacularAPIManager().getRecipeData(id) { (data, error) in
@@ -66,16 +70,16 @@ class RecipeSuggestionViewController: UIViewController, UITableViewDelegate, UIT
             }
         }
     }//end of for
-  }
+  }*/
   
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-    let cell = sender as! UITableViewCell
+    /*let cell = sender as! UITableViewCell
     // Get the index path from the cell that was tapped
     if let indexPath = tableView.indexPath(for: cell) {
       let recipe = recipes[indexPath.row]
       let id = recipe.id
       //var recipeItem: RecipeItem?
-      /*SpoonacularAPIManager().getRecipeData(id!) { (data, error) in
+      SpoonacularAPIManager().getRecipeData(id!) { (data, error) in
             if let data = data {
                 self.recipeItem = data
                 print("hi")
@@ -86,12 +90,49 @@ class RecipeSuggestionViewController: UIViewController, UITableViewDelegate, UIT
             else if error != nil {
                 print("Error")
             }
-        }*/
+        }
       //getRecipeWithId(id: id!)
-      print("hello")
-      print(self.recipeItem.name)
+        print("hello")
+        print(self.recipeItem?.name)
       //let singleViewController = segue.destination as! SingleViewController
       //singleViewController.recipe = self.recipeItem
-    }
+    }*/
+    
+    let singleViewController = segue.destination as! SingleViewController
+    singleViewController.recipe = self.recipeItem
   }
+    
+    override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
+        if identifier == "detailsSegue" {
+            let cell = sender as! UITableViewCell
+            // Get the index path from the cell that was tapped
+            if let indexPath = tableView.indexPath(for: cell) {
+                let recipe = recipes[indexPath.row]
+                let id = recipe.id
+                
+                SpoonacularAPIManager().getRecipeData(id!) { (data, error) in
+                    if let data = data {
+                        self.recipeItem = data
+                        
+                        self.finishedLoading = true
+                        
+                        //print("hi")
+                        //print(self.recipeItem?.name)
+                        //let singleViewController = segue.destination as! SingleViewController
+                        //singleViewController.recipe = self.recipeItem
+                    }
+                    else if error != nil {
+                        print("Error")
+                    }
+                }
+                
+                if !finishedLoading! {
+                return false
+            }
+                return true
+          }//end of cell
+            
+        }//end of detailssegue block
+        return false
+    }
 }

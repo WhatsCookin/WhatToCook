@@ -19,6 +19,8 @@ class SingleViewController: UIViewController, UITableViewDelegate, UITableViewDa
     @IBOutlet weak var recipeLikes: UILabel!
     @IBOutlet weak var recipeServings: UILabel!
     
+    var refreshControl = UIRefreshControl()
+    
     var recipe: RecipeItem?
     var recipeList: [RecipeItem]?
     var recipeIndex: Int?
@@ -51,10 +53,19 @@ class SingleViewController: UIViewController, UITableViewDelegate, UITableViewDa
         }
     }
     
+    @objc func didPullToRefresh(_ refreshControl: UIRefreshControl) {
+        print("Refreshing table views")
+        self.tableViewIngredients.reloadData()
+        self.tableViewDirections.reloadData()
+        self.refreshControl.endRefreshing()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        refreshControl.addTarget(self, action: #selector(SingleViewController.didPullToRefresh(_:)), for: .valueChanged)
+        tableViewIngredients.insertSubview(refreshControl, at: 0)
         
         if let recipe = recipe {
             recipeName.text = recipe.name
@@ -143,10 +154,13 @@ class SingleViewController: UIViewController, UITableViewDelegate, UITableViewDa
         else {
             let cell = tableViewDirections.dequeueReusableCell(withIdentifier: "DirectionListCell", for: indexPath) as! DirectionListCell
             cell.direction = directions[indexPath.row]
-            if (recipe == nil) {print("Damn")}
+            
+            
+            /*if (recipe == nil) {print("Damn")}
             print(recipe?.name)
-            print(directions[indexPath.row])
-            //toRead.append(directions[indexPath.row]["step"] as! String)
+            print(directions[indexPath.row])*/
+            
+            toRead.append(directions[indexPath.row]["step"] as! String)
             return cell
         }
     }

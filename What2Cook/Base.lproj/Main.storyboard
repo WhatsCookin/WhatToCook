@@ -105,7 +105,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="D5b-TB-uzN">
-                                <rect key="frame" x="0.0" y="64" width="375" height="1436"/>
+                                <rect key="frame" x="0.0" y="20" width="375" height="1480"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0n7-lg-0LR" customClass="RecipeSingleView" customModule="What2Cook" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="1200"/>
@@ -776,7 +776,7 @@
                                             <outlet property="missedIngredientLabel" destination="lDA-ll-zqc" id="oOS-de-tR8"/>
                                             <outlet property="photoImageView" destination="Eyu-jh-ZXS" id="Rfv-4h-cgK"/>
                                             <outlet property="titleLabel" destination="UkE-I3-htn" id="kcs-S7-zfE"/>
-                                            <segue destination="kxA-1q-EIY" kind="show" id="QAy-eA-GxF"/>
+                                            <segue destination="kxA-1q-EIY" kind="show" identifier="detailsSegue" id="QAy-eA-GxF"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -1060,7 +1060,7 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="NM3-9G-I46"/>
-        <segue reference="uLw-21-bhZ"/>
+        <segue reference="QAy-eA-GxF"/>
         <segue reference="w31-IS-YoO"/>
     </inferredMetricsTieBreakers>
 </document>
