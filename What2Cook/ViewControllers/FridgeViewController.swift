@@ -80,7 +80,7 @@ class FridgeViewController: UIViewController, UITableViewDelegate, UITableViewDa
             ingredients: ["Chicken", "Beef"],
             expanded: false),
     Section(category: "Spices",
-            ingredients: [],
+            ingredients: ["Pepper"],
             expanded: false)
   ]
   
@@ -97,7 +97,7 @@ class FridgeViewController: UIViewController, UITableViewDelegate, UITableViewDa
   }
   
   func addIngredient(ingredient: String, category: String) {
-    for i in 0...sections.count - 1 {
+    for i in 0..<sections.count {
       if(sections[i].category == category) {
         sections[i].ingredients.append(ingredient)
         tableView.reloadData()
@@ -107,38 +107,26 @@ class FridgeViewController: UIViewController, UITableViewDelegate, UITableViewDa
   }
   
   func removeIngredient(ingredient: String) {
-    for i in 0...sections.count - 1 {
-      let size = sections[i].ingredients.count - 1
-      if(size >= 0) {
-        for j in 0...size {
-          var ingredients = sections[i].ingredients
-          if ingredients![j] == ingredient {
-            sections[i].ingredients.remove(at: j)
-            tableView.reloadData()
-            return
-          }
-        }
+    for i in 0..<sections.count {
+      if let index = sections[i].ingredients.index(of: ingredient) {
+        sections[i].ingredients.remove(at: index)
+        tableView.reloadData()
+        return
       }
     }
   }
   
   func ingredientAlreadyAdded(ingredient: String) -> Bool {
-    for i in 0...sections.count - 1 {
-      let ingredients = sections[i].ingredients
-      if ingredients!.count > 0 {
-        for j in 0...(ingredients?.count)! - 1 {
-          let currentIngredient = ingredients![j]
-          if currentIngredient == ingredient {
-            return true
-          }
-        }
+    for i in 0..<sections.count {
+      if sections[i].ingredients.index(of: ingredient) != nil {
+        return true
       }
     }
     return false
   }
   
   func categoryAlreadyAdded(category: String) -> Bool {
-    for i in 0...sections.count - 1 {
+    for i in 0..<sections.count {
       if sections[i].category == category {
         return true
       }
@@ -154,7 +142,7 @@ class FridgeViewController: UIViewController, UITableViewDelegate, UITableViewDa
   }
   
   func removeSection(name: String) {
-    for i in 0...sections.count - 1 {
+    for i in 0..<sections.count {
       if sections[i].category == name {
         sections.remove(at: i)
       }
