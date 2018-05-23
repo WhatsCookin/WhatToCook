@@ -266,6 +266,22 @@
                                                     <action selector="play:" destination="kxA-1q-EIY" eventType="touchUpInside" id="h1m-JU-RoM"/>
                                                 </connections>
                                             </button>
+                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BOk-OE-Lhp">
+                                                <rect key="frame" x="286" y="715" width="32" height="30"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <state key="normal" title="Next"/>
+                                                <connections>
+                                                    <action selector="onNext:" destination="kxA-1q-EIY" eventType="touchUpInside" id="bhF-R0-Gnb"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cf6-Re-pcT">
+                                                <rect key="frame" x="223" y="715" width="31" height="30"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <state key="normal" title="Prev"/>
+                                                <connections>
+                                                    <action selector="onPrev:" destination="kxA-1q-EIY" eventType="touchUpInside" id="7di-Vi-2BI"/>
+                                                </connections>
+                                            </button>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <gestureRecognizers/>
@@ -957,7 +973,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gdH-Jl-vrB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2498" y="59"/>
+            <point key="canvasLocation" x="-2564" y="59"/>
         </scene>
         <!--Reveal View Controller-->
         <scene sceneID="ZN4-KP-sM9">
@@ -1126,6 +1142,6 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="NM3-9G-I46"/>
-        <segue reference="w31-IS-YoO"/>
+        <segue reference="7A6-xl-a10"/>
     </inferredMetricsTieBreakers>
 </document>

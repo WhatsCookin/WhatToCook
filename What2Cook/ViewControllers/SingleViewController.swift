@@ -29,27 +29,54 @@ class SingleViewController: UIViewController, UITableViewDelegate, UITableViewDa
     var synthesizer = AVSpeechSynthesizer()
     var totalUtterance: Int = 0
     var toRead: [String] = []
-    
-    @IBAction func play(_ sender: Any) {
-        if !self.synthesizer.isSpeaking && toRead.count > 0{
-            self.totalUtterance = toRead.count
-            
-            for direction in toRead {
-                let speechUtterance = AVSpeechUtterance(string: direction)
-                let voice = AVSpeechSynthesisVoice(language: "en-EN")
-                speechUtterance.voice = voice
-                speechUtterance.rate = 0.45 // 0.5 default speech rate
-                _ = AVSpeechSynthesisVoice.speechVoices()
-                self.synthesizer.speak(speechUtterance)
-            }
-            
-        }
-        else {
-            self.synthesizer.continueSpeaking()
-        }
+    var currentStep = 0
+  
+  @IBAction func play(_ sender: Any) {
+    if !self.synthesizer.isSpeaking && toRead.count > 0{
+      self.totalUtterance = toRead.count
+      
+      currentStep = -1
+      nextStep()  // Play the first step in recipe instructions
     }
-    
-    override func viewDidLoad() {
+  }
+  
+  @IBAction func onNext(_ sender: UIButton) {
+    nextStep()
+  }
+  @IBAction func onPrev(_ sender: UIButton) {
+    previousStep()
+  }
+  
+  func playMessage(message: String) {
+    let speechUtterance = AVSpeechUtterance(string: message)
+    let voice = AVSpeechSynthesisVoice(language: "en-EN")
+    speechUtterance.voice = voice
+    speechUtterance.rate = 0.45 // 0.5 default speech rate
+    _ = AVSpeechSynthesisVoice.speechVoices()
+    self.synthesizer.speak(speechUtterance)
+  }
+  
+  func nextStep() {
+    if(currentStep + 1 < toRead.count) {
+      currentStep = currentStep + 1
+      playMessage(message: toRead[currentStep])
+    }
+    else {
+      playMessage(message: "End of recipe.")
+    }
+  }
+  
+  func previousStep() {
+    if(currentStep > 0) {
+      currentStep = currentStep - 1
+      playMessage(message: toRead[currentStep])
+    }
+    else {
+      playMessage(message: "You're already at the first step.")
+    }
+  }
+  
+  override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
