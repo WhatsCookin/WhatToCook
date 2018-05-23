@@ -71,8 +71,8 @@ class IngredientSearchViewController: UIViewController, UITextFieldDelegate, UIP
       self.textField.text = ""
     }
     else if(textField == categoryTextField) {
-      self.categoryDropDown.isHidden = false
       dismissKeyboard()
+      self.categoryDropDown.isHidden = false
     }
   }
         var ignoredChars = 0
@@ -173,8 +173,10 @@ class IngredientSearchViewController: UIViewController, UITextFieldDelegate, UIP
             // Parse Category
             let toEndRange = voiceCommand.rangeEndIndex(toFind: " to ")
             let category = voiceCommand.substring(from: toEndRange)!
-            self.categoryTextField.text = String(category)
-            //self.add(ingredient: String(ingredient))
+            if (self.fridgeViewController?.categoryAlreadyAdded(category: category))! {
+              self.categoryTextField.text = String(category)
+              //self.add(ingredient: String(ingredient))
+            }
             self.ignoredChars = result!.bestTranscription.formattedString.count
           }
           else {
@@ -230,22 +232,20 @@ class IngredientSearchViewController: UIViewController, UITextFieldDelegate, UIP
   }
   
   func add(ingredient: String) {
-    // Correct capitalization
-    //ingredient = ingredient.lowercased()
-    
     let ingredientToAdd = ingredient
     // Check that the ingredient is not already in the fridge
     if !((fridgeViewController?.ingredientAlreadyAdded(ingredient: ingredientToAdd))!) {
       SpoonacularAPIManager().autocompleteIngredientSearch(ingredientToAdd) { (ingredients, error) in
         if ingredients!.count > 0 {
           
-          self.textLabel.text = "Added " + self.textField.text!
-          
           if self.categoryTextField.text != "" {
             let categoryToAddIn = self.categoryTextField.text
             self.fridgeViewController?.addIngredient(ingredient: ingredientToAdd, category: categoryToAddIn!)
+            
+            self.textLabel.text = "Added " + self.textField.text! + " to " + categoryToAddIn!
           }
           else {
+            self.textLabel.text = "Added " + ingredientToAdd
             self.fridgeViewController?.addIngredient(ingredient: ingredientToAdd)
           }
         }

@@ -137,11 +137,28 @@ class FridgeViewController: UIViewController, UITableViewDelegate, UITableViewDa
     return false
   }
   
+  func categoryAlreadyAdded(category: String) -> Bool {
+    for i in 0...sections.count - 1 {
+      if sections[i].category == category {
+        return true
+      }
+    }
+    return false
+  }
+  
   func addSection(name: String) {
     let newSection = Section(category: name, ingredients: [], expanded: false)
     sections.append(newSection)
     tableView.reloadData()
     return
+  }
+  
+  func removeSection(name: String) {
+    for i in 0...sections.count - 1 {
+      if sections[i].category == name {
+        sections.remove(at: i)
+      }
+    }
   }
   
   func moveIngredients(ingredients: Array<String>, categoryName: String) {
@@ -172,6 +189,8 @@ class FridgeViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     override func viewDidLoad() {
     super.viewDidLoad()
+      
+    hideKeyboardWhenTappedAround()
     
     selectIndexPath = IndexPath(row: -1, section: -1)
     
@@ -261,6 +280,7 @@ class FridgeViewController: UIViewController, UITableViewDelegate, UITableViewDa
   
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     deselectAll()
+    dismissKeyboard()
     let ingredientSearchViewController = segue.destination as? IngredientSearchViewController
     ingredientSearchViewController?.fridgeViewController = self
     

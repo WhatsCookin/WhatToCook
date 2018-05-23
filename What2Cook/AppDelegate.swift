@@ -67,7 +67,7 @@ extension String {
       return endPos
     }
     return -1
-}
+  }
 }
 
 extension UIViewController {
