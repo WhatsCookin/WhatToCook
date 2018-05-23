@@ -12,11 +12,9 @@ import AlamofireImage
 class RecipeCell: UICollectionViewCell {
     @IBOutlet weak var recipeImage: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
-    //@IBOutlet weak var timeLabel: UILabel!
-    //@IBOutlet weak var likesLabel: UILabel!
-    //@IBOutlet weak var servingsLabel: UILabel!
-    
-    @IBOutlet weak var ratingsImageView: UIImageView!
+    @IBOutlet weak var timeLabel: UILabel!
+    @IBOutlet weak var likesLabel: UILabel!
+    @IBOutlet weak var servingsLabel: UILabel!
     
     var gradient: CAGradientLayer = CAGradientLayer()
     
@@ -26,9 +24,9 @@ class RecipeCell: UICollectionViewCell {
                recipeImage.af_setImage(withURL: url)
             }
             nameLabel.text = recipe.name
-            //timeLabel.text = "Time: " + String(recipe.time)
-            //likesLabel.text = "Likes: " + String(recipe.likes)
-            //servingsLabel.text = " Servings: " + String(recipe.servings)
+            timeLabel.text = String(recipe.time)
+            likesLabel.text = String(recipe.likes)
+            servingsLabel.text = String(recipe.servings)
         }
     }
     
