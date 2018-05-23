@@ -65,31 +65,8 @@ class SpoonacularAPIManager {
       }
     }
   }
-  
-  /*func setRecipeData(_ recipe: Recipe) {
-    //let key = "69p5QHDqZfmshevTW4RVD0dwIh7Qp1L5vUZjsnVjlWJFfVpmAb"
     
-    let id = recipe.id!
-    
-    let urlstring = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/" + String(id) + "/information"
-    
-    //You headers (for your api key)
-    let headers: HTTPHeaders = [
-      "X-Mashape-Key": key,
-      ]
-    
-    Alamofire.request(urlstring, headers: headers).responseJSON { response in
-      if let dataDictionary = response.result.value as! [String: Any]? {
-        let recipeData = RecipeData(dictionary: dataDictionary)
-        recipe.setRecipeData(recipeData: recipeData)
-        print("RecipeData is initialized")
-      }
-      else {
-        print("Something went wrong")
-      }
-    }
-  }*/
-    
+    // Retrieves the most popular recipes
     func getPopularRecipes(completion: @escaping([RecipeItem]?, Error?) -> ()) {
     //let key = "69p5QHDqZfmshevTW4RVD0dwIh7Qp1L5vUZjsnVjlWJFfVpmAb"
     
@@ -117,6 +94,27 @@ class SpoonacularAPIManager {
     }
     
   }
+    
+    // Retrieves the data which includes ingredients and directions of a recipe given an id
+    func getRecipeData(_ id: Int, completion: @escaping(RecipeItem?, Error?) -> ()) {
+        let urlstring = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/"+String(id)+"/information"
+        
+        //You headers (for your api key)
+        let headers: HTTPHeaders = [
+            "X-Mashape-Key": key,
+            ]
+        
+        Alamofire.request(urlstring, headers: headers).responseJSON { response in
+            if let recipeDictionary = response.result.value as! [String:Any]? {
+                let recipe = RecipeItem(dictionary: recipeDictionary )
+                //print(recipes)
+                completion(recipe, nil)
+            }
+            else {
+                print("Something went wrong")
+            }
+        }
+    }
   
     
 }
