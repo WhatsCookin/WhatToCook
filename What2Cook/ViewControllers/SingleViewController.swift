@@ -13,7 +13,14 @@ import Speech
 class SingleViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, AVSpeechSynthesizerDelegate, SFSpeechRecognizerDelegate {
   
   @IBOutlet weak var tableViewIngredients: UITableView! // tableView for ingredients in the recipe
-  @IBOutlet weak var tableViewDirections: UITableView! // tableview for directions in the recipe
+  // tableview for directions in the recipe
+  @IBOutlet weak var tableViewDirections: UITableView! {
+    didSet {
+      tableViewDirections.rowHeight = UITableViewAutomaticDimension
+      tableViewDirections.estimatedRowHeight = 50
+    }
+  }
+  
   @IBOutlet weak var recipeImage: UIImageView!
   @IBOutlet weak var recipeName: UILabel!
   @IBOutlet weak var recipeTime: UILabel!
