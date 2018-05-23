@@ -23,6 +23,8 @@ class SingleViewController: UIViewController, UITableViewDelegate, UITableViewDa
     var recipeList: [RecipeItem]?
     var recipeIndex: Int?
     
+    var canSwipe: Bool?
+    
     var ingredients: [[String:Any]] = [[:]]
     var directions: [[String:Any]] = [[:]]
     
@@ -56,7 +58,15 @@ class SingleViewController: UIViewController, UITableViewDelegate, UITableViewDa
         
         if let recipe = recipe {
             recipeName.text = recipe.name
+            
+            if (recipe.time == nil) {
+              recipe.time = 10
+            }
             recipeTime.text = String(recipe.time) + " min"
+            
+            if (recipe.likes == nil) {
+                recipe.likes = 0
+            }
             recipeLikes.text = String(recipe.likes) + " likes"
             recipeServings.text = String(recipe.servings)
             
@@ -133,7 +143,10 @@ class SingleViewController: UIViewController, UITableViewDelegate, UITableViewDa
         else {
             let cell = tableViewDirections.dequeueReusableCell(withIdentifier: "DirectionListCell", for: indexPath) as! DirectionListCell
             cell.direction = directions[indexPath.row]
-            toRead.append(directions[indexPath.row]["step"] as! String)
+            if (recipe == nil) {print("Damn")}
+            print(recipe?.name)
+            print(directions[indexPath.row])
+            //toRead.append(directions[indexPath.row]["step"] as! String)
             return cell
         }
     }

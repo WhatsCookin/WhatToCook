@@ -11,6 +11,8 @@ import UIKit
 class RecipeSuggestionViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
   
   var recipes: [Recipe]!
+  var recipeItem: RecipeItem
+  var recipeItems: [RecipeItem] = []
   
   @IBOutlet weak var tableView: UITableView! {
     didSet {
@@ -51,18 +53,45 @@ class RecipeSuggestionViewController: UIViewController, UITableViewDelegate, UIT
   func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
     return 100
   }
+    
+  func loadRecipeItems() {
+    for recipe in self.recipes {
+        let id = recipe.id!
+        SpoonacularAPIManager().getRecipeData(id) { (data, error) in
+            if let data = data {
+                self.recipeItems.append(data)
+            }
+            else if error != nil {
+                print("Error")
+            }
+        }
+    }//end of for
+  }
   
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-   /* let cell = sender as! UITableViewCell
+    let cell = sender as! UITableViewCell
     // Get the index path from the cell that was tapped
     if let indexPath = tableView.indexPath(for: cell) {
       let recipe = recipes[indexPath.row]
-     // let recipeViewController = segue.destination as! RecipeViewController
-      
-   //   SpoonacularAPIManager().setRecipeData(recipe)
-      
-      // Pass on the data to the Detail ViewController
-     // recipeViewController.recipeId = recipe.id
-    }*/
+      let id = recipe.id
+      //var recipeItem: RecipeItem?
+      /*SpoonacularAPIManager().getRecipeData(id!) { (data, error) in
+            if let data = data {
+                self.recipeItem = data
+                print("hi")
+                print(self.recipeItem?.name)
+                let singleViewController = segue.destination as! SingleViewController
+                singleViewController.recipe = self.recipeItem
+            }
+            else if error != nil {
+                print("Error")
+            }
+        }*/
+      //getRecipeWithId(id: id!)
+      print("hello")
+      print(self.recipeItem.name)
+      //let singleViewController = segue.destination as! SingleViewController
+      //singleViewController.recipe = self.recipeItem
+    }
   }
 }

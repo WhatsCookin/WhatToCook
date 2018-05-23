@@ -12,7 +12,6 @@ class RecipeItem { // recipe to display - TODO: change to combine recipe and rec
     var id: Int!
     var image: String!
     var name: String!
-    var imageType: String!
     var ingredients: [[String:Any]]! // need to parse array of meta data for ingredients
     var directions: [[String:Any]]!
     var time: Int! // combine prep and cook time
@@ -25,7 +24,6 @@ class RecipeItem { // recipe to display - TODO: change to combine recipe and rec
         id = dictionary["id"] as? Int
         image = dictionary["image"] as? String
         name = dictionary["title"] as? String
-        imageType = dictionary["imageType"] as? String
         likes = dictionary["aggregateLikes"] as? Int
         servings = dictionary["servings"] as? Int
         time = dictionary["readyInMinutes"] as? Int
@@ -38,6 +36,17 @@ class RecipeItem { // recipe to display - TODO: change to combine recipe and rec
             let firstElem = analyzedInstructions[0]
             directions = firstElem["steps"] as? [[String:Any]]
         }
+    }
+    
+    init(data: [String:Any], instructions: [[String:Any]]) {
+        id = data["id"] as? Int
+        image = data["image"] as? String
+        name = data["title"] as? String
+        likes = data["aggregateLikes"] as? Int
+        servings = data["servings"] as? Int
+        time = data["readyInMinutes"] as? Int
+        ingredients = data["extendedIngredients"] as? [[String:Any]]
+        directions = instructions
     }
     
     static func recipes(with array: [[String: Any]]) -> [RecipeItem] {

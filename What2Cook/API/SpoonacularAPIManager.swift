@@ -94,7 +94,7 @@ class SpoonacularAPIManager {
     func getPopularRecipes(completion: @escaping([RecipeItem]?, Error?) -> ()) {
     //let key = "69p5QHDqZfmshevTW4RVD0dwIh7Qp1L5vUZjsnVjlWJFfVpmAb"
     
-    /*let numRecipes = 10 // number of popular recipes to be returned
+    let numRecipes = 4 // number of popular recipes to be returned
     
     let urlstring = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/random?number=" + String(numRecipes)
     
@@ -114,9 +114,57 @@ class SpoonacularAPIManager {
         else {
             print("Something went wrong")
         }
-    }*/
+    }
     
   }
+    
+    func getRecipeInstructions(_ id: Int, completion: @escaping([[String:Any]]?, Error?) -> ()) {
+        let urlstring = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/"+String(id)+"/analyzedInstructions"
+        
+        //You headers (for your api key)
+        let headers: HTTPHeaders = [
+            "X-Mashape-Key": key,
+            ]
+        
+        Alamofire.request(urlstring, headers: headers).responseJSON { response in
+            if let instructDictionary = response.result.value as! [[String: Any]]? {
+                let instructions = instructDictionary[0]["steps"] as! [[String:Any]]
+                //print(instructDictionary)
+                completion(instructions, nil)
+            }
+            else {
+                print("Something went wrong")
+            }
+        }
+        
+    }
+    
+    func getRecipeData(_ id: Int, completion: @escaping(RecipeItem?, Error?) -> ()) {
+        let urlstring = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/"+String(id)+"/information"
+
+        //You headers (for your api key)
+        let headers: HTTPHeaders = [
+            "X-Mashape-Key": key,
+            ]
+        
+        Alamofire.request(urlstring, headers: headers).responseJSON { response in
+            /*if let dataDictionary = response.result.value as! [String: Any]? {
+                print(dataDictionary)
+                completion(dataDictionary, nil)
+            }*/
+            //print(response.result.value as Any)
+            if let recipeDictionary = response.result.value as! [String:Any]? {
+        
+                let recipe = RecipeItem(dictionary: recipeDictionary )
+                //print(recipes)
+                completion(recipe, nil)
+            }
+            else {
+                print("Something went wrong")
+            }
+        }
+        
+    }
   
     
 }
