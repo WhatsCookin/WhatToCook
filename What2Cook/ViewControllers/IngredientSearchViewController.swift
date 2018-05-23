@@ -75,7 +75,7 @@ class IngredientSearchViewController: UIViewController, UITextFieldDelegate, UIP
       dismissKeyboard()
     }
   }
-  
+        var ignoredChars = 0
   override func viewDidLoad() {
     super.viewDidLoad()
     
@@ -143,22 +143,30 @@ class IngredientSearchViewController: UIViewController, UITextFieldDelegate, UIP
       
       var isFinal = false
       
+      // Start parsing voice command
       if result != nil {
-        var voiceCommand = result!.bestTranscription.formattedString
-        //self.textView.text = voiceCommand
+        var voiceCommand = result!.bestTranscription.formattedString.substring(from: self.ignoredChars) ?? ""
+        print("string: " + result!.bestTranscription.formattedString)
+        print(self.ignoredChars)
+
+        voiceCommand = voiceCommand.replacingOccurrences(of: "Add ", with: " add ")
+        voiceCommand = voiceCommand.replacingOccurrences(of: "At ", with: " add ")
+        voiceCommand = voiceCommand.replacingOccurrences(of: " at ", with: " add ")
+        
+        self.textView.text = voiceCommand
         print(voiceCommand)
         
-        if voiceCommand == "Add" {
-          voiceCommand = " add"
-        }
-        if (voiceCommand.range(of: " add ") != nil) {
+        if (voiceCommand.range(of: " add ", options:NSString.CompareOptions.backwards) != nil) {
+          self.textField.text = ""
+          self.categoryTextField.text = ""
+          
           let addRange = voiceCommand.rangeEndIndex(toFind: " add ")
           voiceCommand = voiceCommand.substring(from: addRange)!
           if (voiceCommand.range(of: " to ") != nil) {
             let toStartRange = voiceCommand.rangeStartIndex(toFind: " to ")
             
             // Parse Ingredient
-            var ingredient = voiceCommand.substring(to: toStartRange)!
+            let ingredient = voiceCommand.substring(to: toStartRange)!
             print(ingredient)
             self.textField.text = String(ingredient)
             
@@ -166,16 +174,17 @@ class IngredientSearchViewController: UIViewController, UITextFieldDelegate, UIP
             let toEndRange = voiceCommand.rangeEndIndex(toFind: " to ")
             let category = voiceCommand.substring(from: toEndRange)!
             self.categoryTextField.text = String(category)
-            self.add(ingredient: String(ingredient))
-            voiceCommand = ""
+            //self.add(ingredient: String(ingredient))
+            self.ignoredChars = result!.bestTranscription.formattedString.count
           }
           else {
             print(voiceCommand)
             let ingredient = voiceCommand
             print(ingredient)
             self.textField.text = String(ingredient)
-            self.add(ingredient: String(ingredient))
-            voiceCommand = ""
+            print("ingredient: " + ingredient)
+            self.ignoredChars = result!.bestTranscription.formattedString.count
+           // self.add(ingredient: String(ingredient))
           }
           
           print(voiceCommand)

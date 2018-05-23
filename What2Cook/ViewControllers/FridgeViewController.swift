@@ -157,7 +157,6 @@ class FridgeViewController: UIViewController, UITableViewDelegate, UITableViewDa
     for section in 0..<sections.count {
       header.deselectSection(section: section)
     }
-    print(ingredients)
   }
   
   func selectAll() {
@@ -169,7 +168,6 @@ class FridgeViewController: UIViewController, UITableViewDelegate, UITableViewDa
       }
       header.selectSection(section: section)
     }
-    print(ingredients)
   }
     
     override func viewDidLoad() {
