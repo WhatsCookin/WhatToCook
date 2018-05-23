@@ -45,5 +45,16 @@ class RecipeItem { // recipe to display - TODO: change to combine recipe and rec
             RecipeItem(dictionary: dictionary)
         })
     }
+  
+  func toDictionary() -> NSDictionary {
+    return [
+      "id": self.id,
+      "image": self.image
+      ] as NSDictionary
+  }
+  
+  convenience init(_ dictionary: Dictionary<String, AnyObject>) {
+    self.init(dictionary)
+  }
     
 }

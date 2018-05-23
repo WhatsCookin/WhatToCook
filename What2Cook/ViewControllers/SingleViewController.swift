@@ -9,6 +9,7 @@
 import UIKit
 import AVFoundation
 import Speech
+import Parse
 
 class SingleViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, AVSpeechSynthesizerDelegate, SFSpeechRecognizerDelegate {
   
@@ -19,6 +20,25 @@ class SingleViewController: UIViewController, UITableViewDelegate, UITableViewDa
       tableViewDirections.rowHeight = UITableViewAutomaticDimension
       tableViewDirections.estimatedRowHeight = 50
     }
+  }
+  @IBAction func onBookmark(_ sender: UIButton) {
+    if(sender.isSelected == false) {
+      var user = PFUser.current()
+      // get array from pfuser
+      //var query : PFQuery = PFUser.query()
+      var query = PFUser.query()
+      var bookmarks = query?.whereKeyExists("bookmarks")
+      
+      // store object in array
+      bookmarks.add(recipe?.toDictionary())
+      
+      // store recipe in pfuser
+      //user.addObject(bookmarks)
+    }
+    if(sender.isSelected == true) {
+      // remove recipe from pfuser
+    }
+    sender.isSelected = sender.isSelected
   }
   
   @IBOutlet weak var recipeImage: UIImageView!
