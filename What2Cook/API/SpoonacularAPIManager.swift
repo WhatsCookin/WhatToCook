@@ -44,7 +44,6 @@ class SpoonacularAPIManager {
   
   func autocompleteIngredientSearch(_ searchString: String, completion: @escaping([Ingredient]?, Error?) -> ()) {
     //let key = "69p5QHDqZfmshevTW4RVD0dwIh7Qp1L5vUZjsnVjlWJFfVpmAb"
-    
     let numResults = 1
     
     let noSpaceSearchString = searchString.replacingOccurrences(of: " ", with: "%20")
