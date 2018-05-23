@@ -12,6 +12,7 @@ import Speech
 class IngredientSearchViewController: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, UIPickerViewDataSource, SFSpeechRecognizerDelegate {
   
   var fridgeViewController: FridgeViewController?
+  private var ignoredChars = 0  // For continuous speech recognition
   private let speechRecognizer = SFSpeechRecognizer(locale: Locale.init(identifier: "en-US"))
   private var recognitionRequest: SFSpeechAudioBufferRecognitionRequest?
   private var recognitionTask: SFSpeechRecognitionTask?
@@ -75,7 +76,7 @@ class IngredientSearchViewController: UIViewController, UITextFieldDelegate, UIP
       self.categoryDropDown.isHidden = false
     }
   }
-        var ignoredChars = 0
+  
   override func viewDidLoad() {
     super.viewDidLoad()
     
@@ -152,47 +153,45 @@ class IngredientSearchViewController: UIViewController, UITextFieldDelegate, UIP
         voiceCommand = voiceCommand.replacingOccurrences(of: "Add ", with: " add ")
         voiceCommand = voiceCommand.replacingOccurrences(of: "At ", with: " add ")
         voiceCommand = voiceCommand.replacingOccurrences(of: " at ", with: " add ")
+        voiceCommand = voiceCommand.replacingOccurrences(of: "To ", with: " to ")
+        voiceCommand = voiceCommand.replacingOccurrences(of: "Two ", with: " to ")
+        voiceCommand = voiceCommand.replacingOccurrences(of: " two ", with: " to ")
         
         self.textView.text = voiceCommand
         print(voiceCommand)
         
         if (voiceCommand.range(of: " add ", options:NSString.CompareOptions.backwards) != nil) {
+          // Parse Ingredient
           self.textField.text = ""
           self.categoryTextField.text = ""
           
           let addRange = voiceCommand.rangeEndIndex(toFind: " add ")
           voiceCommand = voiceCommand.substring(from: addRange)!
-          if (voiceCommand.range(of: " to ") != nil) {
-            let toStartRange = voiceCommand.rangeStartIndex(toFind: " to ")
-            
-            // Parse Ingredient
-            let ingredient = voiceCommand.substring(to: toStartRange)!
-            print(ingredient)
-            self.textField.text = String(ingredient)
-            
-            // Parse Category
-            let toEndRange = voiceCommand.rangeEndIndex(toFind: " to ")
-            let category = voiceCommand.substring(from: toEndRange)!
-            if (self.fridgeViewController?.categoryAlreadyAdded(category: category))! {
-              self.categoryTextField.text = String(category)
-              //self.add(ingredient: String(ingredient))
-            }
-            self.ignoredChars = result!.bestTranscription.formattedString.count
-          }
-          else {
-            print(voiceCommand)
-            let ingredient = voiceCommand
-            print(ingredient)
-            self.textField.text = String(ingredient)
-            print("ingredient: " + ingredient)
-            self.ignoredChars = result!.bestTranscription.formattedString.count
-           // self.add(ingredient: String(ingredient))
-          }
           
           print(voiceCommand)
-          
-          isFinal = (result?.isFinal)!
+          let ingredient = voiceCommand
+          print(ingredient)
+          self.textField.text = String(ingredient)
+          print("ingredient: " + ingredient)
+          self.ignoredChars = result!.bestTranscription.formattedString.count
+          // self.add(ingredient: String(ingredient))
         }
+        else if voiceCommand.range(of: " to ") != nil {
+          // Parse Category
+          let toEndRange = voiceCommand.rangeEndIndex(toFind: " to ")
+          let category = voiceCommand.substring(from: toEndRange)!
+          
+          let categoryIndex = self.fridgeViewController?.checkCategoryExists(category: category)
+          if categoryIndex != -1 {
+            let categoryName = self.fridgeViewController?.sections[categoryIndex!].category
+            self.categoryTextField.text = categoryName
+            }
+            self.ignoredChars = result!.bestTranscription.formattedString.count
+        }
+        
+        print(voiceCommand)
+        
+        isFinal = (result?.isFinal)!
       }
       
       if error != nil || isFinal {
@@ -245,7 +244,7 @@ class IngredientSearchViewController: UIViewController, UITextFieldDelegate, UIP
             self.textLabel.text = "Added " + self.textField.text! + " to " + categoryToAddIn!
           }
           else {
-            self.textLabel.text = "Added " + ingredientToAdd
+            self.textLabel.text = "Added " + ingredientToAdd.uppercased()
             self.fridgeViewController?.addIngredient(ingredient: ingredientToAdd)
           }
         }

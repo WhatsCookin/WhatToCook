@@ -68,20 +68,9 @@ class FridgeViewController: UIViewController, UITableViewDelegate, UITableViewDa
   // TODO: Replace placeholder data
   var sections = [
     Section(category: "Unlisted",
-            ingredients: ["Honey", "Bacon"],
+            ingredients: [],
             expanded: true),
-    Section(category: "Fruits",
-            ingredients: ["Apple", "Peach", "Tomato"],
-            expanded: false),
-    Section(category: "Vegetables",
-            ingredients: ["Cabbage", "Carrot"],
-            expanded: false),
-    Section(category: "Meat",
-            ingredients: ["Chicken", "Beef"],
-            expanded: false),
-    Section(category: "Spices",
-            ingredients: ["Pepper"],
-            expanded: false)
+    
   ]
   
   func checkForSelection() -> Bool {
@@ -125,13 +114,16 @@ class FridgeViewController: UIViewController, UITableViewDelegate, UITableViewDa
     return false
   }
   
-  func categoryAlreadyAdded(category: String) -> Bool {
+  func checkCategoryExists(category: String) -> Int {
     for i in 0..<sections.count {
-      if sections[i].category == category {
-        return true
+      let existingCategory = sections[i].category.lowercased()  // Ignore capitalization
+      print("1 - " + existingCategory)
+      print("1 - " + category.lowercased())
+      if existingCategory == category.lowercased() {
+        return i
       }
     }
-    return false
+    return -1
   }
   
   func addSection(name: String) {
@@ -228,7 +220,6 @@ class FridgeViewController: UIViewController, UITableViewDelegate, UITableViewDa
   }
   
   func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-    //let header = ExpandableHeaderView()
     let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: "expandableHeaderView") as! ExpandableHeaderView
     header.customInit(title: sections[section].category, section: section, delegate: self, tableView: tableView)
     return header
