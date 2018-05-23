@@ -93,7 +93,7 @@ class SpoonacularAPIManager {
     func getPopularRecipes(completion: @escaping([RecipeItem]?, Error?) -> ()) {
     //let key = "69p5QHDqZfmshevTW4RVD0dwIh7Qp1L5vUZjsnVjlWJFfVpmAb"
     
-    /*let numRecipes = 10 // number of popular recipes to be returned
+    let numRecipes = 1 // number of popular recipes to be returned
     
     let urlstring = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/random?number=" + String(numRecipes)
     
@@ -113,7 +113,7 @@ class SpoonacularAPIManager {
         else {
             print("Something went wrong")
         }
-    }*/
+    }
     
   }
   
