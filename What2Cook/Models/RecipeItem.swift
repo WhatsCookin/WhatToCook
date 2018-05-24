@@ -20,7 +20,7 @@ class RecipeItem { // recipe to display - TODO: change to combine recipe and rec
   var likes: Int!
   var instructions: String! //parse this string to get steps
   var analyzedInstructions: [[String: Any]]
-  var bookmarked = false
+  var bookmarked: Bool!
   
   init(dictionary: [String: Any]) {
     id = dictionary["id"] as? Int
@@ -31,6 +31,7 @@ class RecipeItem { // recipe to display - TODO: change to combine recipe and rec
     servings = dictionary["servings"] as? Int
     time = dictionary["readyInMinutes"] as? Int
     ingredients = dictionary["extendedIngredients"] as? [[String:Any]]
+    bookmarked = (dictionary["bookmarked"] as? Bool) ?? false
     analyzedInstructions = dictionary["analyzedInstructions"] as! [[String:Any]]
     if analyzedInstructions.isEmpty {
       directions = [[:]]
@@ -58,13 +59,9 @@ class RecipeItem { // recipe to display - TODO: change to combine recipe and rec
       "readyInMinutes": self.time,
       "servings": self.servings,
       "aggregateLikes": self.likes,
+      "bookmarked": self.bookmarked,
       "analyzedInstructions": self.analyzedInstructions
       ] as NSDictionary
   }
-  
-  func toggleBookmark() {
-    bookmarked = !bookmarked
-  }
-  
 }
 

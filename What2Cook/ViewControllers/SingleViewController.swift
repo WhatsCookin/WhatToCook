@@ -51,6 +51,7 @@ class SingleViewController: UIViewController, UITableViewDelegate, UITableViewDa
     let user = PFUser.current()
     if(sender.isSelected == false) {
       // store object in array
+      recipe?.bookmarked = true
       if(user!["bookmarks"] == nil) {   // Create new bookmarks array
         let bookmarks = NSMutableArray.init()
         bookmarks.add(recipe?.toDictionary() as Any)
@@ -62,10 +63,10 @@ class SingleViewController: UIViewController, UITableViewDelegate, UITableViewDa
         bookmarks.add(recipe?.toDictionary() as Any)
         user!["bookmarks"] = bookmarks
       }
-      recipe?.bookmarked = true
     }
     else {
       // remove recipe from pfuser
+      recipe?.bookmarked = false
       let bookmarks = user!["bookmarks"] as! NSMutableArray
       for bookmark in bookmarks {
         let recipe = RecipeItem(dictionary: bookmark as! [String : Any])
@@ -75,7 +76,6 @@ class SingleViewController: UIViewController, UITableViewDelegate, UITableViewDa
         }
       }
       user!["bookmarks"] = bookmarks
-      recipe?.bookmarked = false
     }
     bookmarksButton.isSelected = (recipe?.bookmarked)!
     user!.saveInBackground(block: { (success, error) in
@@ -153,7 +153,6 @@ class SingleViewController: UIViewController, UITableViewDelegate, UITableViewDa
     // Do any additional setup after loading the view.
     if let recipe = recipe {
       bookmarksButton.isSelected = recipe.bookmarked
-      print("bookmarked?: " + String(bookmarksButton.isSelected))
       
       ingredients = recipe.ingredients
       directions = recipe.directions

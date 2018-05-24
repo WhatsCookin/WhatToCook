@@ -19,28 +19,41 @@ class BookmarksViewController: UIViewController, UICollectionViewDataSource, UIC
   
   //var gradient: CAGradientLayer!
   
+  func clearData() {
+    let user = PFUser.current()
+    user!["bookmarks"] = []
+    user!.saveInBackground(block: { (success, error) in
+      if (success) {
+        print("The user data has been saved")
+      } else {
+        print("There was a problem with saving the user data")
+      }
+    })
+  }
+  
+  func loadBookmarks() {
+    recipes = []
+    let user = PFUser.current()
+    let bookmarks = user?.object(forKey: "bookmarks") as? [Dictionary<String, AnyObject>]
+    
+    if bookmarks != nil {
+      for bookmark in bookmarks! {
+        let recipe = RecipeItem(dictionary: bookmark)
+        print(recipe.name)
+        recipes.append(recipe)
+      }
+    }
+    collectionView.reloadData()
+  }
+  
+  override func viewWillAppear(_ animated: Bool) {
+    print("viewWillAppear")
+    loadBookmarks()
+  }
+  
   override func viewDidLoad() {
     super.viewDidLoad()
-    // Reset
-    /* let user = PFUser.current()
-     user!["bookmarks"] = []
-     user!.saveInBackground(block: { (success, error) in
-     if (success) {
-     print("The user data has been saved")
-     } else {
-     print("There was a problem with saving the user data")
-     }
-     })*/
-    
-    let user = PFUser.current()
-    let bookmarks = user?.object(forKey: "bookmarks") as! [Dictionary<String, AnyObject>]
-    
-    for bookmark in bookmarks {
-      let recipe = RecipeItem(dictionary: bookmark)
-      print(recipe.name)
-      recipes.append(recipe)
-    }
-    print(recipes)
+    loadBookmarks()
     
     /*refreshControl = UIRefreshControl()
      refreshControl.addTarget(self, action: #selector(HomeViewController.didPullToRefresh(_:)), for: .valueChanged)
@@ -111,7 +124,6 @@ class BookmarksViewController: UIViewController, UICollectionViewDataSource, UIC
       singleViewController.recipeIndex = indexPath.row
     }
   }
-  
 }
 
 
