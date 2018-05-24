@@ -9,6 +9,7 @@
 import UIKit
 import AVFoundation
 import Speech
+import Parse
 
 class SingleViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, AVSpeechSynthesizerDelegate, SFSpeechRecognizerDelegate {
   
@@ -27,6 +28,7 @@ class SingleViewController: UIViewController, UITableViewDelegate, UITableViewDa
   @IBOutlet weak var recipeLikes: UILabel!
   @IBOutlet weak var recipeServings: UILabel!
   @IBOutlet weak var microphoneButton: UIButton!
+  @IBOutlet weak var bookmarksButton: UIButton!
   
   var recipe: RecipeItem?
   var recipeList: [RecipeItem]?
@@ -40,19 +42,72 @@ class SingleViewController: UIViewController, UITableViewDelegate, UITableViewDa
   var toRead: [String] = []
   var currentStep = 0
   var ignoredChars = 0
+  var utteranceRate = 0.45 as Float
   private let speechRecognizer = SFSpeechRecognizer(locale: Locale.init(identifier: "en-US"))
   private var recognitionRequest: SFSpeechAudioBufferRecognitionRequest?
   private var recognitionTask: SFSpeechRecognitionTask?
   private let audioEngine = AVAudioEngine()
+  
+  @IBAction func onBookmark(_ sender: UIButton) {
+    let user = PFUser.current()
+    if(sender.isSelected == false) {
+      // store object in array
+      recipe?.bookmarked = true
+      if(user!["bookmarks"] == nil) {   // Create new bookmarks array
+        let bookmarks = NSMutableArray.init()
+        bookmarks.add(recipe?.toDictionary() as Any)
+        user!["bookmarks"] = bookmarks
+      }
+      else {
+        // Edit existing bookmarks array
+        let bookmarks = user!["bookmarks"] as! NSMutableArray
+        bookmarks.add(recipe?.toDictionary() as Any)
+        user!["bookmarks"] = bookmarks
+      }
+    }
+    else {
+      // remove recipe from pfuser
+      recipe?.bookmarked = false
+      let bookmarks = user!["bookmarks"] as! NSMutableArray
+      for bookmark in bookmarks {
+        let recipe = RecipeItem(dictionary: bookmark as! [String : Any])
+        if(recipe.id == self.recipe?.id) {
+          bookmarks.remove(bookmark)
+          print("recipe removed successfully")
+        }
+      }
+      user!["bookmarks"] = bookmarks
+    }
+    bookmarksButton.isSelected = (recipe?.bookmarked)!
+    user!.saveInBackground(block: { (success, error) in
+      if (success) {
+        print("The user data has been saved")
+      } else {
+        print("There was a problem with saving the user data")
+      }
+    })
+  }
   
   func playMessage(message: String) {
     synthesizer.stopSpeaking(at: .immediate)
     let speechUtterance = AVSpeechUtterance(string: message)
     let voice = AVSpeechSynthesisVoice(language: "en-EN")
     speechUtterance.voice = voice
-    speechUtterance.rate = 0.45 // 0.5 default speech rate
+    speechUtterance.rate = utteranceRate // 0.5 default speech rate
     _ = AVSpeechSynthesisVoice.speechVoices()
     self.synthesizer.speak(speechUtterance)
+  }
+  
+  func stop() {
+    synthesizer.stopSpeaking(at: .immediate)
+  }
+  
+  func start() {
+    synthesizer.continueSpeaking()
+  }
+  
+  func changeSpeed(rate: Float) {
+    utteranceRate = rate
   }
   
   func nextStep() {
@@ -109,8 +164,12 @@ class SingleViewController: UIViewController, UITableViewDelegate, UITableViewDa
     super.viewDidLoad()
     
     // Do any additional setup after loading the view.
-    
     if let recipe = recipe {
+      bookmarksButton.isSelected = recipe.bookmarked
+      
+      ingredients = recipe.ingredients
+      directions = recipe.directions
+      
       recipeName.text = recipe.name
       recipeTime.text = String(recipe.time) + " min"
       recipeLikes.text = String(recipe.likes) + " likes"
@@ -234,29 +293,45 @@ class SingleViewController: UIViewController, UITableViewDelegate, UITableViewDa
         
         print(voiceCommand)
         
-        if (voiceCommand.range(of: "next") != nil) {
+        if voiceCommand.range(of: "next") != nil || voiceCommand.range(of: "skip") != nil {
           self.nextStep()
           self.ignoredChars = result!.bestTranscription.formattedString.count
         }
-        else if voiceCommand.range(of: "back") != nil {
+        else if voiceCommand.range(of: "back") != nil || voiceCommand.range(of: "what was the last step") != nil {
           self.previousStep()
           self.ignoredChars = result!.bestTranscription.formattedString.count
         }
-        else if voiceCommand.range(of: "repeat that") != nil || voiceCommand.range(of: "what was that") != nil {
+        else if voiceCommand.range(of: "repeat that") != nil || voiceCommand.range(of: "what was that") != nil || voiceCommand.range(of: "again") != nil {
           self.currentStep = self.currentStep - 1
           self.nextStep()
           self.ignoredChars = result!.bestTranscription.formattedString.count
         }
-        /*else if voiceCommand.range(of: "play all") != nil {
-          for _ in 0..<self.toRead.count {
-            self.nextStep()
-            self.ignoredChars = result!.bestTranscription.formattedString.count
-          }
-        }*/
         else if voiceCommand.range(of: "what step") != nil {
-          self.playMessage(message: "We're on step " + String(self.currentStep + 1) + " out of " + String(self.toRead.count) + " steps")
+          self.playMessage(message: "We're on step " + String(self.currentStep + 1) + " out of " + String(self.toRead.count))
           self.ignoredChars = result!.bestTranscription.formattedString.count
         }
+        else if voiceCommand.range(of: "pause") != nil || voiceCommand.range(of: "stop") != nil {
+          self.stop()
+          self.ignoredChars = result!.bestTranscription.formattedString.count
+        }
+        else if voiceCommand.range(of: "continue") != nil {
+          self.start()
+          self.ignoredChars = result!.bestTranscription.formattedString.count
+        }
+        else if voiceCommand.range(of: "slow down") != nil {
+          self.changeSpeed(rate: self.utteranceRate / 2)
+          self.ignoredChars = result!.bestTranscription.formattedString.count
+        }
+        else if voiceCommand.range(of: "speed up") != nil {
+          self.changeSpeed(rate: self.utteranceRate * 2)
+          self.ignoredChars = result!.bestTranscription.formattedString.count
+        }
+        /*else if voiceCommand.range(of: "play all") != nil {
+         for _ in 0..<self.toRead.count {
+         self.nextStep()
+         self.ignoredChars = result!.bestTranscription.formattedString.count
+         }
+         }*/
         /*else if voiceCommand.range(of: "go to step") != nil {
           let range = voiceCommand.rangeEndIndex(toFind: " go to step ")
           voiceCommand = voiceCommand.substring(from: range)!

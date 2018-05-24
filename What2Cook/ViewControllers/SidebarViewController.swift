@@ -13,7 +13,7 @@ class SidebarViewController: UITableViewController {
     var tableArray = [String]()
     
     override func viewDidLoad() {
-        tableArray = ["Profile","Bookmarks","Friends","Settings","Help","Logout"]
+        tableArray = ["Profile", "Bookmarks", "Logout"]
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -22,7 +22,9 @@ class SidebarViewController: UITableViewController {
   
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: tableArray[indexPath.row], for: indexPath) as UITableViewCell
+      if(indexPath.row > 0) {
         cell.textLabel?.text = tableArray[indexPath.row]
+      }
         return cell
     }
     
