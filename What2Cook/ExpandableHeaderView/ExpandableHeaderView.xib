@@ -71,6 +71,7 @@
             <connections>
                 <outlet property="categoryLabel" destination="JOe-jX-drT" id="pRE-BA-Byj"/>
                 <outlet property="checkbox" destination="tXw-RC-Zzd" id="N5w-hh-EqD"/>
+                <outlet property="view" destination="2Hx-Sc-RXL" id="Tc2-pN-z6X"/>
             </connections>
             <point key="canvasLocation" x="-171.5" y="132"/>
         </view>

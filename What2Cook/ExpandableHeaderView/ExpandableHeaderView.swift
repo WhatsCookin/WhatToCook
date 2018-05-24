@@ -23,6 +23,7 @@ class ExpandableHeaderView: UITableViewHeaderFooterView {
   
   @IBOutlet weak var categoryLabel: UILabel!
   @IBOutlet weak var checkbox: UIButton!
+  @IBOutlet var view: ExpandableHeaderView!
   
   @IBAction func onCheck(_ sender: UIButton) {
     // Expand view if not already expanded
@@ -89,8 +90,9 @@ class ExpandableHeaderView: UITableViewHeaderFooterView {
     delegate?.toggleSection(header: self, section: cell.section)
   }
   
-  func customInit(title: String, section: Int, delegate: ExpandableHeaderViewDelegate, tableView: UITableView) {
+  func customInit(title: String, section: Int, color: UIColor, delegate: ExpandableHeaderViewDelegate, tableView: UITableView) {
     self.categoryLabel?.text = title
+    self.view.backgroundColor = color
     self.section = section
     self.delegate = delegate
     self.tableView = tableView
