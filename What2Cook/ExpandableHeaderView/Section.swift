@@ -11,12 +11,13 @@ import Foundation
 struct Section {
   var category: String!
   var ingredients: [String]!
-  var expanded: Bool!
   var color: UIColor?
+  var expanded: Bool!
   
-  init (category: String, ingredients: [String], expanded: Bool!) {
+  init (category: String, ingredients: [String], color: UIColor, expanded: Bool!) {
     self.category = category
     self.ingredients = ingredients
+    self.color = color
     self.expanded = expanded
   }
 }

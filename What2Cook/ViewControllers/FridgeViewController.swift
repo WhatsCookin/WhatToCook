@@ -69,6 +69,7 @@ class FridgeViewController: UIViewController, UITableViewDelegate, UITableViewDa
   var sections = [
     Section(category: "Unlisted",
             ingredients: [],
+            color: UIColor.cyan,
             expanded: true),
     
   ]
@@ -126,8 +127,8 @@ class FridgeViewController: UIViewController, UITableViewDelegate, UITableViewDa
     return -1
   }
   
-  func addSection(name: String) {
-    let newSection = Section(category: name, ingredients: [], expanded: false)
+  func addSection(name: String, color: UIColor) {
+    let newSection = Section(category: name, ingredients: [], color: color, expanded: false)
     sections.append(newSection)
     tableView.reloadData()
     return
@@ -221,7 +222,7 @@ class FridgeViewController: UIViewController, UITableViewDelegate, UITableViewDa
   
   func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
     let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: "expandableHeaderView") as! ExpandableHeaderView
-    header.customInit(title: sections[section].category, section: section, delegate: self, tableView: tableView)
+    header.customInit(title: sections[section].category, section: section, color: sections[section].color!, delegate: self, tableView: tableView)
     return header
   }
   
