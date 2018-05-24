@@ -17,6 +17,8 @@
 		201BA6422071354F00455146 /* What2CookTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 201BA6412071354F00455146 /* What2CookTests.swift */; };
 		201BA64D2071354F00455146 /* What2CookUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 201BA64C2071354F00455146 /* What2CookUITests.swift */; };
 		203A504920B64DC500619280 /* BookmarksViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 203A504820B64DC500619280 /* BookmarksViewController.swift */; };
+		203A504D20B65C8300619280 /* ProfileCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 203A504C20B65C8300619280 /* ProfileCell.swift */; };
+		203A504F20B6604300619280 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 203A504E20B6604300619280 /* ProfileViewController.swift */; };
 		2056CBB6207CA27600F9A63D /* RecipeSuggestionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2056CBB5207CA27600F9A63D /* RecipeSuggestionCell.swift */; };
 		206C55C3208A15FF00AB9115 /* RecipeData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 206C55C2208A15FF00AB9115 /* RecipeData.swift */; };
 		2083719B20A5369200799AF3 /* MoveToCategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2083719A20A5369200799AF3 /* MoveToCategoryViewController.swift */; };
@@ -78,6 +80,8 @@
 		201BA64C2071354F00455146 /* What2CookUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = What2CookUITests.swift; sourceTree = "<group>"; };
 		201BA64E2071354F00455146 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		203A504820B64DC500619280 /* BookmarksViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarksViewController.swift; sourceTree = "<group>"; };
+		203A504C20B65C8300619280 /* ProfileCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCell.swift; sourceTree = "<group>"; };
+		203A504E20B6604300619280 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		2056CBB5207CA27600F9A63D /* RecipeSuggestionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeSuggestionCell.swift; sourceTree = "<group>"; };
 		206C55C2208A15FF00AB9115 /* RecipeData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeData.swift; sourceTree = "<group>"; };
 		2083719A20A5369200799AF3 /* MoveToCategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoveToCategoryViewController.swift; sourceTree = "<group>"; };
@@ -215,6 +219,8 @@
 				20BADE29209BE66500FE5BB4 /* SignUpViewController.swift */,
 				2083719A20A5369200799AF3 /* MoveToCategoryViewController.swift */,
 				203A504820B64DC500619280 /* BookmarksViewController.swift */,
+				203A504C20B65C8300619280 /* ProfileCell.swift */,
+				203A504E20B6604300619280 /* ProfileViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -597,11 +603,13 @@
 				638D387020A13E46000C473D /* DirectionListCell.swift in Sources */,
 				20A511BC2077205900FDF6BB /* IngredientCell.swift in Sources */,
 				63AE43B7208C1D1C00644354 /* SWRevealViewController.m in Sources */,
+				203A504D20B65C8300619280 /* ProfileCell.swift in Sources */,
 				20EBA33A20819534000B6349 /* Ingredient.swift in Sources */,
 				20A511B82077146700FDF6BB /* FridgeViewController.swift in Sources */,
 				20BADE2A209BE66500FE5BB4 /* SignUpViewController.swift in Sources */,
 				20868FA1209A8FA600540B2A /* CategoryViewController.swift in Sources */,
 				201BA62D2071354F00455146 /* AppDelegate.swift in Sources */,
+				203A504F20B6604300619280 /* ProfileViewController.swift in Sources */,
 				20A4C322207317BC00F5A961 /* User.swift in Sources */,
 				20A4C31C2072005400F5A961 /* Recipe.swift in Sources */,
 				2056CBB6207CA27600F9A63D /* RecipeSuggestionCell.swift in Sources */,
