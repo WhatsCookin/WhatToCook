@@ -42,6 +42,7 @@ class SingleViewController: UIViewController, UITableViewDelegate, UITableViewDa
   var toRead: [String] = []
   var currentStep = 0
   var ignoredChars = 0
+  var utteranceRate = 0.45 as Float
   private let speechRecognizer = SFSpeechRecognizer(locale: Locale.init(identifier: "en-US"))
   private var recognitionRequest: SFSpeechAudioBufferRecognitionRequest?
   private var recognitionTask: SFSpeechRecognitionTask?
@@ -92,7 +93,7 @@ class SingleViewController: UIViewController, UITableViewDelegate, UITableViewDa
     let speechUtterance = AVSpeechUtterance(string: message)
     let voice = AVSpeechSynthesisVoice(language: "en-EN")
     speechUtterance.voice = voice
-    speechUtterance.rate = 0.45 // 0.5 default speech rate
+    speechUtterance.rate = utteranceRate // 0.5 default speech rate
     _ = AVSpeechSynthesisVoice.speechVoices()
     self.synthesizer.speak(speechUtterance)
   }
@@ -103,6 +104,10 @@ class SingleViewController: UIViewController, UITableViewDelegate, UITableViewDa
   
   func start() {
     synthesizer.continueSpeaking()
+  }
+  
+  func changeSpeed(rate: Float) {
+    utteranceRate = rate
   }
   
   func nextStep() {
@@ -302,14 +307,24 @@ class SingleViewController: UIViewController, UITableViewDelegate, UITableViewDa
           self.ignoredChars = result!.bestTranscription.formattedString.count
         }
         else if voiceCommand.range(of: "what step") != nil {
-          self.playMessage(message: "We're on step " + String(self.currentStep + 1) + " out of " + String(self.toRead.count) + " steps")
+          self.playMessage(message: "We're on step " + String(self.currentStep + 1) + " out of " + String(self.toRead.count))
           self.ignoredChars = result!.bestTranscription.formattedString.count
         }
         else if voiceCommand.range(of: "pause") != nil || voiceCommand.range(of: "stop") != nil {
           self.stop()
+          self.ignoredChars = result!.bestTranscription.formattedString.count
         }
         else if voiceCommand.range(of: "continue") != nil {
           self.start()
+          self.ignoredChars = result!.bestTranscription.formattedString.count
+        }
+        else if voiceCommand.range(of: "slow down") != nil {
+          self.changeSpeed(rate: self.utteranceRate / 2)
+          self.ignoredChars = result!.bestTranscription.formattedString.count
+        }
+        else if voiceCommand.range(of: "speed up") != nil {
+          self.changeSpeed(rate: self.utteranceRate * 2)
+          self.ignoredChars = result!.bestTranscription.formattedString.count
         }
         /*else if voiceCommand.range(of: "play all") != nil {
          for _ in 0..<self.toRead.count {
