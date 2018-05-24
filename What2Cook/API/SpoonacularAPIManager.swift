@@ -81,7 +81,6 @@ class SpoonacularAPIManager {
     
     Alamofire.request(urlstring, headers: headers).responseJSON { response in
         if let recipeDictionary = response.result.value as! [String: Any]? {
-          print(recipeDictionary)
             let recipeArray = recipeDictionary["recipes"] as! NSArray
             let recipes = recipeArray.flatMap({ (dictionary) -> RecipeItem in
                 RecipeItem(dictionary: dictionary as! [String: Any])
