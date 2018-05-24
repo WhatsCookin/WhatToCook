@@ -97,6 +97,14 @@ class SingleViewController: UIViewController, UITableViewDelegate, UITableViewDa
     self.synthesizer.speak(speechUtterance)
   }
   
+  func stop() {
+    synthesizer.stopSpeaking(at: .immediate)
+  }
+  
+  func start() {
+    synthesizer.continueSpeaking()
+  }
+  
   func nextStep() {
     if(currentStep + 1 < toRead.count) {
       currentStep = currentStep + 1
@@ -280,29 +288,35 @@ class SingleViewController: UIViewController, UITableViewDelegate, UITableViewDa
         
         print(voiceCommand)
         
-        if (voiceCommand.range(of: "next") != nil) {
+        if voiceCommand.range(of: "next") != nil || voiceCommand.range(of: "skip") != nil {
           self.nextStep()
           self.ignoredChars = result!.bestTranscription.formattedString.count
         }
-        else if voiceCommand.range(of: "back") != nil {
+        else if voiceCommand.range(of: "back") != nil || voiceCommand.range(of: "what was the last step") != nil {
           self.previousStep()
           self.ignoredChars = result!.bestTranscription.formattedString.count
         }
-        else if voiceCommand.range(of: "repeat that") != nil || voiceCommand.range(of: "what was that") != nil {
+        else if voiceCommand.range(of: "repeat that") != nil || voiceCommand.range(of: "what was that") != nil || voiceCommand.range(of: "again") != nil {
           self.currentStep = self.currentStep - 1
           self.nextStep()
           self.ignoredChars = result!.bestTranscription.formattedString.count
         }
-        /*else if voiceCommand.range(of: "play all") != nil {
-          for _ in 0..<self.toRead.count {
-            self.nextStep()
-            self.ignoredChars = result!.bestTranscription.formattedString.count
-          }
-        }*/
         else if voiceCommand.range(of: "what step") != nil {
           self.playMessage(message: "We're on step " + String(self.currentStep + 1) + " out of " + String(self.toRead.count) + " steps")
           self.ignoredChars = result!.bestTranscription.formattedString.count
         }
+        else if voiceCommand.range(of: "pause") != nil || voiceCommand.range(of: "stop") != nil {
+          self.stop()
+        }
+        else if voiceCommand.range(of: "continue") != nil {
+          self.start()
+        }
+        /*else if voiceCommand.range(of: "play all") != nil {
+         for _ in 0..<self.toRead.count {
+         self.nextStep()
+         self.ignoredChars = result!.bestTranscription.formattedString.count
+         }
+         }*/
         /*else if voiceCommand.range(of: "go to step") != nil {
           let range = voiceCommand.rangeEndIndex(toFind: " go to step ")
           voiceCommand = voiceCommand.substring(from: range)!
