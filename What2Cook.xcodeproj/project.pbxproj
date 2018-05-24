@@ -16,6 +16,7 @@
 		201BA6372071354F00455146 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 201BA6352071354F00455146 /* LaunchScreen.storyboard */; };
 		201BA6422071354F00455146 /* What2CookTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 201BA6412071354F00455146 /* What2CookTests.swift */; };
 		201BA64D2071354F00455146 /* What2CookUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 201BA64C2071354F00455146 /* What2CookUITests.swift */; };
+		203A504920B64DC500619280 /* BookmarksViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 203A504820B64DC500619280 /* BookmarksViewController.swift */; };
 		2056CBB6207CA27600F9A63D /* RecipeSuggestionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2056CBB5207CA27600F9A63D /* RecipeSuggestionCell.swift */; };
 		206C55C3208A15FF00AB9115 /* RecipeData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 206C55C2208A15FF00AB9115 /* RecipeData.swift */; };
 		2083719B20A5369200799AF3 /* MoveToCategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2083719A20A5369200799AF3 /* MoveToCategoryViewController.swift */; };
@@ -76,6 +77,7 @@
 		201BA6482071354F00455146 /* What2CookUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = What2CookUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		201BA64C2071354F00455146 /* What2CookUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = What2CookUITests.swift; sourceTree = "<group>"; };
 		201BA64E2071354F00455146 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		203A504820B64DC500619280 /* BookmarksViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarksViewController.swift; sourceTree = "<group>"; };
 		2056CBB5207CA27600F9A63D /* RecipeSuggestionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeSuggestionCell.swift; sourceTree = "<group>"; };
 		206C55C2208A15FF00AB9115 /* RecipeData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeData.swift; sourceTree = "<group>"; };
 		2083719A20A5369200799AF3 /* MoveToCategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoveToCategoryViewController.swift; sourceTree = "<group>"; };
@@ -212,6 +214,7 @@
 				20868FA0209A8FA600540B2A /* CategoryViewController.swift */,
 				20BADE29209BE66500FE5BB4 /* SignUpViewController.swift */,
 				2083719A20A5369200799AF3 /* MoveToCategoryViewController.swift */,
+				203A504820B64DC500619280 /* BookmarksViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -588,6 +591,7 @@
 				2018828E2081793000C92CE5 /* IngredientSearchViewController.swift in Sources */,
 				206C55C3208A15FF00AB9115 /* RecipeData.swift in Sources */,
 				20EBA33820819415000B6349 /* SpoonacularAPIManager.swift in Sources */,
+				203A504920B64DC500619280 /* BookmarksViewController.swift in Sources */,
 				637E15C3208D49DC007104C4 /* SingleViewController.swift in Sources */,
 				20A4C32020721E1A00F5A961 /* RecipeCell.swift in Sources */,
 				638D387020A13E46000C473D /* DirectionListCell.swift in Sources */,

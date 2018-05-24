@@ -9,6 +9,7 @@
 import UIKit
 import AVFoundation
 import Speech
+import Parse
 
 class SingleViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, AVSpeechSynthesizerDelegate, SFSpeechRecognizerDelegate {
   
@@ -27,6 +28,7 @@ class SingleViewController: UIViewController, UITableViewDelegate, UITableViewDa
   @IBOutlet weak var recipeLikes: UILabel!
   @IBOutlet weak var recipeServings: UILabel!
   @IBOutlet weak var microphoneButton: UIButton!
+  @IBOutlet weak var bookmarksButton: UIButton!
   
   var recipe: RecipeItem?
   var recipeList: [RecipeItem]?
@@ -44,6 +46,46 @@ class SingleViewController: UIViewController, UITableViewDelegate, UITableViewDa
   private var recognitionRequest: SFSpeechAudioBufferRecognitionRequest?
   private var recognitionTask: SFSpeechRecognitionTask?
   private let audioEngine = AVAudioEngine()
+  
+  @IBAction func onBookmark(_ sender: UIButton) {
+    let user = PFUser.current()
+    if(sender.isSelected == false) {
+      // store object in array
+      if(user!["bookmarks"] == nil) {   // Create new bookmarks array
+        let bookmarks = NSMutableArray.init()
+        bookmarks.add(recipe?.toDictionary() as Any)
+        user!["bookmarks"] = bookmarks
+      }
+      else {
+        // Edit existing bookmarks array
+        let bookmarks = user!["bookmarks"] as! NSMutableArray
+        bookmarks.add(recipe?.toDictionary() as Any)
+        user!["bookmarks"] = bookmarks
+      }
+      recipe?.bookmarked = true
+    }
+    else {
+      // remove recipe from pfuser
+      let bookmarks = user!["bookmarks"] as! NSMutableArray
+      for bookmark in bookmarks {
+        let recipe = RecipeItem(dictionary: bookmark as! [String : Any])
+        if(recipe.id == self.recipe?.id) {
+          bookmarks.remove(bookmark)
+          print("recipe removed successfully")
+        }
+      }
+      user!["bookmarks"] = bookmarks
+      recipe?.bookmarked = false
+    }
+    bookmarksButton.isSelected = (recipe?.bookmarked)!
+    user!.saveInBackground(block: { (success, error) in
+      if (success) {
+        print("The user data has been saved")
+      } else {
+        print("There was a problem with saving the user data")
+      }
+    })
+  }
   
   func playMessage(message: String) {
     synthesizer.stopSpeaking(at: .immediate)
@@ -109,8 +151,13 @@ class SingleViewController: UIViewController, UITableViewDelegate, UITableViewDa
     super.viewDidLoad()
     
     // Do any additional setup after loading the view.
-    
     if let recipe = recipe {
+      bookmarksButton.isSelected = recipe.bookmarked
+      print("bookmarked?: " + String(bookmarksButton.isSelected))
+      
+      ingredients = recipe.ingredients
+      directions = recipe.directions
+      
       recipeName.text = recipe.name
       recipeTime.text = String(recipe.time) + " min"
       recipeLikes.text = String(recipe.likes) + " likes"
