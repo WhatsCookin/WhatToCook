@@ -41,6 +41,18 @@ class RecipeItem { // recipe to display - TODO: change to combine recipe and rec
         }
     }
     
+    // convert recipe (missing ingredients and directions) into recipeitem
+    init(data: [String:Any], instructions: [[String:Any]]) {
+        id = data["id"] as? Int
+        image = data["image"] as? String
+        name = data["title"] as? String
+        likes = data["aggregateLikes"] as? Int
+        servings = data["servings"] as? Int
+        time = data["readyInMinutes"] as? Int
+        ingredients = data["extendedIngredients"] as? [[String:Any]]
+        directions = instructions
+    }
+    
     static func recipes(with array: [[String: Any]]) -> [RecipeItem] {
         return array.flatMap({ (dictionary) -> RecipeItem in
             RecipeItem(dictionary: dictionary)

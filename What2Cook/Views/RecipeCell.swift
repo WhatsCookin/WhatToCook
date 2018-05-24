@@ -32,7 +32,7 @@ class RecipeCell: UICollectionViewCell {
     
     override func layoutSubviews() {
         //reload images
-        recipeImage.gradient(colors: [UIColor.clear.cgColor, UIColor.black.cgColor], /*startPoint: CGPoint(x: 0.0, y: 0.0), endPoint: CGPoint(x: 0.0, y: 1.0),*/ opacity: 1, location: [0.70,1])
+        recipeImage.gradient(colors: [UIColor.clear.cgColor, UIColor.black.cgColor], opacity: 1, location: [0.70,1])
     }
 }
 extension UIImageView

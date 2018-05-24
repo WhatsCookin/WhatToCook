@@ -11,7 +11,9 @@ import UIKit
 class RecipeSuggestionViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
   
   var recipes: [Recipe]!
-  
+  var recipeItem: RecipeItem?
+  var finishedLoading: Bool? //api call finished
+    
   @IBOutlet weak var tableView: UITableView! {
     didSet {
       tableView.rowHeight = UITableViewAutomaticDimension
@@ -21,6 +23,8 @@ class RecipeSuggestionViewController: UIViewController, UITableViewDelegate, UIT
   
   override func viewDidLoad() {
     super.viewDidLoad()
+    
+    finishedLoading = false
     
     // Do any additional setup after loading the view.
     tableView.dataSource = self
@@ -52,17 +56,44 @@ class RecipeSuggestionViewController: UIViewController, UITableViewDelegate, UIT
     return 100
   }
   
+  // Pass recipeitem data to single vc
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-   /* let cell = sender as! UITableViewCell
-    // Get the index path from the cell that was tapped
-    if let indexPath = tableView.indexPath(for: cell) {
-      let recipe = recipes[indexPath.row]
-     // let recipeViewController = segue.destination as! RecipeViewController
-      
-   //   SpoonacularAPIManager().setRecipeData(recipe)
-      
-      // Pass on the data to the Detail ViewController
-     // recipeViewController.recipeId = recipe.id
-    }*/
+    let singleViewController = segue.destination as! SingleViewController
+    singleViewController.recipe = self.recipeItem
   }
+    
+  // Load data and check to make sure api call finishes before allowing segue
+  override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
+    if identifier == "detailsSegue" {
+        let cell = sender as! UITableViewCell
+        // Get the index path from the cell that was tapped
+        if let indexPath = tableView.indexPath(for: cell) {
+            let recipe = recipes[indexPath.row]
+            let id = recipe.id
+            
+            SpoonacularAPIManager().getRecipeData(id!) { (data, error) in
+                if let data = data {
+                    self.recipeItem = data
+                    
+                    self.finishedLoading = true
+                    print("Loaded the data from api")
+                }
+                else if error != nil {
+                    print("Error")
+                }
+            }
+            
+            if !finishedLoading! {
+                print("Did not finish call yet")
+                return false
+            }
+            return true
+            //print("Finished call")
+        }//end of cell
+        
+    }//end of detailssegue block
+    return false
+  }
+    
+    
 }

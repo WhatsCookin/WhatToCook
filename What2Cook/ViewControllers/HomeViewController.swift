@@ -12,12 +12,11 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
   
   @IBOutlet weak var sidebarButton: UIBarButtonItem!
   @IBOutlet weak var collectionView: UICollectionView!
-  
+  @IBOutlet weak var searchBar: UISearchBar!
+    
   var recipes: [RecipeItem] = []
   var refreshControl: UIRefreshControl!
     
-  //var gradient: CAGradientLayer!
-  
   override func viewDidLoad() {
     super.viewDidLoad()
 
@@ -81,18 +80,6 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
   func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
     let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "RecipeCell", for: indexPath) as! RecipeCell
     cell.recipe = recipes[indexPath.item] as RecipeItem
-    
-    /*let imageView: UIImageView = cell.recipeImage
-    
-    let gradient: CAGradientLayer = CAGradientLayer()
-    gradient.frame = (imageView.frame)
-    gradient.colors = [UIColor.clear, UIColor.black]
-    gradient.locations = [0.9,1]
-    //imageView.layer.insertSublayer(gradient, at: 0)
-    imageView.layer.mask = gradient
-    
-    cell.recipeImage = imageView*/
-    
     return cell
   }
   
