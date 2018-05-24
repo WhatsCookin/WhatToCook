@@ -12,10 +12,11 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
   
   @IBOutlet weak var sidebarButton: UIBarButtonItem!
   @IBOutlet weak var collectionView: UICollectionView!
-  
+  @IBOutlet weak var searchBar: UISearchBar!
+    
   var recipes: [RecipeItem] = []
   var refreshControl: UIRefreshControl!
-  
+    
   override func viewDidLoad() {
     super.viewDidLoad()
 
