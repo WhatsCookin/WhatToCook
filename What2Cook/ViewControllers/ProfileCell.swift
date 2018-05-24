@@ -24,7 +24,7 @@ class ProfileCell: UITableViewCell {
     let user = PFUser.current()
     usernameLabel.text = user?.username
     
-    if let userPicture = user!.value(forKey: "profileImage")! as? PFFile {
+    if let userPicture = user!.value(forKey: "profileImage") as? PFFile {
       userPicture.getDataInBackground({ (imageData: Data?, error: Error?) -> Void in
         let image = UIImage(data: imageData!)
         if image != nil {

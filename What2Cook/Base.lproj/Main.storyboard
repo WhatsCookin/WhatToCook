@@ -313,9 +313,10 @@
                                                     <constraint firstAttribute="height" constant="25" id="3DT-JX-vvM"/>
                                                     <constraint firstAttribute="width" constant="25" id="Jj0-sc-bXc"/>
                                                 </constraints>
-                                                <state key="normal" image="sound"/>
+                                                <state key="normal" image="microphone-off"/>
+                                                <state key="selected" image="microphone-on"/>
                                                 <connections>
-                                                    <action selector="microphoneTapped:" destination="kxA-1q-EIY" eventType="touchUpInside" id="jbt-eE-uUh"/>
+                                                    <action selector="microphoneTapped:" destination="kxA-1q-EIY" eventType="touchUpInside" id="sEO-fL-ccr"/>
                                                 </connections>
                                             </button>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="time" translatesAutoresizingMaskIntoConstraints="NO" id="wz1-3y-dse">
@@ -421,7 +422,7 @@
                     <size key="freeformSize" width="375" height="1500"/>
                     <connections>
                         <outlet property="bookmarksButton" destination="A4c-Nu-5cb" id="RSV-ex-xyF"/>
-                        <outlet property="microphoneButton" destination="Z9N-XS-UpZ" id="ihw-ij-o2g"/>
+                        <outlet property="microphoneButton" destination="Z9N-XS-UpZ" id="Uxk-Mf-98M"/>
                         <outlet property="recipeImage" destination="4v1-OE-WCC" id="2TG-ru-2aY"/>
                         <outlet property="recipeLikes" destination="nih-hK-07m" id="hmW-br-uTD"/>
                         <outlet property="recipeName" destination="GJb-Ov-KuS" id="9uh-YL-91p"/>
@@ -543,22 +544,6 @@
                                     <outlet property="delegate" destination="cxP-KG-Vxg" id="dNH-KH-ERP"/>
                                 </connections>
                             </pickerView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hPq-oD-pwy">
-                                <rect key="frame" x="277" y="75" width="82" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Microphone"/>
-                                <connections>
-                                    <action selector="microphoneTapped:" destination="cxP-KG-Vxg" eventType="touchUpInside" id="tUw-JW-hKj"/>
-                                </connections>
-                            </button>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="O77-yn-FhH">
-                                <rect key="frame" x="91" y="64" width="178" height="80"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            </textView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Z8j-6s-BrD">
                                 <rect key="frame" x="172" y="219" width="30" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -567,8 +552,24 @@
                                     <action selector="onAdd:" destination="cxP-KG-Vxg" eventType="touchUpInside" id="Tv1-8K-631"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hPq-oD-pwy">
+                                <rect key="frame" x="369" y="78" width="25" height="25"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="25" id="E7j-Xg-hRz"/>
+                                    <constraint firstAttribute="width" constant="25" id="o8B-nd-0V3"/>
+                                </constraints>
+                                <state key="normal" image="microphone-off"/>
+                                <state key="selected" image="microphone-on"/>
+                                <connections>
+                                    <action selector="microphoneTapped:" destination="cxP-KG-Vxg" eventType="touchUpInside" id="tUw-JW-hKj"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="hPq-oD-pwy" firstAttribute="top" secondItem="3o1-DX-HAG" secondAttribute="top" constant="14" id="Sm0-IY-sVZ"/>
+                            <constraint firstItem="3o1-DX-HAG" firstAttribute="trailing" secondItem="hPq-oD-pwy" secondAttribute="trailing" constant="20" id="rst-j4-kD7"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="3o1-DX-HAG"/>
                     </view>
                     <connections>
@@ -577,12 +578,11 @@
                         <outlet property="microphoneButton" destination="hPq-oD-pwy" id="mfY-oj-Z08"/>
                         <outlet property="textField" destination="Egl-3Y-xW4" id="Hnr-ja-pgE"/>
                         <outlet property="textLabel" destination="vgj-hB-2nQ" id="kLM-Ny-484"/>
-                        <outlet property="textView" destination="O77-yn-FhH" id="zcN-A3-c7s"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zSJ-iU-Mmp" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1045.5999999999999" y="2236.7316341829087"/>
+            <point key="canvasLocation" x="1044.9275362318842" y="2236.1413043478265"/>
         </scene>
         <!--Move To Category View Controller-->
         <scene sceneID="xhk-8P-dTm">
@@ -1455,8 +1455,9 @@
         <image name="fridge" width="25" height="25"/>
         <image name="grid" width="25" height="25"/>
         <image name="likes" width="256" height="256"/>
+        <image name="microphone-off" width="512" height="512"/>
+        <image name="microphone-on" width="25" height="25"/>
         <image name="servings" width="640" height="498"/>
-        <image name="sound" width="25" height="25"/>
         <image name="stopwatch" width="33" height="33"/>
         <image name="time" width="1600" height="1600"/>
         <image name="unbookmarked" width="25" height="25"/>

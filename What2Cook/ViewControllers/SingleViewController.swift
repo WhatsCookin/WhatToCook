@@ -132,7 +132,10 @@ class SingleViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
   }
   
-  @IBAction func microphoneTapped(_ sender: AnyObject) {
+  @IBAction func microphoneTapped(_ sender: UIButton) {
+    print("tap")
+    sender.isSelected = sender.isSelected
+    
     if !self.synthesizer.isSpeaking && toRead.count > 0{
       self.totalUtterance = toRead.count
       

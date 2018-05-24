@@ -70,8 +70,11 @@ class SpoonacularAPIManager {
     func getPopularRecipes(completion: @escaping([RecipeItem]?, Error?) -> ()) {
     //let key = "69p5QHDqZfmshevTW4RVD0dwIh7Qp1L5vUZjsnVjlWJFfVpmAb"
     
+      
+      
+    /*// Note: If doing work on the collection view or single view, use the bookmarks tab instead
     let numRecipes = 6 // number of popular recipes to be returned
-    
+       
     let urlstring = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/random?number=" + String(numRecipes)
     
     //You headers (for your api key)
@@ -81,7 +84,6 @@ class SpoonacularAPIManager {
     
     Alamofire.request(urlstring, headers: headers).responseJSON { response in
         if let recipeDictionary = response.result.value as! [String: Any]? {
-          print(recipeDictionary)
             let recipeArray = recipeDictionary["recipes"] as! NSArray
             let recipes = recipeArray.flatMap({ (dictionary) -> RecipeItem in
                 RecipeItem(dictionary: dictionary as! [String: Any])
@@ -91,7 +93,7 @@ class SpoonacularAPIManager {
         else {
             print("Something went wrong")
         }
-    }
+    }*/
   }
     
     // Retrieves the data which includes ingredients and directions of a recipe given an id

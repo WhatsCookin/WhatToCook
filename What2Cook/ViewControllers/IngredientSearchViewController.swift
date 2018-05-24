@@ -23,18 +23,17 @@ class IngredientSearchViewController: UIViewController, UITextFieldDelegate, UIP
   @IBOutlet weak var textLabel: UILabel!
   @IBOutlet weak var categoryDropDown: UIPickerView!
   
-  @IBOutlet weak var textView: UITextView!
   @IBOutlet weak var microphoneButton: UIButton!
   
-  @IBAction func microphoneTapped(_ sender: AnyObject) {
+  @IBAction func microphoneTapped(_ sender: UIButton) {
+    sender.isSelected = !sender.isSelected
+    
     if audioEngine.isRunning {
       audioEngine.stop()
       recognitionRequest?.endAudio()
       microphoneButton.isEnabled = false
-      microphoneButton.setTitle("Start Recording", for: .normal)
     } else {
       startRecording()
-      microphoneButton.setTitle("Stop Recording", for: .normal)
     }
   }
   
@@ -156,8 +155,7 @@ class IngredientSearchViewController: UIViewController, UITextFieldDelegate, UIP
         voiceCommand = voiceCommand.replacingOccurrences(of: "To ", with: " to ")
         voiceCommand = voiceCommand.replacingOccurrences(of: "Two ", with: " to ")
         voiceCommand = voiceCommand.replacingOccurrences(of: " two ", with: " to ")
-        
-        self.textView.text = voiceCommand
+
         print(voiceCommand)
         
         if (voiceCommand.range(of: " add ", options:NSString.CompareOptions.backwards) != nil) {
@@ -217,9 +215,6 @@ class IngredientSearchViewController: UIViewController, UITextFieldDelegate, UIP
     } catch {
       print("audioEngine couldn't start because of an error.")
     }
-    
-    textView.text = "Say something, I'm listening!"
-    
   }
   
   func speechRecognizer(_ speechRecognizer: SFSpeechRecognizer, availabilityDidChange available: Bool) {
