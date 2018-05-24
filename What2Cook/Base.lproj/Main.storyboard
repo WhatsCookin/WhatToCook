@@ -393,6 +393,7 @@
                     <navigationItem key="navigationItem" title="What2Cook" id="kHf-GS-iS7"/>
                     <size key="freeformSize" width="375" height="1500"/>
                     <connections>
+                        <outlet property="bookmarksButton" destination="A4c-Nu-5cb" id="DOs-nX-OFi"/>
                         <outlet property="microphoneButton" destination="Z9N-XS-UpZ" id="ihw-ij-o2g"/>
                         <outlet property="recipeImage" destination="4v1-OE-WCC" id="2TG-ru-2aY"/>
                         <outlet property="recipeLikes" destination="nih-hK-07m" id="hmW-br-uTD"/>
@@ -1039,6 +1040,9 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="bCL-BS-4q6"/>
                     </view>
+                    <connections>
+                        <outlet property="collectionView" destination="kwY-BM-tyn" id="g70-KE-8Iq"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IVF-3R-ohF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -1281,6 +1285,7 @@
         <!--Navigation Controller-->
         <scene sceneID="z9v-tz-kLD">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="OZS-q6-b7w" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="feS-8h-bSl" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="bWB-lL-AHP">
@@ -1292,7 +1297,6 @@
                         <segue destination="zMf-4t-vFm" kind="relationship" relationship="rootViewController" id="Xos-fq-LkW"/>
                     </connections>
                 </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="OZS-q6-b7w" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-2225" y="808"/>
         </scene>

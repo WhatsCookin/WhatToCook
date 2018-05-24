@@ -21,70 +21,46 @@ class SingleViewController: UIViewController, UITableViewDelegate, UITableViewDa
       tableViewDirections.estimatedRowHeight = 50
     }
   }
+  
   @IBAction func onBookmark(_ sender: UIButton) {
+    let user = PFUser.current()
     if(sender.isSelected == false) {
-      let user = PFUser.current()
-      // get array from pfuser
-
-      
-      //var query : PFQuery = PFUser.query()
-      //var query = PFUser.query()
-    //  var bookmarks = query?.whereKeyExists("bookmarks")
-      
       // store object in array
-      let bookmarks = NSMutableArray.init()
-      bookmarks.add(recipe?.toDictionary())
-      user!["bookmarks"] = bookmarks
-      user!.saveInBackground(block: { (success, error) in
-        if (success) {
-          print("The user data has been saved")
-        } else {
-          print("There was a problem with saving the user data")
-        }
-      })
-      
-      // store recipe in pfuser
-      //user.addObject(bookmarks)
-      
-      /*
-       
-       
-       
-       let user = PFUser.current()
-       user?.add([sections[0].toDictionary()], forKey: "sections")
-       
-       user!.saveInBackground(block: { (success, error) in
-       if (success) {
-       print("The user data has been saved")
-       } else {
-       print("There was a problem with saving the user data")
-       }
-       })*/
-      
-      //      print(user?.object(forKey: "sections"))
-      //    var arr = user?.object(forKey: "sections") as! NSArray
-      //      Section(d: arr[0] as! [String : String])
-/*
-    func save() {
-      tableView.reloadData()
-      let user = PFUser.current()
-      //user?.setObject(sections, forKey: "sections")
-      //print(user!["sections"])
-      //print(user!["key"])
-      user?.saveInBackground(block: { (success, error) in
-        if (success) {
-          print("The user data has been saved")
-        } else {
-          print("There was a problem with saving the user data")
-        }
-      })
+      if(user!["bookmarks"] == nil) {   // Create new bookmarks array
+        let bookmarks = NSMutableArray.init()
+        bookmarks.add(recipe?.toDictionary() as Any)
+        user!["bookmarks"] = bookmarks
+      }
+      else {
+        // Edit existing bookmarks array
+        let bookmarks = user!["bookmarks"] as! NSMutableArray
+        bookmarks.add(recipe?.toDictionary() as Any)
+        user!["bookmarks"] = bookmarks
+      }
+      recipe?.bookmarked = true
     }
-    }*/
-    if(sender.isSelected == true) {
+    else {
       // remove recipe from pfuser
+      let bookmarks = user!["bookmarks"] as! NSMutableArray
+      for bookmark in bookmarks {
+        let recipe = RecipeItem(dictionary: bookmark as! [String : Any])
+        if(recipe.id == self.recipe?.id) {
+          bookmarks.remove(bookmark)
+          print("recipe removed successfully")
+        }
+      }
+      user!["bookmarks"] = bookmarks
+      recipe?.bookmarked = false
     }
-    sender.isSelected = sender.isSelected
-    }}
+    bookmarksButton.isSelected = (recipe?.bookmarked)!
+    user!.saveInBackground(block: { (success, error) in
+      if (success) {
+        print("The user data has been saved")
+      } else {
+        print("There was a problem with saving the user data")
+      }
+    })
+  }
   
   @IBOutlet weak var recipeImage: UIImageView!
   @IBOutlet weak var recipeName: UILabel!
@@ -92,6 +68,7 @@ class SingleViewController: UIViewController, UITableViewDelegate, UITableViewDa
   @IBOutlet weak var recipeLikes: UILabel!
   @IBOutlet weak var recipeServings: UILabel!
   @IBOutlet weak var microphoneButton: UIButton!
+  @IBOutlet weak var bookmarksButton: UIButton!
   
   var recipe: RecipeItem?
   var recipeList: [RecipeItem]?
@@ -176,6 +153,9 @@ class SingleViewController: UIViewController, UITableViewDelegate, UITableViewDa
     // Do any additional setup after loading the view.
     
     if let recipe = recipe {
+      bookmarksButton.isSelected = recipe.bookmarked
+      print("bookmarked?: " + String(bookmarksButton.isSelected))
+      
       recipeName.text = recipe.name
       recipeTime.text = String(recipe.time) + " min"
       recipeLikes.text = String(recipe.likes) + " likes"

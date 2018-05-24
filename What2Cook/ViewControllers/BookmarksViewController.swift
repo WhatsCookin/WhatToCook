@@ -11,7 +11,7 @@ import Parse
 
 class BookmarksViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
   
-  @IBOutlet weak var sidebarButton: UIBarButtonItem!
+  //@IBOutlet weak var sidebarButton: UIBarButtonItem!
   @IBOutlet weak var collectionView: UICollectionView!
   
   var recipes: [RecipeItem] = []
@@ -21,27 +21,26 @@ class BookmarksViewController: UIViewController, UICollectionViewDataSource, UIC
   
   override func viewDidLoad() {
     super.viewDidLoad()
+    // Reset
+   /* let user = PFUser.current()
+    user!["bookmarks"] = []
+    user!.saveInBackground(block: { (success, error) in
+      if (success) {
+        print("The user data has been saved")
+      } else {
+        print("There was a problem with saving the user data")
+      }
+    })*/
     
-    // Get bookmarked recipes saved on parse
-    /*var query = PFUser.query()
-    var bookmarks = query?.whereKeyExists("bookmarks") as NSMutableArray*/
     let user = PFUser.current()
-    let bookmarks = user!["bookmarks"]
-    //let recipe = RecipeItem.init(bookmarks![0])
-    print(bookmarks)  // Type NSArray
+    let bookmarks = user?.object(forKey: "bookmarks") as! [Dictionary<String, AnyObject>]
     
-    let recipeArray = NSArray(array: bookmarks!)
-    recipes = recipeArray.flatMap({ (dictionary) -> RecipeItem in
-      RecipeItem(dictionary: dictionary as! [String: Any])
-    })
-
-  //  completion(recipes, nil)
-    
-    //let element = bookmarks.flatMap
-    /*for bookmark in (bookmarks.){
-      recipes.append(bookmark.convenience_init())*/
-    
-    
+    for bookmark in bookmarks {
+      let recipe = RecipeItem(dictionary: bookmark)
+      print(recipe.name)
+      recipes.append(recipe)
+    }
+    print(recipes)
     
     /*refreshControl = UIRefreshControl()
     refreshControl.addTarget(self, action: #selector(HomeViewController.didPullToRefresh(_:)), for: .valueChanged)
@@ -61,8 +60,8 @@ class BookmarksViewController: UIViewController, UICollectionViewDataSource, UIC
     
     // Set side menu button
     if self.revealViewController() != nil {
-      sidebarButton.target = self.revealViewController()
-      sidebarButton.action = #selector(SWRevealViewController.revealToggle(_:))
+      //sidebarButton.target = self.revealViewController()
+      //sidebarButton.action = #selector(SWRevealViewController.revealToggle(_:))
       self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
     }
     else {
