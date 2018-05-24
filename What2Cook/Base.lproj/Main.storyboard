@@ -683,17 +683,35 @@
                                     <action selector="onAdd:" destination="ZeA-qU-FZj" eventType="touchUpInside" id="xbZ-JE-0fn"/>
                                 </connections>
                             </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="colors" translatesAutoresizingMaskIntoConstraints="NO" id="ejh-hf-Cwf">
+                                <rect key="frame" x="20" y="325" width="374" height="26"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="7.5" minValue="0.5" maxValue="13.5" translatesAutoresizingMaskIntoConstraints="NO" id="ds9-ef-wbs">
+                                <rect key="frame" x="23" y="359" width="373" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <connections>
+                                    <action selector="sliderChanged:" destination="ZeA-qU-FZj" eventType="valueChanged" id="HCt-vM-91X"/>
+                                </connections>
+                            </slider>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Eou-Ug-Uqn">
+                                <rect key="frame" x="156" y="237" width="63" height="66"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="TrR-rj-5Fb"/>
                     </view>
                     <connections>
                         <outlet property="categoryTextField" destination="1Qz-vB-wbh" id="MIn-Oj-Mea"/>
+                        <outlet property="selectedColorView" destination="Eou-Ug-Uqn" id="j2A-9A-QeB"/>
+                        <outlet property="slider" destination="ds9-ef-wbs" id="S5e-Ki-oJk"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4CW-yw-v2s" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1046" y="1579"/>
+            <point key="canvasLocation" x="1044.9275362318842" y="1578.2608695652175"/>
         </scene>
         <!--What's in my Fridge?-->
         <scene sceneID="bP8-Dq-DqY">
@@ -704,19 +722,19 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="lSc-V0-JIb">
-                                <rect key="frame" x="0.0" y="135" width="375" height="430"/>
+                                <rect key="frame" x="0.0" y="153" width="414" height="430"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="IngredientCell" textLabel="LQE-Fn-l26" style="IBUITableViewCellStyleDefault" id="Hg4-Hi-POG" customClass="IngredientCell" customModule="What2Cook" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="28" width="414" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Hg4-Hi-POG" id="hcX-2T-9y1">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.666666666666664"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43.666666666666664"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="LQE-Fn-l26">
-                                                    <rect key="frame" x="15" y="0.0" width="345" height="43.666666666666664"/>
+                                                    <rect key="frame" x="15" y="0.0" width="384" height="43.666666666666664"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
@@ -732,15 +750,16 @@
                                 </connections>
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bhy-v6-edK">
-                                <rect key="frame" x="172" y="573" width="30" height="30"/>
+                                <rect key="frame" x="20" y="605" width="190" height="48"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Go"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                <state key="normal" title="Fetch Recipes!"/>
                                 <connections>
                                     <action selector="onSearch:" destination="Yfd-vf-QZE" eventType="touchUpInside" id="wSV-Gp-OS1"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="edZ-RO-RvA">
-                                <rect key="frame" x="258" y="75" width="101" height="30"/>
+                                <rect key="frame" x="16" y="112" width="101" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Add Ingredient"/>
                                 <connections>
@@ -755,16 +774,8 @@
                                     <segue destination="ZeA-qU-FZj" kind="show" id="D4q-hk-owZ"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3ll-f9-Tmx">
-                                <rect key="frame" x="250" y="573" width="118" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Move Ingredients"/>
-                                <connections>
-                                    <action selector="onMove:" destination="Yfd-vf-QZE" eventType="touchUpInside" id="EWp-49-3Hd"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6bp-ky-fDu">
-                                <rect key="frame" x="16" y="573" width="126" height="30"/>
+                                <rect key="frame" x="268" y="591" width="126" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Delete Ingredients"/>
                                 <connections>
@@ -772,11 +783,19 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iQ9-qi-pQf">
-                                <rect key="frame" x="155" y="75" width="65" height="30"/>
+                                <rect key="frame" x="329" y="115" width="65" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Select All"/>
                                 <connections>
                                     <action selector="onSelectAll:" destination="Yfd-vf-QZE" eventType="touchUpInside" id="4Yv-FY-DZ0"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3ll-f9-Tmx">
+                                <rect key="frame" x="272" y="629" width="118" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Move Ingredients"/>
+                                <connections>
+                                    <action selector="onMove:" destination="Yfd-vf-QZE" eventType="touchUpInside" id="EWp-49-3Hd"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -790,7 +809,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cWl-7S-lCH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="327" y="2236"/>
+            <point key="canvasLocation" x="326.08695652173918" y="2235.326086956522"/>
         </scene>
         <!--Sign Up View Controller-->
         <scene sceneID="51B-ib-w8j">
@@ -1431,6 +1450,7 @@
         <image name="LoginScreen" width="415" height="737"/>
         <image name="add" width="25" height="25"/>
         <image name="bookmarked" width="25" height="25"/>
+        <image name="colors" width="700" height="50"/>
         <image name="default-profile-pic" width="800" height="800"/>
         <image name="fridge" width="25" height="25"/>
         <image name="grid" width="25" height="25"/>
