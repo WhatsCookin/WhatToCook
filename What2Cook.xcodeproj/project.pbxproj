@@ -42,6 +42,7 @@
 		63888FDE208EB5F2000105C1 /* RecipeItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63888FDD208EB5F2000105C1 /* RecipeItem.swift */; };
 		638D387020A13E46000C473D /* DirectionListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 638D386F20A13E46000C473D /* DirectionListCell.swift */; };
 		63AE43B7208C1D1C00644354 /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 63AE43B6208C1D1C00644354 /* SWRevealViewController.m */; };
+		63E72E9B20B6481000332677 /* WaitingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63E72E9A20B6480F00332677 /* WaitingViewController.swift */; };
 		A55A3014CEB6E1189CD9706B /* Pods_What2CookTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D734C8EDDCCED6A3CF0A132 /* Pods_What2CookTests.framework */; };
 		D0C084F876509BC01C82048C /* Pods_What2Cook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4733198CBC5DDF83D9CAADBB /* Pods_What2Cook.framework */; };
 /* End PBXBuildFile section */
@@ -110,6 +111,7 @@
 		63AE43B4208C1D0500644354 /* SWRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRevealViewController.h; sourceTree = "<group>"; };
 		63AE43B5208C1D1A00644354 /* What2Cook-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "What2Cook-Bridging-Header.h"; sourceTree = "<group>"; };
 		63AE43B6208C1D1C00644354 /* SWRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRevealViewController.m; sourceTree = "<group>"; };
+		63E72E9A20B6480F00332677 /* WaitingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaitingViewController.swift; sourceTree = "<group>"; };
 		80C2D456C923FB56093ED40A /* Pods-What2CookTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-What2CookTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-What2CookTests/Pods-What2CookTests.release.xcconfig"; sourceTree = "<group>"; };
 		92F46B539B7718B89798DFA3 /* Pods-What2CookUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-What2CookUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-What2CookUITests/Pods-What2CookUITests.release.xcconfig"; sourceTree = "<group>"; };
 		B2399B1770D9F64931141269 /* Pods_What2CookUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_What2CookUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -218,6 +220,7 @@
 				20868FA0209A8FA600540B2A /* CategoryViewController.swift */,
 				20BADE29209BE66500FE5BB4 /* SignUpViewController.swift */,
 				2083719A20A5369200799AF3 /* MoveToCategoryViewController.swift */,
+				63E72E9A20B6480F00332677 /* WaitingViewController.swift */,
 				203A504820B64DC500619280 /* BookmarksViewController.swift */,
 				203A504C20B65C8300619280 /* ProfileCell.swift */,
 				203A504E20B6604300619280 /* ProfileViewController.swift */,
@@ -597,6 +600,7 @@
 				2018828E2081793000C92CE5 /* IngredientSearchViewController.swift in Sources */,
 				206C55C3208A15FF00AB9115 /* RecipeData.swift in Sources */,
 				20EBA33820819415000B6349 /* SpoonacularAPIManager.swift in Sources */,
+				63E72E9B20B6481000332677 /* WaitingViewController.swift in Sources */,
 				203A504920B64DC500619280 /* BookmarksViewController.swift in Sources */,
 				637E15C3208D49DC007104C4 /* SingleViewController.swift in Sources */,
 				20A4C32020721E1A00F5A961 /* RecipeCell.swift in Sources */,

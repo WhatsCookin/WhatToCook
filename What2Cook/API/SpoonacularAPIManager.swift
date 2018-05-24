@@ -70,7 +70,7 @@ class SpoonacularAPIManager {
     func getPopularRecipes(completion: @escaping([RecipeItem]?, Error?) -> ()) {
     //let key = "69p5QHDqZfmshevTW4RVD0dwIh7Qp1L5vUZjsnVjlWJFfVpmAb"
     
-    /*let numRecipes = 6 // number of popular recipes to be returned
+    let numRecipes = 6 // number of popular recipes to be returned
     
     let urlstring = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/random?number=" + String(numRecipes)
     
@@ -91,7 +91,7 @@ class SpoonacularAPIManager {
         else {
             print("Something went wrong")
         }
-    }*/
+    }
   }
     
     // Retrieves the data which includes ingredients and directions of a recipe given an id
@@ -114,6 +114,49 @@ class SpoonacularAPIManager {
             }
         }
     }
+    
+    // Searches for recipes based on query
+    /*func queryRecipes(_ query: String, completion: @escaping(RecipeItem?, Error?) -> ()) {
+        let urlstring = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/search?query=" + query
+        
+        //You headers (for your api key)
+        let headers: HTTPHeaders = [
+            "X-Mashape-Key": key,
+            ]
+        
+        Alamofire.request(urlstring, headers: headers).responseJSON { response in
+            if let resultsDictionary = response.result.value as! [String:Any]? {
+                let results = resultsDictionary["results"]
+                
+                let recipe = RecipeItem(dictionary: recipeDictionary )
+                //print(recipes)
+                completion(recipe, nil)
+            }
+            else {
+                print("Something went wrong")
+            }
+        }
+    }*/
   
+    
+    // Gets a random food joke
+    func getJoke(completion: @escaping(String?, Error?) -> ()) {
+        let urlstring = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/food/jokes/random"
+        
+        // Headers
+        let headers: HTTPHeaders = [
+          "X-Mashape-Key": key,
+        ]
+        
+        Alamofire.request(urlstring, headers: headers).responseJSON { response in
+            if let jokeDictionary = response.result.value as! [String:Any]? {
+                let joke = jokeDictionary["text"] as! String
+                completion(joke, nil)
+            }
+            else {
+                print("Something went wrong")
+            }
+        }
+    }
     
 }

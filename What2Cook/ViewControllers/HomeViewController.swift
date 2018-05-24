@@ -19,7 +19,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
     
   override func viewDidLoad() {
     super.viewDidLoad()
-
+    
     refreshControl = UIRefreshControl()
     refreshControl.addTarget(self, action: #selector(HomeViewController.didPullToRefresh(_:)), for: .valueChanged)
     collectionView.insertSubview(refreshControl, at: 0)
@@ -82,6 +82,30 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
     cell.recipe = recipes[indexPath.item] as RecipeItem
     return cell
   }
+    /*
+    // Update based on the text in the search Bar
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String)
+    {
+        /*filteredMovies = searchText.isEmpty ? movies : movies.filter{(movie: Movie) -> Bool in
+            return (movie.title ).range(of: searchText, options: .caseInsensitive, range: nil, locale: nil) != nil
+        }*/
+        
+        self.collectionView.reloadData()
+    }
+    
+    // Show cancel button on the Search Bar
+    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+        self.searchBar.showsCancelButton = true
+    }
+    
+    // Clear the search Bar when canceling
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.showsCancelButton = false
+        searchBar.text = ""
+        searchBar.resignFirstResponder()
+        
+        self.collectionView.reloadData()
+    }*/
   
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     let cell = sender as! UICollectionViewCell
