@@ -17,8 +17,13 @@ class BookmarksViewController: UIViewController, UICollectionViewDataSource, UIC
   var recipes: [RecipeItem] = []
   var refreshControl: UIRefreshControl!
   
-  //var gradient: CAGradientLayer!
   
+    @IBAction func goBack(_ sender: Any) {
+        if let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "SWRevealViewController") as? UIViewController {
+            present(vc, animated: true, completion: nil)
+        }
+    }
+    
   func clearData() {
     let user = PFUser.current()
     user!["bookmarks"] = []
@@ -55,10 +60,6 @@ class BookmarksViewController: UIViewController, UICollectionViewDataSource, UIC
     super.viewDidLoad()
     loadBookmarks()
     
-    /*refreshControl = UIRefreshControl()
-     refreshControl.addTarget(self, action: #selector(HomeViewController.didPullToRefresh(_:)), for: .valueChanged)
-     collectionView.insertSubview(refreshControl, at: 0)*/
-    
     // Do any additional setup after loading the view.
     collectionView.dataSource = self
     collectionView.delegate = self
@@ -71,15 +72,6 @@ class BookmarksViewController: UIViewController, UICollectionViewDataSource, UIC
     let width = collectionView.frame.size.width / cellsPerLine - interItemSpacingTotal / cellsPerLine
     layout.itemSize = CGSize(width: width, height: width * 1.25)
     
-    // Set side menu button
-    if self.revealViewController() != nil {
-      //sidebarButton.target = self.revealViewController()
-      //sidebarButton.action = #selector(SWRevealViewController.revealToggle(_:))
-      self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
-    }
-    else {
-      print("RevealVC was nil!!!")
-    }
   }
   
   override func didReceiveMemoryWarning() {
@@ -95,34 +87,27 @@ class BookmarksViewController: UIViewController, UICollectionViewDataSource, UIC
     let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "RecipeCell", for: indexPath) as! RecipeCell
     cell.recipe = recipes[indexPath.item] as RecipeItem
     
-    /*let imageView: UIImageView = cell.recipeImage
-     
-     let gradient: CAGradientLayer = CAGradientLayer()
-     gradient.frame = (imageView.frame)
-     gradient.colors = [UIColor.clear, UIColor.black]
-     gradient.locations = [0.9,1]
-     //imageView.layer.insertSublayer(gradient, at: 0)
-     imageView.layer.mask = gradient
-     
-     cell.recipeImage = imageView*/
-    
     return cell
   }
   
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-    let cell = sender as! UICollectionViewCell
     
-    // Get the index path from the cell that was tapped
-    if let indexPath = collectionView.indexPath(for: cell) {
-      let recipe = recipes[indexPath.row]
-      let singleViewController = segue.destination as! SingleViewController
-      
-      //Pass on the date to the DetailViewController
-      singleViewController.recipe = recipe
-      
-      singleViewController.recipeList = recipes
-      singleViewController.recipeIndex = indexPath.row
+    if segue.identifier == "detailSegue" {
+        let cell = sender as! UICollectionViewCell
+        
+        // Get the index path from the cell that was tapped
+        if let indexPath = collectionView.indexPath(for: cell) {
+          let recipe = recipes[indexPath.row]
+          let singleViewController = segue.destination as! SingleViewController
+          
+          //Pass on the date to the DetailViewController
+          singleViewController.recipe = recipe
+          
+          singleViewController.recipeList = recipes
+          singleViewController.recipeIndex = indexPath.row
+        }
     }
+    
   }
 }
 
