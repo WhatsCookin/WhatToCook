@@ -10,10 +10,6 @@ import UIKit
 import Parse
 
 class ProfileCell: UITableViewCell {
-    
-  @IBAction func onProfileImageTapped(_ sender: UIButton) {
-    
-  }
   @IBOutlet weak var profileImageView: UIImageView!
   @IBOutlet weak var usernameLabel: UILabel!
   
