@@ -19,7 +19,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="MnP-5X-jGS">
-                                <rect key="frame" x="0.0" y="50" width="414" height="686"/>
+                                <rect key="frame" x="0.0" y="114" width="414" height="622"/>
                                 <color key="backgroundColor" red="0.21176470588235294" green="0.21176470588235294" blue="0.21176470588235294" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="hhK-TW-SYn">
                                     <size key="itemSize" width="160" height="210"/>
@@ -118,21 +118,34 @@
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
-                            <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="cJg-ZJ-jsi">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="50"/>
+                            <searchBar contentMode="redraw" placeholder="Seperate filter tags with commas" translatesAutoresizingMaskIntoConstraints="NO" id="Sdc-H2-Ie9">
+                                <rect key="frame" x="0.0" y="64" width="354" height="50"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="6bw-xE-dj5"/>
+                                    <constraint firstAttribute="height" constant="50" id="L8l-5F-8mx"/>
                                 </constraints>
                                 <textInputTraits key="textInputTraits"/>
                             </searchBar>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2Ue-6C-lXH">
+                                <rect key="frame" x="359" y="64" width="50" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="50" id="AK1-J3-ZPv"/>
+                                    <constraint firstAttribute="height" constant="50" id="d6w-NR-9Q0"/>
+                                </constraints>
+                                <state key="normal" image="filter"/>
+                                <connections>
+                                    <action selector="beginSearch:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Nch-kw-oDo"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="MnP-5X-jGS" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="1bV-qe-HEj"/>
-                            <constraint firstItem="cJg-ZJ-jsi" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="T3b-Ch-cvt"/>
-                            <constraint firstItem="cJg-ZJ-jsi" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="VDS-3Q-ohP"/>
-                            <constraint firstItem="MnP-5X-jGS" firstAttribute="top" secondItem="cJg-ZJ-jsi" secondAttribute="bottom" id="fWo-t1-me9"/>
-                            <constraint firstItem="cJg-ZJ-jsi" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="uiH-3s-mA4"/>
+                            <constraint firstItem="2Ue-6C-lXH" firstAttribute="leading" secondItem="Sdc-H2-Ie9" secondAttribute="trailing" constant="5" id="LSf-am-WRU"/>
+                            <constraint firstItem="Sdc-H2-Ie9" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="Qpy-ii-aF7"/>
+                            <constraint firstItem="Sdc-H2-Ie9" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="RoS-91-hGF"/>
+                            <constraint firstItem="2Ue-6C-lXH" firstAttribute="centerY" secondItem="Sdc-H2-Ie9" secondAttribute="centerY" id="aAW-oL-5Yz"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="2Ue-6C-lXH" secondAttribute="trailing" constant="5" id="bvL-Dd-qra"/>
+                            <constraint firstItem="MnP-5X-jGS" firstAttribute="top" secondItem="Sdc-H2-Ie9" secondAttribute="bottom" id="c6x-wP-eJP"/>
                             <constraint firstItem="MnP-5X-jGS" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="v6z-Cm-lmF"/>
                             <constraint firstItem="MnP-5X-jGS" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="zQj-74-1eJ"/>
                         </constraints>
@@ -143,13 +156,13 @@
                     </navigationItem>
                     <connections>
                         <outlet property="collectionView" destination="MnP-5X-jGS" id="DEg-zM-cPt"/>
-                        <outlet property="searchBar" destination="cJg-ZJ-jsi" id="ZZa-5f-Uec"/>
+                        <outlet property="searchBar" destination="Sdc-H2-Ie9" id="WOG-cT-r0V"/>
                         <outlet property="sidebarButton" destination="Yoz-Qm-icq" id="oxi-9P-TEn"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="352.80000000000001" y="65.217391304347828"/>
+            <point key="canvasLocation" x="352.17391304347831" y="65.217391304347828"/>
         </scene>
         <!--What2Cook-->
         <scene sceneID="SDO-qK-N1R">
@@ -435,7 +448,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bbI-7s-iT9" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <swipeGestureRecognizer direction="right" id="U3M-Aq-J5l"/>
             </objects>
-            <point key="canvasLocation" x="1416.8" y="433.58320839580216"/>
+            <point key="canvasLocation" x="1844" y="370"/>
         </scene>
         <!--Waiting-->
         <scene sceneID="sDK-4a-lCr">
@@ -1452,6 +1465,7 @@
         <image name="bookmarked" width="25" height="25"/>
         <image name="colors" width="700" height="50"/>
         <image name="default-profile-pic" width="800" height="800"/>
+        <image name="filter" width="25" height="25"/>
         <image name="fridge" width="25" height="25"/>
         <image name="grid" width="25" height="25"/>
         <image name="likes" width="256" height="256"/>
@@ -1464,7 +1478,7 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="NM3-9G-I46"/>
-        <segue reference="V5L-dG-dj5"/>
-        <segue reference="7A6-xl-a10"/>
+        <segue reference="uLw-21-bhZ"/>
+        <segue reference="w31-IS-YoO"/>
     </inferredMetricsTieBreakers>
 </document>

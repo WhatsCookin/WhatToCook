@@ -67,33 +67,47 @@ class SpoonacularAPIManager {
   }
     
     // Retrieves the most popular recipes
-    func getPopularRecipes(completion: @escaping([RecipeItem]?, Error?) -> ()) {
-    //let key = "69p5QHDqZfmshevTW4RVD0dwIh7Qp1L5vUZjsnVjlWJFfVpmAb"
+    func getPopularRecipes(_ tagString: String, completion: @escaping([RecipeItem]?, Error?) -> ()) {
+
+        // Note: If doing work on the collection view or single view, use the bookmarks tab instead
+        let numRecipes = 4 // number of popular recipes to be returned
     
-      
-      
-    /*// Note: If doing work on the collection view or single view, use the bookmarks tab instead
-    let numRecipes = 6 // number of popular recipes to be returned
-       
-    let urlstring = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/random?number=" + String(numRecipes)
+        let tags = tagString.components(separatedBy:",") as [String]
+        
+        
+        var urlstring = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/random?number=" + String(numRecipes)
     
-    //You headers (for your api key)
-    let headers: HTTPHeaders = [
-    "X-Mashape-Key": key,
-    ]
-    
-    Alamofire.request(urlstring, headers: headers).responseJSON { response in
-        if let recipeDictionary = response.result.value as! [String: Any]? {
-            let recipeArray = recipeDictionary["recipes"] as! NSArray
-            let recipes = recipeArray.flatMap({ (dictionary) -> RecipeItem in
-                RecipeItem(dictionary: dictionary as! [String: Any])
-            })
-            completion(recipes, nil)
+        if tags.count > 0 {
+            urlstring = urlstring + "&tags="
+            
+            for i in 0...tags.count-1 {
+                print(tags[i])
+                urlstring = urlstring + tags[i]
+                if (i>0 && i<tags.count-1) {
+                    urlstring = urlstring + "%2C"
+                }
+            }
         }
-        else {
-            print("Something went wrong")
+        
+        print(urlstring)
+        
+        //You headers (for your api key)
+        let headers: HTTPHeaders = [
+        "X-Mashape-Key": key,
+        ]
+        
+        Alamofire.request(urlstring, headers: headers).responseJSON { response in
+            if let recipeDictionary = response.result.value as! [String: Any]? {
+                let recipeArray = recipeDictionary["recipes"] as! NSArray
+                let recipes = recipeArray.flatMap({ (dictionary) -> RecipeItem in
+                    RecipeItem(dictionary: dictionary as! [String: Any])
+                })
+                completion(recipes, nil)
+            }
+            else {
+                print("Something went wrong")
+            }
         }
-    }*/
   }
     
     // Retrieves the data which includes ingredients and directions of a recipe given an id

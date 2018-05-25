@@ -8,7 +8,7 @@
 
 import UIKit
 
-class HomeViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
+class HomeViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UISearchBarDelegate {
   
   @IBOutlet weak var sidebarButton: UIBarButtonItem!
   @IBOutlet weak var collectionView: UICollectionView!
@@ -16,9 +16,14 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
     
   var recipes: [RecipeItem] = []
   var refreshControl: UIRefreshControl!
+   
+  var searchString: String?
     
   override func viewDidLoad() {
     super.viewDidLoad()
+    
+    searchString = "" //initial search parameter
+    searchBar.delegate = self
     
     refreshControl = UIRefreshControl()
     refreshControl.addTarget(self, action: #selector(HomeViewController.didPullToRefresh(_:)), for: .valueChanged)
@@ -51,8 +56,9 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
     
     func loadRecipes() {
         print("Calling loadRecipes()")
+        
       // Commented out to avoid exceeding API call limit
-        SpoonacularAPIManager().getPopularRecipes() { (recipes, error) in
+        SpoonacularAPIManager().getPopularRecipes(searchString!) { (recipes, error) in
             if let recipes = recipes {
                 self.recipes = recipes
                 self.collectionView.reloadData()
@@ -64,7 +70,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
         }
     }
     
-    @objc func didPullToRefresh(_ refreshControl: UIRefreshControl) {
+  @objc func didPullToRefresh(_ refreshControl: UIRefreshControl) {
     loadRecipes()
   }
   
@@ -82,30 +88,33 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
     cell.recipe = recipes[indexPath.item] as RecipeItem
     return cell
   }
-    /*
+    
     // Update based on the text in the search Bar
-    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String)
-    {
-        /*filteredMovies = searchText.isEmpty ? movies : movies.filter{(movie: Movie) -> Bool in
-            return (movie.title ).range(of: searchText, options: .caseInsensitive, range: nil, locale: nil) != nil
-        }*/
-        
-        self.collectionView.reloadData()
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        searchString = searchText.lowercased()
+    }
+    
+    // Filter recipes by searchString
+    @IBAction func beginSearch(_ sender: Any) {
+        loadRecipes()
+        self.searchBar.showsCancelButton = false
     }
     
     // Show cancel button on the Search Bar
     func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
         self.searchBar.showsCancelButton = true
+        
     }
     
     // Clear the search Bar when canceling
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
-        searchBar.showsCancelButton = false
-        searchBar.text = ""
-        searchBar.resignFirstResponder()
+        self.searchBar.showsCancelButton = false
         
-        self.collectionView.reloadData()
-    }*/
+        searchBar.text = ""
+        searchString = ""
+        
+        searchBar.resignFirstResponder()
+    }
   
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     let cell = sender as! UICollectionViewCell
