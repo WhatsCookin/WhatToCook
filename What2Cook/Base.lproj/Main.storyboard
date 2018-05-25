@@ -1272,35 +1272,34 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Luc-8P-t4C">
-                                            <rect key="frame" x="40" y="169" width="334" height="42.666666666666657"/>
+                                            <rect key="frame" x="0.0" y="169" width="347" height="53.666666666666657"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="default-profile-pic" translatesAutoresizingMaskIntoConstraints="NO" id="T7S-rm-eaK">
-                                            <rect key="frame" x="84" y="33" width="128" height="128"/>
+                                            <rect key="frame" x="109" y="33" width="128" height="128"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="128" id="Ons-df-ONw"/>
                                                 <constraint firstAttribute="width" constant="128" id="WGD-gx-UvM"/>
                                             </constraints>
                                         </imageView>
-                                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fFH-Ks-alT">
-                                            <rect key="frame" x="84" y="33" width="128" height="128"/>
+                                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="j56-sh-eTB">
+                                            <rect key="frame" x="109" y="33" width="128" height="128"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <connections>
-                                                <action selector="onProfileImageTapped:" destination="GqN-YP-AkA" eventType="touchUpInside" id="mqQ-0h-oIt"/>
-                                                <segue destination="F76-1b-NXm" kind="show" id="yx8-R2-ETN"/>
+                                                <segue destination="F76-1b-NXm" kind="show" id="Vfz-Og-Ax7"/>
                                             </connections>
                                         </button>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstAttribute="trailing" secondItem="Luc-8P-t4C" secondAttribute="trailing" constant="40" id="2DX-cK-gMY"/>
+                                        <constraint firstAttribute="trailing" secondItem="Luc-8P-t4C" secondAttribute="trailing" constant="67" id="8b0-JN-ioO"/>
                                         <constraint firstItem="T7S-rm-eaK" firstAttribute="top" secondItem="Du1-Ug-Bjk" secondAttribute="top" constant="33" id="Jg6-n6-fsh"/>
-                                        <constraint firstItem="Luc-8P-t4C" firstAttribute="top" secondItem="T7S-rm-eaK" secondAttribute="bottom" constant="8" id="Kaf-Bs-kzx"/>
-                                        <constraint firstItem="T7S-rm-eaK" firstAttribute="leading" secondItem="Du1-Ug-Bjk" secondAttribute="leading" constant="84" id="N1f-Py-C8c"/>
-                                        <constraint firstAttribute="bottom" secondItem="Luc-8P-t4C" secondAttribute="bottom" constant="21" id="Odh-7W-Ezh"/>
-                                        <constraint firstAttribute="trailing" secondItem="T7S-rm-eaK" secondAttribute="trailing" constant="202" id="foD-K7-Dmu"/>
-                                        <constraint firstItem="Luc-8P-t4C" firstAttribute="leading" secondItem="Du1-Ug-Bjk" secondAttribute="leading" constant="40" id="u9E-6h-rsW"/>
+                                        <constraint firstItem="T7S-rm-eaK" firstAttribute="leading" secondItem="Du1-Ug-Bjk" secondAttribute="leading" constant="109" id="N1f-Py-C8c"/>
+                                        <constraint firstItem="Luc-8P-t4C" firstAttribute="leading" secondItem="Du1-Ug-Bjk" secondAttribute="leading" id="dqc-15-ntN"/>
+                                        <constraint firstAttribute="trailing" secondItem="T7S-rm-eaK" secondAttribute="trailing" constant="177" id="foD-K7-Dmu"/>
+                                        <constraint firstAttribute="bottom" secondItem="Luc-8P-t4C" secondAttribute="bottom" constant="10" id="qMB-L3-MQ1"/>
+                                        <constraint firstItem="Luc-8P-t4C" firstAttribute="top" secondItem="T7S-rm-eaK" secondAttribute="bottom" constant="8" id="stZ-EA-5F3"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
@@ -1339,7 +1338,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gdH-Jl-vrB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2564" y="58.920539730134934"/>
+            <point key="canvasLocation" x="-2565.217391304348" y="58.695652173913047"/>
         </scene>
         <!--Reveal View Controller-->
         <scene sceneID="ZN4-KP-sM9">
