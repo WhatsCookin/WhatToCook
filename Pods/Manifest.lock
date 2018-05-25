@@ -3,6 +3,7 @@ PODS:
   - AlamofireImage (3.3.0):
     - Alamofire (~> 4.5)
   - Bolts/Tasks (1.9.0)
+  - FontAwesome-iOS (0.0.4)
   - Parse (1.16.0):
     - Parse/Core (= 1.16.0)
   - Parse/Core (1.16.0):
@@ -11,14 +12,16 @@ PODS:
 DEPENDENCIES:
   - Alamofire
   - AlamofireImage
+  - FontAwesome-iOS
   - Parse
 
 SPEC CHECKSUMS:
   Alamofire: f41a599bd63041760b26d393ec1069d9d7b917f4
   AlamofireImage: 2e784dc5d00f04903a52c1d169181469c805c3df
   Bolts: ac6567323eac61e203f6a9763667d0f711be34c8
+  FontAwesome-iOS: 0fd503f7ae46780e17c2dd98e70fed30b5f90322
   Parse: 5b36dc2c2f0a2fd82a257ae018bc3d68cf2c24e7
 
-PODFILE CHECKSUM: bff25b2c2455472b188a648a997424ee6538919a
+PODFILE CHECKSUM: 9ad258c311c335b82e067b4e224f14ca2a18e913
 
 COCOAPODS: 1.4.0
