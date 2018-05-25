@@ -22,7 +22,7 @@ class SpoonacularAPIManager {
       ingredientString += noSpaceIngredient + ","
     }
     
-    let maxResults = 10
+    let maxResults = 3
     
     let urlstring = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/findByIngredients?ingredients=" + ingredientString + "&number=" + String(maxResults) + "&fillIngredients=true&ranking=1&limitLicense=true"
     
@@ -33,6 +33,7 @@ class SpoonacularAPIManager {
     
     Alamofire.request(urlstring, headers: headers).responseJSON { response in
       if let recipeDictionary = response.result.value as! NSArray? {
+        print(recipeDictionary)
         let recipes = recipeDictionary.flatMap({ (dictionary) -> Recipe in Recipe(dictionary: dictionary as! [String : Any] )})
       completion(recipes, nil)
       }

@@ -1411,7 +1411,8 @@
         <!--Navigation Controller-->
         <scene sceneID="WWu-Rm-AVE">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="aL6-hZ-TaS" sceneMemberID="viewController">
+                <placeholder placeholderIdentifier="IBFirstResponder" id="1fm-NM-ikm" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <navigationController storyboardIdentifier="NavigationSuggestion" automaticallyAdjustsScrollViewInsets="NO" id="aL6-hZ-TaS" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="ths-KI-yWp">
                         <rect key="frame" x="0.0" y="20" width="414" height="44"/>
@@ -1422,7 +1423,6 @@
                         <segue destination="2iO-rC-42D" kind="relationship" relationship="rootViewController" id="N99-wj-4eR"/>
                     </connections>
                 </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="1fm-NM-ikm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1721" y="2236"/>
         </scene>

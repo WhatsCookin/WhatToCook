@@ -73,6 +73,7 @@ class RecipeSuggestionViewController: UIViewController, UITableViewDelegate, UIT
             
             SpoonacularAPIManager().getRecipeData(id!) { (data, error) in
                 if let data = data {
+                  print(data)
                     self.recipeItem = data
                     
                     self.finishedLoading = true

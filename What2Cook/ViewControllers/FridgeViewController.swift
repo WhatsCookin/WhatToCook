@@ -25,8 +25,8 @@ class FridgeViewController: UIViewController, UITableViewDelegate, UITableViewDa
           let storyboard = UIStoryboard(name: "Main", bundle: nil)
           let recipeSuggestionViewController = storyboard.instantiateViewController(withIdentifier: "Suggestion") as! RecipeSuggestionViewController
           recipeSuggestionViewController.recipes = self.recipesList
-          self.present(recipeSuggestionViewController, animated: true, completion: nil)
           
+          self.navigationController?.pushViewController(recipeSuggestionViewController, animated: true)
         } else if let error = error {
           print("Error getting recipes: " + error.localizedDescription)
         }
@@ -68,7 +68,7 @@ class FridgeViewController: UIViewController, UITableViewDelegate, UITableViewDa
   // TODO: Replace placeholder data
   var sections = [
     Section(category: "Unlisted",
-            ingredients: [],
+            ingredients: ["Cheese", "Bacon", "Chocolate", "Asparagus"],
             color: UIColor.cyan,
             expanded: true),
     
