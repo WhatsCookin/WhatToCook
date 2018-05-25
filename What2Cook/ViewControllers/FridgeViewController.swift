@@ -34,13 +34,12 @@ class FridgeViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
   }
   @IBAction func onSelectAll(_ sender: UIButton) {
-    if sender.titleLabel?.text == "Select All" {
+    sender.isSelected = !sender.isSelected
+    if sender.isSelected {
       selectAll()
-      sender.setTitle("Deselect All", for: .normal)
     }
     else {
       deselectAll()
-      sender.setTitle("Select All", for: .normal)
     }
   }
   

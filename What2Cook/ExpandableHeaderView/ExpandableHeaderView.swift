@@ -26,19 +26,20 @@ class ExpandableHeaderView: UITableViewHeaderFooterView {
   @IBOutlet var view: ExpandableHeaderView!
   
   @IBAction func onCheck(_ sender: UIButton) {
+    sender.isSelected = !sender.isSelected
+    
     // Expand view if not already expanded
     if !((delegate?.isExpanded(header: self, section: section))!) {
       delegate?.toggleSection(header: self, section: section)
     }
     
     // Select or deselect all rows
-    if(!sender.isSelected) {
+    if(sender.isSelected) {
       selectSection(section: section)
     }
     else {
       deselectSection(section: section)
     }
-    sender.isSelected = !sender.isSelected
   }
   
   func selectSection(section: Int) {
