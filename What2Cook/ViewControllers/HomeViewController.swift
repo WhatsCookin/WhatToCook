@@ -103,7 +103,6 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
     // Show cancel button on the Search Bar
     func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
         self.searchBar.showsCancelButton = true
-        
     }
     
     // Clear the search Bar when canceling
