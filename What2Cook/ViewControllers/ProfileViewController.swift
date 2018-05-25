@@ -83,6 +83,8 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
         }
       })
     }
+    self.profileImageView.layer.cornerRadius = 26.5;
+    self.profileImageView.layer.masksToBounds = true;
   }
 
     override func didReceiveMemoryWarning() {
