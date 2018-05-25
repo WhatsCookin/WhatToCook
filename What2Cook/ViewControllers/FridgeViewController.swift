@@ -347,7 +347,7 @@ class FridgeViewController: UIViewController, UITableViewDelegate, UITableViewDa
         voiceCommand = voiceCommand.replacingOccurrences(of: " to the ", with: " to ")
         voiceCommand = voiceCommand.replacingOccurrences(of: " two ", with: " to ")
         
-        if (voiceCommand.range(of: " add ", options:NSString.CompareOptions.backwards) != nil) && voiceCommand.range(of: " to ") != nil {
+        if (voiceCommand.range(of: " add ", options:NSString.CompareOptions.backwards) != nil) && voiceCommand.range(of: " to ", options:NSString.CompareOptions.backwards) != nil {
           // Parse Ingredient
           let addRange = voiceCommand.rangeEndIndex(toFind: " add ")
           voiceCommand = voiceCommand.substring(from: addRange)!
@@ -369,11 +369,11 @@ class FridgeViewController: UIViewController, UITableViewDelegate, UITableViewDa
                   if !((self.ingredientAlreadyAdded(ingredient: ingredient))) {
                   self.addIngredient(ingredient: ingredient, category: self.sections[categoryIndex].category)
                   }
+                  self.ignoredChars = result!.bestTranscription.formattedString.count
                 }
               }
             }
           }
-          self.ignoredChars = result!.bestTranscription.formattedString.count
         }
         isFinal = (result?.isFinal)!
       }
@@ -460,8 +460,9 @@ class FridgeViewController: UIViewController, UITableViewDelegate, UITableViewDa
       tableView.reloadRows(at: [IndexPath(row: i, section: section)], with: .automatic)
     }
     tableView.endUpdates()
+    save()
   }
-  
+
  /* func removeSection(header: ExpandableHeaderView, section: Int) {
     removeSection(name: sections[section].category)
     save()
