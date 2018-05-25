@@ -301,7 +301,13 @@ class FridgeViewController: UIViewController, UITableViewDelegate, UITableViewDa
   }*/
   
   func addIngredient(header: ExpandableHeaderView, section: Int) {
-    print("dsjakfl")
+    let ingredientSearchVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "IngredientSearch") as! IngredientSearchViewController
+    ingredientSearchVC.category = sections[section].category
+    ingredientSearchVC.fridgeViewController = self
+    self.addChildViewController(ingredientSearchVC)
+    ingredientSearchVC.view.frame = self.view.frame
+    self.view.addSubview(ingredientSearchVC.view)
+    ingredientSearchVC.didMove(toParentViewController: self)
   }
   
   func isExpanded(header: ExpandableHeaderView, section: Int) -> Bool {

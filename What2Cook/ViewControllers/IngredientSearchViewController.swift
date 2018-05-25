@@ -12,6 +12,7 @@ import Speech
 class IngredientSearchViewController: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, UIPickerViewDataSource, SFSpeechRecognizerDelegate {
   
   var fridgeViewController: FridgeViewController?
+  var category: String!
   private var ignoredChars = 0  // For continuous speech recognition
   private let speechRecognizer = SFSpeechRecognizer(locale: Locale.init(identifier: "en-US"))
   private var recognitionRequest: SFSpeechAudioBufferRecognitionRequest?
@@ -37,8 +38,28 @@ class IngredientSearchViewController: UIViewController, UITextFieldDelegate, UIP
     }
   }
   
+  @IBAction func onBack(_ sender: UIButton) {
+    self.view.removeFromSuperview()
+  }
+  
+  
   @IBAction func onAdd(_ sender: UIButton) {
-    add(ingredient: textField.text!.capitalized)
+    let ingredientToAdd = textField.text!.capitalized
+    // Check that the ingredient is not already in the fridge
+    if !((fridgeViewController?.ingredientAlreadyAdded(ingredient: ingredientToAdd))!) {
+      SpoonacularAPIManager().autocompleteIngredientSearch(ingredientToAdd) { (ingredients, error) in
+        if ingredients!.count > 0 {
+          self.fridgeViewController?.addIngredient(ingredient: ingredientToAdd, category: self.category)
+            self.view.removeFromSuperview()
+        }
+        else {
+          self.displayError(title: "Cannot Add Ingredient", message: "Ingredient not found.")
+        }
+      }
+    }
+    else {
+      displayError(title: "Cannot Add Ingredient", message: "You already have that ingredient.")
+    }
   }
   
   func numberOfComponents(in pickerView: UIPickerView) -> Int {
@@ -80,6 +101,9 @@ class IngredientSearchViewController: UIViewController, UITextFieldDelegate, UIP
     super.viewDidLoad()
     
     // Do any additional setup after loading the view.
+    
+    self.view.backgroundColor = UIColor.black.withAlphaComponent(0.5)
+    
     self.textField.delegate = self
     self.hideKeyboardWhenTappedAround()
     

@@ -506,91 +506,65 @@
         <!--Ingredient Search View Controller-->
         <scene sceneID="kqG-PD-BcP">
             <objects>
-                <viewController id="cxP-KG-Vxg" customClass="IngredientSearchViewController" customModule="What2Cook" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController restorationIdentifier="IngredientSearch" storyboardIdentifier="IngredientSearch" id="cxP-KG-Vxg" customClass="IngredientSearchViewController" customModule="What2Cook" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="UxZ-78-M09">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Egl-3Y-xW4">
-                                <rect key="frame" x="16" y="181" width="343" height="30"/>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xew-hq-w41">
+                                <rect key="frame" x="16" y="248" width="378" height="182"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <nil key="textColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="words"/>
-                            </textField>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Enter Name of Ingredient" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wdq-qj-SpN">
-                                <rect key="frame" x="16" y="152" width="192" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vgj-hB-2nQ">
-                                <rect key="frame" x="16" y="270" width="343" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Category:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SGh-AT-Hbe">
-                                <rect key="frame" x="16" y="299" width="75" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="H8b-AQ-Gyd">
-                                <rect key="frame" x="16" y="328" width="343" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <nil key="textColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                                <connections>
-                                    <outlet property="delegate" destination="cxP-KG-Vxg" id="oz5-Fz-rvs"/>
-                                </connections>
-                            </textField>
-                            <pickerView hidden="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ZEk-DE-tRK">
-                                <rect key="frame" x="16" y="355" width="382" height="132"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                                <connections>
-                                    <outlet property="dataSource" destination="cxP-KG-Vxg" id="iDj-dk-SEx"/>
-                                    <outlet property="delegate" destination="cxP-KG-Vxg" id="dNH-KH-ERP"/>
-                                </connections>
-                            </pickerView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Z8j-6s-BrD">
-                                <rect key="frame" x="172" y="219" width="30" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Add"/>
-                                <connections>
-                                    <action selector="onAdd:" destination="cxP-KG-Vxg" eventType="touchUpInside" id="Tv1-8K-631"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hPq-oD-pwy">
-                                <rect key="frame" x="369" y="78" width="25" height="25"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="25" id="E7j-Xg-hRz"/>
-                                    <constraint firstAttribute="width" constant="25" id="o8B-nd-0V3"/>
-                                </constraints>
-                                <state key="normal" image="microphone-off"/>
-                                <state key="selected" image="microphone-on"/>
-                                <connections>
-                                    <action selector="microphoneTapped:" destination="cxP-KG-Vxg" eventType="touchUpInside" id="tUw-JW-hKj"/>
-                                </connections>
-                            </button>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Enter Name of Ingredient" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wdq-qj-SpN">
+                                        <rect key="frame" x="24" y="53" width="192" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Z8j-6s-BrD">
+                                        <rect key="frame" x="174" y="119" width="30" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" title="Add"/>
+                                        <connections>
+                                            <action selector="onAdd:" destination="cxP-KG-Vxg" eventType="touchUpInside" id="Tv1-8K-631"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hPq-oD-pwy">
+                                        <rect key="frame" x="329" y="49" width="25" height="25"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" image="microphone-off"/>
+                                        <state key="selected" image="microphone-on"/>
+                                        <connections>
+                                            <action selector="microphoneTapped:" destination="cxP-KG-Vxg" eventType="touchUpInside" id="tUw-JW-hKj"/>
+                                        </connections>
+                                    </button>
+                                    <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Egl-3Y-xW4">
+                                        <rect key="frame" x="24" y="82" width="330" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="words"/>
+                                    </textField>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vcf-yq-VUj">
+                                        <rect key="frame" x="8" y="8" width="34" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" title="Back"/>
+                                        <connections>
+                                            <action selector="onBack:" destination="cxP-KG-Vxg" eventType="touchUpInside" id="pxF-Ff-SAX"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <constraints>
-                            <constraint firstItem="hPq-oD-pwy" firstAttribute="top" secondItem="3o1-DX-HAG" secondAttribute="top" constant="14" id="Sm0-IY-sVZ"/>
-                            <constraint firstItem="3o1-DX-HAG" firstAttribute="trailing" secondItem="hPq-oD-pwy" secondAttribute="trailing" constant="20" id="rst-j4-kD7"/>
-                        </constraints>
+                        <gestureRecognizers/>
                         <viewLayoutGuide key="safeArea" id="3o1-DX-HAG"/>
                     </view>
                     <connections>
-                        <outlet property="categoryDropDown" destination="ZEk-DE-tRK" id="Z6M-ul-Sdb"/>
-                        <outlet property="categoryTextField" destination="H8b-AQ-Gyd" id="kFx-cG-NrF"/>
                         <outlet property="microphoneButton" destination="hPq-oD-pwy" id="mfY-oj-Z08"/>
                         <outlet property="textField" destination="Egl-3Y-xW4" id="Hnr-ja-pgE"/>
-                        <outlet property="textLabel" destination="vgj-hB-2nQ" id="kLM-Ny-484"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zSJ-iU-Mmp" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -904,10 +878,21 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VnW-6H-ugM">
+                                <rect key="frame" x="381" y="72" width="25" height="25"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="25" id="3pY-3h-IdL"/>
+                                    <constraint firstAttribute="width" constant="25" id="eiZ-f9-1lF"/>
+                                </constraints>
+                                <state key="normal" image="microphone-off"/>
+                                <state key="selected" image="microphone-on"/>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="iQ9-qi-pQf" firstAttribute="top" secondItem="MHv-Yy-dNs" secondAttribute="top" constant="55" id="3hj-HJ-0F1"/>
+                            <constraint firstItem="VnW-6H-ugM" firstAttribute="top" secondItem="MHv-Yy-dNs" secondAttribute="top" constant="8" id="4ia-AW-fX7"/>
+                            <constraint firstItem="MHv-Yy-dNs" firstAttribute="trailing" secondItem="VnW-6H-ugM" secondAttribute="trailing" constant="8" id="W8Q-o5-rhv"/>
                             <constraint firstItem="MHv-Yy-dNs" firstAttribute="trailing" secondItem="iQ9-qi-pQf" secondAttribute="trailing" constant="8" id="lPd-EX-Eqh"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="MHv-Yy-dNs"/>
