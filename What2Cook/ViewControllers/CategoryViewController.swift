@@ -46,6 +46,7 @@ class CategoryViewController: UIViewController {
     
     // Do any additional setup after loading the view.
     selectedColorView.backgroundColor = uiColorFromHex(rgbValue: colorArray[Int(slider.value)])
+    self.navigationController?.interactivePopGestureRecognizer?.isEnabled = false
   }
   
   override func didReceiveMemoryWarning() {
