@@ -17,7 +17,6 @@ class CategoryViewController: UIViewController {
   @IBOutlet weak var slider: UISlider!
   @IBAction func sliderChanged(_ sender: Any) {
     selectedColorView.backgroundColor = uiColorFromHex(rgbValue: colorArray[Int(slider.value)])
-    print(selectedColorView.backgroundColor)
   }
   
   func uiColorFromHex(rgbValue: Int) -> UIColor {

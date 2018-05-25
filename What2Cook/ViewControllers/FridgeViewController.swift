@@ -124,6 +124,18 @@ class FridgeViewController: UIViewController, UITableViewDelegate, UITableViewDa
     })
   }
   
+  func clearData() {
+    let user = PFUser.current()
+    user!["sections"] = []
+    user!.saveInBackground(block: { (success, error) in
+      if (success) {
+        print("The user data has been saved")
+      } else {
+        print("There was a problem with saving the user data")
+      }
+    })
+  }
+  
   func loadSections() {
     sections = []
     let user = PFUser.current()

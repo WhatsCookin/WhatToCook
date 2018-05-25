@@ -24,8 +24,8 @@ class Section {
   init (dictionary: [String: Any]) {
     category = dictionary["category"] as! String
     ingredients = dictionary["ingredients"] as! [String]
-    let hashcolor = dictionary["color"] as! String
-    color = hashStringToColor(string: hashcolor)
+    let hex = dictionary["color"] as! String
+    color = UIColor(hexString: hex)
     expanded = dictionary["expanded"] as! Bool
   }
   
@@ -33,23 +33,8 @@ class Section {
     return [
       "category": self.category,
       "ingredients": self.ingredients,
-      "color": String(self.color.hashValue),
+      "color": color.htmlRGBaColor,
       "expanded": self.expanded,
       ] as NSDictionary
-  }
-  
-  func hashStringToColor(string: String) -> UIColor {
-    let hash: Int = string.hashValue
-    let r: Int = (hash & 0xFF0000) >> 16
-    let g: Int = (hash & 0x00FF00) >> 8
-    let b: Int = (hash & 0x0000FF)
-    return rgbaToUIColor(r: r, g: g, b: b, a: 1.0)
-  }
-  
-  func rgbaToUIColor(r: Int, g: Int, b: Int, a: Float) -> UIColor {
-    let floatRed = CGFloat(r) / 255.0
-    let floatGreen = CGFloat(g) / 255.0
-    let floatBlue = CGFloat(b) / 255.0
-    return UIColor(red: floatRed, green: floatGreen, blue: floatBlue, alpha: 1.0)
   }
 }
