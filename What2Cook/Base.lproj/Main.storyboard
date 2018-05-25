@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="q0u-bw-ooo">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="q0u-bw-ooo">
     <device id="retina5_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -727,11 +727,19 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <visualEffectView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ZaH-O1-qwk">
+<<<<<<< HEAD
                                 <rect key="frame" x="0.0" y="64" width="414" height="239"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" insetsLayoutMarginsFromSafeArea="NO" id="oPa-Vt-c03">
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="239"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <subviews>
+                                        <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Eou-Ug-Uqn">
+                                            <rect key="frame" x="175" y="133" width="71" height="65"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </view>
+                                    </subviews>
                                 </view>
                                 <blurEffect style="light"/>
                             </visualEffectView>
@@ -758,6 +766,7 @@
                                     <action selector="onAdd:" destination="ZeA-qU-FZj" eventType="touchUpInside" id="xbZ-JE-0fn"/>
                                 </connections>
                             </button>
+<<<<<<< HEAD
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Eou-Ug-Uqn">
                                 <rect key="frame" x="173" y="237" width="63" height="66"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -769,6 +778,14 @@
                             </imageView>
                             <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="7.5" minValue="0.5" maxValue="13.5" translatesAutoresizingMaskIntoConstraints="NO" id="ds9-ef-wbs">
                                 <rect key="frame" x="18" y="345" width="373" height="30"/>
+=======
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="colorStrip1" translatesAutoresizingMaskIntoConstraints="NO" id="ejh-hf-Cwf">
+                                <rect key="frame" x="20" y="302" width="374" height="26"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="7.5" minValue="0.5" maxValue="13.5" translatesAutoresizingMaskIntoConstraints="NO" id="ds9-ef-wbs">
+                                <rect key="frame" x="21" y="336" width="373" height="30"/>
+>>>>>>> 8b30d22700ed9b30753eb63299f366ca52b65150
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <connections>
                                     <action selector="sliderChanged:" destination="ZeA-qU-FZj" eventType="valueChanged" id="HCt-vM-91X"/>
@@ -813,7 +830,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="LQE-Fn-l26">
-                                                    <rect key="frame" x="20" y="0.0" width="374" height="43.666666666666664"/>
+                                                    <rect key="frame" x="15" y="0.0" width="384" height="43.666666666666664"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
@@ -854,18 +871,6 @@
                                     <action selector="onDelete:" destination="Yfd-vf-QZE" eventType="touchUpInside" id="Ojx-wm-xeo"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iQ9-qi-pQf">
-                                <rect key="frame" x="381" y="119" width="25" height="25"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="25" id="eZ6-3v-7wx"/>
-                                    <constraint firstAttribute="width" constant="25" id="pPa-wh-5uo"/>
-                                </constraints>
-                                <state key="normal" image="unchecked"/>
-                                <state key="selected" image="checked"/>
-                                <connections>
-                                    <action selector="onSelectAll:" destination="Yfd-vf-QZE" eventType="touchUpInside" id="4Yv-FY-DZ0"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3ll-f9-Tmx">
                                 <rect key="frame" x="288" y="590" width="118" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -874,13 +879,6 @@
                                     <action selector="onMove:" destination="Yfd-vf-QZE" eventType="touchUpInside" id="EWp-49-3Hd"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Select All" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tht-Fh-0cN">
-                                <rect key="frame" x="306" y="121" width="72" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VnW-6H-ugM">
                                 <rect key="frame" x="381" y="72" width="25" height="25"/>
                                 <constraints>
@@ -901,13 +899,19 @@
                                     <action selector="onDeleteCategory:" destination="Yfd-vf-QZE" eventType="touchUpInside" id="qx5-ep-Ueu"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6aO-ZZ-I5N">
+                                <rect key="frame" x="324" y="115" width="82" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Select All"/>
+                                <connections>
+                                    <action selector="onSelectAll:" destination="Yfd-vf-QZE" eventType="touchUpInside" id="fAQ-iz-tNn"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="iQ9-qi-pQf" firstAttribute="top" secondItem="MHv-Yy-dNs" secondAttribute="top" constant="55" id="3hj-HJ-0F1"/>
                             <constraint firstItem="VnW-6H-ugM" firstAttribute="top" secondItem="MHv-Yy-dNs" secondAttribute="top" constant="8" id="4ia-AW-fX7"/>
                             <constraint firstItem="MHv-Yy-dNs" firstAttribute="trailing" secondItem="VnW-6H-ugM" secondAttribute="trailing" constant="8" id="W8Q-o5-rhv"/>
-                            <constraint firstItem="MHv-Yy-dNs" firstAttribute="trailing" secondItem="iQ9-qi-pQf" secondAttribute="trailing" constant="8" id="lPd-EX-Eqh"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="MHv-Yy-dNs"/>
                     </view>
@@ -1594,7 +1598,6 @@
         <image name="LoginScreen" width="415" height="737"/>
         <image name="add" width="25" height="25"/>
         <image name="bookmarked" width="25" height="25"/>
-        <image name="checked" width="512" height="512"/>
         <image name="colorStrip1" width="700" height="50"/>
         <image name="default-profile-pic" width="800" height="800"/>
         <image name="filter" width="25" height="25"/>
@@ -1608,7 +1611,6 @@
         <image name="stopwatch" width="33" height="33"/>
         <image name="time" width="1600" height="1600"/>
         <image name="unbookmarked" width="25" height="25"/>
-        <image name="unchecked" width="512" height="512"/>
         <image name="whiteBackground" width="325" height="577"/>
         <image name="yellowbackground" width="714" height="1078"/>
     </resources>
