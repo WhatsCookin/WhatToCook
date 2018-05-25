@@ -35,9 +35,6 @@ class DeleteCategoryViewController: UIViewController, UITextFieldDelegate, UIPic
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
       var rowTitle = fridgeViewController?.sections[row].category
-      if rowTitle == "Unlisted" {
-        rowTitle = ""
-      }
       return rowTitle
     }
     

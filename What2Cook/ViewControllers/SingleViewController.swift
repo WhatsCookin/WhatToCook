@@ -313,20 +313,20 @@ class SingleViewController: UIViewController, UITableViewDelegate, UITableViewDa
           self.playMessage(message: "We're on step " + String(self.currentStep + 1) + " out of " + String(self.toRead.count))
           self.ignoredChars = result!.bestTranscription.formattedString.count
         }
-        else if voiceCommand.range(of: "pause") != nil || voiceCommand.range(of: "stop") != nil {
+        /*else if voiceCommand.range(of: "pause") != nil || voiceCommand.range(of: "stop") != nil {
           self.stop()
           self.ignoredChars = result!.bestTranscription.formattedString.count
         }
         else if voiceCommand.range(of: "continue") != nil {
           self.start()
           self.ignoredChars = result!.bestTranscription.formattedString.count
-        }
-        else if voiceCommand.range(of: "slow down") != nil {
-          self.changeSpeed(rate: self.utteranceRate / 2)
+        }*/
+        else if voiceCommand.range(of: "slow down") != nil && voiceCommand.range(of: "slower") != nil{
+          self.changeSpeed(rate: self.utteranceRate * 0.75)
           self.ignoredChars = result!.bestTranscription.formattedString.count
         }
-        else if voiceCommand.range(of: "speed up") != nil {
-          self.changeSpeed(rate: self.utteranceRate * 2)
+        else if voiceCommand.range(of: "speed up") != nil && voiceCommand.range(of: "faster") != nil {
+          self.changeSpeed(rate: self.utteranceRate * 1.25)
           self.ignoredChars = result!.bestTranscription.formattedString.count
         }
         /*else if voiceCommand.range(of: "play all") != nil {

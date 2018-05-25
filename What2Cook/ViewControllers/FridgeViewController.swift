@@ -339,7 +339,6 @@ class FridgeViewController: UIViewController, UITableViewDelegate, UITableViewDa
       if result != nil {
         var voiceCommand = result!.bestTranscription.formattedString.substring(from: self.ignoredChars) ?? ""
         print("string: " + result!.bestTranscription.formattedString)
-        print(self.ignoredChars)
         
         voiceCommand = voiceCommand.replacingOccurrences(of: "Add ", with: " add ")
         voiceCommand = voiceCommand.replacingOccurrences(of: "At ", with: " add ")
@@ -375,9 +374,6 @@ class FridgeViewController: UIViewController, UITableViewDelegate, UITableViewDa
           }
           self.ignoredChars = result!.bestTranscription.formattedString.count
         }
-        
-        print("vc: " + voiceCommand)
-        
         isFinal = (result?.isFinal)!
       }
       
