@@ -251,17 +251,17 @@ class FridgeViewController: UIViewController, UITableViewDelegate, UITableViewDa
     let nib = UINib(nibName: "ExpandableHeaderView", bundle: nil)
     tableView.register(nib, forHeaderFooterViewReuseIdentifier: "expandableHeaderView")
     
-    // Do any additional setup after loading the view.
-    self.tableView.allowsMultipleSelection = true
-    self.tableView.delegate = self
-    self.tableView.dataSource = self
-    
-    // FOR TESTING
-/*    SpoonacularAPIManager().getRecipeInformation(479101) { (ingredients, error) in
-      if let ingredients = ingredients {
-      }
-      print(ingredients)
-    }*/
+      // Do any additional setup after loading the view.
+      self.tableView.allowsMultipleSelection = true
+      self.tableView.delegate = self
+      self.tableView.dataSource = self
+      
+      // FOR TESTING
+      /*    SpoonacularAPIManager().getRecipeInformation(479101) { (ingredients, error) in
+       if let ingredients = ingredients {
+       }
+       print(ingredients)
+       }*/
       
       microphoneButton.isEnabled = false
       
@@ -332,36 +332,39 @@ class FridgeViewController: UIViewController, UITableViewDelegate, UITableViewDa
         voiceCommand = voiceCommand.replacingOccurrences(of: "Add ", with: " add ")
         voiceCommand = voiceCommand.replacingOccurrences(of: "At ", with: " add ")
         voiceCommand = voiceCommand.replacingOccurrences(of: " at ", with: " add ")
-        voiceCommand = voiceCommand.replacingOccurrences(of: "To ", with: " to ")
-        voiceCommand = voiceCommand.replacingOccurrences(of: "Two ", with: " to ")
+        voiceCommand = voiceCommand.replacingOccurrences(of: " to the ", with: " to ")
         voiceCommand = voiceCommand.replacingOccurrences(of: " two ", with: " to ")
-        
-        print(voiceCommand)
         
         if (voiceCommand.range(of: " add ", options:NSString.CompareOptions.backwards) != nil) && voiceCommand.range(of: " to ") != nil {
           // Parse Ingredient
           let addRange = voiceCommand.rangeEndIndex(toFind: " add ")
           voiceCommand = voiceCommand.substring(from: addRange)!
-          
-          print(voiceCommand)
-          let ingredient = voiceCommand
+          let toRange = voiceCommand.rangeStartIndex(toFind: " to ")
+          let ingredient = voiceCommand.substring(to: toRange)!.capitalized
           print("ingredient: " + ingredient)
-          self.ignoredChars = result!.bestTranscription.formattedString.count
-          self.addIngredient(ingredient: ingredient)
           
-          // Parse Category
-          let toEndRange = voiceCommand.rangeEndIndex(toFind: " to ")
-          let category = voiceCommand.substring(from: toEndRange)!
-          
-          let categoryIndex = self.checkCategoryExists(category: category)
-          if categoryIndex != -1 {
-            // Ignore capitalization
-            self.addIngredient(ingredient: ingredient, category: self.sections[categoryIndex].category)
+          if !((self.ingredientAlreadyAdded(ingredient: ingredient))) {
+            SpoonacularAPIManager().autocompleteIngredientSearch(ingredient) { (ingredients, error) in
+              if ingredients!.count > 0 {
+                // Parse Category
+                let toEndRange = voiceCommand.rangeEndIndex(toFind: " to ")
+                let category = voiceCommand.substring(from: toEndRange)!
+                print("category: " + category)
+                
+                let categoryIndex = self.checkCategoryExists(category: category)
+                if categoryIndex != -1 {
+                  // Ignore capitalization
+                  if !((self.ingredientAlreadyAdded(ingredient: ingredient))) {
+                  self.addIngredient(ingredient: ingredient, category: self.sections[categoryIndex].category)
+                  }
+                }
+              }
+            }
           }
           self.ignoredChars = result!.bestTranscription.formattedString.count
         }
         
-        print(voiceCommand)
+        print("vc: " + voiceCommand)
         
         isFinal = (result?.isFinal)!
       }
