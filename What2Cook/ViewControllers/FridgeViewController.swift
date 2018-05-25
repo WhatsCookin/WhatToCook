@@ -87,19 +87,19 @@ class FridgeViewController: UIViewController, UITableViewDelegate, UITableViewDa
   }
   
   @IBAction func onDeleteCategory(_ sender: UIButton) {
-    if(sections.count == 1) {
-      displayError(title: "Cannot Delete Categories", message: "You have no custom categories.")
+    if(sections.count == 0) {
+      displayError(title: "Cannot Delete Categories", message: "You have no categories.")
     }
     else {
-    let moveToCategoryVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "DeleteCategory") as! DeleteCategoryViewController
-    moveToCategoryVC.fridgeViewController = self
-    self.addChildViewController(moveToCategoryVC)
-    moveToCategoryVC.view.frame = self.view.frame
-    self.view.addSubview(moveToCategoryVC.view)
-    moveToCategoryVC.didMove(toParentViewController: self)
+      let moveToCategoryVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "DeleteCategory") as! DeleteCategoryViewController
+      moveToCategoryVC.fridgeViewController = self
+      self.addChildViewController(moveToCategoryVC)
+      moveToCategoryVC.view.frame = self.view.frame
+      self.view.addSubview(moveToCategoryVC.view)
+      moveToCategoryVC.didMove(toParentViewController: self)
     }
   }
-
+  
   var sections = [
     Section(category: "Unlisted",
             ingredients: [],
@@ -210,19 +210,16 @@ class FridgeViewController: UIViewController, UITableViewDelegate, UITableViewDa
     return
   }
   
-  func removeSection(name: String) {
-    if(name != "Unlisted" && name != "") {
-      for i in 0..<sections.count {
-        if sections[i].category == name {
-          sections.remove(at: i)
-          save()
-          return
-        }
+  func removeSection(name: String) -> Bool {
+    for i in 0..<sections.count {
+      if sections[i].category == name {
+        sections.remove(at: i)
+        save()
+        return true
       }
     }
-    else {
-      displayError(title: "No Category Chosen", message: "You must choose a category.")
-    }
+    displayError(title: "No Category Chosen", message: "You must choose a category.")
+    return false
   }
   
   func moveIngredients(ingredients: Array<String>, categoryName: String) {
