@@ -18,26 +18,17 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Hu4-hH-ZW8">
-                                <rect key="frame" x="67" y="255" width="240" height="128"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="128" id="PLf-C2-1uG"/>
-                                    <constraint firstAttribute="width" constant="240" id="aOH-wG-Kum"/>
-                                </constraints>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="LoginScreen" translatesAutoresizingMaskIntoConstraints="NO" id="Hu4-hH-ZW8">
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="What2Cook" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0uf-8h-sO1">
-                                <rect key="frame" x="141.5" y="208" width="91" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="0uf-8h-sO1" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="188" id="6w8-CA-veM"/>
                             <constraint firstItem="Hu4-hH-ZW8" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="8mI-AM-fon"/>
-                            <constraint firstItem="0uf-8h-sO1" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="BP3-2m-fKl"/>
-                            <constraint firstItem="Hu4-hH-ZW8" firstAttribute="top" secondItem="0uf-8h-sO1" secondAttribute="bottom" constant="26" id="hd2-F2-HgD"/>
+                            <constraint firstItem="Hu4-hH-ZW8" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="GoG-sm-EeE"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="Hu4-hH-ZW8" secondAttribute="bottom" id="J1d-D0-CZT"/>
+                            <constraint firstItem="Hu4-hH-ZW8" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="Xpr-gk-fHx"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Hu4-hH-ZW8" secondAttribute="trailing" id="fJO-ix-ap8"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
@@ -47,4 +38,7 @@
             <point key="canvasLocation" x="53" y="375"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="LoginScreen" width="415" height="737"/>
+    </resources>
 </document>
