@@ -580,7 +580,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="eOV-S4-TTo">
-                                <rect key="frame" x="20" y="88" width="343" height="282"/>
+                                <rect key="frame" x="36" y="188" width="343" height="282"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Delete Category:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="anf-a9-oON">
@@ -649,7 +649,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="lks-Zo-Jwh">
-                                <rect key="frame" x="16" y="79" width="343" height="282"/>
+                                <rect key="frame" x="36" y="190" width="343" height="282"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Move ingredients to category:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="S3E-8Z-WVo">
@@ -777,7 +777,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="fridge-background" translatesAutoresizingMaskIntoConstraints="NO" id="arD-ns-eUl">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="fridge-background" translatesAutoresizingMaskIntoConstraints="NO" id="arD-ns-eUl">
                                 <rect key="frame" x="0.0" y="64" width="414" height="623"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
@@ -819,14 +819,6 @@
                                     <action selector="onSearch:" destination="Yfd-vf-QZE" eventType="touchUpInside" id="wSV-Gp-OS1"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="edZ-RO-RvA">
-                                <rect key="frame" x="16" y="112" width="101" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Add Ingredient"/>
-                                <connections>
-                                    <segue destination="cxP-KG-Vxg" kind="show" id="UOK-LQ-GSa"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UHo-3R-Iuo">
                                 <rect key="frame" x="16" y="74" width="95" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -836,7 +828,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6bp-ky-fDu">
-                                <rect key="frame" x="268" y="591" width="126" height="30"/>
+                                <rect key="frame" x="280" y="628" width="126" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Delete Ingredients"/>
                                 <connections>
@@ -856,19 +848,11 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3ll-f9-Tmx">
-                                <rect key="frame" x="272" y="629" width="118" height="30"/>
+                                <rect key="frame" x="288" y="590" width="118" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Move Ingredients"/>
                                 <connections>
                                     <action selector="onMove:" destination="Yfd-vf-QZE" eventType="touchUpInside" id="EWp-49-3Hd"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xnh-41-cfU">
-                                <rect key="frame" x="120" y="74" width="112" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Delete Category"/>
-                                <connections>
-                                    <action selector="onDeleteCategory:" destination="Yfd-vf-QZE" eventType="touchUpInside" id="qx5-ep-Ueu"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Select All" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tht-Fh-0cN">
@@ -886,6 +870,17 @@
                                 </constraints>
                                 <state key="normal" image="microphone-off"/>
                                 <state key="selected" image="microphone-on"/>
+                                <connections>
+                                    <action selector="microphoneTapped:" destination="Yfd-vf-QZE" eventType="touchUpInside" id="t0I-gr-0YW"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xnh-41-cfU">
+                                <rect key="frame" x="16" y="112" width="112" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Delete Category"/>
+                                <connections>
+                                    <action selector="onDeleteCategory:" destination="Yfd-vf-QZE" eventType="touchUpInside" id="qx5-ep-Ueu"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -899,6 +894,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="What's in my Fridge?" id="J5c-Gc-uLX"/>
                     <connections>
+                        <outlet property="microphoneButton" destination="VnW-6H-ugM" id="pkO-Pp-NME"/>
                         <outlet property="tableView" destination="lSc-V0-JIb" id="SzS-1r-CDn"/>
                     </connections>
                 </viewController>
