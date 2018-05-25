@@ -1,13 +1,15 @@
 {
   "images" : [
     {
-      "idiom" : "iphone",
       "size" : "20x20",
+      "idiom" : "iphone",
+      "filename" : "LogoMakr_37dpWm (3).jpg",
       "scale" : "2x"
     },
     {
-      "idiom" : "iphone",
       "size" : "20x20",
+      "idiom" : "iphone",
+      "filename" : "LogoMakr_1Q6QtI_60x60.png",
       "scale" : "3x"
     },
     {
