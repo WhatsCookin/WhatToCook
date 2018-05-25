@@ -35,13 +35,7 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
     let vc = UIImagePickerController()
     vc.delegate = self
     vc.allowsEditing = true
-    if UIImagePickerController.isSourceTypeAvailable(.camera) {
-      print("Camera is available 📸")
-      vc.sourceType = .camera
-    } else {
-      print("Camera 🚫 available so we will use photo library instead")
-      vc.sourceType = .photoLibrary
-    }
+    vc.sourceType = .photoLibrary
     self.present(vc, animated: true, completion: nil)
   }
   
@@ -81,7 +75,7 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
     let user = PFUser.current()
     usernameLabel.text = user!.username
     
-    if let userPicture = user!.value(forKey: "profileImage")! as? PFFile {
+    if let userPicture = user!.value(forKey: "profileImage") as? PFFile {
       userPicture.getDataInBackground({ (imageData: Data?, error: Error?) -> Void in
         let image = UIImage(data: imageData!)
         if image != nil {

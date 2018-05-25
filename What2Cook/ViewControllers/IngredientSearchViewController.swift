@@ -9,7 +9,7 @@
 import UIKit
 import Speech
 
-class IngredientSearchViewController: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, UIPickerViewDataSource, SFSpeechRecognizerDelegate {
+class IngredientSearchViewController: UIViewController, UITextFieldDelegate, SFSpeechRecognizerDelegate {
   
   var fridgeViewController: FridgeViewController?
   var category: String!
@@ -64,27 +64,6 @@ class IngredientSearchViewController: UIViewController, UITextFieldDelegate, UIP
   
   func numberOfComponents(in pickerView: UIPickerView) -> Int {
     return 1
-  }
-  
-  func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-    let rowCount = fridgeViewController?.sections.count
-    return rowCount!
-  }
-  
-  func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-    let rowTitle = fridgeViewController?.sections[row].category
-    return rowTitle
-  }
-  
-  func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-    let chosenCategory = self.fridgeViewController?.sections[row].category
-    if chosenCategory == "Unlisted" {
-      self.categoryTextField.text = ""
-    }
-    else {
-      self.categoryTextField.text = chosenCategory
-    }
-    self.categoryDropDown.isHidden = true
   }
   
   func textFieldDidBeginEditing(_ textField: UITextField) {
@@ -196,19 +175,6 @@ class IngredientSearchViewController: UIViewController, UITextFieldDelegate, UIP
           self.textField.text = String(ingredient)
           print("ingredient: " + ingredient)
           self.ignoredChars = result!.bestTranscription.formattedString.count
-          // self.add(ingredient: String(ingredient))
-        }
-        else if voiceCommand.range(of: " to ") != nil {
-          // Parse Category
-          let toEndRange = voiceCommand.rangeEndIndex(toFind: " to ")
-          let category = voiceCommand.substring(from: toEndRange)!
-          
-          let categoryIndex = self.fridgeViewController?.checkCategoryExists(category: category)
-          if categoryIndex != -1 {
-            let categoryName = self.fridgeViewController?.sections[categoryIndex!].category
-            self.categoryTextField.text = categoryName
-            }
-            self.ignoredChars = result!.bestTranscription.formattedString.count
         }
         
         print(voiceCommand)
