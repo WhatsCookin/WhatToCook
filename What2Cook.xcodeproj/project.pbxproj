@@ -45,6 +45,9 @@
 		638D387020A13E46000C473D /* DirectionListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 638D386F20A13E46000C473D /* DirectionListCell.swift */; };
 		63AE43B7208C1D1C00644354 /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 63AE43B6208C1D1C00644354 /* SWRevealViewController.m */; };
 		63E72E9B20B6481000332677 /* WaitingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63E72E9A20B6480F00332677 /* WaitingViewController.swift */; };
+		740CD4F520B8C82C00FC6887 /* fontawesome-free-5.0.13 in Resources */ = {isa = PBXBuildFile; fileRef = 740CD4F420B8C82C00FC6887 /* fontawesome-free-5.0.13 */; };
+		740CD4F720B8CA9100FC6887 /* fontawesome-webfont.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 740CD4F620B8CA9100FC6887 /* fontawesome-webfont.ttf */; };
+		740CD4F920B8CABF00FC6887 /* fontawesome-webfont.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 740CD4F820B8CAB700FC6887 /* fontawesome-webfont.ttf */; };
 		A55A3014CEB6E1189CD9706B /* Pods_What2CookTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D734C8EDDCCED6A3CF0A132 /* Pods_What2CookTests.framework */; };
 		D0C084F876509BC01C82048C /* Pods_What2Cook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4733198CBC5DDF83D9CAADBB /* Pods_What2Cook.framework */; };
 /* End PBXBuildFile section */
@@ -116,6 +119,9 @@
 		63AE43B5208C1D1A00644354 /* What2Cook-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "What2Cook-Bridging-Header.h"; sourceTree = "<group>"; };
 		63AE43B6208C1D1C00644354 /* SWRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRevealViewController.m; sourceTree = "<group>"; };
 		63E72E9A20B6480F00332677 /* WaitingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaitingViewController.swift; sourceTree = "<group>"; };
+		740CD4F420B8C82C00FC6887 /* fontawesome-free-5.0.13 */ = {isa = PBXFileReference; lastKnownFileType = folder; name = "fontawesome-free-5.0.13"; path = "../../fontawesome-free-5.0.13"; sourceTree = "<group>"; };
+		740CD4F620B8CA9100FC6887 /* fontawesome-webfont.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "fontawesome-webfont.ttf"; path = "../../git/BV/boatvibes/admin/fonts/fontawesome-webfont.ttf"; sourceTree = "<group>"; };
+		740CD4F820B8CAB700FC6887 /* fontawesome-webfont.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "fontawesome-webfont.ttf"; sourceTree = "<group>"; };
 		80C2D456C923FB56093ED40A /* Pods-What2CookTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-What2CookTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-What2CookTests/Pods-What2CookTests.release.xcconfig"; sourceTree = "<group>"; };
 		92F46B539B7718B89798DFA3 /* Pods-What2CookUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-What2CookUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-What2CookUITests/Pods-What2CookUITests.release.xcconfig"; sourceTree = "<group>"; };
 		B2399B1770D9F64931141269 /* Pods_What2CookUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_What2CookUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -154,6 +160,7 @@
 		201BA6202071354E00455146 = {
 			isa = PBXGroup;
 			children = (
+				740CD4F620B8CA9100FC6887 /* fontawesome-webfont.ttf */,
 				201BA62B2071354F00455146 /* What2Cook */,
 				201BA6402071354F00455146 /* What2CookTests */,
 				201BA64B2071354F00455146 /* What2CookUITests */,
@@ -183,12 +190,14 @@
 				20A4C314207138D800F5A961 /* ViewControllers */,
 				201BA62C2071354F00455146 /* AppDelegate.swift */,
 				201BA6302071354F00455146 /* Main.storyboard */,
+				740CD4F420B8C82C00FC6887 /* fontawesome-free-5.0.13 */,
 				201BA6332071354F00455146 /* Assets.xcassets */,
 				201BA6352071354F00455146 /* LaunchScreen.storyboard */,
 				201BA6382071354F00455146 /* Info.plist */,
 				63AE43B4208C1D0500644354 /* SWRevealViewController.h */,
 				63AE43B6208C1D1C00644354 /* SWRevealViewController.m */,
 				63AE43B5208C1D1A00644354 /* What2Cook-Bridging-Header.h */,
+				740CD4F820B8CAB700FC6887 /* fontawesome-webfont.ttf */,
 			);
 			path = What2Cook;
 			sourceTree = "<group>";
@@ -418,6 +427,9 @@
 			files = (
 				201BA6372071354F00455146 /* LaunchScreen.storyboard in Resources */,
 				20EDAF8D20A2952A00195F93 /* ExpandableHeaderView.xib in Resources */,
+				740CD4F920B8CABF00FC6887 /* fontawesome-webfont.ttf in Resources */,
+				740CD4F520B8C82C00FC6887 /* fontawesome-free-5.0.13 in Resources */,
+				740CD4F720B8CA9100FC6887 /* fontawesome-webfont.ttf in Resources */,
 				201BA6342071354F00455146 /* Assets.xcassets in Resources */,
 				201BA6322071354F00455146 /* Main.storyboard in Resources */,
 			);
