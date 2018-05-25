@@ -1357,7 +1357,6 @@
                                 <connections>
                                     <segue destination="TnM-CY-1dz" kind="show" id="T1Z-Ks-4U3"/>
                                 </connections>
-
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="Logout" id="8cP-43-3Wr">
                                 <rect key="frame" x="0.0" y="305" width="414" height="44"/>
@@ -1599,9 +1598,7 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="NM3-9G-I46"/>
-
         <segue reference="uLw-21-bhZ"/>
-
         <segue reference="7A6-xl-a10"/>
     </inferredMetricsTieBreakers>
 </document>
