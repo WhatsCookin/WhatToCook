@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Parse
 
 class FridgeViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate, ExpandableHeaderViewDelegate {
   
@@ -33,6 +34,7 @@ class FridgeViewController: UIViewController, UITableViewDelegate, UITableViewDa
       }
     }
   }
+  
   @IBAction func onSelectAll(_ sender: UIButton) {
     sender.isSelected = !sender.isSelected
     if sender.isSelected {
@@ -63,15 +65,59 @@ class FridgeViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
   }
   
+  @IBAction func onDeleteCategory(_ sender: UIButton) {
+    if(sections.count == 1) {
+      displayError(title: "Cannot Delete Categories", message: "You have no custom categories.")
+    }
+    else {
+    let moveToCategoryVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "DeleteCategory") as! DeleteCategoryViewController
+    moveToCategoryVC.fridgeViewController = self
+    self.addChildViewController(moveToCategoryVC)
+    moveToCategoryVC.view.frame = self.view.frame
+    self.view.addSubview(moveToCategoryVC.view)
+    moveToCategoryVC.didMove(toParentViewController: self)
+    }
+  }
+  
   
   // TODO: Replace placeholder data
   var sections = [
     Section(category: "Unlisted",
-            ingredients: ["Cheese", "Bacon", "Chocolate", "Asparagus"],
-            color: UIColor.cyan,
-            expanded: true),
-    
+            ingredients: [],
+            color: UIColor.blue,
+            expanded: true)
   ]
+  
+  func save() {
+    tableView.reloadData()
+    let user = PFUser.current()
+    let sectionsToStore = NSMutableArray.init()
+    for section in sections {
+      sectionsToStore.add(section.toDictionary())
+    }
+    user!["sections"] = sectionsToStore
+
+    user!.saveInBackground(block: { (success, error) in
+      if (success) {
+        print("The user data has been saved")
+      } else {
+        print("There was a problem with saving the user data")
+      }
+    })
+  }
+  
+  func loadSections() {
+    sections = []
+    let user = PFUser.current()
+    let storedSections = user?.object(forKey: "sections") as? [Dictionary<String, AnyObject>]
+    
+    if storedSections != nil {
+      for eachSection in storedSections! {
+        let section = Section(dictionary: eachSection)
+        sections.append(section)
+      }
+    }
+  }
   
   func checkForSelection() -> Bool {
     if(ingredients.count == 0) {
@@ -89,7 +135,7 @@ class FridgeViewController: UIViewController, UITableViewDelegate, UITableViewDa
     for i in 0..<sections.count {
       if(sections[i].category == category) {
         sections[i].ingredients.append(ingredient)
-        tableView.reloadData()
+        save()
         return
       }
     }
@@ -99,7 +145,7 @@ class FridgeViewController: UIViewController, UITableViewDelegate, UITableViewDa
     for i in 0..<sections.count {
       if let index = sections[i].ingredients.index(of: ingredient) {
         sections[i].ingredients.remove(at: index)
-        tableView.reloadData()
+        save()
         return
       }
     }
@@ -129,14 +175,18 @@ class FridgeViewController: UIViewController, UITableViewDelegate, UITableViewDa
   func addSection(name: String, color: UIColor) {
     let newSection = Section(category: name, ingredients: [], color: color, expanded: false)
     sections.append(newSection)
-    tableView.reloadData()
+    save()
     return
   }
   
   func removeSection(name: String) {
-    for i in 0..<sections.count {
-      if sections[i].category == name {
-        sections.remove(at: i)
+    if(name != "Unlisted") {
+      for i in 0..<sections.count {
+        if sections[i].category == name {
+          sections.remove(at: i)
+          save()
+          return
+        }
       }
     }
   }
@@ -169,6 +219,7 @@ class FridgeViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     override func viewDidLoad() {
     super.viewDidLoad()
+    loadSections()
       
     hideKeyboardWhenTappedAround()
     
