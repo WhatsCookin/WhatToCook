@@ -851,18 +851,6 @@
                                     <action selector="onDelete:" destination="Yfd-vf-QZE" eventType="touchUpInside" id="Ojx-wm-xeo"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iQ9-qi-pQf">
-                                <rect key="frame" x="381" y="119" width="25" height="25"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="25" id="eZ6-3v-7wx"/>
-                                    <constraint firstAttribute="width" constant="25" id="pPa-wh-5uo"/>
-                                </constraints>
-                                <state key="normal" image="unchecked"/>
-                                <state key="selected" image="checked"/>
-                                <connections>
-                                    <action selector="onSelectAll:" destination="Yfd-vf-QZE" eventType="touchUpInside" id="4Yv-FY-DZ0"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3ll-f9-Tmx">
                                 <rect key="frame" x="288" y="590" width="118" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -871,13 +859,6 @@
                                     <action selector="onMove:" destination="Yfd-vf-QZE" eventType="touchUpInside" id="EWp-49-3Hd"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Select All" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tht-Fh-0cN">
-                                <rect key="frame" x="306" y="121" width="72" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VnW-6H-ugM">
                                 <rect key="frame" x="381" y="72" width="25" height="25"/>
                                 <constraints>
@@ -898,13 +879,19 @@
                                     <action selector="onDeleteCategory:" destination="Yfd-vf-QZE" eventType="touchUpInside" id="qx5-ep-Ueu"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6aO-ZZ-I5N">
+                                <rect key="frame" x="324" y="115" width="82" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Select All"/>
+                                <connections>
+                                    <action selector="onSelectAll:" destination="Yfd-vf-QZE" eventType="touchUpInside" id="fAQ-iz-tNn"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="iQ9-qi-pQf" firstAttribute="top" secondItem="MHv-Yy-dNs" secondAttribute="top" constant="55" id="3hj-HJ-0F1"/>
                             <constraint firstItem="VnW-6H-ugM" firstAttribute="top" secondItem="MHv-Yy-dNs" secondAttribute="top" constant="8" id="4ia-AW-fX7"/>
                             <constraint firstItem="MHv-Yy-dNs" firstAttribute="trailing" secondItem="VnW-6H-ugM" secondAttribute="trailing" constant="8" id="W8Q-o5-rhv"/>
-                            <constraint firstItem="MHv-Yy-dNs" firstAttribute="trailing" secondItem="iQ9-qi-pQf" secondAttribute="trailing" constant="8" id="lPd-EX-Eqh"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="MHv-Yy-dNs"/>
                     </view>
@@ -1591,7 +1578,6 @@
         <image name="LoginScreen" width="415" height="737"/>
         <image name="add" width="25" height="25"/>
         <image name="bookmarked" width="25" height="25"/>
-        <image name="checked" width="512" height="512"/>
         <image name="colorStrip1" width="700" height="50"/>
         <image name="default-profile-pic" width="800" height="800"/>
         <image name="filter" width="25" height="25"/>
@@ -1605,7 +1591,6 @@
         <image name="stopwatch" width="33" height="33"/>
         <image name="time" width="1600" height="1600"/>
         <image name="unbookmarked" width="25" height="25"/>
-        <image name="unchecked" width="512" height="512"/>
         <image name="whiteBackground" width="325" height="577"/>
     </resources>
     <inferredMetricsTieBreakers>
