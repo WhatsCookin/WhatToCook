@@ -30,16 +30,19 @@ class DeleteCategoryViewController: UIViewController, UITextFieldDelegate, UIPic
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
       let rowCount = fridgeViewController?.sections.count
-      return rowCount! - 1
+      return rowCount!
     }
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-      let rowTitle = fridgeViewController?.sections[row + 1].category
+      var rowTitle = fridgeViewController?.sections[row].category
+      if rowTitle == "Unlisted" {
+        rowTitle = ""
+      }
       return rowTitle
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-      let chosenCategory = self.fridgeViewController?.sections[row + 1].category
+      let chosenCategory = self.fridgeViewController?.sections[row].category
       self.categoryTextField.text = chosenCategory
       self.categoryDropDown.isHidden = true
     }

@@ -10,15 +10,10 @@ import Foundation
 import UIKit
 
 class IngredientCell: UITableViewCell {
-  
-  /*override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
-    super.init(style: style, reuseIdentifier: reuseIdentifier)
+  override func awakeFromNib() {
     self.selectionStyle = .none
+    self.backgroundColor = UIColor.clear
   }
-  
-  required init?(coder aDecoder: NSCoder) {
-    super.init(coder: aDecoder)
-  }*/
   
   //var selected = false
   

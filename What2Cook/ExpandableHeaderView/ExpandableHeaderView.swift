@@ -13,7 +13,7 @@ protocol ExpandableHeaderViewDelegate {
   func isExpanded(header: ExpandableHeaderView, section: Int) -> Bool
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
   func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath)
-
+  func addIngredient(header: ExpandableHeaderView, section: Int)
 }
 
 class ExpandableHeaderView: UITableViewHeaderFooterView {
@@ -42,7 +42,12 @@ class ExpandableHeaderView: UITableViewHeaderFooterView {
     }
   }
   
+  @IBAction func onAdd(_ sender: UIButton) {
+    delegate?.addIngredient(header: self, section: section)
+  }
+  
   func selectSection(section: Int) {
+    checkbox.isSelected = true
     let numRows = (tableView?.numberOfRows(inSection: section))!
     if numRows > 0 {
       for i in 0...numRows - 1 {
@@ -54,6 +59,7 @@ class ExpandableHeaderView: UITableViewHeaderFooterView {
   }
   
   func deselectSection(section: Int) {
+    checkbox.isSelected = false
     let numRows = (tableView?.numberOfRows(inSection: section))!
     if numRows > 0 {
       for i in 0...numRows - 1 {
@@ -63,18 +69,6 @@ class ExpandableHeaderView: UITableViewHeaderFooterView {
       }
     }
   }
-  
-  /*func selectAll(numberOfSections: Int) {
-    for section in 0..<numberOfSections {
-      selectSection(section: section)
-    }
-  }
-  
-  func deselectAll(numberOfSections: Int) {
-    for section in 0..<numberOfSections {
-      deselectSection(section: section)
-    }
-  }*/
   
   override init(reuseIdentifier: String?) {
     super.init(reuseIdentifier: reuseIdentifier)
@@ -98,11 +92,4 @@ class ExpandableHeaderView: UITableViewHeaderFooterView {
     self.delegate = delegate
     self.tableView = tableView
   }
-  
- /* override func layoutSubviews() {
-    super.layoutSubviews()
-    //self.textLabel?.textColor = UIColor.white
-    //self.contentView.backgroundColor = UIColor.darkGray
-    // Add checkmark pic
-  }*/
 }

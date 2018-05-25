@@ -26,7 +26,6 @@ class Section {
     ingredients = dictionary["ingredients"] as! [String]
     let hashcolor = dictionary["color"] as! String
     color = hashStringToColor(string: hashcolor)
-    //color = dictionary["color"]. as! UIColor
     expanded = dictionary["expanded"] as! Bool
   }
   

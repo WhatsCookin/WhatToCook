@@ -78,9 +78,7 @@ class FridgeViewController: UIViewController, UITableViewDelegate, UITableViewDa
     moveToCategoryVC.didMove(toParentViewController: self)
     }
   }
-  
-  
-  // TODO: Replace placeholder data
+
   var sections = [
     Section(category: "Unlisted",
             ingredients: [],
@@ -180,7 +178,7 @@ class FridgeViewController: UIViewController, UITableViewDelegate, UITableViewDa
   }
   
   func removeSection(name: String) {
-    if(name != "Unlisted") {
+    if(name != "Unlisted" && name != "") {
       for i in 0..<sections.count {
         if sections[i].category == name {
           sections.remove(at: i)
@@ -188,6 +186,9 @@ class FridgeViewController: UIViewController, UITableViewDelegate, UITableViewDa
           return
         }
       }
+    }
+    else {
+      displayError(title: "No Category Chosen", message: "You must choose a category.")
     }
   }
   
@@ -219,6 +220,8 @@ class FridgeViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     override func viewDidLoad() {
     super.viewDidLoad()
+      tableView.backgroundColor = .clear
+      tableView.tableFooterView = UIView()
     loadSections()
       
     hideKeyboardWhenTappedAround()
@@ -290,6 +293,15 @@ class FridgeViewController: UIViewController, UITableViewDelegate, UITableViewDa
       tableView.reloadRows(at: [IndexPath(row: i, section: section)], with: .automatic)
     }
     tableView.endUpdates()
+  }
+  
+ /* func removeSection(header: ExpandableHeaderView, section: Int) {
+    removeSection(name: sections[section].category)
+    save()
+  }*/
+  
+  func addIngredient(header: ExpandableHeaderView, section: Int) {
+    print("dsjakfl")
   }
   
   func isExpanded(header: ExpandableHeaderView, section: Int) -> Bool {
