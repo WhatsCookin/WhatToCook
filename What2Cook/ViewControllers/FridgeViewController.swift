@@ -40,16 +40,21 @@ class FridgeViewController: UIViewController, UITableViewDelegate, UITableViewDa
     if checkForSelection() {
       SpoonacularAPIManager().searchRecipes(ingredients) { (recipes, error) in
         if let recipes = recipes {
-          self.recipesList = recipes
-          
-          // Pass recipe data to new view
-          let storyboard = UIStoryboard(name: "Main", bundle: nil)
-          let recipeSuggestionViewController = storyboard.instantiateViewController(withIdentifier: "Suggestion") as! RecipeSuggestionViewController
-          recipeSuggestionViewController.recipes = self.recipesList
-          
-          self.navigationController?.pushViewController(recipeSuggestionViewController, animated: true)
-        } else if let error = error {
-          print("Error getting recipes: " + error.localizedDescription)
+          if(recipes.count > 0) {
+            self.recipesList = recipes
+            
+            // Pass recipe data to new view
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let recipeSuggestionViewController = storyboard.instantiateViewController(withIdentifier: "Suggestion") as! RecipeSuggestionViewController
+            recipeSuggestionViewController.recipes = self.recipesList
+            
+            self.navigationController?.pushViewController(recipeSuggestionViewController, animated: true)
+          } else if let error = error {
+            print("Error getting recipes: " + error.localizedDescription)
+          }
+        }
+        else {
+          self.displayError(title: "No Recipes Found", message: "Uh oh! Maybe it's time to go shopping.")
         }
       }
     }
@@ -357,8 +362,8 @@ class FridgeViewController: UIViewController, UITableViewDelegate, UITableViewDa
           print("ingredient: " + ingredient)
           
           if !((self.ingredientAlreadyAdded(ingredient: ingredient))) {
-            SpoonacularAPIManager().autocompleteIngredientSearch(ingredient) { (ingredients, error) in
-              if ingredients!.count > 0 {
+            SpoonacularAPIManager().ingredientExists(ingredient: ingredient) { (exists) in
+              if exists {
                 // Parse Category
                 let toEndRange = voiceCommand.rangeEndIndex(toFind: " to ")
                 let category = voiceCommand.substring(from: toEndRange)!
@@ -368,7 +373,7 @@ class FridgeViewController: UIViewController, UITableViewDelegate, UITableViewDa
                 if categoryIndex != -1 {
                   // Ignore capitalization
                   if !((self.ingredientAlreadyAdded(ingredient: ingredient))) {
-                  self.addIngredient(ingredient: ingredient, category: self.sections[categoryIndex].category)
+                    self.addIngredient(ingredient: ingredient, category: self.sections[categoryIndex].category)
                   }
                   self.ignoredChars = result!.bestTranscription.formattedString.count
                 }

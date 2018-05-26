@@ -43,7 +43,7 @@ class SpoonacularAPIManager {
     }
   }
   
-  func autocompleteIngredientSearch(_ searchString: String, completion: @escaping([Ingredient]?, Error?) -> ()) {
+  /*func autocompleteIngredientSearch(_ searchString: String, completion: @escaping([Ingredient]?, Error?) -> ()) {
     //let key = "69p5QHDqZfmshevTW4RVD0dwIh7Qp1L5vUZjsnVjlWJFfVpmAb"
     let numResults = 1
     
@@ -65,8 +65,29 @@ class SpoonacularAPIManager {
         completion(nil, nil)
       }
     }
-  }
+  }*/
+  
+  func ingredientExists(ingredient: String, completion: @escaping(Bool) -> ()) {
+    let urlString = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/food/ingredients/substitutes"
     
+    //You headers (for your api key)
+    let headers: HTTPHeaders = [
+      "X-Mashape-Key": key,
+      ]
+    
+    Alamofire.request(urlString, headers: headers).responseJSON { response in
+      if let ingredientDictionary = response.result.value as! NSDictionary? {
+        let status = ingredientDictionary["status"]! as! String
+        if status == "failure" {
+          completion(false)
+        }
+        else {
+          completion(true)
+        }
+      }
+    }
+  }
+  
     // Retrieves the most popular recipes
     func getPopularRecipes(_ tagString: String, completion: @escaping([RecipeItem]?, Error?) -> ()) {
 
