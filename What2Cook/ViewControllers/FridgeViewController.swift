@@ -464,6 +464,10 @@ class FridgeViewController: UIViewController, UITableViewDelegate, UITableViewDa
   }
   
   func toggleSection(header: ExpandableHeaderView, section: Int) {
+    if(sections[section].expanded) {
+      header.uncheck()
+    }
+    
     sections[section].expanded = !sections[section].expanded
     // Animate so that ingredients appear and disappear
     tableView.beginUpdates()

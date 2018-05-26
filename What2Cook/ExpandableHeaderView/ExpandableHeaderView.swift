@@ -58,6 +58,10 @@ class ExpandableHeaderView: UITableViewHeaderFooterView {
     }
   }
   
+  func uncheck() {
+    checkbox.isSelected = false
+  }
+  
   func deselectSection(section: Int) {
     checkbox.isSelected = false
     let numRows = (tableView?.numberOfRows(inSection: section))!
