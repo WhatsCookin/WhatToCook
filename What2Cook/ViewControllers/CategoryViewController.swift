@@ -43,6 +43,8 @@ class CategoryViewController: UIViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     
+    hideKeyboardWhenTappedAround()
+    
     // Do any additional setup after loading the view.
     selectedColorView.backgroundColor = uiColorFromHex(rgbValue: colorArray[Int(slider.value)])
     self.navigationController?.interactivePopGestureRecognizer?.isEnabled = false

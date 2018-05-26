@@ -382,6 +382,10 @@ class FridgeViewController: UIViewController, UITableViewDelegate, UITableViewDa
           }
         }
         isFinal = (result?.isFinal)!
+        
+        // Attempt to reset
+        self.recognitionRequest?.endAudio()
+        self.recognitionRequest = SFSpeechAudioBufferRecognitionRequest()
       }
       
       if error != nil || isFinal {
