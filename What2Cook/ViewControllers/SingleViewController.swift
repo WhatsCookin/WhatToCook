@@ -135,6 +135,11 @@ class SingleViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
   }
   
+  func playCurrentStep() {
+    synthesizer.stopSpeaking(at: .immediate)
+    playMessage(String(currentStep + 1) + ". " + toRead[currentStep])
+  }
+  
   @IBAction func microphoneTapped(_ sender: UIButton) {
     print("tap")
     sender.isSelected = !sender.isSelected
@@ -295,6 +300,7 @@ class SingleViewController: UIViewController, UITableViewDelegate, UITableViewDa
         voiceCommand = voiceCommand.replacingOccurrences(of: "skit", with: "skip")
         voiceCommand = voiceCommand.replacingOccurrences(of: "scape", with: "skip")
         voiceCommand = voiceCommand.replacingOccurrences(of: "lower", with: "slower")
+        voiceCommand = voiceCommand.replacingOccurrences(of: "sslower", with: "slower")
         
         print(voiceCommand)
         
@@ -323,14 +329,15 @@ class SingleViewController: UIViewController, UITableViewDelegate, UITableViewDa
           self.start()
           self.ignoredChars = result!.bestTranscription.formattedString.count
         }*/
-        else if voiceCommand.range(of: "slow down") != nil && voiceCommand.range(of: "slower") != nil{
-          print("slow")
-          self.changeSpeed(rate: self.utteranceRate * 0.6)
+        else if voiceCommand.range(of: "slow down") != nil || voiceCommand.range(of: "slower") != nil || voiceCommand.range(of: "slow") != nil{
+          self.changeSpeed(rate: self.utteranceRate * 0.8)
+          self.playCurrentStep()
           self.ignoredChars = result!.bestTranscription.formattedString.count
         }
         else if voiceCommand.range(of: "speed up") != nil && voiceCommand.range(of: "faster") != nil {
           print("fast")
           self.changeSpeed(rate: self.utteranceRate * 1.5)
+          self.playCurrentStep()
           self.ignoredChars = result!.bestTranscription.formattedString.count
         }
         /*else if voiceCommand.range(of: "play all") != nil {
