@@ -111,6 +111,7 @@ class SingleViewController: UIViewController, UITableViewDelegate, UITableViewDa
   }
   
   func nextStep() {
+    synthesizer.stopSpeaking(at: .immediate)
     if(currentStep + 1 < toRead.count) {
       currentStep = currentStep + 1
       playMessage(message: "Step " + String(currentStep + 1) + ". " + toRead[currentStep])
@@ -122,11 +123,13 @@ class SingleViewController: UIViewController, UITableViewDelegate, UITableViewDa
   }
   
   func previousStep() {
+    synthesizer.stopSpeaking(at: .immediate)
     if(currentStep > 0) {
       currentStep = currentStep - 1
       playMessage(message: "Step " + String(currentStep + 1) + ". " + toRead[currentStep])
     }
     else {
+      synthesizer.stopSpeaking(at: .immediate)
       currentStep = -1
       playMessage(message: "You're already at the first step.")
     }
@@ -289,6 +292,8 @@ class SingleViewController: UIViewController, UITableViewDelegate, UITableViewDa
 
         // Fix common listening mistakes
         voiceCommand = voiceCommand.replacingOccurrences(of: "what's that", with: "what step")
+        voiceCommand = voiceCommand.replacingOccurrences(of: "skit", with: "skip")
+        voiceCommand = voiceCommand.replacingOccurrences(of: "lower", with: "slower")
         
         print(voiceCommand)
         
@@ -318,11 +323,13 @@ class SingleViewController: UIViewController, UITableViewDelegate, UITableViewDa
           self.ignoredChars = result!.bestTranscription.formattedString.count
         }*/
         else if voiceCommand.range(of: "slow down") != nil && voiceCommand.range(of: "slower") != nil{
-          self.changeSpeed(rate: self.utteranceRate * 0.75)
+          print("slow")
+          self.changeSpeed(rate: self.utteranceRate * 0.6)
           self.ignoredChars = result!.bestTranscription.formattedString.count
         }
         else if voiceCommand.range(of: "speed up") != nil && voiceCommand.range(of: "faster") != nil {
-          self.changeSpeed(rate: self.utteranceRate * 1.25)
+          print("fast")
+          self.changeSpeed(rate: self.utteranceRate * 1.5)
           self.ignoredChars = result!.bestTranscription.formattedString.count
         }
         /*else if voiceCommand.range(of: "play all") != nil {
@@ -417,7 +424,9 @@ class SingleViewController: UIViewController, UITableViewDelegate, UITableViewDa
     else {
       let cell = tableViewDirections.dequeueReusableCell(withIdentifier: "DirectionListCell", for: indexPath) as! DirectionListCell
       cell.direction = directions[indexPath.row]
-      toRead.append(directions[indexPath.row]["step"] as! String)
+      if(directions[indexPath.row]["step"] != nil) {
+        toRead.append(directions[indexPath.row]["step"] as! String)
+      }
         
         if indexPath.row % 2 == 0 {
             cell.backgroundColor = UIColor.white

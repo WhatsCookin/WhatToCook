@@ -23,31 +23,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <searchBar contentMode="redraw" placeholder="Seperate filter tags with commas" translatesAutoresizingMaskIntoConstraints="NO" id="Sdc-H2-Ie9">
-                                <rect key="frame" x="0.0" y="64" width="354" height="50"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="L8l-5F-8mx"/>
-                                </constraints>
-                                <textInputTraits key="textInputTraits"/>
-                                <scopeButtonTitles>
-                                    <string>Title</string>
-                                    <string>Title</string>
-                                </scopeButtonTitles>
-                            </searchBar>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2Ue-6C-lXH">
-                                <rect key="frame" x="359" y="64" width="50" height="50"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="50" id="AK1-J3-ZPv"/>
-                                    <constraint firstAttribute="height" constant="50" id="d6w-NR-9Q0"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="FontAwesome" family="FontAwesome" pointSize="28"/>
-                                <state key="normal" title="">
-                                    <color key="titleColor" red="0.17388400435447693" green="0.20251157879829407" blue="0.050405092537403107" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                </state>
-                                <connections>
-                                    <action selector="beginSearch:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Nch-kw-oDo"/>
-                                </connections>
-                            </button>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="6u8-kM-sar">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -174,6 +149,32 @@
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
+                            <searchBar contentMode="redraw" placeholder="Seperate filter tags with commas" translatesAutoresizingMaskIntoConstraints="NO" id="Sdc-H2-Ie9">
+                                <rect key="frame" x="0.0" y="64" width="354" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="L8l-5F-8mx"/>
+                                </constraints>
+                                <textInputTraits key="textInputTraits"/>
+                                <scopeButtonTitles>
+                                    <string>Title</string>
+                                    <string>Title</string>
+                                </scopeButtonTitles>
+                            </searchBar>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2Ue-6C-lXH">
+                                <rect key="frame" x="359" y="64" width="50" height="50"/>
+                                <color key="backgroundColor" red="1" green="0.97560871270000005" blue="0.50625976949999996" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="50" id="AK1-J3-ZPv"/>
+                                    <constraint firstAttribute="height" constant="50" id="d6w-NR-9Q0"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="FontAwesome" family="FontAwesome" pointSize="28"/>
+                                <state key="normal" title="">
+                                    <color key="titleColor" red="0.17388400435447693" green="0.20251157879829407" blue="0.050405092537403107" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="beginSearch:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Nch-kw-oDo"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -218,15 +219,6 @@
                                                     <constraint firstAttribute="height" constant="378" id="87b-rD-JpS"/>
                                                 </constraints>
                                             </imageView>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Krabby Patty with Secret Sauce" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GJb-Ov-KuS">
-                                                <rect key="frame" x="8" y="340" width="359" height="44"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="44" id="tzz-c7-tm8"/>
-                                                </constraints>
-                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
-                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
                                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="50" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="epD-19-AbG">
                                                 <rect key="frame" x="0.0" y="415" width="375" height="300"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -394,6 +386,15 @@
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Krabby Patty with Secret Sauce" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GJb-Ov-KuS">
+                                                <rect key="frame" x="8" y="319" width="359" height="44"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="44" id="tzz-c7-tm8"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <gestureRecognizers/>
@@ -406,7 +407,7 @@
                                             <constraint firstItem="B4j-K2-R7n" firstAttribute="top" secondItem="wz1-3y-dse" secondAttribute="bottom" constant="3" id="55k-IR-aLy"/>
                                             <constraint firstAttribute="trailing" secondItem="nih-hK-07m" secondAttribute="trailing" constant="8" id="8Ch-jd-AwA"/>
                                             <constraint firstAttribute="trailing" secondItem="4v1-OE-WCC" secondAttribute="trailing" id="8E7-7q-uUr"/>
-                                            <constraint firstItem="4v1-OE-WCC" firstAttribute="bottom" secondItem="GJb-Ov-KuS" secondAttribute="bottom" constant="-6" id="8Ht-Lh-x86"/>
+                                            <constraint firstItem="4v1-OE-WCC" firstAttribute="bottom" secondItem="GJb-Ov-KuS" secondAttribute="bottom" constant="15" id="8Ht-Lh-x86"/>
                                             <constraint firstItem="4v1-OE-WCC" firstAttribute="top" secondItem="0n7-lg-0LR" secondAttribute="top" id="9cE-I0-2l0"/>
                                             <constraint firstItem="A4c-Nu-5cb" firstAttribute="leading" secondItem="0n7-lg-0LR" secondAttribute="leading" constant="8" id="AIF-PT-n6t"/>
                                             <constraint firstAttribute="trailing" secondItem="swF-2v-n7q" secondAttribute="trailing" constant="8" id="CJo-it-dOB"/>
@@ -417,7 +418,7 @@
                                             <constraint firstItem="tPN-gy-6o6" firstAttribute="top" secondItem="4v1-OE-WCC" secondAttribute="bottom" constant="12" id="Hh5-Oz-pF3"/>
                                             <constraint firstItem="C8D-cB-qGa" firstAttribute="top" secondItem="4v1-OE-WCC" secondAttribute="bottom" constant="9" id="Jbh-rb-PHm"/>
                                             <constraint firstItem="djf-dV-Xcx" firstAttribute="top" secondItem="0n7-lg-0LR" secondAttribute="top" constant="286" id="Juc-T2-2O6"/>
-                                            <constraint firstItem="GJb-Ov-KuS" firstAttribute="top" secondItem="B4j-K2-R7n" secondAttribute="bottom" constant="6" id="KE1-GX-dFQ"/>
+                                            <constraint firstItem="GJb-Ov-KuS" firstAttribute="top" secondItem="B4j-K2-R7n" secondAttribute="bottom" constant="-15" id="KE1-GX-dFQ"/>
                                             <constraint firstAttribute="height" constant="1200" id="L6M-ZS-2Le"/>
                                             <constraint firstItem="tPN-gy-6o6" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="0n7-lg-0LR" secondAttribute="leading" constant="20" symbolic="YES" id="Naz-GW-1zb"/>
                                             <constraint firstAttribute="bottom" secondItem="Gax-cA-lEF" secondAttribute="bottom" constant="151" id="S9l-Lo-or0"/>
@@ -896,12 +897,12 @@
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="LQE-Fn-l26">
                                                     <rect key="frame" x="15" y="0.0" width="384" height="44.666666666666664"/>
                                                     <autoresizingMask key="autoresizingMask"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <nil key="textColor"/>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                                    <color key="textColor" red="0.20211373730964466" green="0.20211373730964466" blue="0.20211373730964466" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
-                                            <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                 </prototypes>
@@ -911,7 +912,7 @@
                                 </connections>
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bhy-v6-edK">
-                                <rect key="frame" x="9" y="631" width="227" height="43"/>
+                                <rect key="frame" x="5" y="627" width="243" height="47"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.96982917349999997" green="0.97244125979999996" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" name="FontAwesome" family="FontAwesome" pointSize="30"/>
@@ -921,7 +922,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6bp-ky-fDu">
-                                <rect key="frame" x="256" y="647" width="157" height="30"/>
+                                <rect key="frame" x="256" y="647" width="157" height="32"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="FontAwesome" family="FontAwesome" pointSize="17"/>
                                 <state key="normal" title=" Delete Ingredients"/>
@@ -930,7 +931,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3ll-f9-Tmx">
-                                <rect key="frame" x="262" y="619" width="144" height="30"/>
+                                <rect key="frame" x="262" y="615" width="144" height="34"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="FontAwesome" family="FontAwesome" pointSize="17"/>
                                 <state key="normal" title=" Move Ingredients"/>
@@ -952,7 +953,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xnh-41-cfU">
-                                <rect key="frame" x="0.0" y="103" width="163" height="30"/>
+                                <rect key="frame" x="0.0" y="94" width="163" height="46"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="FontAwesome" family="FontAwesome" pointSize="17"/>
                                 <state key="normal" title=" Delete Category"/>
@@ -970,7 +971,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UHo-3R-Iuo">
-                                <rect key="frame" x="16" y="72" width="87" height="30"/>
+                                <rect key="frame" x="16" y="72" width="87" height="35"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="FontAwesome" family="FontAwesome" pointSize="17"/>
                                 <state key="normal" title=" Category"/>
@@ -979,7 +980,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="j7P-pl-GSI">
-                                <rect key="frame" x="298" y="110" width="80" height="30"/>
+                                <rect key="frame" x="295" y="110" width="99" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Select All"/>
                                 <connections>

@@ -260,7 +260,6 @@ class FridgeViewController: UIViewController, UITableViewDelegate, UITableViewDa
   
     override func viewDidLoad() {
     super.viewDidLoad()
-      allSelectIcon.isEnabled = false
       tableView.backgroundColor = .clear
       tableView.tableFooterView = UIView()
     loadSections()

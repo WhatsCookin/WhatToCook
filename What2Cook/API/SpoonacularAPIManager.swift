@@ -22,9 +22,9 @@ class SpoonacularAPIManager {
       ingredientString += noSpaceIngredient + ","
     }
     
-    let maxResults = 3
+    let maxResults = 10
     
-    let urlstring = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/findByIngredients?ingredients=" + ingredientString + "&number=" + String(maxResults) + "&fillIngredients=true&ranking=1&limitLicense=true"
+    let urlstring = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/findByIngredients?ingredients=" + ingredientString + "&number=" + String(maxResults) + "&fillIngredients=true&ranking=2&limitLicense=true"
     
     //You headers (for your api key)
     let headers: HTTPHeaders = [
@@ -93,7 +93,7 @@ class SpoonacularAPIManager {
     func getPopularRecipes(_ tagString: String, completion: @escaping([RecipeItem]?, Error?) -> ()) {
 
    
-        let numRecipes = 6 // number of popular recipes to be returned
+      /*  let numRecipes = 30 // number of popular recipes to be returned
     
         let tags = tagString.components(separatedBy:",") as [String]
         
@@ -131,7 +131,7 @@ class SpoonacularAPIManager {
             else {
                 print("Something went wrong")
             }
-        }
+        }*/
   }
     
     // Retrieves the data which includes ingredients and directions of a recipe given an id
