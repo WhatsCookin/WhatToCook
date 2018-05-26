@@ -144,6 +144,7 @@ class SingleViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
     if audioEngine.isRunning {
+      stop()
       audioEngine.stop()
       recognitionRequest?.endAudio()
       let audioSession = AVAudioSession.sharedInstance()
@@ -156,10 +157,8 @@ class SingleViewController: UIViewController, UITableViewDelegate, UITableViewDa
       }
       
       microphoneButton.isEnabled = false
-      microphoneButton.setTitle("Start Recording", for: .normal)
     } else {
       startRecording()
-      microphoneButton.setTitle("Stop Recording", for: .normal)
     }
   }
   
