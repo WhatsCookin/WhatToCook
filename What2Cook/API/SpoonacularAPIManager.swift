@@ -92,7 +92,7 @@ class SpoonacularAPIManager {
     func getPopularRecipes(_ tagString: String, completion: @escaping([RecipeItem]?, Error?) -> ()) {
 
         // Note: If doing work on the collection view or single view, use the bookmarks tab instead
-    /*    let numRecipes = 4 // number of popular recipes to be returned
+        let numRecipes = 4 // number of popular recipes to be returned
     
         let tags = tagString.components(separatedBy:",") as [String]
         
@@ -129,7 +129,7 @@ class SpoonacularAPIManager {
             else {
                 print("Something went wrong")
             }
-        }*/
+        }
   }
     
     // Retrieves the data which includes ingredients and directions of a recipe given an id
@@ -177,9 +177,9 @@ class SpoonacularAPIManager {
     }*/
   
     
-    // Gets a random food joke
+    // Gets a random food fun fact
     func getJoke(completion: @escaping(String?, Error?) -> ()) {
-        let urlstring = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/food/jokes/random"
+        let urlstring = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/food/trivia/random"
         
         // Headers
         let headers: HTTPHeaders = [
@@ -196,5 +196,7 @@ class SpoonacularAPIManager {
             }
         }
     }
+    
+    
     
 }
