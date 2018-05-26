@@ -513,7 +513,11 @@
                                 <constraints>
                                     <constraint firstItem="oNK-hw-YDT" firstAttribute="top" secondItem="Hds-pZ-6Dt" secondAttribute="top" constant="8" id="8TB-GV-rcO"/>
                                     <constraint firstAttribute="trailing" secondItem="oNK-hw-YDT" secondAttribute="trailing" constant="8" id="Cro-hm-qG3"/>
+                                    <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="oNK-hw-YDT" secondAttribute="bottom" constant="8" id="OC1-mc-OBc"/>
+                                    <constraint firstItem="oNK-hw-YDT" firstAttribute="leading" secondItem="Hds-pZ-6Dt" secondAttribute="leading" constant="8" id="a9o-T1-pl9"/>
+                                    <constraint firstAttribute="trailing" secondItem="oNK-hw-YDT" secondAttribute="trailing" constant="8" id="cVP-fq-4ke"/>
                                     <constraint firstAttribute="height" constant="100" id="cZY-er-aSi"/>
+                                    <constraint firstItem="oNK-hw-YDT" firstAttribute="top" secondItem="Hds-pZ-6Dt" secondAttribute="top" constant="8" id="iau-Xk-71F"/>
                                     <constraint firstItem="oNK-hw-YDT" firstAttribute="leading" secondItem="Hds-pZ-6Dt" secondAttribute="leading" constant="8" id="unA-9t-mqu"/>
                                 </constraints>
                             </view>
@@ -1509,23 +1513,6 @@
             </objects>
             <point key="canvasLocation" x="-2257.971014492754" y="58.695652173913047"/>
         </scene>
-        <!--Restrictions-->
-        <scene sceneID="BEl-hE-3nY">
-            <objects>
-                <viewController id="z8Q-0n-RNp" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="5un-1b-S9W">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <viewLayoutGuide key="safeArea" id="aoP-ZR-bG1"/>
-                    </view>
-                    <tabBarItem key="tabBarItem" title="Restrictions" image="filter" selectedImage="filter" id="8yB-CU-LhH"/>
-                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="0pG-0i-zSH" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-1696" y="-780"/>
-        </scene>
         <!--Reveal View Controller-->
         <scene sceneID="ZN4-KP-sM9">
             <objects>
@@ -1619,7 +1606,6 @@
                         <segue destination="qJ9-do-XSW" kind="relationship" relationship="viewControllers" id="U8L-cj-dOM"/>
                         <segue destination="oc0-36-Yll" kind="relationship" relationship="viewControllers" id="cgZ-Ra-bET"/>
                         <segue destination="Dpx-wG-qXy" kind="relationship" relationship="viewControllers" id="gqf-bn-4mk"/>
-                        <segue destination="z8Q-0n-RNp" kind="relationship" relationship="viewControllers" id="RLL-CN-6ci"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="u2N-a6-KS9" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1762,7 +1748,6 @@
         <image name="bookmarked" width="25" height="25"/>
         <image name="colorStrip1" width="700" height="50"/>
         <image name="default-profile-pic" width="800" height="800"/>
-        <image name="filter" width="25" height="25"/>
         <image name="fridge" width="25" height="25"/>
         <image name="grid" width="25" height="25"/>
         <image name="likes" width="256" height="256"/>
