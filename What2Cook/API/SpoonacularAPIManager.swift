@@ -92,8 +92,8 @@ class SpoonacularAPIManager {
     // Retrieves the most popular recipes
     func getPopularRecipes(_ tagString: String, completion: @escaping([RecipeItem]?, Error?) -> ()) {
 
-   /*
-        let numRecipes = 4 // number of popular recipes to be returned
+   
+        let numRecipes = 10 // number of popular recipes to be returned
     
         let tags = tagString.components(separatedBy:",") as [String]
         
@@ -130,7 +130,7 @@ class SpoonacularAPIManager {
             else {
                 print("Something went wrong")
             }
-        }*/
+        }
   }
     
     // Retrieves the data which includes ingredients and directions of a recipe given an id
