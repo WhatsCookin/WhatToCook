@@ -93,7 +93,7 @@ class SpoonacularAPIManager {
     func getPopularRecipes(_ tagString: String, completion: @escaping([RecipeItem]?, Error?) -> ()) {
 
    
-        let numRecipes = 1 // number of popular recipes to be returned
+        let numRecipes = 6 // number of popular recipes to be returned
     
         let tags = tagString.components(separatedBy:",") as [String]
         

@@ -41,7 +41,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
     let cellsPerLine: CGFloat = 2
     let interItemSpacingTotal = layout.minimumLineSpacing * (cellsPerLine - 1)
     let width = collectionView.frame.size.width / cellsPerLine - interItemSpacingTotal / cellsPerLine
-    layout.itemSize = CGSize(width: width, height: width * 1.25)
+    layout.itemSize = CGSize(width: width, height: width * 1)
     
     // Set side menu button
     if self.revealViewController() != nil {
