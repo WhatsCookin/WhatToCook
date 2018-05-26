@@ -77,7 +77,6 @@ class FridgeViewController: UIViewController, UITableViewDelegate, UITableViewDa
       for ingredient in ingredients {
         removeIngredient(ingredient: ingredient)
       }
-      ingredients = []
     }
   }
   
