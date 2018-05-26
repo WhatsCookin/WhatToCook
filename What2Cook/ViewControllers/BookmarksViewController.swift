@@ -70,7 +70,7 @@ class BookmarksViewController: UIViewController, UICollectionViewDataSource, UIC
     let cellsPerLine: CGFloat = 2
     let interItemSpacingTotal = layout.minimumLineSpacing * (cellsPerLine - 1)
     let width = collectionView.frame.size.width / cellsPerLine - interItemSpacingTotal / cellsPerLine
-    layout.itemSize = CGSize(width: width, height: width * 1.25)
+    layout.itemSize = CGSize(width: width, height: width * 1)
     
   }
   
@@ -88,6 +88,17 @@ class BookmarksViewController: UIViewController, UICollectionViewDataSource, UIC
     cell.recipe = recipes[indexPath.item] as RecipeItem
     
     return cell
+  }
+  
+  // removing spacing
+  func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+    return UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+  }
+  func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+    return 0.0
+  }
+  func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+    return 0.0
   }
   
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
