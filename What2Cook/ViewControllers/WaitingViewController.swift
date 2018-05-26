@@ -20,11 +20,20 @@ class WaitingViewController: UIViewController {
     let gradientTwo = UIColor(red: 244/255, green: 88/255, blue: 53/255, alpha: 1).cgColor
     let gradientThree = UIColor(red: 196/255, green: 70/255, blue: 107/255, alpha: 1).cgColor
     
+    var seconds = 60 //This variable will hold a starting value of seconds. It could be any amount above 0.
+    var timer = Timer()
+    var isTimerRunning = false //This will be used to make sure only one timer is created at a time.
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         getJoke()
     }
+    
+  /*  //Create Timer
+    /func runTimer() {
+        timer = Timer.scheduledTimer(timeInterval: 1, target: self,   selector: (#selector(ViewController.updateTimer)), userInfo: nil, repeats: true)
+    }*/
     
     // Gets a food joke
     func getJoke() {
