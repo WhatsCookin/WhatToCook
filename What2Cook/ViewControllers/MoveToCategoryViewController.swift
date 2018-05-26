@@ -57,6 +57,8 @@ class MoveToCategoryViewController: UIViewController, UITextFieldDelegate, UIPic
   override func viewDidLoad() {
     super.viewDidLoad()
     
+    hideKeyboardWhenTappedAround()
+    
     self.view.backgroundColor = UIColor.black.withAlphaComponent(0.5)
     // Do any additional setup after loading the view.
     //self.textField.delegate = self

@@ -10,10 +10,6 @@ import UIKit
 import Parse
 
 class ProfileCell: UITableViewCell {
-    
-  @IBAction func onProfileImageTapped(_ sender: UIButton) {
-    
-  }
   @IBOutlet weak var profileImageView: UIImageView!
   @IBOutlet weak var usernameLabel: UILabel!
   
@@ -23,8 +19,9 @@ class ProfileCell: UITableViewCell {
         // Initialization code
     let user = PFUser.current()
     usernameLabel.text = user?.username
+        self.selectionStyle = .none
     
-    if let userPicture = user!.value(forKey: "profileImage")! as? PFFile {
+    if let userPicture = user!.value(forKey: "profileImage") as? PFFile {
       userPicture.getDataInBackground({ (imageData: Data?, error: Error?) -> Void in
         let image = UIImage(data: imageData!)
         if image != nil {
@@ -32,6 +29,8 @@ class ProfileCell: UITableViewCell {
         }
       })
     }
+    self.profileImageView.layer.cornerRadius = 30;
+    self.profileImageView.layer.masksToBounds = true;
   }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

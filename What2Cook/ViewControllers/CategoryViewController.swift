@@ -11,13 +11,12 @@ import UIKit
 class CategoryViewController: UIViewController {
   
   // RRGGBB hex colors in the same order as the image
-  let colorArray = [ 0x000000, 0xfe0000, 0xff7900, 0xffb900, 0xffde00, 0xfcff00, 0xd2ff00, 0x05c000, 0x00c0a7, 0x0600ff, 0x6700bf, 0x9500c0, 0xbf0199, 0xffffff ]
+  let colorArray = [ 0xfe0000, 0xff7900, 0xffb900, 0xffde00, 0xfcff00, 0xd2ff00, 0x05c000, 0x00c0a7 ,0x00c3ff, 0x0083ff, 0x0600ff, 0x6700bf, 0x9500c0, 0xbf0199 ]
   
   @IBOutlet weak var selectedColorView: UIView!
   @IBOutlet weak var slider: UISlider!
   @IBAction func sliderChanged(_ sender: Any) {
     selectedColorView.backgroundColor = uiColorFromHex(rgbValue: colorArray[Int(slider.value)])
-    print(selectedColorView.backgroundColor)
   }
   
   func uiColorFromHex(rgbValue: Int) -> UIColor {
@@ -46,6 +45,7 @@ class CategoryViewController: UIViewController {
     
     // Do any additional setup after loading the view.
     selectedColorView.backgroundColor = uiColorFromHex(rgbValue: colorArray[Int(slider.value)])
+    self.navigationController?.interactivePopGestureRecognizer?.isEnabled = false
   }
   
   override func didReceiveMemoryWarning() {

@@ -9,9 +9,10 @@
 import UIKit
 import Speech
 
-class IngredientSearchViewController: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, UIPickerViewDataSource, SFSpeechRecognizerDelegate {
+class IngredientSearchViewController: UIViewController, UITextFieldDelegate, SFSpeechRecognizerDelegate {
   
   var fridgeViewController: FridgeViewController?
+  var category: String!
   private var ignoredChars = 0  // For continuous speech recognition
   private let speechRecognizer = SFSpeechRecognizer(locale: Locale.init(identifier: "en-US"))
   private var recognitionRequest: SFSpeechAudioBufferRecognitionRequest?
@@ -23,48 +24,46 @@ class IngredientSearchViewController: UIViewController, UITextFieldDelegate, UIP
   @IBOutlet weak var textLabel: UILabel!
   @IBOutlet weak var categoryDropDown: UIPickerView!
   
-  @IBOutlet weak var textView: UITextView!
   @IBOutlet weak var microphoneButton: UIButton!
   
-  @IBAction func microphoneTapped(_ sender: AnyObject) {
+  @IBAction func microphoneTapped(_ sender: UIButton) {
+    sender.isSelected = !sender.isSelected
+    
     if audioEngine.isRunning {
       audioEngine.stop()
       recognitionRequest?.endAudio()
       microphoneButton.isEnabled = false
-      microphoneButton.setTitle("Start Recording", for: .normal)
     } else {
       startRecording()
-      microphoneButton.setTitle("Stop Recording", for: .normal)
     }
   }
   
+  @IBAction func onBack(_ sender: UIButton) {
+    self.view.removeFromSuperview()
+  }
+  
+  
   @IBAction func onAdd(_ sender: UIButton) {
-    add(ingredient: textField.text!.capitalized)
+    let ingredientToAdd = textField.text!.capitalized
+    // Check that the ingredient is not already in the fridge
+    if !((fridgeViewController?.ingredientAlreadyAdded(ingredient: ingredientToAdd))!) {
+      SpoonacularAPIManager().autocompleteIngredientSearch(ingredientToAdd) { (ingredients, error) in
+        if ingredients!.count > 0 {
+          self.fridgeViewController?.addIngredient(ingredient: ingredientToAdd, category: self.category)
+            self.view.removeFromSuperview()
+        }
+        else {
+          self.displayError(title: "Cannot Add Ingredient", message: "Ingredient not found.")
+        }
+      }
+    }
+    else {
+      displayError(title: "Cannot Add Ingredient", message: "You already have that ingredient.")
+    }
   }
   
   func numberOfComponents(in pickerView: UIPickerView) -> Int {
     return 1
-  }
-  
-  func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-    let rowCount = fridgeViewController?.sections.count
-    return rowCount!
-  }
-  
-  func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-    let rowTitle = fridgeViewController?.sections[row].category
-    return rowTitle
-  }
-  
-  func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-    let chosenCategory = self.fridgeViewController?.sections[row].category
-    if chosenCategory == "Unlisted" {
-      self.categoryTextField.text = ""
-    }
-    else {
-      self.categoryTextField.text = chosenCategory
-    }
-    self.categoryDropDown.isHidden = true
   }
   
   func textFieldDidBeginEditing(_ textField: UITextField) {
@@ -81,6 +80,9 @@ class IngredientSearchViewController: UIViewController, UITextFieldDelegate, UIP
     super.viewDidLoad()
     
     // Do any additional setup after loading the view.
+    
+    self.view.backgroundColor = UIColor.black.withAlphaComponent(0.5)
+    
     self.textField.delegate = self
     self.hideKeyboardWhenTappedAround()
     
@@ -156,8 +158,7 @@ class IngredientSearchViewController: UIViewController, UITextFieldDelegate, UIP
         voiceCommand = voiceCommand.replacingOccurrences(of: "To ", with: " to ")
         voiceCommand = voiceCommand.replacingOccurrences(of: "Two ", with: " to ")
         voiceCommand = voiceCommand.replacingOccurrences(of: " two ", with: " to ")
-        
-        self.textView.text = voiceCommand
+
         print(voiceCommand)
         
         if (voiceCommand.range(of: " add ", options:NSString.CompareOptions.backwards) != nil) {
@@ -174,19 +175,6 @@ class IngredientSearchViewController: UIViewController, UITextFieldDelegate, UIP
           self.textField.text = String(ingredient)
           print("ingredient: " + ingredient)
           self.ignoredChars = result!.bestTranscription.formattedString.count
-          // self.add(ingredient: String(ingredient))
-        }
-        else if voiceCommand.range(of: " to ") != nil {
-          // Parse Category
-          let toEndRange = voiceCommand.rangeEndIndex(toFind: " to ")
-          let category = voiceCommand.substring(from: toEndRange)!
-          
-          let categoryIndex = self.fridgeViewController?.checkCategoryExists(category: category)
-          if categoryIndex != -1 {
-            let categoryName = self.fridgeViewController?.sections[categoryIndex!].category
-            self.categoryTextField.text = categoryName
-            }
-            self.ignoredChars = result!.bestTranscription.formattedString.count
         }
         
         print(voiceCommand)
@@ -217,9 +205,6 @@ class IngredientSearchViewController: UIViewController, UITextFieldDelegate, UIP
     } catch {
       print("audioEngine couldn't start because of an error.")
     }
-    
-    textView.text = "Say something, I'm listening!"
-    
   }
   
   func speechRecognizer(_ speechRecognizer: SFSpeechRecognizer, availabilityDidChange available: Bool) {
