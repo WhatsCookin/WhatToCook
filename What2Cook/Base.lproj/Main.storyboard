@@ -167,7 +167,7 @@
         <!--What2Cook-->
         <scene sceneID="SDO-qK-N1R">
             <objects>
-                <viewController id="kxA-1q-EIY" customClass="SingleViewController" customModule="What2Cook" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController restorationIdentifier="SingleView" storyboardIdentifier="SingleView" id="kxA-1q-EIY" customClass="SingleViewController" customModule="What2Cook" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="HEL-N1-TP6">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="1500"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1053,7 +1053,6 @@
                                             <outlet property="missedIngredientLabel" destination="lDA-ll-zqc" id="oOS-de-tR8"/>
                                             <outlet property="photoImageView" destination="Eyu-jh-ZXS" id="Rfv-4h-cgK"/>
                                             <outlet property="titleLabel" destination="UkE-I3-htn" id="kcs-S7-zfE"/>
-                                            <segue destination="kxA-1q-EIY" kind="show" identifier="detailsSegue" id="V5L-dG-dj5"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -1610,7 +1609,7 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="NM3-9G-I46"/>
-        <segue reference="V5L-dG-dj5"/>
+        <segue reference="ifk-Wy-dt1"/>
         <segue reference="7A6-xl-a10"/>
     </inferredMetricsTieBreakers>
 </document>

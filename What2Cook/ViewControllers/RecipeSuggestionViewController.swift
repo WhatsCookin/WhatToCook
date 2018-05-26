@@ -56,45 +56,34 @@ class RecipeSuggestionViewController: UIViewController, UITableViewDelegate, UIT
     return 100
   }
   
-  // Pass recipeitem data to single vc
-  override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-    let singleViewController = segue.destination as! SingleViewController
-    singleViewController.recipe = self.recipeItem
-  }
+  func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    let storyboard = UIStoryboard(name: "Main", bundle: nil)
+    let singleViewController = storyboard.instantiateViewController(withIdentifier: "SingleView") as! SingleViewController
     
-  // Load data and check to make sure api call finishes before allowing segue
-  override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
-    if identifier == "detailsSegue" {
-        let cell = sender as! UITableViewCell
-        // Get the index path from the cell that was tapped
-        if let indexPath = tableView.indexPath(for: cell) {
-            let recipe = recipes[indexPath.row]
-            let id = recipe.id
-            
-            SpoonacularAPIManager().getRecipeData(id!) { (data, error) in
-                if let data = data {
-                  print(data)
-                    self.recipeItem = data
-                    
-                    self.finishedLoading = true
-                    print("Loaded the data from api")
-                }
-                else if error != nil {
-                    print("Error")
-                }
-            }
-            
-            if !finishedLoading! {
-                print("Did not finish call yet")
-                return false
-            }
-            return true
-            //print("Finished call")
-        }//end of cell
+    let recipe = recipes[indexPath.row]
+    let id = recipe.id
+    
+    fetchRecipes(id: id!, completion: { (recipeItem) in
+      print(recipeItem.name)
+      print("completed")
+      singleViewController.recipe = self.recipeItem
+      self.navigationController?.pushViewController(singleViewController, animated: true)
+    })
+  }
+  
+  func fetchRecipes(id: Int, completion: @escaping (_ value: RecipeItem)->()) {
+    SpoonacularAPIManager().getRecipeData(id) { (data, error) in
+      if let data = data {
+        print(data)
+        self.recipeItem = data
         
-    }//end of detailssegue block
-    return false
+        self.finishedLoading = true
+        print("Loaded the data from api")
+        completion(data)
+      }
+      else if error != nil {
+        print("Error")
+      }
+    }
   }
-    
-    
 }
