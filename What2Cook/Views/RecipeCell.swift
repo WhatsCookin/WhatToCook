@@ -29,7 +29,7 @@ class RecipeCell: UICollectionViewCell {
             servingsLabel.text = String(recipe.servings)
         }
     }
-    
+  
     override func layoutSubviews() {
         //reload images
       super.layoutSubviews()
