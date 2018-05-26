@@ -19,10 +19,6 @@ class IngredientSearchViewController: UIViewController, UITextFieldDelegate, SFS
   private var recognitionTask: SFSpeechRecognitionTask?
   private let audioEngine = AVAudioEngine()
   
-  @IBAction func debugButton(_ sender: UIButton) {
-    print(audioEngine.isRunning)
-  }
-  
   @IBOutlet weak var categoryTextField: UITextField!
   @IBOutlet weak var textField: UITextField!
   @IBOutlet weak var textLabel: UILabel!

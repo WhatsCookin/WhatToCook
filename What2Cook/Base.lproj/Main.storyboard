@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="q0u-bw-ooo">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="q0u-bw-ooo">
     <device id="retina5_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -577,7 +577,7 @@
                                                     <state key="normal" image="microphone-off"/>
                                                     <state key="selected" image="microphone-on"/>
                                                     <connections>
-                                                        <action selector="microphoneTapped:" destination="cxP-KG-Vxg" eventType="touchUpInside" id="tUw-JW-hKj"/>
+                                                        <action selector="microphoneTapped:" destination="cxP-KG-Vxg" eventType="touchUpInside" id="phu-se-keV"/>
                                                     </connections>
                                                 </button>
                                             </subviews>
@@ -604,9 +604,6 @@
                                 <fontDescription key="fontDescription" name="FontAwesome" family="FontAwesome" pointSize="42"/>
                                 <state key="normal" title=" "/>
                                 <state key="selected" image="microphone-on"/>
-                                <connections>
-                                    <action selector="microphoneTapped:" destination="cxP-KG-Vxg" eventType="touchUpInside" id="xMZ-LV-X0O"/>
-                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -614,8 +611,8 @@
                         <viewLayoutGuide key="safeArea" id="3o1-DX-HAG"/>
                     </view>
                     <connections>
-                        <outlet property="microphoneButton" destination="hPq-oD-pwy" id="mfY-oj-Z08"/>
-                        <outlet property="textField" destination="Egl-3Y-xW4" id="Hnr-ja-pgE"/>
+                        <outlet property="microphoneButton" destination="hPq-oD-pwy" id="1tm-uM-5gd"/>
+                        <outlet property="textField" destination="Egl-3Y-xW4" id="2Sj-Pe-Y81"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zSJ-iU-Mmp" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -792,15 +789,6 @@
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </view>
-                                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nku-DG-UzG">
-                                            <rect key="frame" x="130" y="111" width="80" height="30"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <color key="backgroundColor" red="0.90643564370000929" green="0.97734012890494715" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                            <state key="normal" title="Add"/>
-                                            <connections>
-                                                <action selector="onAdd:" destination="ZeA-qU-FZj" eventType="touchUpInside" id="xbZ-JE-0fn"/>
-                                            </connections>
-                                        </button>
                                     </subviews>
                                 </view>
                                 <blurEffect style="light"/>
@@ -840,6 +828,7 @@
                                 </state>
                                 <connections>
                                     <action selector="onAdd:" destination="cxP-KG-Vxg" eventType="touchUpInside" id="9KK-Mu-yT4"/>
+                                    <action selector="onAdd:" destination="ZeA-qU-FZj" eventType="touchUpInside" id="j2s-dR-Bvw"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -881,7 +870,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="LQE-Fn-l26">
-                                                    <rect key="frame" x="20" y="0.0" width="374" height="44.666666666666664"/>
+                                                    <rect key="frame" x="15" y="0.0" width="384" height="44.666666666666664"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
