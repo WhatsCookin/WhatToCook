@@ -169,6 +169,7 @@
                                             <outlet property="recipeImage" destination="4ff-u8-CuG" id="iJ7-Qz-Ec6"/>
                                             <outlet property="servingsLabel" destination="OT2-R8-ZUX" id="g1J-Za-TAm"/>
                                             <outlet property="timeLabel" destination="kJs-WR-AlI" id="hWV-hd-9e5"/>
+                                            <segue destination="kxA-1q-EIY" kind="show" id="m4m-HL-ijG"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
@@ -206,7 +207,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="D5b-TB-uzN">
-                                <rect key="frame" x="0.0" y="64" width="375" height="1436"/>
+                                <rect key="frame" x="0.0" y="64" width="375" height="1387"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0n7-lg-0LR" customClass="RecipeSingleView" customModule="What2Cook" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="1200"/>
@@ -1776,6 +1777,7 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="NM3-9G-I46"/>
+        <segue reference="m4m-HL-ijG"/>
         <segue reference="WHA-Ej-15z"/>
     </inferredMetricsTieBreakers>
 </document>
