@@ -11,8 +11,8 @@ import UIKit
 class WaitingViewController: UIViewController {
 
     @IBOutlet weak var jokeLabel: UILabel!
-    
-    let gradient = CAGradientLayer()
+  
+  let gradient = CAGradientLayer()
     var gradientSet = [[CGColor]]()
     var currentGradient: Int = 0
     
@@ -23,11 +23,14 @@ class WaitingViewController: UIViewController {
     var seconds = 60 //This variable will hold a starting value of seconds. It could be any amount above 0.
     var timer = Timer()
     var isTimerRunning = false //This will be used to make sure only one timer is created at a time.
-    
+  
+  override func viewWillAppear(_ animated: Bool) {
+    getJoke()
+  }
+  
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        getJoke()
     }
     
   /*  //Create Timer

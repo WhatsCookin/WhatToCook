@@ -21,6 +21,7 @@ class FridgeViewController: UIViewController, UITableViewDelegate, UITableViewDa
   private var recognitionTask: SFSpeechRecognitionTask?
   private let audioEngine = AVAudioEngine()
   
+  @IBOutlet weak var allSelectIcon: UIButton!
   @IBOutlet weak var microphoneButton: UIButton!
   @IBOutlet weak var tableView: UITableView!
   
@@ -259,6 +260,7 @@ class FridgeViewController: UIViewController, UITableViewDelegate, UITableViewDa
   
     override func viewDidLoad() {
     super.viewDidLoad()
+      allSelectIcon.isEnabled = false
       tableView.backgroundColor = .clear
       tableView.tableFooterView = UIView()
     loadSections()

@@ -19,6 +19,7 @@ class IngredientSearchViewController: UIViewController, UITextFieldDelegate, SFS
   private var recognitionTask: SFSpeechRecognitionTask?
   private let audioEngine = AVAudioEngine()
   
+  @IBOutlet weak var instructionsLabel: UILabel!
   @IBOutlet weak var categoryTextField: UITextField!
   @IBOutlet weak var textField: UITextField!
   @IBOutlet weak var textLabel: UILabel!
@@ -50,7 +51,7 @@ class IngredientSearchViewController: UIViewController, UITextFieldDelegate, SFS
       SpoonacularAPIManager().autocompleteIngredientSearch(ingredientToAdd) { (ingredients, error) in
         if ingredients!.count > 0 {
           self.fridgeViewController?.addIngredient(ingredient: ingredientToAdd, category: self.category)
-            self.view.removeFromSuperview()
+          self.textLabel.text = "Added " + self.textField.text! + "!"
         }
         else {
           self.displayError(title: "Cannot Add Ingredient", message: "Ingredient not found.")
@@ -80,6 +81,7 @@ class IngredientSearchViewController: UIViewController, UITextFieldDelegate, SFS
     super.viewDidLoad()
     
     // Do any additional setup after loading the view.
+    instructionsLabel.text = "Enter Ingredient to Add to " + category + ":"
     
     self.view.backgroundColor = UIColor.black.withAlphaComponent(0.5)
     
