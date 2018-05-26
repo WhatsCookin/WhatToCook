@@ -247,7 +247,11 @@ class FridgeViewController: UIViewController, UITableViewDelegate, UITableViewDa
       header.selectSection(section: section)
     }
   }
-    
+  
+  override func viewWillDisappear(_ animated: Bool) {
+    save()
+  }
+  
     override func viewDidLoad() {
     super.viewDidLoad()
       tableView.backgroundColor = .clear
@@ -457,7 +461,6 @@ class FridgeViewController: UIViewController, UITableViewDelegate, UITableViewDa
       tableView.reloadRows(at: [IndexPath(row: i, section: section)], with: .automatic)
     }
     tableView.endUpdates()
-    save()
   }
 
  /* func removeSection(header: ExpandableHeaderView, section: Int) {
