@@ -605,6 +605,13 @@
                                 <state key="normal" title=" "/>
                                 <state key="selected" image="microphone-on"/>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qmy-RC-zHr">
+                                <rect key="frame" x="31" y="420" width="339" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <gestureRecognizers/>
@@ -613,6 +620,7 @@
                     <connections>
                         <outlet property="microphoneButton" destination="hPq-oD-pwy" id="1tm-uM-5gd"/>
                         <outlet property="textField" destination="Egl-3Y-xW4" id="2Sj-Pe-Y81"/>
+                        <outlet property="textLabel" destination="qmy-RC-zHr" id="4Xn-4V-iU5"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zSJ-iU-Mmp" userLabel="First Responder" sceneMemberID="firstResponder"/>

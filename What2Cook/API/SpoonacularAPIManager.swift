@@ -43,7 +43,7 @@ class SpoonacularAPIManager {
     }
   }
   
-  /*func autocompleteIngredientSearch(_ searchString: String, completion: @escaping([Ingredient]?, Error?) -> ()) {
+  func autocompleteIngredientSearch(_ searchString: String, completion: @escaping([Ingredient]?, Error?) -> ()) {
     //let key = "69p5QHDqZfmshevTW4RVD0dwIh7Qp1L5vUZjsnVjlWJFfVpmAb"
     let numResults = 1
     
@@ -65,9 +65,9 @@ class SpoonacularAPIManager {
         completion(nil, nil)
       }
     }
-  }*/
+  }
   
-  func ingredientExists(ingredient: String, completion: @escaping(Bool) -> ()) {
+  /*func ingredientExists(ingredient: String, completion: @escaping(Bool) -> ()) {
     let urlString = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/food/ingredients/substitutes?ingredientName=" + ingredient
     
     //You headers (for your api key)
@@ -87,7 +87,7 @@ class SpoonacularAPIManager {
         }
       }
     }
-  }
+  }*/
   
     // Retrieves the most popular recipes
     func getPopularRecipes(_ tagString: String, completion: @escaping([RecipeItem]?, Error?) -> ()) {

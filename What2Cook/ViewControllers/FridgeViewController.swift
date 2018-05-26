@@ -361,9 +361,8 @@ class FridgeViewController: UIViewController, UITableViewDelegate, UITableViewDa
           let ingredient = voiceCommand.substring(to: toRange)!.capitalized
           print("ingredient: " + ingredient)
           
-          if !((self.ingredientAlreadyAdded(ingredient: ingredient))) {
-            SpoonacularAPIManager().ingredientExists(ingredient: ingredient) { (exists) in
-              if exists {
+          if !((self.ingredientAlreadyAdded(ingredient: ingredient))) { SpoonacularAPIManager().autocompleteIngredientSearch(ingredient) { (ingredients, error) in
+              if ingredients!.count > 0 {
                 // Parse Category
                 let toEndRange = voiceCommand.rangeEndIndex(toFind: " to ")
                 let category = voiceCommand.substring(from: toEndRange)!

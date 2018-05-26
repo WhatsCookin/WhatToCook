@@ -47,8 +47,8 @@ class IngredientSearchViewController: UIViewController, UITextFieldDelegate, SFS
     let ingredientToAdd = textField.text!.capitalized
     // Check that the ingredient is not already in the fridge
     if !((fridgeViewController?.ingredientAlreadyAdded(ingredient: ingredientToAdd))!) {
-      SpoonacularAPIManager().ingredientExists(ingredient: ingredientToAdd) { (exists) in
-        if exists {
+      SpoonacularAPIManager().autocompleteIngredientSearch(ingredientToAdd) { (ingredients, error) in
+        if ingredients!.count > 0 {
           self.fridgeViewController?.addIngredient(ingredient: ingredientToAdd, category: self.category)
             self.view.removeFromSuperview()
         }
@@ -219,8 +219,8 @@ class IngredientSearchViewController: UIViewController, UITextFieldDelegate, SFS
     let ingredientToAdd = ingredient
     // Check that the ingredient is not already in the fridge
     if !((fridgeViewController?.ingredientAlreadyAdded(ingredient: ingredientToAdd))!) {
-      SpoonacularAPIManager().ingredientExists(ingredient: ingredientToAdd) { (exists) in
-        if exists {
+      SpoonacularAPIManager().autocompleteIngredientSearch(ingredientToAdd) { (ingredients, error) in
+        if ingredients!.count > 0 {
           if self.categoryTextField.text != "" {
             let categoryToAddIn = self.categoryTextField.text
             self.fridgeViewController?.addIngredient(ingredient: ingredientToAdd, category: categoryToAddIn!)
