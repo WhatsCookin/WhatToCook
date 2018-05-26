@@ -40,16 +40,21 @@ class FridgeViewController: UIViewController, UITableViewDelegate, UITableViewDa
     if checkForSelection() {
       SpoonacularAPIManager().searchRecipes(ingredients) { (recipes, error) in
         if let recipes = recipes {
-          self.recipesList = recipes
-          
-          // Pass recipe data to new view
-          let storyboard = UIStoryboard(name: "Main", bundle: nil)
-          let recipeSuggestionViewController = storyboard.instantiateViewController(withIdentifier: "Suggestion") as! RecipeSuggestionViewController
-          recipeSuggestionViewController.recipes = self.recipesList
-          
-          self.navigationController?.pushViewController(recipeSuggestionViewController, animated: true)
-        } else if let error = error {
-          print("Error getting recipes: " + error.localizedDescription)
+          if(recipes.count > 0) {
+            self.recipesList = recipes
+            
+            // Pass recipe data to new view
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let recipeSuggestionViewController = storyboard.instantiateViewController(withIdentifier: "Suggestion") as! RecipeSuggestionViewController
+            recipeSuggestionViewController.recipes = self.recipesList
+            
+            self.navigationController?.pushViewController(recipeSuggestionViewController, animated: true)
+          } else if let error = error {
+            print("Error getting recipes: " + error.localizedDescription)
+          }
+        }
+        else {
+          self.displayError(title: "No Recipes Found", message: "Uh oh! Maybe it's time to go shopping.")
         }
       }
     }
@@ -87,19 +92,19 @@ class FridgeViewController: UIViewController, UITableViewDelegate, UITableViewDa
   }
   
   @IBAction func onDeleteCategory(_ sender: UIButton) {
-    if(sections.count == 1) {
-      displayError(title: "Cannot Delete Categories", message: "You have no custom categories.")
+    if(sections.count == 0) {
+      displayError(title: "Cannot Delete Categories", message: "You have no categories.")
     }
     else {
-    let moveToCategoryVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "DeleteCategory") as! DeleteCategoryViewController
-    moveToCategoryVC.fridgeViewController = self
-    self.addChildViewController(moveToCategoryVC)
-    moveToCategoryVC.view.frame = self.view.frame
-    self.view.addSubview(moveToCategoryVC.view)
-    moveToCategoryVC.didMove(toParentViewController: self)
+      let moveToCategoryVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "DeleteCategory") as! DeleteCategoryViewController
+      moveToCategoryVC.fridgeViewController = self
+      self.addChildViewController(moveToCategoryVC)
+      moveToCategoryVC.view.frame = self.view.frame
+      self.view.addSubview(moveToCategoryVC.view)
+      moveToCategoryVC.didMove(toParentViewController: self)
     }
   }
-
+  
   var sections = [
     Section(category: "Unlisted",
             ingredients: [],
@@ -210,19 +215,16 @@ class FridgeViewController: UIViewController, UITableViewDelegate, UITableViewDa
     return
   }
   
-  func removeSection(name: String) {
-    if(name != "Unlisted" && name != "") {
-      for i in 0..<sections.count {
-        if sections[i].category == name {
-          sections.remove(at: i)
-          save()
-          return
-        }
+  func removeSection(name: String) -> Bool {
+    for i in 0..<sections.count {
+      if sections[i].category == name {
+        sections.remove(at: i)
+        save()
+        return true
       }
     }
-    else {
-      displayError(title: "No Category Chosen", message: "You must choose a category.")
-    }
+    displayError(title: "No Category Chosen", message: "You must choose a category.")
+    return false
   }
   
   func moveIngredients(ingredients: Array<String>, categoryName: String) {
@@ -250,7 +252,11 @@ class FridgeViewController: UIViewController, UITableViewDelegate, UITableViewDa
       header.selectSection(section: section)
     }
   }
-    
+  
+  override func viewWillDisappear(_ animated: Bool) {
+    save()
+  }
+  
     override func viewDidLoad() {
     super.viewDidLoad()
         clearData()
@@ -348,7 +354,7 @@ class FridgeViewController: UIViewController, UITableViewDelegate, UITableViewDa
         voiceCommand = voiceCommand.replacingOccurrences(of: " to the ", with: " to ")
         voiceCommand = voiceCommand.replacingOccurrences(of: " two ", with: " to ")
         
-        if (voiceCommand.range(of: " add ", options:NSString.CompareOptions.backwards) != nil) && voiceCommand.range(of: " to ") != nil {
+        if (voiceCommand.range(of: " add ", options:NSString.CompareOptions.backwards) != nil) && voiceCommand.range(of: " to ", options:NSString.CompareOptions.backwards) != nil {
           // Parse Ingredient
           let addRange = voiceCommand.rangeEndIndex(toFind: " add ")
           voiceCommand = voiceCommand.substring(from: addRange)!
@@ -357,8 +363,8 @@ class FridgeViewController: UIViewController, UITableViewDelegate, UITableViewDa
           print("ingredient: " + ingredient)
           
           if !((self.ingredientAlreadyAdded(ingredient: ingredient))) {
-            SpoonacularAPIManager().autocompleteIngredientSearch(ingredient) { (ingredients, error) in
-              if ingredients!.count > 0 {
+            SpoonacularAPIManager().ingredientExists(ingredient: ingredient) { (exists) in
+              if exists {
                 // Parse Category
                 let toEndRange = voiceCommand.rangeEndIndex(toFind: " to ")
                 let category = voiceCommand.substring(from: toEndRange)!
@@ -368,15 +374,19 @@ class FridgeViewController: UIViewController, UITableViewDelegate, UITableViewDa
                 if categoryIndex != -1 {
                   // Ignore capitalization
                   if !((self.ingredientAlreadyAdded(ingredient: ingredient))) {
-                  self.addIngredient(ingredient: ingredient, category: self.sections[categoryIndex].category)
+                    self.addIngredient(ingredient: ingredient, category: self.sections[categoryIndex].category)
                   }
+                  self.ignoredChars = result!.bestTranscription.formattedString.count
                 }
               }
             }
           }
-          self.ignoredChars = result!.bestTranscription.formattedString.count
         }
         isFinal = (result?.isFinal)!
+        
+        // Attempt to reset
+        self.recognitionRequest?.endAudio()
+        self.recognitionRequest = SFSpeechAudioBufferRecognitionRequest()
       }
       
       if error != nil || isFinal {
@@ -462,7 +472,7 @@ class FridgeViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     tableView.endUpdates()
   }
-  
+
  /* func removeSection(header: ExpandableHeaderView, section: Int) {
     removeSection(name: sections[section].category)
     save()

@@ -22,6 +22,8 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
   override func viewDidLoad() {
     super.viewDidLoad()
     
+    hideKeyboardWhenTappedAround()
+    
     searchString = "" //initial search parameter
     searchBar.delegate = self
     

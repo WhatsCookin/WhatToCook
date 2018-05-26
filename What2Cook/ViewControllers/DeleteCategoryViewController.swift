@@ -20,8 +20,9 @@ class DeleteCategoryViewController: UIViewController, UITextFieldDelegate, UIPic
     
     @IBAction func onDelete(_ sender: UIButton) {
       let categoryName = categoryTextField.text
-      fridgeViewController?.removeSection(name: categoryName!)
-      self.view.removeFromSuperview()
+      if (fridgeViewController?.removeSection(name: categoryName!))! {
+        self.view.removeFromSuperview()
+      }
     }
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
@@ -34,7 +35,7 @@ class DeleteCategoryViewController: UIViewController, UITextFieldDelegate, UIPic
     }
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-      var rowTitle = fridgeViewController?.sections[row].category
+      let rowTitle = fridgeViewController?.sections[row].category
       return rowTitle
     }
     
@@ -52,6 +53,8 @@ class DeleteCategoryViewController: UIViewController, UITextFieldDelegate, UIPic
     override func viewDidLoad() {
       super.viewDidLoad()
       
+      hideKeyboardWhenTappedAround()
+      categoryTextField.text = fridgeViewController?.sections[0].category
       self.view.backgroundColor = UIColor.black.withAlphaComponent(0.5)
       // Do any additional setup after loading the view.
       //self.textField.delegate = self

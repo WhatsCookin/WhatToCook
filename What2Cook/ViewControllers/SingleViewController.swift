@@ -170,9 +170,6 @@ class SingleViewController: UIViewController, UITableViewDelegate, UITableViewDa
     if let recipe = recipe {
       bookmarksButton.isSelected = recipe.bookmarked
       
-      ingredients = recipe.ingredients
-      directions = recipe.directions
-      
       recipeName.text = recipe.name
       recipeTime.text = String(recipe.time) + " min"
       recipeLikes.text = String(recipe.likes) + " likes"
@@ -408,12 +405,28 @@ class SingleViewController: UIViewController, UITableViewDelegate, UITableViewDa
       let cell = tableViewIngredients.dequeueReusableCell(withIdentifier: "IngredientListCell", for: indexPath) as! IngredientListCell
       
       cell.ingredient = ingredients[indexPath.row]
+        
+      if indexPath.row % 2 == 0 {
+        cell.backgroundColor = UIColor.white
+      }
+      else {
+        cell.backgroundColor = UIColor(red:0.95, green:0.95, blue:0.95, alpha:1.0)
+      }
+        
       return cell
     }
     else {
       let cell = tableViewDirections.dequeueReusableCell(withIdentifier: "DirectionListCell", for: indexPath) as! DirectionListCell
       cell.direction = directions[indexPath.row]
       toRead.append(directions[indexPath.row]["step"] as! String)
+        
+        if indexPath.row % 2 == 0 {
+            cell.backgroundColor = UIColor.white
+        }
+        else {
+            cell.backgroundColor = UIColor(red:0.95, green:0.95, blue:0.95, alpha:1.0)
+        }
+        
       return cell
     }
   }
