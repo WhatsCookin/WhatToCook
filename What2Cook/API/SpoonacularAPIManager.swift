@@ -105,6 +105,7 @@ class SpoonacularAPIManager {
             
             for i in 0...tags.count-1 {
                 print(tags[i])
+                print (i)
                 urlstring = urlstring + tags[i]
                 if (i>0 && i<tags.count-1) {
                     urlstring = urlstring + "%2C"
