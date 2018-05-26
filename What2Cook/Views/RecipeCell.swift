@@ -32,6 +32,8 @@ class RecipeCell: UICollectionViewCell {
     
     override func layoutSubviews() {
         //reload images
+      super.layoutSubviews()
+            self.gradient.frame = self.bounds;
         recipeImage.gradient(colors: [UIColor.clear.cgColor, UIColor.black.cgColor], opacity: 1, location: [0.50,1])
     }
 }
@@ -39,7 +41,7 @@ extension UIImageView
 {
     func gradient(colors: [CGColor], opacity: Float, location: [NSNumber]?) {
         let gradientLayer = CAGradientLayer()
-        gradientLayer.frame = bounds
+        gradientLayer.frame = self.bounds
         gradientLayer.colors = colors
         gradientLayer.opacity = opacity
         gradientLayer.locations = location
