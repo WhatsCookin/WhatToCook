@@ -137,7 +137,7 @@ class SingleViewController: UIViewController, UITableViewDelegate, UITableViewDa
   
   func playCurrentStep() {
     synthesizer.stopSpeaking(at: .immediate)
-    playMessage(String(currentStep + 1) + ". " + toRead[currentStep])
+    playMessage(message: String(currentStep + 1) + ". " + toRead[currentStep])
   }
   
   @IBAction func microphoneTapped(_ sender: UIButton) {
