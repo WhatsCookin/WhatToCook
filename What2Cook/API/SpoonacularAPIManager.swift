@@ -93,7 +93,7 @@ class SpoonacularAPIManager {
     func getPopularRecipes(_ tagString: String, completion: @escaping([RecipeItem]?, Error?) -> ()) {
 
    
-       /* let numRecipes = 10 // number of popular recipes to be returned
+        let numRecipes = 1 // number of popular recipes to be returned
     
         let tags = tagString.components(separatedBy:",") as [String]
         
@@ -107,7 +107,7 @@ class SpoonacularAPIManager {
                 print(tags[i])
                 print (i)
                 urlstring = urlstring + tags[i]
-                if (i>0 && i<tags.count-1) {
+                if (tags.count>1 && i<tags.count-1) {
                     urlstring = urlstring + "%2C"
                 }
             }
@@ -131,7 +131,7 @@ class SpoonacularAPIManager {
             else {
                 print("Something went wrong")
             }
-        }*/
+        }
   }
     
     // Retrieves the data which includes ingredients and directions of a recipe given an id
