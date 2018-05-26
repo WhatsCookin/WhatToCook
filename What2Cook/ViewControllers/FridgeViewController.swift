@@ -253,6 +253,7 @@ class FridgeViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     override func viewDidLoad() {
     super.viewDidLoad()
+        clearData()
       tableView.backgroundColor = .clear
       tableView.tableFooterView = UIView()
     loadSections()
