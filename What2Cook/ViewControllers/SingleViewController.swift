@@ -293,6 +293,7 @@ class SingleViewController: UIViewController, UITableViewDelegate, UITableViewDa
         // Fix common listening mistakes
         voiceCommand = voiceCommand.replacingOccurrences(of: "what's that", with: "what step")
         voiceCommand = voiceCommand.replacingOccurrences(of: "skit", with: "skip")
+        voiceCommand = voiceCommand.replacingOccurrences(of: "scape", with: "skip")
         voiceCommand = voiceCommand.replacingOccurrences(of: "lower", with: "slower")
         
         print(voiceCommand)
