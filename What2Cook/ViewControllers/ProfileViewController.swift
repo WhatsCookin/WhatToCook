@@ -30,7 +30,13 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
 
   @IBOutlet weak var profileImageView: UIImageView!
   @IBOutlet weak var usernameLabel: UILabel!
-  
+    
+    @IBAction func goBack(_ sender: Any) {
+        if let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "SWRevealViewController") as? UIViewController {
+            present(vc, animated: true, completion: nil)
+        }
+    }
+    
   @IBAction func onProfilePictureTapped(_ sender: UIButton) {
     let vc = UIImagePickerController()
     vc.delegate = self
