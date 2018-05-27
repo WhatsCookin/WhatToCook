@@ -308,38 +308,36 @@ class SingleViewController: UIViewController, UITableViewDelegate, UITableViewDa
           self.nextStep()
           self.ignoredChars = result!.bestTranscription.formattedString.count
         }
-        else if voiceCommand.range(of: "back") != nil || voiceCommand.range(of: "what was the last step") != nil {
+        else if voiceCommand.range(of: "go back") != nil || voiceCommand.range(of: "what was the last step") != nil {
           self.previousStep()
           self.ignoredChars = result!.bestTranscription.formattedString.count
         }
         else if voiceCommand.range(of: "repeat that") != nil || voiceCommand.range(of: "what was that") != nil || voiceCommand.range(of: "again") != nil {
-          self.currentStep = self.currentStep - 1
-          self.nextStep()
+          self.playCurrentStep()
           self.ignoredChars = result!.bestTranscription.formattedString.count
         }
         else if voiceCommand.range(of: "what step") != nil {
           self.playMessage(message: "We're on step " + String(self.currentStep + 1) + " out of " + String(self.toRead.count))
           self.ignoredChars = result!.bestTranscription.formattedString.count
         }
-        /*else if voiceCommand.range(of: "pause") != nil || voiceCommand.range(of: "stop") != nil {
+        else if voiceCommand.range(of: "pause") != nil || voiceCommand.range(of: "stop") != nil {
           self.stop()
           self.ignoredChars = result!.bestTranscription.formattedString.count
         }
         else if voiceCommand.range(of: "continue") != nil {
           self.start()
           self.ignoredChars = result!.bestTranscription.formattedString.count
-        }*/
+        }
         else if voiceCommand.range(of: "slow down") != nil {
           self.changeSpeed(rate: self.utteranceRate * 0.8)
           self.playCurrentStep()
           self.ignoredChars = result!.bestTranscription.formattedString.count
         }
-       /* else if voiceCommand.range(of: "speed up") != nil && voiceCommand.range(of: "faster") != nil {
-          print("fast")
-          self.changeSpeed(rate: self.utteranceRate * 1.5)
+        else if voiceCommand.range(of: "speed up") != nil {
+          self.changeSpeed(rate: self.utteranceRate * 1.2)
           self.playCurrentStep()
           self.ignoredChars = result!.bestTranscription.formattedString.count
-        }*/
+        }
         /*else if voiceCommand.range(of: "play all") != nil {
          for _ in 0..<self.toRead.count {
          self.nextStep()
