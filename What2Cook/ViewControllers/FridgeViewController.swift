@@ -254,6 +254,7 @@ class FridgeViewController: UIViewController, UITableViewDelegate, UITableViewDa
   }
   
   override func viewWillDisappear(_ animated: Bool) {
+    ingredients = []
     save()
   }
   

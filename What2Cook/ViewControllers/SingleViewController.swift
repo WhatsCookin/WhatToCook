@@ -137,7 +137,7 @@ class SingleViewController: UIViewController, UITableViewDelegate, UITableViewDa
   
   func playCurrentStep() {
     synthesizer.stopSpeaking(at: .immediate)
-    playMessage(message: String(currentStep + 1) + ". " + toRead[currentStep])
+    playMessage(message: toRead[currentStep])
   }
   
   @IBAction func microphoneTapped(_ sender: UIButton) {
@@ -329,17 +329,17 @@ class SingleViewController: UIViewController, UITableViewDelegate, UITableViewDa
           self.start()
           self.ignoredChars = result!.bestTranscription.formattedString.count
         }*/
-        else if voiceCommand.range(of: "slow down") != nil || voiceCommand.range(of: "slower") != nil || voiceCommand.range(of: "slow") != nil{
+        else if voiceCommand.range(of: "slow down") != nil {
           self.changeSpeed(rate: self.utteranceRate * 0.8)
           self.playCurrentStep()
           self.ignoredChars = result!.bestTranscription.formattedString.count
         }
-        else if voiceCommand.range(of: "speed up") != nil && voiceCommand.range(of: "faster") != nil {
+       /* else if voiceCommand.range(of: "speed up") != nil && voiceCommand.range(of: "faster") != nil {
           print("fast")
           self.changeSpeed(rate: self.utteranceRate * 1.5)
           self.playCurrentStep()
           self.ignoredChars = result!.bestTranscription.formattedString.count
-        }
+        }*/
         /*else if voiceCommand.range(of: "play all") != nil {
          for _ in 0..<self.toRead.count {
          self.nextStep()

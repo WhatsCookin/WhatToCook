@@ -31,6 +31,7 @@ class WaitingViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+      jokeLabel.frame = CGRect(0,0,100,100)
     }
     
   /*  //Create Timer
