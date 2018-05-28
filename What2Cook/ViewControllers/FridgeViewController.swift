@@ -120,7 +120,7 @@ class FridgeViewController: UIViewController, UITableViewDelegate, UITableViewDa
       sectionsToStore.add(section.toDictionary())
     }
     user!["sections"] = sectionsToStore
-
+    
     user!.saveInBackground(block: { (success, error) in
       if (success) {
         print("The user data has been saved")
@@ -258,12 +258,12 @@ class FridgeViewController: UIViewController, UITableViewDelegate, UITableViewDa
     save()
   }
   
-    override func viewDidLoad() {
+  override func viewDidLoad() {
     super.viewDidLoad()
-      tableView.backgroundColor = .clear
-      tableView.tableFooterView = UIView()
+    tableView.backgroundColor = .clear
+    tableView.tableFooterView = UIView()
     loadSections()
-      
+    
     hideKeyboardWhenTappedAround()
     
     selectIndexPath = IndexPath(row: -1, section: -1)
@@ -271,47 +271,47 @@ class FridgeViewController: UIViewController, UITableViewDelegate, UITableViewDa
     let nib = UINib(nibName: "ExpandableHeaderView", bundle: nil)
     tableView.register(nib, forHeaderFooterViewReuseIdentifier: "expandableHeaderView")
     
-      // Do any additional setup after loading the view.
-      self.tableView.allowsMultipleSelection = true
-      self.tableView.delegate = self
-      self.tableView.dataSource = self
+    // Do any additional setup after loading the view.
+    self.tableView.allowsMultipleSelection = true
+    self.tableView.delegate = self
+    self.tableView.dataSource = self
+    
+    // FOR TESTING
+    /*    SpoonacularAPIManager().getRecipeInformation(479101) { (ingredients, error) in
+     if let ingredients = ingredients {
+     }
+     print(ingredients)
+     }*/
+    
+    microphoneButton.isEnabled = false
+    
+    speechRecognizer?.delegate = self
+    
+    SFSpeechRecognizer.requestAuthorization { (authStatus) in
       
-      // FOR TESTING
-      /*    SpoonacularAPIManager().getRecipeInformation(479101) { (ingredients, error) in
-       if let ingredients = ingredients {
-       }
-       print(ingredients)
-       }*/
+      var isButtonEnabled = false
       
-      microphoneButton.isEnabled = false
-      
-      speechRecognizer?.delegate = self
-      
-      SFSpeechRecognizer.requestAuthorization { (authStatus) in
+      switch authStatus {
+      case .authorized:
+        isButtonEnabled = true
         
-        var isButtonEnabled = false
+      case .denied:
+        isButtonEnabled = false
+        print("User denied access to speech recognition")
         
-        switch authStatus {
-        case .authorized:
-          isButtonEnabled = true
-          
-        case .denied:
-          isButtonEnabled = false
-          print("User denied access to speech recognition")
-          
-        case .restricted:
-          isButtonEnabled = false
-          print("Speech recognition restricted on this device")
-          
-        case .notDetermined:
-          isButtonEnabled = false
-          print("Speech recognition not yet authorized")
-        }
+      case .restricted:
+        isButtonEnabled = false
+        print("Speech recognition restricted on this device")
         
-        OperationQueue.main.addOperation() {
-          self.microphoneButton.isEnabled = isButtonEnabled
-        }
+      case .notDetermined:
+        isButtonEnabled = false
+        print("Speech recognition not yet authorized")
       }
+      
+      OperationQueue.main.addOperation() {
+        self.microphoneButton.isEnabled = isButtonEnabled
+      }
+    }
   }
   
   func startRecording() {
@@ -363,21 +363,21 @@ class FridgeViewController: UIViewController, UITableViewDelegate, UITableViewDa
           print("ingredient: " + ingredient)
           
           if !((self.ingredientAlreadyAdded(ingredient: ingredient))) { SpoonacularAPIManager().autocompleteIngredientSearch(ingredient) { (ingredients, error) in
-              if ingredients!.count > 0 {
-                // Parse Category
-                let toEndRange = voiceCommand.rangeEndIndex(toFind: " to ")
-                let category = voiceCommand.substring(from: toEndRange)!
-                print("category: " + category)
-                
-                let categoryIndex = self.checkCategoryExists(category: category)
-                if categoryIndex != -1 {
-                  // Ignore capitalization
-                  if !((self.ingredientAlreadyAdded(ingredient: ingredient))) {
-                    self.addIngredient(ingredient: ingredient, category: self.sections[categoryIndex].category)
-                  }
-                  self.ignoredChars = result!.bestTranscription.formattedString.count
+            if ingredients!.count > 0 {
+              // Parse Category
+              let toEndRange = voiceCommand.rangeEndIndex(toFind: " to ")
+              let category = voiceCommand.substring(from: toEndRange)!
+              print("category: " + category)
+              
+              let categoryIndex = self.checkCategoryExists(category: category)
+              if categoryIndex != -1 {
+                // Ignore capitalization
+                if !((self.ingredientAlreadyAdded(ingredient: ingredient))) {
+                  self.addIngredient(ingredient: ingredient, category: self.sections[categoryIndex].category)
                 }
+                self.ignoredChars = result!.bestTranscription.formattedString.count
               }
+            }
             }
           }
         }
@@ -475,11 +475,6 @@ class FridgeViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     tableView.endUpdates()
   }
-
- /* func removeSection(header: ExpandableHeaderView, section: Int) {
-    removeSection(name: sections[section].category)
-    save()
-  }*/
   
   func addIngredient(header: ExpandableHeaderView, section: Int) {
     let ingredientSearchVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "IngredientSearch") as! IngredientSearchViewController

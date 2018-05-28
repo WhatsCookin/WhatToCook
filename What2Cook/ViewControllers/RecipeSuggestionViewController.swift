@@ -13,7 +13,7 @@ class RecipeSuggestionViewController: UIViewController, UITableViewDelegate, UIT
   var recipes: [Recipe]!
   var recipeItem: RecipeItem?
   var finishedLoading: Bool? //api call finished
-    
+  
   @IBOutlet weak var tableView: UITableView! {
     didSet {
       tableView.rowHeight = UITableViewAutomaticDimension

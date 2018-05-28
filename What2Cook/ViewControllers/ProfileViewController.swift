@@ -27,16 +27,30 @@ extension CGPoint{
 }
 
 class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
-
+  
   @IBOutlet weak var profileImageView: UIImageView!
   @IBOutlet weak var usernameLabel: UILabel!
-    
-    @IBAction func goBack(_ sender: Any) {
-        if let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "SWRevealViewController") as? UIViewController {
-            present(vc, animated: true, completion: nil)
-        }
+  @IBOutlet weak var apiCallsLabel: UILabel!
+  
+  @IBAction func onResetCalls(_ sender: UIButton) {
+    let user = PFUser.current()
+    user!["apiCalls"] = 0
+    user!.saveInBackground(block: { (success, error) in
+      if (success) {
+        print("The user data has been saved")
+      } else {
+        print("There was a problem with saving the user data")
+      }
+    })
+    apiCallsLabel.text = "0"
+  }
+  
+  @IBAction func goBack(_ sender: Any) {
+    if let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "SWRevealViewController") as? SWRevealViewController {
+      present(vc, animated: true, completion: nil)
     }
-    
+  }
+  
   @IBAction func onProfilePictureTapped(_ sender: UIButton) {
     let vc = UIImagePickerController()
     vc.delegate = self
@@ -51,7 +65,6 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
     let image = info[UIImagePickerControllerEditedImage] as! UIImage
     
     // Do something with the images (based on your use case)
-    //image = ResizeImage(image: image, targetSize: CGSize(200.0, 200.0))
     profileImageView.image = image
     let imageData: NSData = UIImageJPEGRepresentation(image, 1.0)! as NSData
     let imageFile: PFFile = PFFile(name:"image.jpg", data:imageData as Data)!
@@ -75,9 +88,9 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
     dismiss(animated: true, completion: nil)
   }
   override func viewDidLoad() {
-        super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+    super.viewDidLoad()
+    
+    // Do any additional setup after loading the view.
     let user = PFUser.current()
     usernameLabel.text = user!.username
     
@@ -91,44 +104,12 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
     }
     self.profileImageView.layer.cornerRadius = 26.5;
     self.profileImageView.layer.masksToBounds = true;
+    let numberOfCalls = user!["apiCalls"]!
+    apiCallsLabel.text = String(describing: numberOfCalls)
   }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
   
-  func ResizeImage(image: UIImage, targetSize: CGSize) -> UIImage {
-    let size = image.size
-    let widthRatio  = targetSize.width  / image.size.width
-    let heightRatio = targetSize.height / image.size.height
-    // Figure out what our orientation is, and use that to form the rectangle
-    var newSize: CGSize
-    if(widthRatio > heightRatio) {
-      newSize = CGSize(size.width * heightRatio, size.height * heightRatio)
-    } else {
-      newSize = CGSize(size.width * widthRatio,  size.height * widthRatio)
-    }
-    
-    // This is the rect that we've calculated out and this is what is actually used below
-    let rect = CGRect(0, 0, newSize.width, newSize.height)
-    
-    // Actually do the resizing to the rect using the ImageContext stuff
-    UIGraphicsBeginImageContextWithOptions(newSize, false, 1.0)
-    image.draw(in: rect)
-    let newImage = UIGraphicsGetImageFromCurrentImageContext()
-    UIGraphicsEndImageContext()
-    return newImage!
+  override func didReceiveMemoryWarning() {
+    super.didReceiveMemoryWarning()
+    // Dispose of any resources that can be recreated.
   }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

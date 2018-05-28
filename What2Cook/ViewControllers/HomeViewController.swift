@@ -7,22 +7,35 @@
 //
 
 import UIKit
+import Parse
 
 class HomeViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UISearchBarDelegate {
   
   @IBOutlet weak var sidebarButton: UIBarButtonItem!
   @IBOutlet weak var collectionView: UICollectionView!
   @IBOutlet weak var searchBar: UISearchBar!
-    
+  
   var recipes: [RecipeItem] = []
   var refreshControl: UIRefreshControl!
-   
+  
   var searchString: String?
-    
+  
   override func viewDidLoad() {
     super.viewDidLoad()
     
     hideKeyboardWhenTappedAround()
+    
+    let user = PFUser.current()
+    if user!["apiCalls"] == nil {
+      user!["apiCalls"] = 0
+      user!.saveInBackground(block: { (success, error) in
+        if (success) {
+          print("The user data has been saved")
+        } else {
+          print("There was a problem with saving the user data")
+        }
+      })
+    }
     
     searchString = "" //initial search parameter
     searchBar.delegate = self
@@ -45,33 +58,33 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
     
     // Set side menu button
     if self.revealViewController() != nil {
-        sidebarButton.target = self.revealViewController()
-        sidebarButton.action = #selector(SWRevealViewController.revealToggle(_:))
-        self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
+      sidebarButton.target = self.revealViewController()
+      sidebarButton.action = #selector(SWRevealViewController.revealToggle(_:))
+      self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
     }
     else {
-        print("RevealVC was nil!!!")
+      print("RevealVC was nil!!!")
     }
     // Load recipes to populate collection view
     loadRecipes()
   }
+  
+  func loadRecipes() {
+    print("Calling loadRecipes()")
     
-    func loadRecipes() {
-        print("Calling loadRecipes()")
+    // Commented out to avoid exceeding API call limit
+    SpoonacularAPIManager().getPopularRecipes(searchString!) { (recipes, error) in
+      if let recipes = recipes {
+        self.recipes = recipes
+        self.collectionView.reloadData()
+        self.refreshControl.endRefreshing()
         
-      // Commented out to avoid exceeding API call limit
-        SpoonacularAPIManager().getPopularRecipes(searchString!) { (recipes, error) in
-            if let recipes = recipes {
-                self.recipes = recipes
-                self.collectionView.reloadData()
-                self.refreshControl.endRefreshing()
-                
-            } else if let error = error {
-                print("Error getting recipes: " + error.localizedDescription)
-            }
-        }
+      } else if let error = error {
+        print("Error getting recipes: " + error.localizedDescription)
+      }
     }
-    
+  }
+  
   @objc func didPullToRefresh(_ refreshControl: UIRefreshControl) {
     loadRecipes()
   }
@@ -90,32 +103,32 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
     cell.recipe = recipes[indexPath.item] as RecipeItem
     return cell
   }
+  
+  // Update based on the text in the search Bar
+  func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+    searchString = searchText.lowercased()
+  }
+  
+  // Filter recipes by searchString
+  @IBAction func beginSearch(_ sender: Any) {
+    loadRecipes()
+    self.searchBar.showsCancelButton = false
+  }
+  
+  // Show cancel button on the Search Bar
+  func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+    self.searchBar.showsCancelButton = true
+  }
+  
+  // Clear the search Bar when canceling
+  func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+    self.searchBar.showsCancelButton = false
     
-    // Update based on the text in the search Bar
-    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        searchString = searchText.lowercased()
-    }
+    searchBar.text = ""
+    searchString = ""
     
-    // Filter recipes by searchString
-    @IBAction func beginSearch(_ sender: Any) {
-        loadRecipes()
-        self.searchBar.showsCancelButton = false
-    }
-    
-    // Show cancel button on the Search Bar
-    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
-        self.searchBar.showsCancelButton = true
-    }
-    
-    // Clear the search Bar when canceling
-    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
-        self.searchBar.showsCancelButton = false
-        
-        searchBar.text = ""
-        searchString = ""
-        
-        searchBar.resignFirstResponder()
-    }
+    searchBar.resignFirstResponder()
+  }
   
   func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
     return UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
@@ -137,11 +150,11 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
       
       //Pass on the date to the DetailViewController
       singleViewController.recipe = recipe
-        
+      
       singleViewController.recipeList = recipes
       singleViewController.recipeIndex = indexPath.row
     }
   }
-    
+  
 }
 

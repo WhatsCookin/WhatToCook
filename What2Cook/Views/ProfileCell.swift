@@ -15,11 +15,11 @@ class ProfileCell: UITableViewCell {
   
   
   override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
+    super.awakeFromNib()
+    // Initialization code
     let user = PFUser.current()
     usernameLabel.text = user?.username
-        self.selectionStyle = .none
+    self.selectionStyle = .none
     
     if let userPicture = user!.value(forKey: "profileImage") as? PFFile {
       userPicture.getDataInBackground({ (imageData: Data?, error: Error?) -> Void in
@@ -32,11 +32,11 @@ class ProfileCell: UITableViewCell {
     self.profileImageView.layer.cornerRadius = 30;
     self.profileImageView.layer.masksToBounds = true;
   }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
-    }
-
+  
+  override func setSelected(_ selected: Bool, animated: Bool) {
+    super.setSelected(selected, animated: animated)
+    
+    // Configure the view for the selected state
+  }
+  
 }

@@ -10,7 +10,7 @@ import UIKit
 import Parse
 
 class LoginViewController: UIViewController {
-
+  
   @IBOutlet weak var usernameLabel: UITextField!
   @IBOutlet weak var passwordLabel: UITextField!
   

@@ -9,24 +9,24 @@
 import UIKit
 
 class IngredientListCell: UITableViewCell {
-
-    @IBOutlet weak var ingredientLabel: UILabel!
+  
+  @IBOutlet weak var ingredientLabel: UILabel!
+  
+  var ingredient: [String:Any]!  {
+    didSet {
+      ingredientLabel.text = ingredient["originalString"] as? String
+    }
+  }
+  
+  override func awakeFromNib() {
+    super.awakeFromNib()
+    // Initialization code
+  }
+  
+  override func setSelected(_ selected: Bool, animated: Bool) {
+    super.setSelected(selected, animated: animated)
     
-    var ingredient: [String:Any]!  {
-        didSet {
-            ingredientLabel.text = ingredient["originalString"] as? String
-        }
-    }
-    
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
-    }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
-    }
-
+    // Configure the view for the selected state
+  }
+  
 }

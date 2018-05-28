@@ -153,14 +153,14 @@ class IngredientSearchViewController: UIViewController, UITextFieldDelegate, SFS
         var voiceCommand = result!.bestTranscription.formattedString.substring(from: self.ignoredChars) ?? ""
         print("string: " + result!.bestTranscription.formattedString)
         print(self.ignoredChars)
-
+        
         voiceCommand = voiceCommand.replacingOccurrences(of: "Add ", with: " add ")
         voiceCommand = voiceCommand.replacingOccurrences(of: "At ", with: " add ")
         voiceCommand = voiceCommand.replacingOccurrences(of: " at ", with: " add ")
         voiceCommand = voiceCommand.replacingOccurrences(of: "To ", with: " to ")
         voiceCommand = voiceCommand.replacingOccurrences(of: "Two ", with: " to ")
         voiceCommand = voiceCommand.replacingOccurrences(of: " two ", with: " to ")
-
+        
         print(voiceCommand)
         
         if (voiceCommand.range(of: " add ", options:NSString.CompareOptions.backwards) != nil) {
@@ -252,15 +252,4 @@ class IngredientSearchViewController: UIViewController, UITextFieldDelegate, SFS
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     dismissKeyboard()
   }
-  
-  /*
-   // MARK: - Navigation
-   
-   // In a storyboard-based application, you will often want to do a little preparation before navigation
-   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-   // Get the new view controller using segue.destinationViewController.
-   // Pass the selected object to the new view controller.
-   }
-   */
-  
 }

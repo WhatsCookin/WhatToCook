@@ -294,7 +294,7 @@ class SingleViewController: UIViewController, UITableViewDelegate, UITableViewDa
       if result != nil {
         var voiceCommand = result!.bestTranscription.formattedString.lowercased().substring(from: self.ignoredChars) ?? ""
         print("string: " + result!.bestTranscription.formattedString)
-
+        
         // Fix common listening mistakes
         voiceCommand = voiceCommand.replacingOccurrences(of: "what's that", with: "what step")
         voiceCommand = voiceCommand.replacingOccurrences(of: "skit", with: "skip")
@@ -345,23 +345,23 @@ class SingleViewController: UIViewController, UITableViewDelegate, UITableViewDa
          }
          }*/
         /*else if voiceCommand.range(of: "go to step") != nil {
-          let range = voiceCommand.rangeEndIndex(toFind: " go to step ")
-          voiceCommand = voiceCommand.substring(from: range)!
-          
-          print("full command: " + voiceCommand)
-          let stringNumber = voiceCommand
-          print("string number: " + stringNumber)
-
-          let numberFormatter:NumberFormatter = NumberFormatter()
-            numberFormatter.numberStyle = NumberFormatter.Style.spellOut
-            let number = numberFormatter.number(from: stringNumber)
-          print("number: " + String(Int(truncating: number!) - 1))
-            
-          self.currentStep = Int(truncating: number!) - 1
-          print("new step: " + String(self.currentStep))
-            self.nextStep()
-            self.ignoredChars = result!.bestTranscription.formattedString.count
-        }*/
+         let range = voiceCommand.rangeEndIndex(toFind: " go to step ")
+         voiceCommand = voiceCommand.substring(from: range)!
+         
+         print("full command: " + voiceCommand)
+         let stringNumber = voiceCommand
+         print("string number: " + stringNumber)
+         
+         let numberFormatter:NumberFormatter = NumberFormatter()
+         numberFormatter.numberStyle = NumberFormatter.Style.spellOut
+         let number = numberFormatter.number(from: stringNumber)
+         print("number: " + String(Int(truncating: number!) - 1))
+         
+         self.currentStep = Int(truncating: number!) - 1
+         print("new step: " + String(self.currentStep))
+         self.nextStep()
+         self.ignoredChars = result!.bestTranscription.formattedString.count
+         }*/
         
         print(voiceCommand)
         
@@ -417,14 +417,14 @@ class SingleViewController: UIViewController, UITableViewDelegate, UITableViewDa
       let cell = tableViewIngredients.dequeueReusableCell(withIdentifier: "IngredientListCell", for: indexPath) as! IngredientListCell
       
       cell.ingredient = ingredients[indexPath.row]
-        
+      
       if indexPath.row % 2 == 0 {
         cell.backgroundColor = UIColor.white
       }
       else {
         cell.backgroundColor = UIColor(red:0.95, green:0.95, blue:0.95, alpha:1.0)
       }
-        
+      
       return cell
     }
     else {
@@ -433,14 +433,14 @@ class SingleViewController: UIViewController, UITableViewDelegate, UITableViewDa
       if(directions[indexPath.row]["step"] != nil) {
         toRead.append(directions[indexPath.row]["step"] as! String)
       }
-        
-        if indexPath.row % 2 == 0 {
-            cell.backgroundColor = UIColor.white
-        }
-        else {
-            cell.backgroundColor = UIColor(red:0.95, green:0.95, blue:0.95, alpha:1.0)
-        }
-        
+      
+      if indexPath.row % 2 == 0 {
+        cell.backgroundColor = UIColor.white
+      }
+      else {
+        cell.backgroundColor = UIColor(red:0.95, green:0.95, blue:0.95, alpha:1.0)
+      }
+      
       return cell
     }
   }
@@ -453,19 +453,4 @@ class SingleViewController: UIViewController, UITableViewDelegate, UITableViewDa
   override func viewDidLayoutSubviews() {
     recipeImage.gradient(colors: [UIColor.clear.cgColor, UIColor.black.cgColor],opacity: 1, location: [0.70,1])
   }
-  
-  
-  
-  /*
-   // MARK: - Navigation
-   
-   // In a storyboard-based application, you will often want to do a little preparation before navigation
-   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-   // Get the new view controller using segue.destinationViewController.
-   // Pass the selected object to the new view controller.
-   }
-   */
-  
 }
-
-

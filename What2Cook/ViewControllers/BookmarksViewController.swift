@@ -11,19 +11,18 @@ import Parse
 
 class BookmarksViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
   
-  //@IBOutlet weak var sidebarButton: UIBarButtonItem!
   @IBOutlet weak var collectionView: UICollectionView!
   
   var recipes: [RecipeItem] = []
   var refreshControl: UIRefreshControl!
   
   
-    @IBAction func goBack(_ sender: Any) {
-        if let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "SWRevealViewController") as? UIViewController {
-            present(vc, animated: true, completion: nil)
-        }
+  @IBAction func goBack(_ sender: Any) {
+    if let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "SWRevealViewController") as? SWRevealViewController {
+      present(vc, animated: true, completion: nil)
     }
-    
+  }
+  
   func clearData() {
     let user = PFUser.current()
     user!["bookmarks"] = []
@@ -103,23 +102,19 @@ class BookmarksViewController: UIViewController, UICollectionViewDataSource, UIC
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     
     if segue.identifier == "detailSegue" {
-        let cell = sender as! UICollectionViewCell
+      let cell = sender as! UICollectionViewCell
+      
+      // Get the index path from the cell that was tapped
+      if let indexPath = collectionView.indexPath(for: cell) {
+        let recipe = recipes[indexPath.row]
+        let singleViewController = segue.destination as! SingleViewController
         
-        // Get the index path from the cell that was tapped
-        if let indexPath = collectionView.indexPath(for: cell) {
-          let recipe = recipes[indexPath.row]
-          let singleViewController = segue.destination as! SingleViewController
-          
-          //Pass on the date to the DetailViewController
-          singleViewController.recipe = recipe
-          
-          singleViewController.recipeList = recipes
-          singleViewController.recipeIndex = indexPath.row
-        }
+        //Pass on the date to the DetailViewController
+        singleViewController.recipe = recipe
+        
+        singleViewController.recipeList = recipes
+        singleViewController.recipeIndex = indexPath.row
+      }
     }
-    
   }
 }
-
-
-

@@ -21,6 +21,7 @@
 		203A504F20B6604300619280 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 203A504E20B6604300619280 /* ProfileViewController.swift */; };
 		203A505220B79F2000619280 /* DeleteCategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 203A505120B79F2000619280 /* DeleteCategoryViewController.swift */; };
 		2056CBB6207CA27600F9A63D /* RecipeSuggestionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2056CBB5207CA27600F9A63D /* RecipeSuggestionCell.swift */; };
+		2058B81E20BCBB7C00170E75 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2058B81D20BCBB7C00170E75 /* Constants.swift */; };
 		206C55C3208A15FF00AB9115 /* RecipeData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 206C55C2208A15FF00AB9115 /* RecipeData.swift */; };
 		2083719B20A5369200799AF3 /* MoveToCategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2083719A20A5369200799AF3 /* MoveToCategoryViewController.swift */; };
 		20868FA1209A8FA600540B2A /* CategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20868FA0209A8FA600540B2A /* CategoryViewController.swift */; };
@@ -28,7 +29,6 @@
 		20A4C3112071382100F5A961 /* SidebarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20A4C3102071382100F5A961 /* SidebarViewController.swift */; };
 		20A4C31C2072005400F5A961 /* Recipe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20A4C31B2072005400F5A961 /* Recipe.swift */; };
 		20A4C32020721E1A00F5A961 /* RecipeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20A4C31F20721E1A00F5A961 /* RecipeCell.swift */; };
-		20A4C322207317BC00F5A961 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20A4C321207317BC00F5A961 /* User.swift */; };
 		20A4C3242073181F00F5A961 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20A4C3232073181F00F5A961 /* LoginViewController.swift */; };
 		20A511B82077146700FDF6BB /* FridgeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20A511B72077146700FDF6BB /* FridgeViewController.swift */; };
 		20A511BC2077205900FDF6BB /* IngredientCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20A511BB2077205900FDF6BB /* IngredientCell.swift */; };
@@ -89,6 +89,7 @@
 		203A504E20B6604300619280 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		203A505120B79F2000619280 /* DeleteCategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteCategoryViewController.swift; sourceTree = "<group>"; };
 		2056CBB5207CA27600F9A63D /* RecipeSuggestionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeSuggestionCell.swift; sourceTree = "<group>"; };
+		2058B81D20BCBB7C00170E75 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		206C55C2208A15FF00AB9115 /* RecipeData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeData.swift; sourceTree = "<group>"; };
 		2083719A20A5369200799AF3 /* MoveToCategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoveToCategoryViewController.swift; sourceTree = "<group>"; };
 		20868FA0209A8FA600540B2A /* CategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryViewController.swift; sourceTree = "<group>"; };
@@ -96,7 +97,6 @@
 		20A4C3102071382100F5A961 /* SidebarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SidebarViewController.swift; sourceTree = "<group>"; };
 		20A4C31B2072005400F5A961 /* Recipe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Recipe.swift; sourceTree = "<group>"; };
 		20A4C31F20721E1A00F5A961 /* RecipeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeCell.swift; sourceTree = "<group>"; };
-		20A4C321207317BC00F5A961 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		20A4C3232073181F00F5A961 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		20A511B72077146700FDF6BB /* FridgeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FridgeViewController.swift; sourceTree = "<group>"; };
 		20A511BB2077205900FDF6BB /* IngredientCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientCell.swift; sourceTree = "<group>"; };
@@ -256,6 +256,7 @@
 			isa = PBXGroup;
 			children = (
 				20EBA33720819415000B6349 /* SpoonacularAPIManager.swift */,
+				2058B81D20BCBB7C00170E75 /* Constants.swift */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -264,7 +265,6 @@
 			isa = PBXGroup;
 			children = (
 				20A4C31B2072005400F5A961 /* Recipe.swift */,
-				20A4C321207317BC00F5A961 /* User.swift */,
 				20EBA33920819534000B6349 /* Ingredient.swift */,
 				206C55C2208A15FF00AB9115 /* RecipeData.swift */,
 				63888FDD208EB5F2000105C1 /* RecipeItem.swift */,
@@ -617,6 +617,7 @@
 				206C55C3208A15FF00AB9115 /* RecipeData.swift in Sources */,
 				20EBA33820819415000B6349 /* SpoonacularAPIManager.swift in Sources */,
 				63E72E9B20B6481000332677 /* WaitingViewController.swift in Sources */,
+				2058B81E20BCBB7C00170E75 /* Constants.swift in Sources */,
 				203A504920B64DC500619280 /* BookmarksViewController.swift in Sources */,
 				637E15C3208D49DC007104C4 /* SingleViewController.swift in Sources */,
 				20A4C32020721E1A00F5A961 /* RecipeCell.swift in Sources */,
@@ -630,7 +631,6 @@
 				20868FA1209A8FA600540B2A /* CategoryViewController.swift in Sources */,
 				201BA62D2071354F00455146 /* AppDelegate.swift in Sources */,
 				203A504F20B6604300619280 /* ProfileViewController.swift in Sources */,
-				20A4C322207317BC00F5A961 /* User.swift in Sources */,
 				203A505220B79F2000619280 /* DeleteCategoryViewController.swift in Sources */,
 				20A4C31C2072005400F5A961 /* Recipe.swift in Sources */,
 				2056CBB6207CA27600F9A63D /* RecipeSuggestionCell.swift in Sources */,

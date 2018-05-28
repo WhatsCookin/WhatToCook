@@ -10,7 +10,7 @@ import UIKit
 
 class MoveToCategoryViewController: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, UIPickerViewDataSource {
   var fridgeViewController: FridgeViewController?
-
+  
   @IBOutlet weak var categoryTextField: UITextField!
   @IBOutlet weak var categoryDropDown: UIPickerView!
   
@@ -45,10 +45,7 @@ class MoveToCategoryViewController: UIViewController, UITextFieldDelegate, UIPic
   }
   
   func textFieldDidBeginEditing(_ textField: UITextField) {
-   /* if(textField == self.textField) {
-      self.textField.text = ""
-    }
-    else */if(textField == categoryTextField) {
+    if(textField == categoryTextField) {
       self.categoryDropDown.isHidden = false
       dismissKeyboard()
     }
@@ -60,23 +57,10 @@ class MoveToCategoryViewController: UIViewController, UITextFieldDelegate, UIPic
     hideKeyboardWhenTappedAround()
     
     self.view.backgroundColor = UIColor.black.withAlphaComponent(0.5)
-    // Do any additional setup after loading the view.
-    //self.textField.delegate = self
     self.hideKeyboardWhenTappedAround()
   }
   
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     dismissKeyboard()
   }
-  
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
