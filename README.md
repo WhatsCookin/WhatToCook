@@ -1,6 +1,6 @@
 #iOS App - *What2Cook*
 
-**What2Cook** Created by ORG WhatsCookin is a iOS app that allows users to quickly view, rate, and share recipes with each other. Users can also use our “What’s In My Fridge” feature to discover recipes using only ingredients that they have in their fridge.
+**What2Cook** Created by ORG WhatsCookin an iOS app that allows users to quickly view, recipes and start cooking! With Voice Command and text to speech to help read out instructions while cooking, anyone can use. Users can also use our “What’s In My Fridge” feature to discover recipes using only ingredients that they have in their fridge!
 
 ## User Stories
 
