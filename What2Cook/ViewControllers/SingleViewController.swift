@@ -338,6 +338,11 @@ class SingleViewController: UIViewController, UITableViewDelegate, UITableViewDa
           self.playCurrentStep()
           self.ignoredChars = result!.bestTranscription.formattedString.count
         }
+        else if voiceCommand.range(of: "normal speed") != nil {
+          self.changeSpeed(rate: 0.45)
+          self.playCurrentStep()
+          self.ignoredChars = result!.bestTranscription.formattedString.count
+        }
         /*else if voiceCommand.range(of: "play all") != nil {
          for _ in 0..<self.toRead.count {
          self.nextStep()
