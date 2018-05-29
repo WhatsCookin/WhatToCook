@@ -72,7 +72,6 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
   func loadRecipes() {
     print("Calling loadRecipes()")
     
-    // Commented out to avoid exceeding API call limit
     SpoonacularAPIManager().getPopularRecipes(searchString!) { (recipes, error) in
       if let recipes = recipes {
         self.recipes = recipes

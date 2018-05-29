@@ -9,5 +9,5 @@
 import Foundation
 
 class Constants {
-  let key = "69p5QHDqZfmshevTW4RVD0dwIh7Qp1L5vUZjsnVjlWJFfVpmAb"
+  let key = "69p5QHDqZfmshevTWRV7D0dwIh7Qp10dvUZjsnVjWJfVpmAb"
 }

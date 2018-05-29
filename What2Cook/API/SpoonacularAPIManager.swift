@@ -11,7 +11,6 @@ import Alamofire
 import Parse
 
 class SpoonacularAPIManager {
-  static var apiCalls = 0
   let key = Constants().key
   
   func searchRecipes(_ ingredients: [String], completion: @escaping([Recipe]?, Error?) -> ()) {
@@ -33,8 +32,7 @@ class SpoonacularAPIManager {
     Alamofire.request(urlstring, headers: headers).responseJSON { response in
       if let recipeDictionary = response.result.value as! NSArray? {
         let recipes = recipeDictionary.flatMap({ (dictionary) -> Recipe in Recipe(dictionary: dictionary as! [String : Any] )})
-        SpoonacularAPIManager.apiCalls += 1
-        self.save()
+        self.updateCalls()
         completion(recipes, nil)
       }
     }
@@ -55,8 +53,7 @@ class SpoonacularAPIManager {
     Alamofire.request(urlstring, headers: headers).responseJSON { response in
       if let ingredientDictionary = response.result.value as! NSArray? {
         let ingredients = ingredientDictionary.flatMap({ (dictionary) -> Ingredient in Ingredient(dictionary: dictionary as! [String : Any] )})
-        SpoonacularAPIManager.apiCalls += 1
-        self.save()
+        self.updateCalls()
         completion(ingredients, nil)
       }
       else {
@@ -118,20 +115,20 @@ class SpoonacularAPIManager {
     
     Alamofire.request(urlstring, headers: headers).responseJSON { response in
       if let recipeDictionary = response.result.value as! [String: Any]? {
-        let recipeArray = recipeDictionary["recipes"] as! NSArray
-        let recipes = recipeArray.flatMap({ (dictionary) -> RecipeItem in
-          RecipeItem(dictionary: dictionary as! [String: Any])
-        })
-        SpoonacularAPIManager.apiCalls += 1
-        self.save()
-        completion(recipes, nil)
+        if let recipeArray = recipeDictionary["recipes"] as? NSArray {
+          let recipes = recipeArray.flatMap({ (dictionary) -> RecipeItem in
+            RecipeItem(dictionary: dictionary as! [String: Any])
+          })
+          self.updateCalls()
+          completion(recipes, nil)
+        }
       }
     }
   }
   
   // Retrieves the data which includes ingredients and directions of a recipe given an id
   func getRecipeData(_ id: Int, completion: @escaping(RecipeItem?, Error?) -> ()) {
-    let urlstring = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/"+String(id)+"/information"
+    let urlstring = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/" + String(id) + "/information"
     
     //You headers (for your api key)
     let headers: HTTPHeaders = [
@@ -141,8 +138,7 @@ class SpoonacularAPIManager {
     Alamofire.request(urlstring, headers: headers).responseJSON { response in
       if let recipeDictionary = response.result.value as! [String:Any]? {
         let recipe = RecipeItem(dictionary: recipeDictionary )
-        SpoonacularAPIManager.apiCalls += 1
-        self.save()
+        self.updateCalls()
         completion(recipe, nil)
       }
     }
@@ -181,16 +177,17 @@ class SpoonacularAPIManager {
     Alamofire.request(urlstring, headers: headers).responseJSON { response in
       if let jokeDictionary = response.result.value as! [String:Any]? {
         let joke = jokeDictionary["text"] as! String
-        SpoonacularAPIManager.apiCalls += 1
-        self.save()
+        self.updateCalls()
         completion(joke, nil)
       }
     }
   }
   
-  func save() {
+  func updateCalls() {
     let user = PFUser.current()
-    user!["apiCalls"] = SpoonacularAPIManager.apiCalls
+    var numberOfCalls = user!["apiCalls"] as! Int
+    numberOfCalls += 1
+    user!["apiCalls"] = numberOfCalls
     user!.saveInBackground(block: { (success, error) in
       if (success) {
         print("The user data has been saved")

@@ -290,8 +290,8 @@
                                                     <constraint firstAttribute="height" constant="30" id="85o-AX-20x"/>
                                                     <constraint firstAttribute="width" constant="30" id="W7X-sj-N46"/>
                                                 </constraints>
-                                                <state key="normal" image="unbookmarked" backgroundImage="unbookmarked"/>
-                                                <state key="selected" image="bookmarked" backgroundImage="bookmarked"/>
+                                                <state key="normal" image="unbookmarked"/>
+                                                <state key="selected" image="bookmarked"/>
                                                 <connections>
                                                     <action selector="onBookmark:" destination="kxA-1q-EIY" eventType="touchUpInside" id="Ejh-4B-FBr"/>
                                                 </connections>
