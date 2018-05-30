@@ -58,3 +58,6 @@ fastlane/report.xml
 fastlane/Preview.html
 fastlane/screenshots
 fastlane/test_output
+.gitsecret/keys/random_seed
+
+What2Cook/API/Constants.swift
