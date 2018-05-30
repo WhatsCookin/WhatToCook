@@ -150,7 +150,7 @@
                                 </cells>
                             </collectionView>
                             <searchBar contentMode="redraw" placeholder="Seperate filter tags with commas" translatesAutoresizingMaskIntoConstraints="NO" id="Sdc-H2-Ie9">
-                                <rect key="frame" x="0.0" y="64" width="354" height="50"/>
+                                <rect key="frame" x="0.0" y="20" width="354" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="L8l-5F-8mx"/>
                                 </constraints>
@@ -161,7 +161,7 @@
                                 </scopeButtonTitles>
                             </searchBar>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2Ue-6C-lXH">
-                                <rect key="frame" x="359" y="64" width="50" height="50"/>
+                                <rect key="frame" x="359" y="20" width="50" height="50"/>
                                 <color key="backgroundColor" red="1" green="0.97560871270000005" blue="0.50625976949999996" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="50" id="AK1-J3-ZPv"/>
@@ -367,15 +367,6 @@
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="time" translatesAutoresizingMaskIntoConstraints="NO" id="wz1-3y-dse">
-                                                <rect key="frame" x="305" y="320" width="20" height="20"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="20" id="8WN-Pa-YGE"/>
-                                                    <constraint firstAttribute="height" constant="20" id="BEj-oS-shJ"/>
-                                                    <constraint firstAttribute="width" constant="20" id="mFd-Q2-LQ5"/>
-                                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="20" id="oDn-Ab-LhX"/>
-                                                </constraints>
-                                            </imageView>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="likes" translatesAutoresizingMaskIntoConstraints="NO" id="B4j-K2-R7n">
                                                 <rect key="frame" x="305" y="343" width="20" height="20"/>
                                                 <constraints>
@@ -395,6 +386,15 @@
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="time" translatesAutoresizingMaskIntoConstraints="NO" id="wz1-3y-dse">
+                                                <rect key="frame" x="305" y="314" width="20" height="20"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="20" id="8WN-Pa-YGE"/>
+                                                    <constraint firstAttribute="height" constant="20" id="BEj-oS-shJ"/>
+                                                    <constraint firstAttribute="width" constant="20" id="mFd-Q2-LQ5"/>
+                                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="20" id="oDn-Ab-LhX"/>
+                                                </constraints>
+                                            </imageView>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <gestureRecognizers/>
@@ -404,7 +404,7 @@
                                             <constraint firstItem="A4c-Nu-5cb" firstAttribute="top" secondItem="0n7-lg-0LR" secondAttribute="top" constant="8" id="4R0-sq-3Me"/>
                                             <constraint firstItem="djf-dV-Xcx" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="0n7-lg-0LR" secondAttribute="leading" constant="20" symbolic="YES" id="4UH-yq-Kio"/>
                                             <constraint firstAttribute="trailing" secondItem="Gax-cA-lEF" secondAttribute="trailing" id="4oR-Bn-Pqg"/>
-                                            <constraint firstItem="B4j-K2-R7n" firstAttribute="top" secondItem="wz1-3y-dse" secondAttribute="bottom" constant="3" id="55k-IR-aLy"/>
+                                            <constraint firstItem="B4j-K2-R7n" firstAttribute="top" secondItem="wz1-3y-dse" secondAttribute="bottom" constant="9" id="55k-IR-aLy"/>
                                             <constraint firstAttribute="trailing" secondItem="nih-hK-07m" secondAttribute="trailing" constant="9" id="8Ch-jd-AwA"/>
                                             <constraint firstAttribute="trailing" secondItem="4v1-OE-WCC" secondAttribute="trailing" id="8E7-7q-uUr"/>
                                             <constraint firstItem="4v1-OE-WCC" firstAttribute="bottom" secondItem="GJb-Ov-KuS" secondAttribute="bottom" constant="15" id="8Ht-Lh-x86"/>
@@ -1775,6 +1775,6 @@
     <inferredMetricsTieBreakers>
         <segue reference="NM3-9G-I46"/>
         <segue reference="ifk-Wy-dt1"/>
-        <segue reference="WHA-Ej-15z"/>
+        <segue reference="7A6-xl-a10"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -49,7 +49,7 @@ class IngredientSearchViewController: UIViewController, UITextFieldDelegate, SFS
     // Check that the ingredient is not already in the fridge
     if !((fridgeViewController?.ingredientAlreadyAdded(ingredient: ingredientToAdd))!) {
       SpoonacularAPIManager().autocompleteIngredientSearch(ingredientToAdd) { (ingredients, error) in
-        if ingredients!.count > 0 {
+        if ingredients != nil {
           self.fridgeViewController?.addIngredient(ingredient: ingredientToAdd, category: self.category)
           self.textLabel.text = "Added " + self.textField.text! + "!"
         }

@@ -20,7 +20,7 @@ class SpoonacularAPIManager {
       ingredientString += noSpaceIngredient + ","
     }
     
-    let maxResults = 30
+    let maxResults = 50
     
     let urlstring = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/findByIngredients?ingredients=" + ingredientString + "&number=" + String(maxResults) + "&fillIngredients=true&ranking=2&limitLicense=true"
     
@@ -88,7 +88,7 @@ class SpoonacularAPIManager {
   func getPopularRecipes(_ tagString: String, completion: @escaping([RecipeItem]?, Error?) -> ()) {
     
     
-    let numRecipes = 20 // number of popular recipes to be returned
+    let numRecipes = 10 // number of popular recipes to be returned
     
     let tags = tagString.components(separatedBy:",") as [String]
     

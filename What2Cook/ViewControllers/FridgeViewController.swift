@@ -39,6 +39,7 @@ class FridgeViewController: UIViewController, UITableViewDelegate, UITableViewDa
   
   @IBAction func onSearch(_ sender: Any) {
     if checkForSelection() {
+      print(ingredients)
       SpoonacularAPIManager().searchRecipes(ingredients) { (recipes, error) in
         if let recipes = recipes {
           if(recipes.count > 0) {
@@ -63,7 +64,7 @@ class FridgeViewController: UIViewController, UITableViewDelegate, UITableViewDa
   
   @IBAction func onSelectAll(_ sender: UIButton) {
     if sender.titleLabel?.text == "Select All" {
-      sender.setTitle("Deselect All", for: .normal)
+      sender.setTitle("Deselect", for: .normal)
       selectAll()
     }
     else {
@@ -232,6 +233,7 @@ class FridgeViewController: UIViewController, UITableViewDelegate, UITableViewDa
       removeIngredient(ingredient: ingredient)
       addIngredient(ingredient: ingredient, category: categoryName)
     }
+    self.ingredients = []
   }
   
   func deselectAll() {
