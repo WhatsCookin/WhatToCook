@@ -20,7 +20,7 @@ class SpoonacularAPIManager {
       ingredientString += noSpaceIngredient + ","
     }
     
-    let maxResults = 20
+    let maxResults = 30
     
     let urlstring = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/findByIngredients?ingredients=" + ingredientString + "&number=" + String(maxResults) + "&fillIngredients=true&ranking=2&limitLicense=true"
     

@@ -19,6 +19,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
   var refreshControl: UIRefreshControl!
   
   var searchString: String?
+  private var workItem: DispatchWorkItem?
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -65,11 +66,19 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
     else {
       print("RevealVC was nil!!!")
     }
-    // Load recipes to populate collection view
-    loadRecipes()
+    
+    // Load recipes to populate collection view after a 2 second delay to avoid extra API calls
+    workItem = DispatchWorkItem {
+      self.loadRecipes()
+    }
+    DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(2), execute: workItem!)
   }
   
-  func loadRecipes() {
+  override func viewDidDisappear(_ animated: Bool) {
+    workItem?.cancel()
+  }
+  
+  @objc func loadRecipes() {
     print("Calling loadRecipes()")
     
     SpoonacularAPIManager().getPopularRecipes(searchString!) { (recipes, error) in
