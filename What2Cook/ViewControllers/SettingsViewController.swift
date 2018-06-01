@@ -33,8 +33,15 @@ class SettingsViewController: UIViewController, UITextFieldDelegate {
   
   @IBAction func onSave(_ sender: UIButton) {
     let user = PFUser.current()
-    user!["homeResults"] = homeResultsField.text
-    user!["fridgeResults"] = fridgeResultsField.text
+    user!["homeResults"] = Int(homeResultsField.text ?? "0")
+    user!["fridgeResults"] = Int(fridgeResultsField.text ?? "0")
+    user!.saveInBackground(block: { (success, error) in
+      if (success) {
+        print("The user data has been saved")
+      } else {
+        print("There was a problem with saving the user data")
+      }
+    })
   }
   
   override func viewDidLoad() {
@@ -56,6 +63,12 @@ class SettingsViewController: UIViewController, UITextFieldDelegate {
     let numberOfFridgeResults = user!["fridgeResults"]!
     homeResultsField.text = String(describing: numberOfHomeResults)
     fridgeResultsField.text = String(describing: numberOfFridgeResults)
+  }
+  
+  @IBAction func goBack(_ sender: Any) {
+    if let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "SWRevealViewController") as? SWRevealViewController {
+      present(vc, animated: true, completion: nil)
+    }
   }
   
   override func didReceiveMemoryWarning() {

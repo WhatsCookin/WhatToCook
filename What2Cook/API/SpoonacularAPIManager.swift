@@ -89,19 +89,16 @@ class SpoonacularAPIManager {
   func getPopularRecipes(_ tagString: String, completion: @escaping([RecipeItem]?, Error?) -> ()) {
     
     let user = PFUser.current()
-    let numRecipes = user!["homeResults"] as! Int // number of popular recipes to be returned
+    let numRecipes = user!["homeResults"]! // number of popular recipes to be returned
     
     let tags = tagString.components(separatedBy:",") as [String]
     
-    
-    var urlstring = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/random?number=" + String(numRecipes)
+    var urlstring = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/random?number=" + String(describing: numRecipes)
     
     if tags.count > 0 {
       urlstring = urlstring + "&tags="
       
       for i in 0...tags.count-1 {
-        print(tags[i])
-        print (i)
         urlstring = urlstring + tags[i]
         if (tags.count>1 && i<tags.count-1) {
           urlstring = urlstring + "%2C"
@@ -120,7 +117,7 @@ class SpoonacularAPIManager {
           let recipes = recipeArray.flatMap({ (dictionary) -> RecipeItem in
             RecipeItem(dictionary: dictionary as! [String: Any])
           })
-          self.save(numResults: numRecipes)
+          self.save(numResults: numRecipes as! Int)
           completion(recipes, nil)
         }
       }

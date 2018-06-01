@@ -13,6 +13,7 @@ class SidebarViewController: UITableViewController {
   var tableArray = [String]()
   
   override func viewDidLoad() {
+    dismissKeyboard()
     tableArray = ["Profile", "Bookmarks", "Settings", "Logout"]
   }
   
