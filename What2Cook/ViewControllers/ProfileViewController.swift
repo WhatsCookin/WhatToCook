@@ -30,20 +30,6 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
   
   @IBOutlet weak var profileImageView: UIImageView!
   @IBOutlet weak var usernameLabel: UILabel!
-  @IBOutlet weak var apiCallsLabel: UILabel!
-  
-  @IBAction func onResetCalls(_ sender: UIButton) {
-    let user = PFUser.current()
-    user!["apiCalls"] = 0
-    user!.saveInBackground(block: { (success, error) in
-      if (success) {
-        print("The user data has been saved")
-      } else {
-        print("There was a problem with saving the user data")
-      }
-    })
-    apiCallsLabel.text = "0"
-  }
   
   @IBAction func goBack(_ sender: Any) {
     if let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "SWRevealViewController") as? SWRevealViewController {
@@ -104,8 +90,6 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
     }
     self.profileImageView.layer.cornerRadius = 26.5;
     self.profileImageView.layer.masksToBounds = true;
-    let numberOfCalls = user!["apiCalls"]!
-    apiCallsLabel.text = String(describing: numberOfCalls)
   }
   
   override func didReceiveMemoryWarning() {

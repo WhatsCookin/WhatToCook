@@ -20,7 +20,8 @@ class SpoonacularAPIManager {
       ingredientString += noSpaceIngredient + ","
     }
     
-    let maxResults = 50
+    let user = PFUser.current()
+    let maxResults = user!["fridgeResults"] as! Int
     
     let urlstring = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/findByIngredients?ingredients=" + ingredientString + "&number=" + String(maxResults) + "&fillIngredients=true&ranking=2&limitLicense=true"
     
@@ -32,7 +33,7 @@ class SpoonacularAPIManager {
     Alamofire.request(urlstring, headers: headers).responseJSON { response in
       if let recipeDictionary = response.result.value as! NSArray? {
         let recipes = recipeDictionary.flatMap({ (dictionary) -> Recipe in Recipe(dictionary: dictionary as! [String : Any] )})
-        self.updateCalls()
+        self.save(numResults: maxResults)
         completion(recipes, nil)
       }
     }
@@ -53,7 +54,7 @@ class SpoonacularAPIManager {
     Alamofire.request(urlstring, headers: headers).responseJSON { response in
       if let ingredientDictionary = response.result.value as! NSArray? {
         let ingredients = ingredientDictionary.flatMap({ (dictionary) -> Ingredient in Ingredient(dictionary: dictionary as! [String : Any] )})
-        self.updateCalls()
+        self.save(numResults: numResults)
         completion(ingredients, nil)
       }
       else {
@@ -87,8 +88,8 @@ class SpoonacularAPIManager {
   // Retrieves the most popular recipes
   func getPopularRecipes(_ tagString: String, completion: @escaping([RecipeItem]?, Error?) -> ()) {
     
-    
-    let numRecipes = 10 // number of popular recipes to be returned
+    let user = PFUser.current()
+    let numRecipes = user!["homeResults"] as! Int // number of popular recipes to be returned
     
     let tags = tagString.components(separatedBy:",") as [String]
     
@@ -119,7 +120,7 @@ class SpoonacularAPIManager {
           let recipes = recipeArray.flatMap({ (dictionary) -> RecipeItem in
             RecipeItem(dictionary: dictionary as! [String: Any])
           })
-          self.updateCalls()
+          self.save(numResults: numRecipes)
           completion(recipes, nil)
         }
       }
@@ -138,7 +139,7 @@ class SpoonacularAPIManager {
     Alamofire.request(urlstring, headers: headers).responseJSON { response in
       if let recipeDictionary = response.result.value as! [String:Any]? {
         let recipe = RecipeItem(dictionary: recipeDictionary )
-        self.updateCalls()
+        self.save(numResults: 1)
         completion(recipe, nil)
       }
     }
@@ -177,17 +178,25 @@ class SpoonacularAPIManager {
     Alamofire.request(urlstring, headers: headers).responseJSON { response in
       if let jokeDictionary = response.result.value as! [String:Any]? {
         let joke = jokeDictionary["text"] as! String
-        self.updateCalls()
+        self.save(numResults: 1)
         completion(joke, nil)
       }
     }
   }
   
-  func updateCalls() {
+  func save(numResults: Int) {
     let user = PFUser.current()
+    
+    // Store number of API calls
     var numberOfCalls = user!["apiCalls"] as! Int
     numberOfCalls += 1
     user!["apiCalls"] = numberOfCalls
+    
+    // Store number of API results
+    var numberOfResults = user!["apiResults"] as! Int
+    numberOfResults += numResults
+    user!["apiResults"] = numberOfResults
+    
     user!.saveInBackground(block: { (success, error) in
       if (success) {
         print("The user data has been saved")

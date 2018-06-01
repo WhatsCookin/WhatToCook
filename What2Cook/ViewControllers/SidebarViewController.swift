@@ -13,7 +13,7 @@ class SidebarViewController: UITableViewController {
   var tableArray = [String]()
   
   override func viewDidLoad() {
-    tableArray = ["Profile", "Bookmarks", "Logout"]
+    tableArray = ["Profile", "Bookmarks", "Settings", "Logout"]
   }
   
   override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

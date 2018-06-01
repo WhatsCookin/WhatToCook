@@ -25,6 +25,7 @@
 		206C55C3208A15FF00AB9115 /* RecipeData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 206C55C2208A15FF00AB9115 /* RecipeData.swift */; };
 		2083719B20A5369200799AF3 /* MoveToCategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2083719A20A5369200799AF3 /* MoveToCategoryViewController.swift */; };
 		20868FA1209A8FA600540B2A /* CategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20868FA0209A8FA600540B2A /* CategoryViewController.swift */; };
+		208D125920C0EE960092F1A3 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 208D125820C0EE960092F1A3 /* SettingsViewController.swift */; };
 		20A4C30F207137FC00F5A961 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20A4C30E207137FC00F5A961 /* HomeViewController.swift */; };
 		20A4C3112071382100F5A961 /* SidebarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20A4C3102071382100F5A961 /* SidebarViewController.swift */; };
 		20A4C31C2072005400F5A961 /* Recipe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20A4C31B2072005400F5A961 /* Recipe.swift */; };
@@ -93,6 +94,7 @@
 		206C55C2208A15FF00AB9115 /* RecipeData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeData.swift; sourceTree = "<group>"; };
 		2083719A20A5369200799AF3 /* MoveToCategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoveToCategoryViewController.swift; sourceTree = "<group>"; };
 		20868FA0209A8FA600540B2A /* CategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryViewController.swift; sourceTree = "<group>"; };
+		208D125820C0EE960092F1A3 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		20A4C30E207137FC00F5A961 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		20A4C3102071382100F5A961 /* SidebarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SidebarViewController.swift; sourceTree = "<group>"; };
 		20A4C31B2072005400F5A961 /* Recipe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Recipe.swift; sourceTree = "<group>"; };
@@ -235,6 +237,7 @@
 				203A504E20B6604300619280 /* ProfileViewController.swift */,
 				6374A5EB20B7712C00549095 /* FilterViewController.swift */,
 				203A505120B79F2000619280 /* DeleteCategoryViewController.swift */,
+				208D125820C0EE960092F1A3 /* SettingsViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -617,6 +620,7 @@
 				206C55C3208A15FF00AB9115 /* RecipeData.swift in Sources */,
 				20EBA33820819415000B6349 /* SpoonacularAPIManager.swift in Sources */,
 				63E72E9B20B6481000332677 /* WaitingViewController.swift in Sources */,
+				208D125920C0EE960092F1A3 /* SettingsViewController.swift in Sources */,
 				2058B81E20BCBB7C00170E75 /* Constants.swift in Sources */,
 				203A504920B64DC500619280 /* BookmarksViewController.swift in Sources */,
 				637E15C3208D49DC007104C4 /* SingleViewController.swift in Sources */,

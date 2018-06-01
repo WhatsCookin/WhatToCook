@@ -27,8 +27,11 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
     hideKeyboardWhenTappedAround()
     
     let user = PFUser.current()
-    if user!["apiCalls"] == nil {
+    if user!["apiCalls"] == nil || user!["apiResults"] == nil || user!["homeResults"] == nil || user!["fridgeResults"] == nil {
       user!["apiCalls"] = 0
+      user!["apiResults"] = 0
+      user!["homeResults"] = 10
+      user!["fridgeResults"] = 50
       user!.saveInBackground(block: { (success, error) in
         if (success) {
           print("The user data has been saved")
