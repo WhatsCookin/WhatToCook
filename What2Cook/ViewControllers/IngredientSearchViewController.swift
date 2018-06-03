@@ -20,10 +20,8 @@ class IngredientSearchViewController: UIViewController, UITextFieldDelegate, SFS
   private let audioEngine = AVAudioEngine()
   
   @IBOutlet weak var instructionsLabel: UILabel!
-  @IBOutlet weak var categoryTextField: UITextField!
   @IBOutlet weak var textField: UITextField!
   @IBOutlet weak var textLabel: UILabel!
-  @IBOutlet weak var categoryDropDown: UIPickerView!
   
   @IBOutlet weak var microphoneButton: UIButton!
   
@@ -49,7 +47,7 @@ class IngredientSearchViewController: UIViewController, UITextFieldDelegate, SFS
     // Check that the ingredient is not already in the fridge
     if !((fridgeViewController?.ingredientAlreadyAdded(ingredient: ingredientToAdd))!) {
       SpoonacularAPIManager().autocompleteIngredientSearch(ingredientToAdd) { (ingredients, error) in
-        if ingredients != nil {
+        if ingredients!.count > 0 {
           self.fridgeViewController?.addIngredient(ingredient: ingredientToAdd, category: self.category)
           self.textLabel.text = "Added " + self.textField.text! + "!"
         }
@@ -68,13 +66,7 @@ class IngredientSearchViewController: UIViewController, UITextFieldDelegate, SFS
   }
   
   func textFieldDidBeginEditing(_ textField: UITextField) {
-    if(textField == self.textField) {
-      self.textField.text = ""
-    }
-    else if(textField == categoryTextField) {
-      dismissKeyboard()
-      self.categoryDropDown.isHidden = false
-    }
+    self.textField.text = ""
   }
   
   override func viewDidLoad() {
@@ -214,33 +206,6 @@ class IngredientSearchViewController: UIViewController, UITextFieldDelegate, SFS
       microphoneButton.isEnabled = true
     } else {
       microphoneButton.isEnabled = false
-    }
-  }
-  
-  func add(ingredient: String) {
-    let ingredientToAdd = ingredient
-    // Check that the ingredient is not already in the fridge
-    if !((fridgeViewController?.ingredientAlreadyAdded(ingredient: ingredientToAdd))!) {
-      SpoonacularAPIManager().autocompleteIngredientSearch(ingredientToAdd) { (ingredients, error) in
-        if ingredients!.count > 0 {
-          if self.categoryTextField.text != "" {
-            let categoryToAddIn = self.categoryTextField.text
-            self.fridgeViewController?.addIngredient(ingredient: ingredientToAdd, category: categoryToAddIn!)
-            
-            self.textLabel.text = "Added " + self.textField.text! + " to " + categoryToAddIn!
-          }
-          else {
-            self.textLabel.text = "Added " + ingredientToAdd.uppercased()
-            self.fridgeViewController?.addIngredient(ingredient: ingredientToAdd)
-          }
-        }
-        else {
-          self.displayError(title: "Cannot Add Ingredient", message: "Ingredient not found.")
-        }
-      }
-    }
-    else {
-      displayError(title: "Cannot Add Ingredient", message: "You already have that ingredient.")
     }
   }
   

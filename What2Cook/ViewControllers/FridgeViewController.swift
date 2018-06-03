@@ -278,13 +278,6 @@ class FridgeViewController: UIViewController, UITableViewDelegate, UITableViewDa
     self.tableView.delegate = self
     self.tableView.dataSource = self
     
-    // FOR TESTING
-    /*    SpoonacularAPIManager().getRecipeInformation(479101) { (ingredients, error) in
-     if let ingredients = ingredients {
-     }
-     print(ingredients)
-     }*/
-    
     microphoneButton.isEnabled = false
     
     speechRecognizer?.delegate = self
@@ -467,6 +460,7 @@ class FridgeViewController: UIViewController, UITableViewDelegate, UITableViewDa
   func toggleSection(header: ExpandableHeaderView, section: Int) {
     if(sections[section].expanded) {
       header.uncheck()
+      header.deselectSection(section: section)
     }
     
     sections[section].expanded = !sections[section].expanded

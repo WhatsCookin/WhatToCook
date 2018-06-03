@@ -359,7 +359,7 @@
                                                 </connections>
                                             </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Krabby Patty with Secret Sauce" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GJb-Ov-KuS">
-                                                <rect key="frame" x="8" y="319" width="359" height="44"/>
+                                                <rect key="frame" x="8" y="319" width="289" height="44"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="44" id="tzz-c7-tm8"/>
                                                 </constraints>
@@ -434,7 +434,7 @@
                                             <constraint firstAttribute="trailing" secondItem="Z9N-XS-UpZ" secondAttribute="trailing" constant="8" id="gEo-YE-04X"/>
                                             <constraint firstItem="nih-hK-07m" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="0n7-lg-0LR" secondAttribute="leading" constant="20" symbolic="YES" id="giC-N1-Iju"/>
                                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="C8D-cB-qGa" secondAttribute="trailing" constant="20" symbolic="YES" id="gxx-uU-QUK"/>
-                                            <constraint firstAttribute="trailing" secondItem="GJb-Ov-KuS" secondAttribute="trailing" constant="8" id="kLc-xW-Xbv"/>
+                                            <constraint firstAttribute="trailing" secondItem="GJb-Ov-KuS" secondAttribute="trailing" constant="78" id="kLc-xW-Xbv"/>
                                             <constraint firstItem="djf-dV-Xcx" firstAttribute="leading" secondItem="wz1-3y-dse" secondAttribute="trailing" constant="2" id="l37-Wg-7EP"/>
                                             <constraint firstItem="GJb-Ov-KuS" firstAttribute="leading" secondItem="0n7-lg-0LR" secondAttribute="leading" constant="8" id="o5S-3k-Ihm"/>
                                             <constraint firstItem="nih-hK-07m" firstAttribute="top" secondItem="djf-dV-Xcx" secondAttribute="bottom" constant="10" id="sLC-uU-GNe"/>
