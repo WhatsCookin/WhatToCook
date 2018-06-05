@@ -355,7 +355,7 @@
                                                 <state key="normal" image="microphone-off"/>
                                                 <state key="selected" image="microphone-on"/>
                                                 <connections>
-                                                    <action selector="microphoneTapped:" destination="kxA-1q-EIY" eventType="touchUpInside" id="iR7-bj-AKj"/>
+                                                    <action selector="microphone2Tapped:" destination="kxA-1q-EIY" eventType="touchUpInside" id="sU2-ij-5Wx"/>
                                                 </connections>
                                             </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Krabby Patty with Secret Sauce" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GJb-Ov-KuS">

@@ -23,6 +23,11 @@
 		2056CBB6207CA27600F9A63D /* RecipeSuggestionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2056CBB5207CA27600F9A63D /* RecipeSuggestionCell.swift */; };
 		2058B81E20BCBB7C00170E75 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2058B81D20BCBB7C00170E75 /* Constants.swift */; };
 		206C55C3208A15FF00AB9115 /* RecipeData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 206C55C2208A15FF00AB9115 /* RecipeData.swift */; };
+		2071BCAD20C6252A00024C8B /* Slt.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2071BCAA20C6252A00024C8B /* Slt.framework */; };
+		2071BCAE20C6252A00024C8B /* OpenEars.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2071BCAB20C6252A00024C8B /* OpenEars.framework */; };
+		2071BCAF20C6252A00024C8B /* AcousticModelEnglish.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 2071BCAC20C6252A00024C8B /* AcousticModelEnglish.bundle */; };
+		2071BCB120C6262C00024C8B /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2071BCB020C6262C00024C8B /* AudioToolbox.framework */; };
+		2071BCB320C6263400024C8B /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2071BCB220C6263400024C8B /* AVFoundation.framework */; };
 		2083719B20A5369200799AF3 /* MoveToCategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2083719A20A5369200799AF3 /* MoveToCategoryViewController.swift */; };
 		20868FA1209A8FA600540B2A /* CategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20868FA0209A8FA600540B2A /* CategoryViewController.swift */; };
 		208D125920C0EE960092F1A3 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 208D125820C0EE960092F1A3 /* SettingsViewController.swift */; };
@@ -92,6 +97,12 @@
 		2056CBB5207CA27600F9A63D /* RecipeSuggestionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeSuggestionCell.swift; sourceTree = "<group>"; };
 		2058B81D20BCBB7C00170E75 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		206C55C2208A15FF00AB9115 /* RecipeData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeData.swift; sourceTree = "<group>"; };
+		2071BCAA20C6252A00024C8B /* Slt.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Slt.framework; sourceTree = "<group>"; };
+		2071BCAB20C6252A00024C8B /* OpenEars.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = OpenEars.framework; sourceTree = "<group>"; };
+		2071BCAC20C6252A00024C8B /* AcousticModelEnglish.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = AcousticModelEnglish.bundle; sourceTree = "<group>"; };
+		2071BCB020C6262C00024C8B /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		2071BCB220C6263400024C8B /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		2071BCB420C6275200024C8B /* OpenEarsHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OpenEarsHeader.h; sourceTree = "<group>"; };
 		2083719A20A5369200799AF3 /* MoveToCategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoveToCategoryViewController.swift; sourceTree = "<group>"; };
 		20868FA0209A8FA600540B2A /* CategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryViewController.swift; sourceTree = "<group>"; };
 		208D125820C0EE960092F1A3 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
@@ -134,7 +145,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2071BCB320C6263400024C8B /* AVFoundation.framework in Frameworks */,
+				2071BCB120C6262C00024C8B /* AudioToolbox.framework in Frameworks */,
+				2071BCAD20C6252A00024C8B /* Slt.framework in Frameworks */,
 				D0C084F876509BC01C82048C /* Pods_What2Cook.framework in Frameworks */,
+				2071BCAE20C6252A00024C8B /* OpenEars.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -190,11 +205,13 @@
 				20A4C314207138D800F5A961 /* ViewControllers */,
 				201BA62C2071354F00455146 /* AppDelegate.swift */,
 				201BA6302071354F00455146 /* Main.storyboard */,
+				2071BCA920C6252A00024C8B /* Framework */,
 				201BA6332071354F00455146 /* Assets.xcassets */,
 				201BA6352071354F00455146 /* LaunchScreen.storyboard */,
 				201BA6382071354F00455146 /* Info.plist */,
 				63AE43B4208C1D0500644354 /* SWRevealViewController.h */,
 				63AE43B6208C1D1C00644354 /* SWRevealViewController.m */,
+				2071BCB420C6275200024C8B /* OpenEarsHeader.h */,
 				63AE43B5208C1D1A00644354 /* What2Cook-Bridging-Header.h */,
 				740CD4F820B8CAB700FC6887 /* fontawesome-webfont.ttf */,
 			);
@@ -217,6 +234,16 @@
 				201BA64E2071354F00455146 /* Info.plist */,
 			);
 			path = What2CookUITests;
+			sourceTree = "<group>";
+		};
+		2071BCA920C6252A00024C8B /* Framework */ = {
+			isa = PBXGroup;
+			children = (
+				2071BCAA20C6252A00024C8B /* Slt.framework */,
+				2071BCAB20C6252A00024C8B /* OpenEars.framework */,
+				2071BCAC20C6252A00024C8B /* AcousticModelEnglish.bundle */,
+			);
+			path = Framework;
 			sourceTree = "<group>";
 		};
 		20A4C314207138D800F5A961 /* ViewControllers */ = {
@@ -288,6 +315,8 @@
 		24E3873DC34FA6324A1B217C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				2071BCB220C6263400024C8B /* AVFoundation.framework */,
+				2071BCB020C6262C00024C8B /* AudioToolbox.framework */,
 				4733198CBC5DDF83D9CAADBB /* Pods_What2Cook.framework */,
 				3D734C8EDDCCED6A3CF0A132 /* Pods_What2CookTests.framework */,
 				B2399B1770D9F64931141269 /* Pods_What2CookUITests.framework */,
@@ -431,6 +460,7 @@
 				740CD4F920B8CABF00FC6887 /* fontawesome-webfont.ttf in Resources */,
 				201BA6342071354F00455146 /* Assets.xcassets in Resources */,
 				201BA6322071354F00455146 /* Main.storyboard in Resources */,
+				2071BCAF20C6252A00024C8B /* AcousticModelEnglish.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -814,11 +844,15 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 6SW85PYBWB;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/What2Cook/Framework",
+				);
 				INFOPLIST_FILE = What2Cook/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.hyelim.What2Cook;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "What2Cook/What2Cook-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = ./OpenEarsHeader.h;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -833,11 +867,15 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 6SW85PYBWB;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/What2Cook/Framework",
+				);
 				INFOPLIST_FILE = What2Cook/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.hyelim.What2Cook;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "What2Cook/What2Cook-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = ./OpenEarsHeader.h;
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
