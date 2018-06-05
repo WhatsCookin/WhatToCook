@@ -102,7 +102,6 @@
 		2071BCAC20C6252A00024C8B /* AcousticModelEnglish.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = AcousticModelEnglish.bundle; sourceTree = "<group>"; };
 		2071BCB020C6262C00024C8B /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		2071BCB220C6263400024C8B /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
-		2071BCB420C6275200024C8B /* OpenEarsHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OpenEarsHeader.h; sourceTree = "<group>"; };
 		2083719A20A5369200799AF3 /* MoveToCategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoveToCategoryViewController.swift; sourceTree = "<group>"; };
 		20868FA0209A8FA600540B2A /* CategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryViewController.swift; sourceTree = "<group>"; };
 		208D125820C0EE960092F1A3 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
@@ -211,7 +210,6 @@
 				201BA6382071354F00455146 /* Info.plist */,
 				63AE43B4208C1D0500644354 /* SWRevealViewController.h */,
 				63AE43B6208C1D1C00644354 /* SWRevealViewController.m */,
-				2071BCB420C6275200024C8B /* OpenEarsHeader.h */,
 				63AE43B5208C1D1A00644354 /* What2Cook-Bridging-Header.h */,
 				740CD4F820B8CAB700FC6887 /* fontawesome-webfont.ttf */,
 			);
@@ -852,7 +850,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.hyelim.What2Cook;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = ./OpenEarsHeader.h;
+				SWIFT_OBJC_BRIDGING_HEADER = "What2Cook/What2Cook-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -875,7 +873,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.hyelim.What2Cook;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = ./OpenEarsHeader.h;
+				SWIFT_OBJC_BRIDGING_HEADER = "What2Cook/What2Cook-Bridging-Header.h";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

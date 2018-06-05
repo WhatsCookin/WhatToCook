@@ -43,7 +43,6 @@ class BookmarksViewController: UIViewController, UICollectionViewDataSource, UIC
     if bookmarks != nil {
       for bookmark in bookmarks! {
         let recipe = RecipeItem(dictionary: bookmark)
-        print(recipe.name)
         recipes.append(recipe)
       }
     }
@@ -51,7 +50,6 @@ class BookmarksViewController: UIViewController, UICollectionViewDataSource, UIC
   }
   
   override func viewWillAppear(_ animated: Bool) {
-    print("viewWillAppear")
     loadBookmarks()
   }
   

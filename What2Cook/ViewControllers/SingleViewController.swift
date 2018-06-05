@@ -145,14 +145,30 @@ class SingleViewController: UIViewController, UITableViewDelegate, UITableViewDa
   @IBAction func microphone2Tapped(_ sender: UIButton) {
     sender.isSelected = !sender.isSelected
     
-    // OELogging.startOpenEarsLogging() //Uncomment to receive full OpenEars logging in case of any unexpected results.
-    do {
-      try OEPocketsphinxController.sharedInstance().setActive(true) // Setting the shared OEPocketsphinxController active is necessary before any of its properties are accessed.
-    } catch {
-      print("Error: it wasn't possible to set the shared instance to active: \"\(error)\"")
+    if(sender.isSelected) {
+      let lmGenerator = OELanguageModelGenerator()
+      let words = ["word", "Statement", "other word", "A PHRASE"] // These can be lowercase, uppercase, or mixed-case.
+      let name = "NameIWantForMyLanguageModelFiles"
+      let err: Error! = lmGenerator.generateLanguageModel(from: words, withFilesNamed: name, forAcousticModelAtPath: OEAcousticModel.path(toModel: "AcousticModelEnglish"))
+      
+      if(err != nil) {
+        print("Error while creating initial language model: \(err)")
+      } else {
+        let lmPath = lmGenerator.pathToSuccessfullyGeneratedLanguageModel(withRequestedName: name) // Convenience method to reference the path of a language model known to have been created successfully.
+        let dicPath = lmGenerator.pathToSuccessfullyGeneratedDictionary(withRequestedName: name) // Convenience method to reference the path of a dictionary known to have been created successfully.
+        // OELogging.startOpenEarsLogging() //Uncomment to receive full OpenEars logging in case of any unexpected results.
+        do {
+          try OEPocketsphinxController.sharedInstance().setActive(true) // Setting the shared OEPocketsphinxController active is necessary before any of its properties are accessed.
+        } catch {
+          print("Error: it wasn't possible to set the shared instance to active: \"\(error)\"")
+        }
+        
+        OEPocketsphinxController.sharedInstance().startListeningWithLanguageModel(atPath: lmPath, dictionaryAtPath: dicPath, acousticModelAtPath: OEAcousticModel.path(toModel: "AcousticModelEnglish"), languageModelIsJSGF: false)
+      }
     }
-    
-    OEPocketsphinxController.sharedInstance().startListeningWithLanguageModel(atPath: lmPath, dictionaryAtPath: dicPath, acousticModelAtPath: OEAcousticModel.path(toModel: "AcousticModelEnglish"), languageModelIsJSGF: false)
+    else {
+      OEPocketsphinxController.sharedInstance().stopListening()
+    }
   }
   
   @IBAction func microphoneTapped(_ sender: UIButton) {
@@ -190,18 +206,6 @@ class SingleViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     // Do any additional setup after loading the view.
     self.openEarsEventsObserver.delegate = self
-    
-    let lmGenerator = OELanguageModelGenerator()
-    let words = ["word", "Statement", "other word", "A PHRASE"] // These can be lowercase, uppercase, or mixed-case.
-    let name = "NameIWantForMyLanguageModelFiles"
-    let err: Error! = lmGenerator.generateLanguageModel(from: words, withFilesNamed: name, forAcousticModelAtPath: OEAcousticModel.path(toModel: "AcousticModelEnglish"))
-    
-    if(err != nil) {
-      print("Error while creating initial language model: \(err)")
-    } else {
-      let lmPath = lmGenerator.pathToSuccessfullyGeneratedLanguageModel(withRequestedName: name) // Convenience method to reference the path of a language model known to have been created successfully.
-      let dicPath = lmGenerator.pathToSuccessfullyGeneratedDictionary(withRequestedName: name) // Convenience method to reference the path of a dictionary known to have been created successfully.
-    }
     
     if let recipe = recipe {
       bookmarksButton.isSelected = recipe.bookmarked
@@ -487,6 +491,8 @@ class SingleViewController: UIViewController, UITableViewDelegate, UITableViewDa
   override func viewDidLayoutSubviews() {
     recipeImage.gradient(colors: [UIColor.clear.cgColor, UIColor.black.cgColor],opacity: 1, location: [0.70,1])
   }
+  
+  /* Start of OpenEars delegate methods */
   
   func pocketsphinxDidReceiveHypothesis(_ hypothesis: String!, recognitionScore: String!, utteranceID: String!) { // Something was heard
     print("Local callback: The received hypothesis is \(hypothesis!) with a score of \(recognitionScore!) and an ID of \(utteranceID!)")
