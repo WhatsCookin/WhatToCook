@@ -164,6 +164,8 @@ class SingleViewController: UIViewController, UITableViewDelegate, UITableViewDa
         }
         
         OEPocketsphinxController.sharedInstance().startListeningWithLanguageModel(atPath: lmPath, dictionaryAtPath: dicPath, acousticModelAtPath: OEAcousticModel.path(toModel: "AcousticModelEnglish"), languageModelIsJSGF: false)
+        print(OEPocketsphinxController.sharedInstance().description)
+        //OEPocketsphinxController.sharedInstance().
       }
     }
     else {
@@ -517,6 +519,7 @@ class SingleViewController: UIViewController, UITableViewDelegate, UITableViewDa
   // An optional delegate method of OEEventsObserver which informs that Pocketsphinx detected a second of silence, indicating the end of an utterance.
   func pocketsphinxDidDetectFinishedSpeech() {
     print("Local callback: Pocketsphinx has detected a second of silence, concluding an utterance.") // Log it.
+    print()
   }
   
   // An optional delegate method of OEEventsObserver which informs that Pocketsphinx has exited its recognition loop, most
