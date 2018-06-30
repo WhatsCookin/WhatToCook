@@ -10,6 +10,7 @@ target 'What2Cook' do
   pod 'Alamofire'
   pod 'AlamofireImage'
   pod 'FontAwesome-iOS'
+  pod 'Kingfisher'
 
   target 'What2CookTests' do
     inherit! :search_paths

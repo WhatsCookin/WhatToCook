@@ -8,6 +8,7 @@
 
 import UIKit
 import AlamofireImage
+import Kingfisher
 
 class RecipeCell: UICollectionViewCell {
   @IBOutlet weak var recipeImage: UIImageView!
@@ -21,12 +22,13 @@ class RecipeCell: UICollectionViewCell {
   var recipe: RecipeItem! {
     didSet {
       if let url = URL(string: recipe.image) {
-        recipeImage.af_setImage(withURL: url)
+        recipeImage.kf.setImage(with: url)
+
+        nameLabel.text = recipe.name
+        timeLabel.text = String(recipe.time)
+        likesLabel.text = String(recipe.likes)
+        servingsLabel.text = String(recipe.servings)
       }
-      nameLabel.text = recipe.name
-      timeLabel.text = String(recipe.time)
-      likesLabel.text = String(recipe.likes)
-      servingsLabel.text = String(recipe.servings)
     }
   }
   
@@ -34,7 +36,7 @@ class RecipeCell: UICollectionViewCell {
     //reload images
     super.layoutSubviews()
     self.gradient.frame = self.bounds;
-    recipeImage.gradient(colors: [UIColor.clear.cgColor, UIColor.black.cgColor], opacity: 1, location: [0.50,1])
+    recipeImage.gradient(colors: [UIColor.clear.cgColor, UIColor.black.cgColor], opacity: 1, location: [0.50,1.5])
   }
 }
 extension UIImageView

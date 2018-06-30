@@ -87,7 +87,13 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
     SpoonacularAPIManager().getPopularRecipes(searchString!) { (recipes, error) in
       if let recipes = recipes {
         self.recipes = recipes
+        //self.collectionView.reloadData()
+        self.collectionView.isHidden = true;
         self.collectionView.reloadData()
+        self.collectionView.performBatchUpdates(nil, completion: {
+          (result) in
+          self.collectionView.isHidden = false;
+        })
         self.refreshControl.endRefreshing()
         
       } else if let error = error {
