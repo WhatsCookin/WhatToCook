@@ -20,11 +20,15 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
   
   var searchString: String?
   private var workItem: DispatchWorkItem?
+  private var keyboardHidden = true;
   
   override func viewDidLoad() {
     super.viewDidLoad()
     
     hideKeyboardWhenTappedAround()
+    
+    NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillDisappear), name: Notification.Name.UIKeyboardWillHide, object: nil)
+    NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillAppear), name: Notification.Name.UIKeyboardWillShow, object: nil)
     
     let user = PFUser.current()
     if user!["apiCalls"] == nil || user!["apiResults"] == nil || user!["homeResults"] == nil || user!["fridgeResults"] == nil {
@@ -75,6 +79,22 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
       self.loadRecipes()
     }
     DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(2), execute: workItem!)
+  }
+  
+  @objc func keyboardWillAppear() {
+    keyboardHidden = false;
+  }
+  
+  @objc func keyboardWillDisappear() {
+    searchBarCancelButtonClicked(searchBar);
+    DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+      self.keyboardHidden = true;
+      
+    }
+  }
+  
+  override func viewWillDisappear(_ animated: Bool) {
+    NotificationCenter.default.removeObserver(self)
   }
   
   override func viewDidDisappear(_ animated: Bool) {
@@ -155,6 +175,10 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
   }
   func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
     return 0.0
+  }
+  
+  override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
+    return keyboardHidden
   }
   
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

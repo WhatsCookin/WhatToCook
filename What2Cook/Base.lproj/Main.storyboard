@@ -144,7 +144,7 @@
                                             <outlet property="recipeImage" destination="4ff-u8-CuG" id="iJ7-Qz-Ec6"/>
                                             <outlet property="servingsLabel" destination="OT2-R8-ZUX" id="g1J-Za-TAm"/>
                                             <outlet property="timeLabel" destination="kJs-WR-AlI" id="hWV-hd-9e5"/>
-                                            <segue destination="kxA-1q-EIY" kind="show" id="m4m-HL-ijG"/>
+                                            <segue destination="kxA-1q-EIY" kind="show" id="7B9-h0-SHp"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
@@ -1323,7 +1323,6 @@
                                             <outlet property="recipeImage" destination="net-7M-caD" id="1ML-oY-qsG"/>
                                             <outlet property="servingsLabel" destination="7D8-g0-khf" id="4Fz-mZ-4yb"/>
                                             <outlet property="timeLabel" destination="bgH-PG-d2p" id="GaV-BB-PJb"/>
-                                            <segue destination="kxA-1q-EIY" kind="show" identifier="detailSegue" id="ifk-Wy-dt1"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
@@ -1882,7 +1881,6 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="NM3-9G-I46"/>
-        <segue reference="m4m-HL-ijG"/>
         <segue reference="7A6-xl-a10"/>
     </inferredMetricsTieBreakers>
 </document>
