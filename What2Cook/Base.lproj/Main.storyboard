@@ -1328,6 +1328,7 @@
                                             <outlet property="recipeImage" destination="net-7M-caD" id="1ML-oY-qsG"/>
                                             <outlet property="servingsLabel" destination="7D8-g0-khf" id="4Fz-mZ-4yb"/>
                                             <outlet property="timeLabel" destination="bgH-PG-d2p" id="GaV-BB-PJb"/>
+                                            <segue destination="kxA-1q-EIY" kind="showDetail" identifier="detailSegue" id="QHe-Ql-KK5"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
@@ -1886,6 +1887,7 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="NM3-9G-I46"/>
+        <segue reference="QHe-Ql-KK5"/>
         <segue reference="7A6-xl-a10"/>
     </inferredMetricsTieBreakers>
 </document>
