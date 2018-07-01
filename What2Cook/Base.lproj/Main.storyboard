@@ -33,6 +33,10 @@
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
+                                <activityIndicatorView key="backgroundView" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="white" id="qum-Vd-e3V">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="622"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                </activityIndicatorView>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="RecipeCell" id="cEh-bh-Jlp" customClass="RecipeCell" customModule="What2Cook" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="174" height="243"/>
@@ -191,6 +195,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="collectionView" destination="6u8-kM-sar" id="kzC-bP-8Rp"/>
+                        <outlet property="loader" destination="qum-Vd-e3V" id="kmZ-Uz-Hif"/>
                         <outlet property="searchBar" destination="Sdc-H2-Ie9" id="WOG-cT-r0V"/>
                         <outlet property="sidebarButton" destination="Yoz-Qm-icq" id="oxi-9P-TEn"/>
                     </connections>

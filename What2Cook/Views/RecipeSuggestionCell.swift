@@ -18,7 +18,7 @@ class RecipeSuggestionCell: UITableViewCell {
     didSet {
       titleLabel.text = recipe.name
       if let url = URL(string: recipe.image!) {
-        photoImageView.af_setImage(withURL: url)
+        photoImageView.kf.setImage(with: url)
       }
       if(recipe.missedIngredientCount == 0) {
         missedIngredientLabel.text = "You have everything you need"

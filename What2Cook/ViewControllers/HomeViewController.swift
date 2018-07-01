@@ -14,6 +14,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
   @IBOutlet weak var sidebarButton: UIBarButtonItem!
   @IBOutlet weak var collectionView: UICollectionView!
   @IBOutlet weak var searchBar: UISearchBar!
+  @IBOutlet weak var loader: UIActivityIndicatorView!
   
   var recipes: [RecipeItem] = []
   var refreshControl: UIRefreshControl!
@@ -26,6 +27,9 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
     super.viewDidLoad()
     
     hideKeyboardWhenTappedAround()
+    loader.center = CGPoint(x: collectionView.bounds.size.width/2, y: collectionView.bounds.size.height/2)
+    loader.hidesWhenStopped = true
+    loader.startAnimating()
     
     NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillDisappear), name: Notification.Name.UIKeyboardWillHide, object: nil)
     NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillAppear), name: Notification.Name.UIKeyboardWillShow, object: nil)
@@ -89,7 +93,6 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
     searchBarCancelButtonClicked(searchBar);
     DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
       self.keyboardHidden = true;
-      
     }
   }
   
@@ -103,21 +106,19 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
   
   @objc func loadRecipes() {
     print("Calling loadRecipes()")
-    
     SpoonacularAPIManager().getPopularRecipes(searchString!) { (recipes, error) in
       if let recipes = recipes {
         self.recipes = recipes
-        //self.collectionView.reloadData()
-        self.collectionView.isHidden = true;
         self.collectionView.reloadData()
         self.collectionView.performBatchUpdates(nil, completion: {
           (result) in
-          self.collectionView.isHidden = false;
         })
         self.refreshControl.endRefreshing()
+        self.loader.stopAnimating()
         
       } else if let error = error {
         print("Error getting recipes: " + error.localizedDescription)
+        self.displayError(title: "No Recipes Found", message: "Try a different keyword.")
       }
     }
   }
@@ -148,6 +149,9 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
   
   // Filter recipes by searchString
   @IBAction func beginSearch(_ sender: Any) {
+    self.loader.startAnimating()
+    recipes = []
+    collectionView.reloadData()
     loadRecipes()
     self.searchBar.showsCancelButton = false
   }
