@@ -11,6 +11,7 @@ target 'What2Cook' do
   pod 'AlamofireImage'
   pod 'FontAwesome-iOS'
   pod 'Kingfisher'
+  pod 'FontAwesome.swift'
 
   target 'What2CookTests' do
     inherit! :search_paths

@@ -9,21 +9,30 @@
 import UIKit
 import Parse
 import Speech
+import FontAwesome_swift
 
 class FridgeViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate, ExpandableHeaderViewDelegate, SFSpeechRecognizerDelegate {
   
   var recipesList: [Recipe] = []
   var ingredients: [String] = []
   var selectIndexPath: IndexPath!
+  private var selectedAll = false
   private var ignoredChars = 0  // For continuous speech recognition
   private let speechRecognizer = SFSpeechRecognizer(locale: Locale.init(identifier: "en-US"))
   private var recognitionRequest: SFSpeechAudioBufferRecognitionRequest?
   private var recognitionTask: SFSpeechRecognitionTask?
   private let audioEngine = AVAudioEngine()
-  
-  @IBOutlet weak var allSelectIcon: UIButton!
+
   @IBOutlet weak var microphoneButton: UIButton!
   @IBOutlet weak var tableView: UITableView!
+  
+  // All buttons using FontAwesome
+  @IBOutlet weak var categoryButton: UIButton!
+  @IBOutlet weak var deleteCategoryButton: UIButton!
+  @IBOutlet weak var fetchRecipesButton: UIButton!
+  @IBOutlet weak var moveIngredientsButton: UIButton!
+  @IBOutlet weak var deleteIngredientsButton: UIButton!
+  @IBOutlet weak var selectAllButton: UIButton!
   
   @IBAction func microphoneTapped(_ sender: UIButton) {
     sender.isSelected = !sender.isSelected
@@ -63,14 +72,13 @@ class FridgeViewController: UIViewController, UITableViewDelegate, UITableViewDa
   }
   
   @IBAction func onSelectAll(_ sender: UIButton) {
-    if sender.titleLabel?.text == "Select All" {
-      sender.setTitle("Deselect", for: .normal)
+    if !selectedAll {
       selectAll()
     }
     else {
-      sender.setTitle("Select All", for: .normal)
       deselectAll()
     }
+    selectedAll = !selectedAll
   }
   
   @IBAction func onDelete(_ sender: UIButton) {
@@ -242,6 +250,7 @@ class FridgeViewController: UIViewController, UITableViewDelegate, UITableViewDa
     for section in 0..<sections.count {
       header.deselectSection(section: section)
     }
+    
   }
   
   func selectAll() {
@@ -268,12 +277,20 @@ class FridgeViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     hideKeyboardWhenTappedAround()
     
+    
+    
     selectIndexPath = IndexPath(row: -1, section: -1)
     
     let nib = UINib(nibName: "ExpandableHeaderView", bundle: nil)
     tableView.register(nib, forHeaderFooterViewReuseIdentifier: "expandableHeaderView")
     
-    // Do any additional setup after loading the view.
+    fixFontAwesome(button: categoryButton, title: "Add Category", icon: String.fontAwesomeIcon(name: .plus), size: 17, before: true)
+    fixFontAwesome(button: deleteCategoryButton, title: "Delete Category", icon: String.fontAwesomeIcon(name: .minusCircle), size: 17, before: true)
+    fixFontAwesome(button: fetchRecipesButton, title: "Fetch Recipes", icon: String.fontAwesomeIcon(name: .search), size: 30, before: true)
+    fixFontAwesome(button: moveIngredientsButton, title: "Move Ingredients", icon: String.fontAwesomeIcon(name: .sort), size: 17, before: true)
+    fixFontAwesome(button: deleteIngredientsButton, title: "Delete Ingredients", icon: String.fontAwesomeIcon(name: .minusCircle), size: 17, before: true)
+    fixFontAwesome(button: selectAllButton, title: "Select All", icon: String.fontAwesomeIcon(name: .list), size: 17, before: false)
+    
     self.tableView.allowsMultipleSelection = true
     self.tableView.delegate = self
     self.tableView.dataSource = self
@@ -413,6 +430,27 @@ class FridgeViewController: UIViewController, UITableViewDelegate, UITableViewDa
       microphoneButton.isEnabled = true
     } else {
       microphoneButton.isEnabled = false
+    }
+  }
+  
+  // Fix bottom of text getting cut off
+  func fixFontAwesome(button: UIButton, title: String, icon: String, size: CGFloat, before: Bool) {
+    print(icon)
+    if before {
+      let iconPart = NSMutableAttributedString(string: icon, attributes: [NSAttributedStringKey.font: UIFont.fontAwesome(ofSize: size)])
+      
+      let textPart = NSMutableAttributedString(string: " " + title, attributes: [NSAttributedStringKey.font:UIFont.systemFont(ofSize: size)])
+      
+      iconPart.append(textPart)
+      button.setAttributedTitle(iconPart, for: .normal)
+    }
+    else {
+      let textPart = NSMutableAttributedString(string: title + " ", attributes: [NSAttributedStringKey.font:UIFont.systemFont(ofSize: size)])
+      
+      let iconPart = NSMutableAttributedString(string: icon, attributes: [NSAttributedStringKey.font: UIFont.fontAwesome(ofSize: size)])
+      
+      textPart.append(iconPart)
+      button.setAttributedTitle(textPart, for: .normal)
     }
   }
   

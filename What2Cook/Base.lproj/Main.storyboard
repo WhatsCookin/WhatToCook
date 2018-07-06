@@ -10,7 +10,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
-        <array key="fontawesome-webfont.ttf">
+        <array key="FontAwesome.otf">
             <string>FontAwesome</string>
         </array>
     </customFonts>
@@ -898,9 +898,16 @@
                                                     <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" image="checkmark" translatesAutoresizingMaskIntoConstraints="NO" id="Bxk-gJ-8DX">
+                                                    <rect key="frame" x="381" y="12" width="18" height="18"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                </imageView>
                                             </subviews>
-                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <color key="backgroundColor" red="0.99449461018028207" green="1" blue="0.99728432195149774" alpha="0.70197452910958902" colorSpace="custom" customColorSpace="sRGB"/>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="checkmark" destination="Bxk-gJ-8DX" id="jF6-tZ-o3s"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>
@@ -919,7 +926,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6bp-ky-fDu">
-                                <rect key="frame" x="256" y="647" width="157" height="32"/>
+                                <rect key="frame" x="248" y="647" width="165" height="32"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="FontAwesome" family="FontAwesome" pointSize="17"/>
                                 <state key="normal" title=" Delete Ingredients"/>
@@ -928,7 +935,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3ll-f9-Tmx">
-                                <rect key="frame" x="262" y="615" width="144" height="34"/>
+                                <rect key="frame" x="248" y="615" width="165" height="34"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="FontAwesome" family="FontAwesome" pointSize="17"/>
                                 <state key="normal" title=" Move Ingredients"/>
@@ -959,29 +966,21 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6aO-ZZ-I5N">
-                                <rect key="frame" x="376" y="110" width="30" height="30"/>
+                                <rect key="frame" x="295" y="110" width="111" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="FontAwesome" family="FontAwesome" pointSize="17"/>
-                                <state key="normal" title=""/>
+                                <state key="normal" title="Select All "/>
                                 <connections>
-                                    <action selector="onSelectAll:" destination="Yfd-vf-QZE" eventType="touchUpInside" id="fAQ-iz-tNn"/>
+                                    <action selector="onSelectAll:" destination="Yfd-vf-QZE" eventType="touchUpInside" id="Cu1-ZC-mcD"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UHo-3R-Iuo">
-                                <rect key="frame" x="16" y="72" width="87" height="35"/>
+                                <rect key="frame" x="0.0" y="72" width="147" height="35"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="FontAwesome" family="FontAwesome" pointSize="17"/>
                                 <state key="normal" title=" Category"/>
                                 <connections>
                                     <segue destination="ZeA-qU-FZj" kind="show" id="D4q-hk-owZ"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="j7P-pl-GSI">
-                                <rect key="frame" x="295" y="110" width="99" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Select All"/>
-                                <connections>
-                                    <action selector="onSelectAll:" destination="Yfd-vf-QZE" eventType="touchUpInside" id="Ye7-t2-7w4"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -994,8 +993,13 @@
                     </view>
                     <navigationItem key="navigationItem" title="What's in my Fridge?" id="J5c-Gc-uLX"/>
                     <connections>
-                        <outlet property="allSelectIcon" destination="6aO-ZZ-I5N" id="G8G-Vb-Hig"/>
+                        <outlet property="categoryButton" destination="UHo-3R-Iuo" id="5uw-Kd-UOX"/>
+                        <outlet property="deleteCategoryButton" destination="Xnh-41-cfU" id="wAX-8m-66O"/>
+                        <outlet property="deleteIngredientsButton" destination="6bp-ky-fDu" id="BbQ-Tr-qYW"/>
+                        <outlet property="fetchRecipesButton" destination="bhy-v6-edK" id="ZN8-g8-Rmd"/>
                         <outlet property="microphoneButton" destination="VnW-6H-ugM" id="pkO-Pp-NME"/>
+                        <outlet property="moveIngredientsButton" destination="3ll-f9-Tmx" id="ARD-GA-4fk"/>
+                        <outlet property="selectAllButton" destination="6aO-ZZ-I5N" id="B9V-lV-PMQ"/>
                         <outlet property="tableView" destination="lSc-V0-JIb" id="SzS-1r-CDn"/>
                     </connections>
                 </viewController>
@@ -1870,6 +1874,7 @@
         <image name="LoginScreen" width="415" height="737"/>
         <image name="add" width="25" height="25"/>
         <image name="bookmarked" width="25" height="25"/>
+        <image name="checkmark" width="285" height="297"/>
         <image name="colorStrip1" width="700" height="50"/>
         <image name="default-profile-pic" width="800" height="800"/>
         <image name="fridge" width="25" height="25"/>
