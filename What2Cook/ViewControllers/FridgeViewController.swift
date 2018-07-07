@@ -435,7 +435,6 @@ class FridgeViewController: UIViewController, UITableViewDelegate, UITableViewDa
   
   // Fix bottom of text getting cut off
   func fixFontAwesome(button: UIButton, title: String, icon: String, size: CGFloat, before: Bool) {
-    print(icon)
     if before {
       let iconPart = NSMutableAttributedString(string: icon, attributes: [NSAttributedStringKey.font: UIFont.fontAwesome(ofSize: size)])
       

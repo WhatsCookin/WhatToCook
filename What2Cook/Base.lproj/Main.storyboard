@@ -10,7 +10,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
-        <array key="FontAwesome.otf">
+        <array key="fontawesome-webfont.ttf">
             <string>FontAwesome</string>
         </array>
     </customFonts>
@@ -195,7 +195,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="collectionView" destination="6u8-kM-sar" id="kzC-bP-8Rp"/>
-                        <outlet property="loader" destination="qum-Vd-e3V" id="kmZ-Uz-Hif"/>
+                        <outlet property="loader" destination="qum-Vd-e3V" id="rcR-aK-9tC"/>
                         <outlet property="searchBar" destination="Sdc-H2-Ie9" id="WOG-cT-r0V"/>
                         <outlet property="sidebarButton" destination="Yoz-Qm-icq" id="oxi-9P-TEn"/>
                     </connections>
@@ -213,7 +213,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="D5b-TB-uzN">
-                                <rect key="frame" x="0.0" y="20" width="375" height="1480"/>
+                                <rect key="frame" x="0.0" y="64" width="375" height="1436"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0n7-lg-0LR" customClass="RecipeSingleView" customModule="What2Cook" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="1200"/>
@@ -1332,7 +1332,7 @@
                                             <outlet property="recipeImage" destination="net-7M-caD" id="1ML-oY-qsG"/>
                                             <outlet property="servingsLabel" destination="7D8-g0-khf" id="4Fz-mZ-4yb"/>
                                             <outlet property="timeLabel" destination="bgH-PG-d2p" id="GaV-BB-PJb"/>
-                                            <segue destination="kxA-1q-EIY" kind="showDetail" identifier="detailSegue" id="QHe-Ql-KK5"/>
+                                            <segue destination="kxA-1q-EIY" kind="show" identifier="detailSegue" id="do7-Y5-6T0"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
@@ -1892,7 +1892,7 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="NM3-9G-I46"/>
-        <segue reference="QHe-Ql-KK5"/>
+        <segue reference="do7-Y5-6T0"/>
         <segue reference="7A6-xl-a10"/>
     </inferredMetricsTieBreakers>
 </document>
