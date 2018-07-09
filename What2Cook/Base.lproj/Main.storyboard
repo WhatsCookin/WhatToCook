@@ -10,7 +10,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
-        <array key="fontawesome-webfont.ttf">
+        <array key="FontAwesome.otf">
             <string>FontAwesome</string>
         </array>
     </customFonts>
@@ -898,16 +898,9 @@
                                                     <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" image="checkmark" translatesAutoresizingMaskIntoConstraints="NO" id="Bxk-gJ-8DX">
-                                                    <rect key="frame" x="381" y="12" width="18" height="18"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                </imageView>
                                             </subviews>
-                                            <color key="backgroundColor" red="0.99449461018028207" green="1" blue="0.99728432195149774" alpha="0.70197452910958902" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </tableViewCellContentView>
-                                        <connections>
-                                            <outlet property="checkmark" destination="Bxk-gJ-8DX" id="jF6-tZ-o3s"/>
-                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>
@@ -1874,7 +1867,6 @@
         <image name="LoginScreen" width="415" height="737"/>
         <image name="add" width="25" height="25"/>
         <image name="bookmarked" width="25" height="25"/>
-        <image name="checkmark" width="285" height="297"/>
         <image name="colorStrip1" width="700" height="50"/>
         <image name="default-profile-pic" width="800" height="800"/>
         <image name="fridge" width="25" height="25"/>
