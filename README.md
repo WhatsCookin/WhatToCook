@@ -17,6 +17,21 @@
 
 
 
+## Video Walkthrough
+Here's a walkthrough of implemented user stories:
+
+Search popular recipes:
+https://i.imgur.com/vQ4W89e.gif
+
+What's in my fridge:
+https://i.imgur.com/nFd6xC7.gif
+
+Bookmarks:
+https://i.imgur.com/CQyYOaI.gif
+
+
+
+
 ## Nice To Haves
 - [X] As a user, I want to be able to get recommendations on recipes using artificial intelligence
 - [X] As a user, I want to be able to add friends via QR code
