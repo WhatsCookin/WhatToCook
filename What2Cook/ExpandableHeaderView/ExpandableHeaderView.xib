@@ -10,7 +10,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
-        <array key="fontawesome-webfont.ttf">
+        <array key="FontAwesome.otf">
             <string>FontAwesome</string>
         </array>
     </customFonts>
@@ -25,26 +25,26 @@
                     <rect key="frame" x="0.0" y="0.0" width="375" height="58"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Vegetables" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JOe-jX-drT">
-                            <rect key="frame" x="8" y="16" width="297" height="26.5"/>
+                            <rect key="frame" x="8" y="16" width="263" height="26.5"/>
                             <fontDescription key="fontDescription" type="boldSystem" pointSize="22"/>
                             <color key="textColor" red="0.96982917349999997" green="0.97244125979999996" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="ZtJ-hi-rRf">
-                            <rect key="frame" x="342" y="16" width="25" height="25"/>
+                            <rect key="frame" x="317" y="16" width="50" height="25"/>
                             <subviews>
                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="zsc-ev-TvN">
-                                    <rect key="frame" x="0.0" y="0.0" width="25" height="25"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="50" height="25"/>
                                     <subviews>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tXw-RC-Zzd">
-                                            <rect key="frame" x="0.0" y="0.0" width="25" height="25"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="50" height="25"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="25" id="p7c-B2-5cB"/>
-                                                <constraint firstAttribute="width" constant="25" id="v9M-lK-dKg"/>
+                                                <constraint firstAttribute="width" constant="50" id="v9M-lK-dKg"/>
                                             </constraints>
                                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                            <state key="normal" image="unchecked"/>
-                                            <state key="selected" image="checked"/>
+                                            <state key="normal" title="Select"/>
+                                            <state key="selected" title="Select"/>
                                             <connections>
                                                 <action selector="onCheck:" destination="-2" eventType="touchUpInside" id="i0t-MC-gcp"/>
                                             </connections>
@@ -54,7 +54,7 @@
                             </subviews>
                         </stackView>
                         <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="o9L-pk-8CX">
-                            <rect key="frame" x="305" y="14" width="30" height="30"/>
+                            <rect key="frame" x="279" y="14" width="30" height="30"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" name="FontAwesome" family="FontAwesome" pointSize="17"/>
                             <state key="normal" title=""/>
@@ -69,7 +69,7 @@
                         <constraint firstItem="ZtJ-hi-rRf" firstAttribute="top" secondItem="2Hx-Sc-RXL" secondAttribute="top" constant="16" id="18V-WC-vaH"/>
                         <constraint firstAttribute="trailing" secondItem="ZtJ-hi-rRf" secondAttribute="trailing" constant="8" id="GdH-K6-qbJ"/>
                         <constraint firstItem="JOe-jX-drT" firstAttribute="top" secondItem="2Hx-Sc-RXL" secondAttribute="top" constant="16" id="laA-af-1ih"/>
-                        <constraint firstItem="ZtJ-hi-rRf" firstAttribute="leading" secondItem="JOe-jX-drT" secondAttribute="trailing" constant="37" id="lc0-HI-Ba8"/>
+                        <constraint firstItem="ZtJ-hi-rRf" firstAttribute="leading" secondItem="JOe-jX-drT" secondAttribute="trailing" constant="46" id="lc0-HI-Ba8"/>
                     </constraints>
                 </view>
             </subviews>
@@ -89,8 +89,4 @@
             <point key="canvasLocation" x="-171.5" y="132"/>
         </view>
     </objects>
-    <resources>
-        <image name="checked" width="512" height="512"/>
-        <image name="unchecked" width="512" height="512"/>
-    </resources>
 </document>
