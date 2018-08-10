@@ -1,6 +1,6 @@
 # *What2Cook*
 
-**What2Cook** Created by ORG WhatsCookin an iOS app that allows users to quickly view, recipes and start cooking! With Voice Command and text to speech to help read out instructions while cooking, anyone can use. Users can also use our “What’s In My Fridge” feature to discover recipes using only ingredients that they have in their fridge!
+**What2Cook** Created by ORG WhatsCookin an iOS app that allows users to quickly view recipes and start cooking! With Voice Command and text to speech to help read out instructions while cooking, anyone can use. Users can also use the “What’s In My Fridge” feature to discover recipes using only ingredients that they have in their fridge!
 
 ## User Stories
 
@@ -26,7 +26,7 @@ https://i.imgur.com/vQ4W89e.gif
 What's in my fridge:
 https://i.imgur.com/nFd6xC7.gif
 
-Bookmarks:
+Bookmarks(Works offline):
 https://i.imgur.com/CQyYOaI.gif
 
 
