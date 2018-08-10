@@ -43,7 +43,6 @@ class SingleViewController: UIViewController, UITableViewDelegate, UITableViewDa
   var totalUtterance: Int = 0
   var toRead: [String] = []
   var currentStep = 0
-  var ignoredChars = 0
   var utteranceRate = 0.45 as Float
   private let speechRecognizer = SFSpeechRecognizer(locale: Locale.init(identifier: "en-US"))
   private var recognitionRequest: SFSpeechAudioBufferRecognitionRequest?
@@ -53,7 +52,8 @@ class SingleViewController: UIViewController, UITableViewDelegate, UITableViewDa
   @IBAction func onBookmark(_ sender: UIButton) {
     let user = PFUser.current()
     if(sender.isSelected == false) {
-      // store object in array
+      
+      // Store object in array
       recipe?.bookmarked = true
       if(user!["bookmarks"] == nil) {   // Create new bookmarks array
         let bookmarks = NSMutableArray.init()
@@ -68,7 +68,7 @@ class SingleViewController: UIViewController, UITableViewDelegate, UITableViewDa
       }
     }
     else {
-      // remove recipe from pfuser
+      // Remove recipe from pfuser
       recipe?.bookmarked = false
       let bookmarks = user!["bookmarks"] as! NSMutableArray
       for bookmark in bookmarks {
@@ -132,7 +132,7 @@ class SingleViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     else {
       synthesizer.stopSpeaking(at: .immediate)
-      currentStep = -1
+      currentStep = 0
       playMessage(message: "You're already at the first step.")
     }
   }
@@ -142,39 +142,7 @@ class SingleViewController: UIViewController, UITableViewDelegate, UITableViewDa
     playMessage(message: toRead[currentStep])
   }
   
-  @IBAction func microphone2Tapped(_ sender: UIButton) {
-    sender.isSelected = !sender.isSelected
-    
-    if(sender.isSelected) {
-      let lmGenerator = OELanguageModelGenerator()
-      let words = ["word", "Statement", "other word", "A PHRASE"] // These can be lowercase, uppercase, or mixed-case.
-      let name = "NameIWantForMyLanguageModelFiles"
-      let err: Error! = lmGenerator.generateLanguageModel(from: words, withFilesNamed: name, forAcousticModelAtPath: OEAcousticModel.path(toModel: "AcousticModelEnglish"))
-      
-      if(err != nil) {
-        print("Error while creating initial language model: \(err)")
-      } else {
-        let lmPath = lmGenerator.pathToSuccessfullyGeneratedLanguageModel(withRequestedName: name) // Convenience method to reference the path of a language model known to have been created successfully.
-        let dicPath = lmGenerator.pathToSuccessfullyGeneratedDictionary(withRequestedName: name) // Convenience method to reference the path of a dictionary known to have been created successfully.
-        // OELogging.startOpenEarsLogging() //Uncomment to receive full OpenEars logging in case of any unexpected results.
-        do {
-          try OEPocketsphinxController.sharedInstance().setActive(true) // Setting the shared OEPocketsphinxController active is necessary before any of its properties are accessed.
-        } catch {
-          print("Error: it wasn't possible to set the shared instance to active: \"\(error)\"")
-        }
-        
-        OEPocketsphinxController.sharedInstance().startListeningWithLanguageModel(atPath: lmPath, dictionaryAtPath: dicPath, acousticModelAtPath: OEAcousticModel.path(toModel: "AcousticModelEnglish"), languageModelIsJSGF: false)
-        print(OEPocketsphinxController.sharedInstance().description)
-        //OEPocketsphinxController.sharedInstance().
-      }
-    }
-    else {
-      OEPocketsphinxController.sharedInstance().stopListening()
-    }
-  }
-  
   @IBAction func microphoneTapped(_ sender: UIButton) {
-    print("tap")
     sender.isSelected = !sender.isSelected
     
     if !self.synthesizer.isSpeaking && toRead.count > 0{
@@ -184,7 +152,7 @@ class SingleViewController: UIViewController, UITableViewDelegate, UITableViewDa
       nextStep()  // Play the first step in recipe instructions
     }
     
-    if audioEngine.isRunning {
+    /*if audioEngine.isRunning {
       stop()
       audioEngine.stop()
       recognitionRequest?.endAudio()
@@ -200,6 +168,33 @@ class SingleViewController: UIViewController, UITableViewDelegate, UITableViewDa
       microphoneButton.isEnabled = false
     } else {
       startRecording()
+    }*/
+    
+    if(sender.isSelected) {
+      let lmGenerator = OELanguageModelGenerator()
+      let words = ["next", "go back", "repeat that"]
+      // TODO: Populate the words array with dictionary words
+      
+      let name = "VoiceCommands"
+      let err: Error! = lmGenerator.generateLanguageModel(from: words, withFilesNamed: name, forAcousticModelAtPath: OEAcousticModel.path(toModel: "AcousticModelEnglish"))
+      
+      if(err != nil) {
+        print("Error while creating initial language model: \(err)")
+      } else {
+        let lmPath = lmGenerator.pathToSuccessfullyGeneratedLanguageModel(withRequestedName: name)
+        let dicPath = lmGenerator.pathToSuccessfullyGeneratedDictionary(withRequestedName: name)
+        // OELogging.startOpenEarsLogging()
+        do {
+          try OEPocketsphinxController.sharedInstance().setActive(true) // Setting the shared OEPocketsphinxController active is necessary before any of its properties are accessed.
+        } catch {
+          print("Error: it wasn't possible to set the shared instance to active: \"\(error)\"")
+        }
+        
+        OEPocketsphinxController.sharedInstance().startListeningWithLanguageModel(atPath: lmPath, dictionaryAtPath: dicPath, acousticModelAtPath: OEAcousticModel.path(toModel: "AcousticModelEnglish"), languageModelIsJSGF: false)
+      }
+    }
+    else {
+      OEPocketsphinxController.sharedInstance().stopListening()
     }
   }
   
@@ -298,141 +293,6 @@ class SingleViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
   }
   
-  func startRecording() {
-    if recognitionTask != nil {  //1
-      recognitionTask?.cancel()
-      recognitionTask = nil
-    }
-    
-    let audioSession = AVAudioSession.sharedInstance()
-    do {
-      try audioSession.setCategory(AVAudioSessionCategoryPlayAndRecord, with: AVAudioSessionCategoryOptions.defaultToSpeaker)
-    } catch {
-      print("audioSession properties weren't set because of an error.")
-    }
-    
-    recognitionRequest = SFSpeechAudioBufferRecognitionRequest()
-    
-    let inputNode = audioEngine.inputNode
-    
-    guard let recognitionRequest = recognitionRequest else {
-      fatalError("Unable to create an SFSpeechAudioBufferRecognitionRequest object")
-    }
-    
-    recognitionRequest.shouldReportPartialResults = true
-    
-    recognitionTask = speechRecognizer?.recognitionTask(with: recognitionRequest, resultHandler: { (result, error) in
-      
-      var isFinal = false
-      
-      // Start parsing voice command
-      if result != nil {
-        var voiceCommand = result!.bestTranscription.formattedString.lowercased().substring(from: self.ignoredChars) ?? ""
-        print("string: " + result!.bestTranscription.formattedString)
-        
-        // Fix common listening mistakes
-        voiceCommand = voiceCommand.replacingOccurrences(of: "what's that", with: "what step")
-        voiceCommand = voiceCommand.replacingOccurrences(of: "skit", with: "skip")
-        voiceCommand = voiceCommand.replacingOccurrences(of: "scape", with: "skip")
-        voiceCommand = voiceCommand.replacingOccurrences(of: "lower", with: "slower")
-        voiceCommand = voiceCommand.replacingOccurrences(of: "sslower", with: "slower")
-        
-        print(voiceCommand)
-        
-        if voiceCommand.range(of: "next") != nil || voiceCommand.range(of: "skip") != nil {
-          self.nextStep()
-          self.ignoredChars = result!.bestTranscription.formattedString.count
-        }
-        else if voiceCommand.range(of: "go back") != nil || voiceCommand.range(of: "what was the last step") != nil {
-          self.previousStep()
-          self.ignoredChars = result!.bestTranscription.formattedString.count
-        }
-        else if voiceCommand.range(of: "repeat that") != nil || voiceCommand.range(of: "what was that") != nil || voiceCommand.range(of: "again") != nil {
-          self.playCurrentStep()
-          self.ignoredChars = result!.bestTranscription.formattedString.count
-        }
-        else if voiceCommand.range(of: "what step") != nil {
-          self.playMessage(message: "We're on step " + String(self.currentStep + 1) + " out of " + String(self.toRead.count))
-          self.ignoredChars = result!.bestTranscription.formattedString.count
-        }
-        else if voiceCommand.range(of: "pause") != nil || voiceCommand.range(of: "stop") != nil {
-          self.stop()
-          self.ignoredChars = result!.bestTranscription.formattedString.count
-        }
-        else if voiceCommand.range(of: "continue") != nil {
-          self.start()
-          self.ignoredChars = result!.bestTranscription.formattedString.count
-        }
-        else if voiceCommand.range(of: "slow down") != nil {
-          self.changeSpeed(rate: self.utteranceRate * 0.8)
-          self.playCurrentStep()
-          self.ignoredChars = result!.bestTranscription.formattedString.count
-        }
-        else if voiceCommand.range(of: "speed up") != nil {
-          self.changeSpeed(rate: self.utteranceRate * 1.2)
-          self.playCurrentStep()
-          self.ignoredChars = result!.bestTranscription.formattedString.count
-        }
-        else if voiceCommand.range(of: "normal speed") != nil {
-          self.changeSpeed(rate: 0.45)
-          self.playCurrentStep()
-          self.ignoredChars = result!.bestTranscription.formattedString.count
-        }
-        /*else if voiceCommand.range(of: "play all") != nil {
-         for _ in 0..<self.toRead.count {
-         self.nextStep()
-         self.ignoredChars = result!.bestTranscription.formattedString.count
-         }
-         }*/
-        /*else if voiceCommand.range(of: "go to step") != nil {
-         let range = voiceCommand.rangeEndIndex(toFind: " go to step ")
-         voiceCommand = voiceCommand.substring(from: range)!
-         
-         print("full command: " + voiceCommand)
-         let stringNumber = voiceCommand
-         print("string number: " + stringNumber)
-         
-         let numberFormatter:NumberFormatter = NumberFormatter()
-         numberFormatter.numberStyle = NumberFormatter.Style.spellOut
-         let number = numberFormatter.number(from: stringNumber)
-         print("number: " + String(Int(truncating: number!) - 1))
-         
-         self.currentStep = Int(truncating: number!) - 1
-         print("new step: " + String(self.currentStep))
-         self.nextStep()
-         self.ignoredChars = result!.bestTranscription.formattedString.count
-         }*/
-        
-        print(voiceCommand)
-        
-        isFinal = (result?.isFinal)!
-      }
-      
-      if error != nil || isFinal {
-        self.audioEngine.stop()
-        inputNode.removeTap(onBus: 0)
-        
-        self.recognitionRequest = nil
-        self.recognitionTask = nil
-        
-        self.microphoneButton.isEnabled = true
-      }
-    })
-    
-    let recordingFormat = inputNode.outputFormat(forBus: 0)
-    inputNode.installTap(onBus: 0, bufferSize: 1024, format: recordingFormat) { (buffer, when) in
-      self.recognitionRequest?.append(buffer)
-    }
-    
-    audioEngine.prepare()
-    
-    do {
-      try audioEngine.start()
-    } catch {
-      print("audioEngine couldn't start because of an error.")
-    }
-  }
-  
   func speechRecognizer(_ speechRecognizer: SFSpeechRecognizer, availabilityDidChange available: Bool) {
     if available {
       microphoneButton.isEnabled = true
@@ -498,6 +358,51 @@ class SingleViewController: UIViewController, UITableViewDelegate, UITableViewDa
   
   func pocketsphinxDidReceiveHypothesis(_ hypothesis: String!, recognitionScore: String!, utteranceID: String!) { // Something was heard
     print("Local callback: The received hypothesis is \(hypothesis!) with a score of \(recognitionScore!) and an ID of \(utteranceID!)")
+    
+    // Actions for voice commands
+    let voiceCommand = hypothesis!
+    
+    if wordFound(in: voiceCommand, words: ["next", "skip"]) {
+      self.nextStep()
+    }
+    else if wordFound(in: voiceCommand, words: ["go back", "what was the last step"]) {
+      self.previousStep()
+    }
+    else if wordFound(in: voiceCommand, words: ["repeat that", "what was that", "again"]) {
+      self.playCurrentStep()
+    }
+    else if wordFound(in: voiceCommand, words: ["what step"]) {
+      self.playMessage(message: "We're on step " + String(self.currentStep + 1) + " out of " + String(self.toRead.count))
+    }
+    else if wordFound(in: voiceCommand, words: ["pause", "stop"]) {
+      self.stop()
+    }
+    else if wordFound(in: voiceCommand, words: ["continue"]) {
+      self.start()
+    }
+    else if wordFound(in: voiceCommand, words: ["slow down"]) {
+      self.changeSpeed(rate: self.utteranceRate * 0.8)
+      self.playCurrentStep()
+    }
+    else if wordFound(in: voiceCommand, words: ["speed up"]) {
+      self.changeSpeed(rate: self.utteranceRate * 1.2)
+      self.playCurrentStep()
+    }
+    else if wordFound(in: voiceCommand, words: ["normal speed"]) {
+      self.changeSpeed(rate: 0.45)
+      self.playCurrentStep()
+    }
+  }
+  
+  // Returns true if the voice command contains one of the words
+  func wordFound(in voiceCommand: String, words: [String]) -> Bool {
+    var found = false
+    for word in words {
+      if (voiceCommand.range(of: word) != nil) {
+        found = true
+      }
+    }
+    return found
   }
   
   // An optional delegate method of OEEventsObserver which informs that the Pocketsphinx recognition loop has entered its actual loop.

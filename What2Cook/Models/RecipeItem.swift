@@ -8,7 +8,7 @@
 
 import Foundation
 
-class RecipeItem { // recipe to display - TODO: change to combine recipe and recipe item
+class RecipeItem { // recipe to display
   var id: Int!
   var image: String!
   var name: String!

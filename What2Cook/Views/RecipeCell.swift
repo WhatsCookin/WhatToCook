@@ -33,7 +33,6 @@ class RecipeCell: UICollectionViewCell {
   }
   
   override func layoutSubviews() {
-    //reload images
     super.layoutSubviews()
     self.gradient.frame = self.bounds;
     recipeImage.gradient(colors: [UIColor.clear.cgColor, UIColor.black.cgColor], opacity: 1, location: [0.50,1.5])

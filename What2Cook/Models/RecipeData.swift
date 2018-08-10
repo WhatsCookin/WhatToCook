@@ -21,6 +21,7 @@ class RecipeData {
     let firstElemAnalyzed = analyzedInstructions[0]
     let steps = firstElemAnalyzed["steps"] as! [[String: Any]]
     
+    // Store recipe steps in array
     for i in 0...steps.count - 1 {
       let firstElemSteps = steps[i]
       let stringStep = firstElemSteps["step"] as! String

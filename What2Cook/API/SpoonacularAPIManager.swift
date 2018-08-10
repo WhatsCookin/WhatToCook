@@ -25,7 +25,6 @@ class SpoonacularAPIManager {
     
     let urlstring = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/findByIngredients?ingredients=" + ingredientString + "&number=" + String(maxResults) + "&fillIngredients=true&ranking=2&limitLicense=true"
     
-    //You headers (for your api key)
     let headers: HTTPHeaders = [
       "X-Mashape-Key": key,
       ]
@@ -46,7 +45,6 @@ class SpoonacularAPIManager {
     
     let urlstring = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/food/ingredients/autocomplete?query=" + noSpaceSearchString + "&number=" + String(numResults)
     
-    //You headers (for your api key)
     let headers: HTTPHeaders = [
       "X-Mashape-Key": key,
       ]
@@ -62,28 +60,6 @@ class SpoonacularAPIManager {
       }
     }
   }
-  
-  /*func ingredientExists(ingredient: String, completion: @escaping(Bool) -> ()) {
-   let urlString = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/food/ingredients/substitutes?ingredientName=" + ingredient
-   
-   //You headers (for your api key)
-   let headers: HTTPHeaders = [
-   "X-Mashape-Key": key,
-   ]
-   
-   Alamofire.request(urlString, headers: headers).responseJSON { response in
-   if let ingredientDictionary = response.result.value as! NSDictionary? {
-   print(ingredientDictionary)
-   let status = ingredientDictionary["status"]! as! String
-   if status == "failure" {
-   completion(false)
-   }
-   else {
-   completion(true)
-   }
-   }
-   }
-   }*/
   
   // Retrieves the most popular recipes
   func getPopularRecipes(_ tagString: String, completion: @escaping([RecipeItem]?, Error?) -> ()) {
@@ -106,7 +82,6 @@ class SpoonacularAPIManager {
       }
     }
     
-    //You headers (for your api key)
     let headers: HTTPHeaders = [
       "X-Mashape-Key": key,
       ]
@@ -128,7 +103,6 @@ class SpoonacularAPIManager {
   func getRecipeData(_ id: Int, completion: @escaping(RecipeItem?, Error?) -> ()) {
     let urlstring = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/" + String(id) + "/information"
     
-    //You headers (for your api key)
     let headers: HTTPHeaders = [
       "X-Mashape-Key": key,
       ]
@@ -142,32 +116,10 @@ class SpoonacularAPIManager {
     }
   }
   
-  // Searches for recipes based on query
-  /*func queryRecipes(_ query: String, completion: @escaping(RecipeItem?, Error?) -> ()) {
-   let urlstring = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/search?query=" + query
-   
-   //You headers (for your api key)
-   let headers: HTTPHeaders = [
-   "X-Mashape-Key": key,
-   ]
-   
-   Alamofire.request(urlstring, headers: headers).responseJSON { response in
-   if let resultsDictionary = response.result.value as! [String:Any]? {
-   let results = resultsDictionary["results"]
-   
-   let recipe = RecipeItem(dictionary: recipeDictionary )
-   //print(recipes)
-   completion(recipe, nil)
-   }
-   }
-   }*/
-  
-  
   // Gets a random food fun fact
   func getJoke(completion: @escaping(String?, Error?) -> ()) {
     let urlstring = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/food/trivia/random"
     
-    // Headers
     let headers: HTTPHeaders = [
       "X-Mashape-Key": key,
       ]

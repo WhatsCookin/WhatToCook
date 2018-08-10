@@ -10,7 +10,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
-        <array key="FontAwesome.otf">
+        <array key="fontawesome-webfont.ttf">
             <string>FontAwesome</string>
         </array>
     </customFonts>
@@ -360,7 +360,7 @@
                                                 <state key="normal" image="microphone-off"/>
                                                 <state key="selected" image="microphone-on"/>
                                                 <connections>
-                                                    <action selector="microphone2Tapped:" destination="kxA-1q-EIY" eventType="touchUpInside" id="sU2-ij-5Wx"/>
+                                                    <action selector="microphoneTapped:" destination="kxA-1q-EIY" eventType="touchUpInside" id="9QD-hL-kjQ"/>
                                                 </connections>
                                             </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Krabby Patty with Secret Sauce" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GJb-Ov-KuS">

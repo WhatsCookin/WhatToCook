@@ -15,6 +15,5 @@ class Ingredient {
   init(dictionary: [String: Any]) {
     name = dictionary["name"] as? String
     image = dictionary["image"] as? String
-    print(name)
   }
 }

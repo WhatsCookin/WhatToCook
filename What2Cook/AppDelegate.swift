@@ -10,17 +10,6 @@ import UIKit
 import Parse
 
 extension String {
-  func between(_ left: String, _ right: String) -> String? {
-    guard
-      let leftRange = range(of: left), let rightRange = range(of: right, options: .backwards)
-      , left != right && leftRange.upperBound < rightRange.lowerBound
-      else { return nil }
-    
-    let sub = self.substring(from: leftRange.upperBound)
-    let closestToLeftRange = sub.range(of: right)!
-    return sub.substring(to: closestToLeftRange.lowerBound)
-  }
-  
   var length: Int {
     get {
       return self.characters.count

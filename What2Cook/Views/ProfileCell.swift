@@ -16,7 +16,7 @@ class ProfileCell: UITableViewCell {
   
   override func awakeFromNib() {
     super.awakeFromNib()
-    // Initialization code
+    
     let user = PFUser.current()
     usernameLabel.text = user?.username
     self.selectionStyle = .none
@@ -35,8 +35,6 @@ class ProfileCell: UITableViewCell {
   
   override func setSelected(_ selected: Bool, animated: Bool) {
     super.setSelected(selected, animated: animated)
-    
-    // Configure the view for the selected state
   }
   
 }
