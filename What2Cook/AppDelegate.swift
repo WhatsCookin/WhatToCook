@@ -12,7 +12,7 @@ import Parse
 extension String {
   var length: Int {
     get {
-      return self.characters.count
+      return self.length
     }
   }
   
@@ -30,16 +30,6 @@ extension String {
     }
     let fromIndex = self.index(self.startIndex, offsetBy: from)
     return self.substring(from: fromIndex)
-  }
-  
-  func substring(_ r: Range<Int>) -> String {
-    let fromIndex = self.index(self.startIndex, offsetBy: r.lowerBound)
-    let toIndex = self.index(self.startIndex, offsetBy: r.upperBound)
-    return self.substring(with: Range<String.Index>(uncheckedBounds: (lower: fromIndex, upper: toIndex)))
-  }
-  
-  func character(_ at: Int) -> Character {
-    return self[self.index(self.startIndex, offsetBy: at)]
   }
   
   func rangeStartIndex(toFind: String) -> Int {

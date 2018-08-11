@@ -45,22 +45,13 @@ class MoveToCategoryViewController: UIViewController, UITextFieldDelegate, UIPic
   }
   
   func textFieldDidBeginEditing(_ textField: UITextField) {
-    if(textField == categoryTextField) {
-      self.categoryDropDown.isHidden = false
-      dismissKeyboard()
-    }
+    self.categoryDropDown.isHidden = false
+    dismissKeyboard()
   }
   
   override func viewDidLoad() {
     super.viewDidLoad()
     
-    hideKeyboardWhenTappedAround()
-    
     self.view.backgroundColor = UIColor.black.withAlphaComponent(0.5)
-    self.hideKeyboardWhenTappedAround()
-  }
-  
-  override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-    dismissKeyboard()
   }
 }

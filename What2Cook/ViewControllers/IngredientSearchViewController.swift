@@ -19,6 +19,7 @@ class IngredientSearchViewController: UIViewController, UITextFieldDelegate, SFS
   private var recognitionTask: SFSpeechRecognitionTask?
   private let audioEngine = AVAudioEngine()
   
+  @IBOutlet weak var micInstructionsLabel: UILabel!
   @IBOutlet weak var instructionsLabel: UILabel!
   @IBOutlet weak var textField: UITextField!
   @IBOutlet weak var textLabel: UILabel!
@@ -32,15 +33,16 @@ class IngredientSearchViewController: UIViewController, UITextFieldDelegate, SFS
       audioEngine.stop()
       recognitionRequest?.endAudio()
       microphoneButton.isEnabled = false
+      micInstructionsLabel.isHidden = true
     } else {
       startRecording()
+      micInstructionsLabel.isHidden = false
     }
   }
   
   @IBAction func onBack(_ sender: UIButton) {
     self.view.removeFromSuperview()
   }
-  
   
   @IBAction func onAdd(_ sender: UIButton) {
     let ingredientToAdd = textField.text!.capitalized
@@ -73,6 +75,7 @@ class IngredientSearchViewController: UIViewController, UITextFieldDelegate, SFS
     super.viewDidLoad()
     
     // Do any additional setup after loading the view.
+    micInstructionsLabel.isHidden = true
     instructionsLabel.text = "Enter Ingredient to Add to " + category + ":"
     
     self.view.backgroundColor = UIColor.black.withAlphaComponent(0.5)
@@ -154,26 +157,18 @@ class IngredientSearchViewController: UIViewController, UITextFieldDelegate, SFS
         voiceCommand = voiceCommand.replacingOccurrences(of: "Two ", with: " to ")
         voiceCommand = voiceCommand.replacingOccurrences(of: " two ", with: " to ")
         
-        print(voiceCommand)
-        
         if (voiceCommand.range(of: " add ", options:NSString.CompareOptions.backwards) != nil) {
           // Parse Ingredient
           self.textField.text = ""
           
           let addRange = voiceCommand.rangeEndIndex(toFind: " add ")
           voiceCommand = voiceCommand.substring(from: addRange)!
-          
-          print(voiceCommand)
+
           let ingredient = voiceCommand.capitalized
-          print(ingredient)
           
           self.textField.text = String(ingredient)
-          print("ingredient: " + ingredient)
           self.ignoredChars = result!.bestTranscription.formattedString.count
         }
-        
-        print(voiceCommand)
-        
         isFinal = (result?.isFinal)!
       }
       

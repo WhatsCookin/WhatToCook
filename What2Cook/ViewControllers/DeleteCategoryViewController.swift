@@ -52,16 +52,9 @@ class DeleteCategoryViewController: UIViewController, UITextFieldDelegate, UIPic
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    
-    hideKeyboardWhenTappedAround()
+
     categoryTextField.text = fridgeViewController?.sections[0].category
     self.view.backgroundColor = UIColor.black.withAlphaComponent(0.5)
-    // Do any additional setup after loading the view.
-    self.hideKeyboardWhenTappedAround()
-  }
-  
-  override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-    dismissKeyboard()
   }
 }
 
