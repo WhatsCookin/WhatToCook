@@ -11,19 +11,14 @@ import Parse
 import Speech
 import FontAwesome_swift
 
-class FridgeViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate, ExpandableHeaderViewDelegate, SFSpeechRecognizerDelegate {
+class FridgeViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate, ExpandableHeaderViewDelegate {
   
   var recipesList: [Recipe] = []
   var ingredients: [String] = []
   var selectIndexPath: IndexPath!
   private var selectedAll = false
-  private var ignoredChars = 0  // For continuous speech recognition
-  private let speechRecognizer = SFSpeechRecognizer(locale: Locale.init(identifier: "en-US"))
-  private var recognitionRequest: SFSpeechAudioBufferRecognitionRequest?
-  private var recognitionTask: SFSpeechRecognitionTask?
   private let audioEngine = AVAudioEngine()
 
-  @IBOutlet weak var microphoneButton: UIButton!
   @IBOutlet weak var tableView: UITableView!
   
   // All buttons using FontAwesome
@@ -33,18 +28,6 @@ class FridgeViewController: UIViewController, UITableViewDelegate, UITableViewDa
   @IBOutlet weak var moveIngredientsButton: UIButton!
   @IBOutlet weak var deleteIngredientsButton: UIButton!
   @IBOutlet weak var selectAllButton: UIButton!
-  
-  @IBAction func microphoneTapped(_ sender: UIButton) {
-    sender.isSelected = !sender.isSelected
-    
-    if audioEngine.isRunning {
-      audioEngine.stop()
-      recognitionRequest?.endAudio()
-      microphoneButton.isEnabled = false
-    } else {
-      startRecording()
-    }
-  }
   
   @IBAction func onSearch(_ sender: Any) {
     if checkForSelection() {
@@ -277,8 +260,6 @@ class FridgeViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     hideKeyboardWhenTappedAround()
     
-    
-    
     selectIndexPath = IndexPath(row: -1, section: -1)
     
     let nib = UINib(nibName: "ExpandableHeaderView", bundle: nil)
@@ -294,143 +275,6 @@ class FridgeViewController: UIViewController, UITableViewDelegate, UITableViewDa
     self.tableView.allowsMultipleSelection = true
     self.tableView.delegate = self
     self.tableView.dataSource = self
-    
-    microphoneButton.isEnabled = false
-    
-    speechRecognizer?.delegate = self
-    
-    SFSpeechRecognizer.requestAuthorization { (authStatus) in
-      
-      var isButtonEnabled = false
-      
-      switch authStatus {
-      case .authorized:
-        isButtonEnabled = true
-        
-      case .denied:
-        isButtonEnabled = false
-        print("User denied access to speech recognition")
-        
-      case .restricted:
-        isButtonEnabled = false
-        print("Speech recognition restricted on this device")
-        
-      case .notDetermined:
-        isButtonEnabled = false
-        print("Speech recognition not yet authorized")
-      }
-      
-      OperationQueue.main.addOperation() {
-        self.microphoneButton.isEnabled = isButtonEnabled
-      }
-    }
-  }
-  
-  func startRecording() {
-    if recognitionTask != nil {
-      recognitionTask?.cancel()
-      recognitionTask = nil
-    }
-    
-    let audioSession = AVAudioSession.sharedInstance()
-    do {
-      try audioSession.setCategory(AVAudioSessionCategoryRecord)
-      try audioSession.setMode(AVAudioSessionModeMeasurement)
-      try audioSession.setActive(true, with: .notifyOthersOnDeactivation)
-    } catch {
-      print("audioSession properties weren't set because of an error.")
-    }
-    
-    recognitionRequest = SFSpeechAudioBufferRecognitionRequest()
-    
-    let inputNode = audioEngine.inputNode
-    
-    guard let recognitionRequest = recognitionRequest else {
-      fatalError("Unable to create an SFSpeechAudioBufferRecognitionRequest object")
-    }
-    
-    recognitionRequest.shouldReportPartialResults = true
-    
-    recognitionTask = speechRecognizer?.recognitionTask(with: recognitionRequest, resultHandler: { (result, error) in
-      
-      var isFinal = false
-      
-      // Start parsing voice command
-      if result != nil {
-        var voiceCommand = result!.bestTranscription.formattedString.substring(from: self.ignoredChars) ?? ""
-        print("string: " + result!.bestTranscription.formattedString)
-        
-        voiceCommand = voiceCommand.replacingOccurrences(of: "Add ", with: " add ")
-        voiceCommand = voiceCommand.replacingOccurrences(of: "At ", with: " add ")
-        voiceCommand = voiceCommand.replacingOccurrences(of: " at ", with: " add ")
-        voiceCommand = voiceCommand.replacingOccurrences(of: " to the ", with: " to ")
-        voiceCommand = voiceCommand.replacingOccurrences(of: " two ", with: " to ")
-        
-        if (voiceCommand.range(of: " add ", options:NSString.CompareOptions.backwards) != nil) && voiceCommand.range(of: " to ", options:NSString.CompareOptions.backwards) != nil {
-          // Parse Ingredient
-          let addRange = voiceCommand.rangeEndIndex(toFind: " add ")
-          voiceCommand = voiceCommand.substring(from: addRange)!
-          let toRange = voiceCommand.rangeStartIndex(toFind: " to ")
-          let ingredient = voiceCommand.substring(to: toRange)!.capitalized
-          print("ingredient: " + ingredient)
-          
-          if !((self.ingredientAlreadyAdded(ingredient: ingredient))) { SpoonacularAPIManager().autocompleteIngredientSearch(ingredient) { (ingredients, error) in
-            if ingredients!.count > 0 {
-              // Parse Category
-              let toEndRange = voiceCommand.rangeEndIndex(toFind: " to ")
-              let category = voiceCommand.substring(from: toEndRange)!
-              print("category: " + category)
-              
-              let categoryIndex = self.checkCategoryExists(category: category)
-              if categoryIndex != -1 {
-                // Ignore capitalization
-                if !((self.ingredientAlreadyAdded(ingredient: ingredient))) {
-                  self.addIngredient(ingredient: ingredient, category: self.sections[categoryIndex].category)
-                }
-                self.ignoredChars = result!.bestTranscription.formattedString.count
-              }
-            }
-            }
-          }
-        }
-        isFinal = (result?.isFinal)!
-        
-        // Attempt to reset
-        self.recognitionRequest?.endAudio()
-        self.recognitionRequest = SFSpeechAudioBufferRecognitionRequest()
-      }
-      
-      if error != nil || isFinal {
-        self.audioEngine.stop()
-        inputNode.removeTap(onBus: 0)
-        
-        self.recognitionRequest = nil
-        self.recognitionTask = nil
-        
-        self.microphoneButton.isEnabled = true
-      }
-    })
-    
-    let recordingFormat = inputNode.outputFormat(forBus: 0)
-    inputNode.installTap(onBus: 0, bufferSize: 1024, format: recordingFormat) { (buffer, when) in
-      self.recognitionRequest?.append(buffer)
-    }
-    
-    audioEngine.prepare()
-    
-    do {
-      try audioEngine.start()
-    } catch {
-      print("audioEngine couldn't start because of an error.")
-    }
-  }
-  
-  func speechRecognizer(_ speechRecognizer: SFSpeechRecognizer, availabilityDidChange available: Bool) {
-    if available {
-      microphoneButton.isEnabled = true
-    } else {
-      microphoneButton.isEnabled = false
-    }
   }
   
   // Fix bottom of text getting cut off

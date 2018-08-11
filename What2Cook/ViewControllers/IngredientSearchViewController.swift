@@ -146,6 +146,7 @@ class IngredientSearchViewController: UIViewController, UITextFieldDelegate, SFS
         print("string: " + result!.bestTranscription.formattedString)
         print(self.ignoredChars)
         
+        // Correct common mistakes
         voiceCommand = voiceCommand.replacingOccurrences(of: "Add ", with: " add ")
         voiceCommand = voiceCommand.replacingOccurrences(of: "At ", with: " add ")
         voiceCommand = voiceCommand.replacingOccurrences(of: " at ", with: " add ")

@@ -936,19 +936,6 @@
                                     <action selector="onMove:" destination="Yfd-vf-QZE" eventType="touchUpInside" id="EWp-49-3Hd"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VnW-6H-ugM">
-                                <rect key="frame" x="381" y="72" width="25" height="25"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="25" id="3pY-3h-IdL"/>
-                                    <constraint firstAttribute="width" constant="25" id="eiZ-f9-1lF"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="21"/>
-                                <state key="normal" image="microphone-off"/>
-                                <state key="selected" image="microphone-on"/>
-                                <connections>
-                                    <action selector="microphoneTapped:" destination="Yfd-vf-QZE" eventType="touchUpInside" id="t0I-gr-0YW"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xnh-41-cfU">
                                 <rect key="frame" x="0.0" y="94" width="163" height="46"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -978,10 +965,6 @@
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <constraints>
-                            <constraint firstItem="VnW-6H-ugM" firstAttribute="top" secondItem="MHv-Yy-dNs" secondAttribute="top" constant="8" id="4ia-AW-fX7"/>
-                            <constraint firstItem="MHv-Yy-dNs" firstAttribute="trailing" secondItem="VnW-6H-ugM" secondAttribute="trailing" constant="8" id="W8Q-o5-rhv"/>
-                        </constraints>
                         <viewLayoutGuide key="safeArea" id="MHv-Yy-dNs"/>
                     </view>
                     <navigationItem key="navigationItem" title="What's in my Fridge?" id="J5c-Gc-uLX"/>
@@ -990,7 +973,6 @@
                         <outlet property="deleteCategoryButton" destination="Xnh-41-cfU" id="wAX-8m-66O"/>
                         <outlet property="deleteIngredientsButton" destination="6bp-ky-fDu" id="BbQ-Tr-qYW"/>
                         <outlet property="fetchRecipesButton" destination="bhy-v6-edK" id="ZN8-g8-Rmd"/>
-                        <outlet property="microphoneButton" destination="VnW-6H-ugM" id="pkO-Pp-NME"/>
                         <outlet property="moveIngredientsButton" destination="3ll-f9-Tmx" id="ARD-GA-4fk"/>
                         <outlet property="selectAllButton" destination="6aO-ZZ-I5N" id="B9V-lV-PMQ"/>
                         <outlet property="tableView" destination="lSc-V0-JIb" id="SzS-1r-CDn"/>
