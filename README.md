@@ -1,6 +1,6 @@
 # *What2Cook*
 
-**What2Cook** Created by ORG WhatsCookin an iOS app that allows users to quickly view recipes and start cooking! With Voice Command and text to speech to help read out instructions while cooking, anyone can use. Users can also use the “What’s In My Fridge” feature to discover recipes using only ingredients that they have in their fridge!
+**What2Cook** created by ORG WhatsCookin is an iOS app that allows users to quickly find recipes and start cooking! Users can search for popular recipes or use the “What’s In My Fridge” feature to discover recipes that they can make now using only ingredients they have in their fridge! This app can be used hands-off while cooking with text-to-speech to read out recipe instructions and voice commands to navigate through the directions.
 
 ## User Stories
 
@@ -8,14 +8,9 @@
 - [X] As a user, I want to be able to view all of these recipes in 2 forms, one at a time (single image) and all at once (collection view of images).
 - [X] As a user, I want to be able to swipe left or right to quickly view receipes during Single view mode. 
 - [X] As a user, I want to be able to discover new recipes using only the ingredients in my fridge or pantry.
-- [X] As a user, I want to be able to filter through recipes based on ingredients, holidays, difficulty, dietary restrictions and time length.
-- [X] As a user, I want to be able to bookmark certain recipes
+- [X] As a user, I want to be able to bookmark certain recipes to view them offline
 - [X] As a user, I want a navbar to see my profile, bookmarks, settings, help, logout etc.
-- [X] As a user, I want to be able to upload my own recipes and take a picture of my masterpiece!
-- [X] As a user, I want to be able to add friends and see their recipes.
 - [X] As a user, I want to be able to hear the instruction of the receipes read out loud ( TTS/ audio).
-
-
 
 ## Video Walkthrough
 Here's a walkthrough of implemented user stories:
@@ -33,15 +28,13 @@ https://i.imgur.com/CQyYOaI.gif
 
 
 ## Nice To Haves
-- [X] As a user, I want to be able to get recommendations on recipes using artificial intelligence
-- [X] As a user, I want to be able to add friends via QR code
-- [X] As a user, I want a tutorial when I first signup.
-- [X] As a user, I want to see motivational quotes to eat healthier, cook at home, or take care of my health
-- [X] As a user, I want  to be able to get feedback on my recipes, such as areas for improvement.
-- [X] As a user, I want to be able to upload or attach pictures in comments or reviews.
-- [X] As a user, I want a navbar to see my friends and news feed.
-- [X] As a user, I want to be able to add friends and see their recipes.
-- [X] As a user, I want to be able to live stream my cooking.
+- [ ] As a user, I want a tutorial when I first signup.
+- [ ] As a user, I want to be able to filter through recipes based on ingredients, holidays, difficulty, dietary restrictions and time length.
+- [ ] As a user, I want to see motivational quotes to eat healthier, cook at home, or take care of my health
+- [ ] As a user, I want to be able to upload my own recipes and take a picture of my masterpiece!
+- [ ] As a user, I want to be able to get feedback on my recipes, such as areas for improvement.
+- [ ] As a user, I want to be able to add friends and see their recipes.
+- [ ] As a user, I want to be able to live stream my cooking.
 
 
 
