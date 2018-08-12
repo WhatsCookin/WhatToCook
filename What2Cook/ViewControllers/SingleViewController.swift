@@ -50,6 +50,17 @@ class SingleViewController: UIViewController, UITableViewDelegate, UITableViewDa
   private let audioEngine = AVAudioEngine()
   private var lmPath, dicPath: String?
   
+  @IBAction func onHelp(_ sender: UIButton) {
+    displayError(title: "List of Voice Commands",
+                 message: "Continue: Go to the next step\n" +
+                          "Previous: Go to the previous step\n" +
+                          "Repeat: Repeat the current step\n" +
+                          "Step: Get the step number\n" +
+                          "Slow Down: Slow down reading speed\n" +
+                          "Speed up: Speed up reading speed\n" +
+                          "Normal Speed: Reset reading speed")
+  }
+  
   @IBAction func onBookmark(_ sender: UIButton) {
     let user = PFUser.current()
     if(sender.isSelected == false) {
@@ -370,33 +381,27 @@ class SingleViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     print("Local callback: The received hypothesis is \(voiceCommand) with a score of \(recognitionScore!) and an ID of \(utteranceID!)")
     
-    if wordFound(in: voiceCommand, words: ["next", "skip"]) {
+    if wordFound(in: voiceCommand, words: ["continue"]) {
       self.nextStep()
     }
-    else if wordFound(in: voiceCommand, words: ["go back", "what was the last step"]) {
+    else if wordFound(in: voiceCommand, words: ["previous"]) {
       self.previousStep()
     }
-    else if wordFound(in: voiceCommand, words: ["repeat that", "what was that", "again"]) {
+    else if wordFound(in: voiceCommand, words: ["repeat"]) {
       self.playCurrentStep()
     }
-    else if wordFound(in: voiceCommand, words: ["what step"]) {
+    else if wordFound(in: voiceCommand, words: ["step"]) {
       self.playMessage(message: "We're on step " + String(self.currentStep + 1) + " out of " + String(self.toRead.count))
     }
-    else if wordFound(in: voiceCommand, words: ["pause", "stop"]) {
-      self.stop()
-    }
-    else if wordFound(in: voiceCommand, words: ["continue"]) {
-      self.start()
-    }
-    else if wordFound(in: voiceCommand, words: ["slow down"]) {
+    else if wordFound(in: voiceCommand, words: ["slow", "slow down"]) {
       self.changeSpeed(rate: self.utteranceRate * 0.8)
       self.playCurrentStep()
     }
-    else if wordFound(in: voiceCommand, words: ["speed up"]) {
+    else if wordFound(in: voiceCommand, words: ["speed", "speed up"]) {
       self.changeSpeed(rate: self.utteranceRate * 1.2)
       self.playCurrentStep()
     }
-    else if wordFound(in: voiceCommand, words: ["normal speed"]) {
+    else if wordFound(in: voiceCommand, words: ["normal", "normal speed"]) {
       self.changeSpeed(rate: 0.45)
       self.playCurrentStep()
     }
