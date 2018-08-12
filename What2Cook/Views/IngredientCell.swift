@@ -12,7 +12,6 @@ import UIKit
 class IngredientCell: UITableViewCell {
   override func awakeFromNib() {
     self.selectionStyle = .none
-    self.backgroundColor = UIColor.clear
   }
   
   override func setSelected(_ selected: Bool, animated: Bool) {

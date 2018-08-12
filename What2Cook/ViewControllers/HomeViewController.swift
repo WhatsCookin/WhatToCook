@@ -106,7 +106,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
   
   @objc func loadRecipes() {
     print("Calling loadRecipes()")
-    SpoonacularAPIManager().getPopularRecipes(searchString!) { (recipes, error) in
+    SpoonacularAPIManager().getPopularRecipes(searchString!) { (recipes) in
       if let recipes = recipes {
         self.recipes = recipes
         self.collectionView.reloadData()
@@ -116,8 +116,8 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
         self.refreshControl.endRefreshing()
         self.loader.stopAnimating()
         
-      } else if let error = error {
-        print("Error getting recipes: " + error.localizedDescription)
+      }
+      else {
         self.displayError(title: "No Recipes Found", message: "Try a different keyword.")
       }
     }
@@ -200,6 +200,5 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
       singleViewController.recipeIndex = indexPath.row
     }
   }
-  
 }
 

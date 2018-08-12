@@ -13,8 +13,8 @@ import Parse
 
 class SingleViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, AVSpeechSynthesizerDelegate, SFSpeechRecognizerDelegate, OEEventsObserverDelegate {
   
-  @IBOutlet weak var tableViewIngredients: UITableView! // tableView for ingredients in the recipe
-  // tableview for directions in the recipe
+  // Tableview for ingredients and directions in the recipe
+  @IBOutlet weak var tableViewIngredients: UITableView!
   @IBOutlet weak var tableViewDirections: UITableView! {
     didSet {
       tableViewDirections.rowHeight = UITableViewAutomaticDimension
@@ -48,6 +48,7 @@ class SingleViewController: UIViewController, UITableViewDelegate, UITableViewDa
   private var recognitionRequest: SFSpeechAudioBufferRecognitionRequest?
   private var recognitionTask: SFSpeechRecognitionTask?
   private let audioEngine = AVAudioEngine()
+  private var lmPath, dicPath: String?
   
   @IBAction func onBookmark(_ sender: UIButton) {
     let user = PFUser.current()
@@ -152,48 +153,39 @@ class SingleViewController: UIViewController, UITableViewDelegate, UITableViewDa
       nextStep()  // Play the first step in recipe instructions
     }
     
-    /*if audioEngine.isRunning {
-      stop()
-      audioEngine.stop()
-      recognitionRequest?.endAudio()
-      let audioSession = AVAudioSession.sharedInstance()
-      do {
-        try audioSession.setCategory(AVAudioSessionCategoryPlayback)
-        try audioSession.setMode(AVAudioSessionModeDefault)
-        
-      } catch {
-        print("audioSession properties weren't set because of an error.")
-      }
-      
-      microphoneButton.isEnabled = false
-    } else {
-      startRecording()
-    }*/
-    
     if(sender.isSelected) {
       let lmGenerator = OELanguageModelGenerator()
-      let words = ["next", "go back", "repeat that"]
-      // TODO: Populate the words array with dictionary words
       
-      let name = "VoiceCommands"
-      let err: Error! = lmGenerator.generateLanguageModel(from: words, withFilesNamed: name, forAcousticModelAtPath: OEAcousticModel.path(toModel: "AcousticModelEnglish"))
-      
-      if(err != nil) {
-        print("Error while creating initial language model: \(err)")
-      } else {
-        let lmPath = lmGenerator.pathToSuccessfullyGeneratedLanguageModel(withRequestedName: name)
-        let dicPath = lmGenerator.pathToSuccessfullyGeneratedDictionary(withRequestedName: name)
-        // OELogging.startOpenEarsLogging()
-        do {
-          try OEPocketsphinxController.sharedInstance().setActive(true) // Setting the shared OEPocketsphinxController active is necessary before any of its properties are accessed.
-        } catch {
-          print("Error: it wasn't possible to set the shared instance to active: \"\(error)\"")
-        }
+      // Read dictionary text file and generate a language model using its words
+      let path = Bundle.main.path(forResource: "Dictionary", ofType: "txt")
+      do {
+        let data = try String(contentsOfFile:path!, encoding: String.Encoding.utf8)
+        let words = data.components(separatedBy: "\n")
+        let name = "VoiceCommands"
+        let err: Error! = lmGenerator.generateLanguageModel(from: words, withFilesNamed: name, forAcousticModelAtPath: OEAcousticModel.path(toModel: "AcousticModelEnglish"))
         
-        OEPocketsphinxController.sharedInstance().startListeningWithLanguageModel(atPath: lmPath, dictionaryAtPath: dicPath, acousticModelAtPath: OEAcousticModel.path(toModel: "AcousticModelEnglish"), languageModelIsJSGF: false)
+        if(err != nil) {
+          print("Error while creating initial language model: \(err)")
+        } else {
+          lmPath = lmGenerator.pathToSuccessfullyGeneratedLanguageModel(withRequestedName: name)
+          dicPath = lmGenerator.pathToSuccessfullyGeneratedDictionary(withRequestedName: name)
+          OELogging.startOpenEarsLogging()
+          do {
+            try OEPocketsphinxController.sharedInstance().setActive(true) // Setting the shared OEPocketsphinxController active is necessary before any of its properties are accessed.
+          } catch {
+            print("Error: it wasn't possible to set the shared instance to active: \"\(error)\"")
+          }
+          
+          OEPocketsphinxController.sharedInstance().startListeningWithLanguageModel(atPath: lmPath, dictionaryAtPath: dicPath, acousticModelAtPath: OEAcousticModel.path(toModel: "AcousticModelEnglish"), languageModelIsJSGF: false)
+        }
+      }
+      catch let error as NSError {
+        print(error)
       }
     }
     else {
+      stop()
+      audioEngine.stop()
       OEPocketsphinxController.sharedInstance().stopListening()
     }
   }
@@ -202,6 +194,7 @@ class SingleViewController: UIViewController, UITableViewDelegate, UITableViewDa
     super.viewDidLoad()
     
     // Do any additional setup after loading the view.
+    self.synthesizer.delegate = self
     self.openEarsEventsObserver.delegate = self
     
     if let recipe = recipe {
@@ -315,7 +308,7 @@ class SingleViewController: UIViewController, UITableViewDelegate, UITableViewDa
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     if tableView == self.tableViewIngredients {
       let cell = tableViewIngredients.dequeueReusableCell(withIdentifier: "IngredientListCell", for: indexPath) as! IngredientListCell
-      
+      cell.selectionStyle = .none
       cell.ingredient = ingredients[indexPath.row]
       
       if indexPath.row % 2 == 0 {
@@ -329,6 +322,7 @@ class SingleViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     else {
       let cell = tableViewDirections.dequeueReusableCell(withIdentifier: "DirectionListCell", for: indexPath) as! DirectionListCell
+      cell.selectionStyle = .none
       cell.direction = directions[indexPath.row]
       if(directions[indexPath.row]["step"] != nil) {
         toRead.append(directions[indexPath.row]["step"] as! String)
@@ -354,13 +348,27 @@ class SingleViewController: UIViewController, UITableViewDelegate, UITableViewDa
     recipeImage.gradient(colors: [UIColor.clear.cgColor, UIColor.black.cgColor],opacity: 1, location: [0.70,1])
   }
   
+  /* Start of Apple Speech delegate methods */
+  
+  // Tells the delegate when the synthesizer has begun speaking an utterance.
+  internal func speechSynthesizer(_: AVSpeechSynthesizer, didStart: AVSpeechUtterance) {
+    // Prevent recipe instructions from being mistaken for voice commands
+    OEPocketsphinxController.sharedInstance().suspendRecognition()
+  }
+  
+  // Tells the delegate when the synthesizer has finished speaking an utterance.
+  internal func speechSynthesizer(_: AVSpeechSynthesizer, didFinish: AVSpeechUtterance) {
+    OEPocketsphinxController.sharedInstance().resumeRecognition()
+  }
+  
   /* Start of OpenEars delegate methods */
   
   func pocketsphinxDidReceiveHypothesis(_ hypothesis: String!, recognitionScore: String!, utteranceID: String!) { // Something was heard
-    print("Local callback: The received hypothesis is \(hypothesis!) with a score of \(recognitionScore!) and an ID of \(utteranceID!)")
     
     // Actions for voice commands
     let voiceCommand = hypothesis!
+    
+    print("Local callback: The received hypothesis is \(voiceCommand) with a score of \(recognitionScore!) and an ID of \(utteranceID!)")
     
     if wordFound(in: voiceCommand, words: ["next", "skip"]) {
       self.nextStep()

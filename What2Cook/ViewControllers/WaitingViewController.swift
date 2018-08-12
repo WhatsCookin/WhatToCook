@@ -42,12 +42,9 @@ class WaitingViewController: UIViewController {
   // Gets a food joke
   func getJoke() {
     print("Calling getJoke()")
-    SpoonacularAPIManager().getJoke() { (joke, error) in
+    SpoonacularAPIManager().getJoke() { (joke) in
       if let joke = joke {
         self.jokeLabel.text = joke
-        print("Joke found")
-      } else if let error = error {
-        print("Error getting recipes: " + error.localizedDescription)
       }
     }
   }

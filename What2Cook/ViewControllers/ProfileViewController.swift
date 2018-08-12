@@ -10,19 +10,19 @@ import UIKit
 import Parse
 
 extension CGRect{
-  init(_ x:CGFloat,_ y:CGFloat,_ width:CGFloat,_ height:CGFloat) {
-    self.init(x:x,y:y,width:width,height:height)
+  init(_ x: CGFloat,_ y: CGFloat,_ width: CGFloat,_ height: CGFloat) {
+    self.init(x: x, y: y, width: width, height: height)
   }
   
 }
 extension CGSize{
-  init(_ width:CGFloat,_ height:CGFloat) {
-    self.init(width:width,height:height)
+  init(_ width: CGFloat,_ height: CGFloat) {
+    self.init(width: width, height: height)
   }
 }
 extension CGPoint{
-  init(_ x:CGFloat,_ y:CGFloat) {
-    self.init(x:x,y:y)
+  init(_ x: CGFloat,_ y: CGFloat) {
+    self.init(x: x, y: y)
   }
 }
 
@@ -57,7 +57,7 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
     do {
       try imageFile.save()
     } catch {
-      
+      print("Failed to save image")
     }
     
     let user = PFUser.current()

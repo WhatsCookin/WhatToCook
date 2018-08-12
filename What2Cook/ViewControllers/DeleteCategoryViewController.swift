@@ -52,10 +52,8 @@ class DeleteCategoryViewController: UIViewController, UITextFieldDelegate, UIPic
   
   override func viewDidLoad() {
     super.viewDidLoad()
-
+    
     categoryTextField.text = fridgeViewController?.sections[0].category
     self.view.backgroundColor = UIColor.black.withAlphaComponent(0.5)
   }
 }
-
-

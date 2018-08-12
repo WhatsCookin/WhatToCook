@@ -48,7 +48,7 @@ class IngredientSearchViewController: UIViewController, UITextFieldDelegate, SFS
     let ingredientToAdd = textField.text!.capitalized
     // Check that the ingredient is not already in the fridge
     if !((fridgeViewController?.ingredientAlreadyAdded(ingredient: ingredientToAdd))!) {
-      SpoonacularAPIManager().autocompleteIngredientSearch(ingredientToAdd) { (ingredients, error) in
+      SpoonacularAPIManager().autocompleteIngredientSearch(ingredientToAdd) { (ingredients) in
         if ingredients!.count > 0 {
           self.fridgeViewController?.addIngredient(ingredient: ingredientToAdd, category: self.category)
           self.textLabel.text = "Added " + self.textField.text! + "!"
@@ -163,7 +163,7 @@ class IngredientSearchViewController: UIViewController, UITextFieldDelegate, SFS
           
           let addRange = voiceCommand.rangeEndIndex(toFind: " add ")
           voiceCommand = voiceCommand.substring(from: addRange)!
-
+          
           let ingredient = voiceCommand.capitalized
           
           self.textField.text = String(ingredient)

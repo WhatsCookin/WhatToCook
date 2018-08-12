@@ -11,8 +11,10 @@ import Parse
 
 class LoginViewController: UIViewController {
   
+  var justRegistered = false
   @IBOutlet weak var usernameLabel: UITextField!
   @IBOutlet weak var passwordLabel: UITextField!
+  @IBOutlet weak var registeredLabel: UILabel!
   
   @IBAction func onSignIn(_ sender: Any) {
     let username = usernameLabel.text ?? ""
@@ -34,9 +36,15 @@ class LoginViewController: UIViewController {
   
   override func viewDidLoad() {
     super.viewDidLoad()
+    self.hideKeyboardWhenTappedAround()
     
-    // Do any additional setup after loading the view.
-    self.hideKeyboardWhenTappedAround() 
+    print("just what: " + String(justRegistered))
+    
+    registeredLabel.isHidden = !justRegistered
+  }
+  
+  override func viewWillDisappear(_ animated: Bool) {
+    justRegistered = false
   }
   
   override func didReceiveMemoryWarning() {

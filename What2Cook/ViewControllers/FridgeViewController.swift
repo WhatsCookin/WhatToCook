@@ -17,8 +17,7 @@ class FridgeViewController: UIViewController, UITableViewDelegate, UITableViewDa
   var ingredients: [String] = []
   var selectIndexPath: IndexPath!
   private var selectedAll = false
-  private let audioEngine = AVAudioEngine()
-
+  
   @IBOutlet weak var tableView: UITableView!
   
   // All buttons using FontAwesome
@@ -32,7 +31,7 @@ class FridgeViewController: UIViewController, UITableViewDelegate, UITableViewDa
   @IBAction func onSearch(_ sender: Any) {
     if checkForSelection() {
       print(ingredients)
-      SpoonacularAPIManager().searchRecipes(ingredients) { (recipes, error) in
+      SpoonacularAPIManager().searchRecipes(ingredients) { (recipes) in
         if let recipes = recipes {
           if(recipes.count > 0) {
             self.recipesList = recipes
@@ -43,12 +42,10 @@ class FridgeViewController: UIViewController, UITableViewDelegate, UITableViewDa
             recipeSuggestionViewController.recipes = self.recipesList
             
             self.navigationController?.pushViewController(recipeSuggestionViewController, animated: true)
-          } else if let error = error {
-            print("Error getting recipes: " + error.localizedDescription)
           }
         }
         else {
-          self.displayError(title: "No Recipes Found", message: "Uh oh! Maybe it's time to go shopping.")
+          self.displayError(title: "No Recipes Found", message: "Internet connection may be unavailable. Or maybe, it's time to go shopping.")
         }
       }
     }
