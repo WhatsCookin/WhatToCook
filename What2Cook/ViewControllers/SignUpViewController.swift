@@ -9,7 +9,7 @@
 import UIKit
 import Parse
 
-class SignUpViewController: UIViewController {
+class SignUpViewController: UIViewController, UITextFieldDelegate {
   let MIN_PASSWORD_LEN = 6
   
   var justRegistered = false
@@ -65,7 +65,8 @@ class SignUpViewController: UIViewController {
     
     // Do any additional setup after loading the view.
     self.hideKeyboardWhenTappedAround() 
-    
+    usernameField.delegate = self
+    passwordField.delegate = self
   }
   
   override func didReceiveMemoryWarning() {
@@ -80,5 +81,13 @@ class SignUpViewController: UIViewController {
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     let loginViewController = segue.destination as? LoginViewController
     loginViewController?.justRegistered = true
+  }
+  
+  func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+    let maxLength = 15
+    let currentString: NSString = textField.text! as NSString
+    let newString: NSString =
+      currentString.replacingCharacters(in: range, with: string) as NSString
+    return newString.length <= maxLength
   }
 }

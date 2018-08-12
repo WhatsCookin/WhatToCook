@@ -107,7 +107,7 @@ class SingleViewController: UIViewController, UITableViewDelegate, UITableViewDa
     let speechUtterance = AVSpeechUtterance(string: message)
     let voice = AVSpeechSynthesisVoice(language: "en-EN")
     speechUtterance.voice = voice
-    speechUtterance.rate = utteranceRate // 0.5 default speech rate
+    speechUtterance.rate = utteranceRate // 0.45 default speech rate
     _ = AVSpeechSynthesisVoice.speechVoices()
     self.synthesizer.speak(speechUtterance)
   }

@@ -9,16 +9,16 @@
 import UIKit
 import Parse
 
-class LoginViewController: UIViewController {
+class LoginViewController: UIViewController, UITextFieldDelegate {
   
   var justRegistered = false
-  @IBOutlet weak var usernameLabel: UITextField!
-  @IBOutlet weak var passwordLabel: UITextField!
+  @IBOutlet weak var usernameField: UITextField!
+  @IBOutlet weak var passwordField: UITextField!
   @IBOutlet weak var registeredLabel: UILabel!
   
   @IBAction func onSignIn(_ sender: Any) {
-    let username = usernameLabel.text ?? ""
-    let password = passwordLabel.text ?? ""
+    let username = usernameField.text ?? ""
+    let password = passwordField.text ?? ""
     
     if(check()) {
       PFUser.logInWithUsername(inBackground: username, password: password) { (user: PFUser?, error: Error?) in
@@ -38,8 +38,8 @@ class LoginViewController: UIViewController {
     super.viewDidLoad()
     self.hideKeyboardWhenTappedAround()
     
-    print("just what: " + String(justRegistered))
-    
+    usernameField.delegate = self
+    passwordField.delegate = self
     registeredLabel.isHidden = !justRegistered
   }
   
@@ -53,7 +53,7 @@ class LoginViewController: UIViewController {
   }
   
   func check() -> Bool {
-    if((usernameLabel.text?.isEmpty)! || (passwordLabel.text?.isEmpty)!) {
+    if((usernameField.text?.isEmpty)! || (passwordField.text?.isEmpty)!) {
       displayError(title: "Both Fields Required", message: "Please enter your username and password")
       return false
     }
@@ -62,5 +62,13 @@ class LoginViewController: UIViewController {
   
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     dismissKeyboard()
+  }
+  
+  func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+    let maxLength = 15
+    let currentString: NSString = textField.text! as NSString
+    let newString: NSString =
+      currentString.replacingCharacters(in: range, with: string) as NSString
+    return newString.length <= maxLength
   }
 }

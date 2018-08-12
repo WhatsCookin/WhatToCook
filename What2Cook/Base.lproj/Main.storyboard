@@ -10,7 +10,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
-        <array key="fontawesome-webfont.ttf">
+        <array key="FontAwesome.otf">
             <string>FontAwesome</string>
         </array>
     </customFonts>
@@ -685,6 +685,7 @@
                                     <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3We-5m-8St">
                                         <rect key="frame" x="36" y="57" width="271" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
@@ -769,6 +770,7 @@
                                     <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="OHP-np-ATx">
                                         <rect key="frame" x="36" y="57" width="271" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
@@ -932,11 +934,16 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="openfridge" translatesAutoresizingMaskIntoConstraints="NO" id="arD-ns-eUl">
-                                <rect key="frame" x="-8" y="64" width="422" height="672"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="openfridge" translatesAutoresizingMaskIntoConstraints="NO" id="arD-ns-eUl">
+                                <rect key="frame" x="0.0" y="64" width="414" height="672"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
                             </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Start by adding a new category!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="A6k-da-yjp">
+                                <rect key="frame" x="85" y="387" width="244" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="lSc-V0-JIb">
                                 <rect key="frame" x="0.0" y="148" width="414" height="459"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -1042,21 +1049,27 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="arD-ns-eUl" firstAttribute="trailing" secondItem="MHv-Yy-dNs" secondAttribute="trailing" id="0d7-b0-Ohs"/>
                             <constraint firstItem="lSc-V0-JIb" firstAttribute="leading" secondItem="MHv-Yy-dNs" secondAttribute="leading" id="3uf-nv-ZVG"/>
                             <constraint firstItem="MHv-Yy-dNs" firstAttribute="trailing" secondItem="6bp-ky-fDu" secondAttribute="trailing" id="8dn-EW-rPI"/>
                             <constraint firstItem="lSc-V0-JIb" firstAttribute="trailing" secondItem="MHv-Yy-dNs" secondAttribute="trailing" id="AX2-0t-DRZ"/>
                             <constraint firstItem="MHv-Yy-dNs" firstAttribute="trailing" secondItem="6aO-ZZ-I5N" secondAttribute="trailing" constant="8" id="FsP-tu-YFP"/>
                             <constraint firstItem="UHo-3R-Iuo" firstAttribute="top" secondItem="MHv-Yy-dNs" secondAttribute="top" constant="8" id="FuP-M4-ZGn"/>
                             <constraint firstItem="3ll-f9-Tmx" firstAttribute="top" secondItem="lSc-V0-JIb" secondAttribute="bottom" constant="8" id="Hs8-tw-gBQ"/>
+                            <constraint firstAttribute="bottom" secondItem="arD-ns-eUl" secondAttribute="bottom" id="JWo-sW-dBL"/>
                             <constraint firstItem="MHv-Yy-dNs" firstAttribute="bottom" secondItem="6bp-ky-fDu" secondAttribute="bottom" constant="8" id="Neh-bc-MXN"/>
                             <constraint firstItem="bhy-v6-edK" firstAttribute="top" secondItem="lSc-V0-JIb" secondAttribute="bottom" constant="20" id="O3T-U9-s62"/>
                             <constraint firstItem="UHo-3R-Iuo" firstAttribute="leading" secondItem="MHv-Yy-dNs" secondAttribute="leading" id="Q2q-pT-emf"/>
                             <constraint firstItem="Xnh-41-cfU" firstAttribute="leading" secondItem="MHv-Yy-dNs" secondAttribute="leading" id="SSk-mC-jcm"/>
+                            <constraint firstItem="arD-ns-eUl" firstAttribute="top" secondItem="MHv-Yy-dNs" secondAttribute="top" id="WOs-qU-k6t"/>
+                            <constraint firstItem="A6k-da-yjp" firstAttribute="centerX" secondItem="lSc-V0-JIb" secondAttribute="centerX" id="Xbj-bL-VnX"/>
                             <constraint firstItem="lSc-V0-JIb" firstAttribute="leading" secondItem="MHv-Yy-dNs" secondAttribute="leading" id="Z8R-Vb-gdh"/>
                             <constraint firstItem="bhy-v6-edK" firstAttribute="leading" secondItem="MHv-Yy-dNs" secondAttribute="leading" constant="5" id="esF-HC-3Ic"/>
+                            <constraint firstItem="A6k-da-yjp" firstAttribute="centerY" secondItem="lSc-V0-JIb" secondAttribute="centerY" constant="20" id="iBf-BJ-yo4"/>
                             <constraint firstItem="lSc-V0-JIb" firstAttribute="top" secondItem="Xnh-41-cfU" secondAttribute="bottom" constant="8" id="nOQ-9J-zQP"/>
                             <constraint firstItem="6bp-ky-fDu" firstAttribute="top" secondItem="lSc-V0-JIb" secondAttribute="bottom" constant="40" id="ocz-uH-FIr"/>
                             <constraint firstItem="lSc-V0-JIb" firstAttribute="trailing" secondItem="MHv-Yy-dNs" secondAttribute="trailing" id="qKM-oQ-aie"/>
+                            <constraint firstItem="arD-ns-eUl" firstAttribute="leading" secondItem="MHv-Yy-dNs" secondAttribute="leading" id="qM1-6a-eQ0"/>
                             <constraint firstItem="6aO-ZZ-I5N" firstAttribute="top" secondItem="MHv-Yy-dNs" secondAttribute="top" constant="46" id="st7-d9-coo"/>
                             <constraint firstItem="Xnh-41-cfU" firstAttribute="top" secondItem="MHv-Yy-dNs" secondAttribute="top" constant="30" id="ulg-Fo-Ace"/>
                             <constraint firstItem="3ll-f9-Tmx" firstAttribute="trailing" secondItem="MHv-Yy-dNs" secondAttribute="trailing" id="wkg-ME-5hC"/>
@@ -1069,6 +1082,7 @@
                         <outlet property="deleteCategoryButton" destination="Xnh-41-cfU" id="wAX-8m-66O"/>
                         <outlet property="deleteIngredientsButton" destination="6bp-ky-fDu" id="BbQ-Tr-qYW"/>
                         <outlet property="fetchRecipesButton" destination="bhy-v6-edK" id="ZN8-g8-Rmd"/>
+                        <outlet property="instructionsLabel" destination="A6k-da-yjp" id="WcD-LX-3Ag"/>
                         <outlet property="moveIngredientsButton" destination="3ll-f9-Tmx" id="ARD-GA-4fk"/>
                         <outlet property="selectAllButton" destination="6aO-ZZ-I5N" id="B9V-lV-PMQ"/>
                         <outlet property="tableView" destination="lSc-V0-JIb" id="SzS-1r-CDn"/>
@@ -1791,9 +1805,9 @@
                     </view>
                     <navigationItem key="navigationItem" id="5vL-zv-BLt"/>
                     <connections>
-                        <outlet property="passwordLabel" destination="YWZ-zk-cfc" id="4y8-oG-Y3O"/>
+                        <outlet property="passwordField" destination="YWZ-zk-cfc" id="rpr-bW-aUy"/>
                         <outlet property="registeredLabel" destination="RAQ-lk-Qlk" id="Bug-dP-3TO"/>
-                        <outlet property="usernameLabel" destination="hVQ-Ja-t7H" id="zWM-rX-unV"/>
+                        <outlet property="usernameField" destination="hVQ-Ja-t7H" id="eog-0z-MEp"/>
                         <segue destination="aMf-HM-wMG" kind="show" identifier="loginSegue" id="NM3-9G-I46"/>
                     </connections>
                 </viewController>

@@ -64,8 +64,6 @@ class RecipeSuggestionViewController: UIViewController, UITableViewDelegate, UIT
     let id = recipe.id
     
     fetchRecipes(id: id!, completion: { (recipeItem) in
-      print(recipeItem.name)
-      print("completed")
       singleViewController.recipe = self.recipeItem
       self.navigationController?.pushViewController(singleViewController, animated: true)
     })
@@ -74,7 +72,6 @@ class RecipeSuggestionViewController: UIViewController, UITableViewDelegate, UIT
   func fetchRecipes(id: Int, completion: @escaping (_ value: RecipeItem)->()) {
     SpoonacularAPIManager().getRecipeData(id) { (data) in
       if let data = data {
-        print(data)
         self.recipeItem = data
         
         self.finishedLoading = true

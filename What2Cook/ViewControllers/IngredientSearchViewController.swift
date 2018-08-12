@@ -74,7 +74,7 @@ class IngredientSearchViewController: UIViewController, UITextFieldDelegate, SFS
   override func viewDidLoad() {
     super.viewDidLoad()
     
-    // Do any additional setup after loading the view.
+    textField.delegate = self
     micInstructionsLabel.isHidden = true
     instructionsLabel.text = "Enter Ingredient to Add to " + category + ":"
     
@@ -146,8 +146,6 @@ class IngredientSearchViewController: UIViewController, UITextFieldDelegate, SFS
       // Start parsing voice command
       if result != nil {
         var voiceCommand = result!.bestTranscription.formattedString.substring(from: self.ignoredChars) ?? ""
-        print("string: " + result!.bestTranscription.formattedString)
-        print(self.ignoredChars)
         
         // Correct common mistakes
         voiceCommand = voiceCommand.replacingOccurrences(of: "Add ", with: " add ")
@@ -212,5 +210,13 @@ class IngredientSearchViewController: UIViewController, UITextFieldDelegate, SFS
   
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     dismissKeyboard()
+  }
+  
+  func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+    let maxLength = 20
+    let currentString: NSString = textField.text! as NSString
+    let newString: NSString =
+      currentString.replacingCharacters(in: range, with: string) as NSString
+    return newString.length <= maxLength
   }
 }

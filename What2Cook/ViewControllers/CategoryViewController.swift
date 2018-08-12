@@ -8,7 +8,7 @@
 
 import UIKit
 
-class CategoryViewController: UIViewController {
+class CategoryViewController: UIViewController, UITextFieldDelegate {
   
   // RRGGBB hex colors in the same order as the image
   let colorArray = [ 0xfe0000, 0xff7900, 0xffb900, 0xffde00, 0xfcff00, 0xd2ff00, 0x05c000, 0x00c0a7 ,0x00c3ff, 0x0083ff, 0x0600ff, 0x6700bf, 0x9500c0, 0xbf0199 ]
@@ -44,6 +44,7 @@ class CategoryViewController: UIViewController {
     super.viewDidLoad()
     
     hideKeyboardWhenTappedAround()
+    categoryTextField.delegate = self
     
     // Do any additional setup after loading the view.
     selectedColorView.backgroundColor = uiColorFromHex(rgbValue: colorArray[Int(slider.value)])
@@ -57,5 +58,13 @@ class CategoryViewController: UIViewController {
   
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     dismissKeyboard()
+  }
+  
+  func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+    let maxLength = 20
+    let currentString: NSString = textField.text! as NSString
+    let newString: NSString =
+      currentString.replacingCharacters(in: range, with: string) as NSString
+    return newString.length <= maxLength
   }
 }
