@@ -27,10 +27,11 @@ class FridgeViewController: UIViewController, UITableViewDelegate, UITableViewDa
   @IBOutlet weak var moveIngredientsButton: UIButton!
   @IBOutlet weak var deleteIngredientsButton: UIButton!
   @IBOutlet weak var selectAllButton: UIButton!
+  @IBOutlet weak var instructionsLabel: UILabel!
   
+  // Fetch recipes with the selected ingredients
   @IBAction func onSearch(_ sender: Any) {
     if checkForSelection() {
-      print(ingredients)
       SpoonacularAPIManager().searchRecipes(ingredients) { (recipes) in
         if let recipes = recipes {
           if(recipes.count > 0) {
@@ -43,14 +44,24 @@ class FridgeViewController: UIViewController, UITableViewDelegate, UITableViewDa
             
             self.navigationController?.pushViewController(recipeSuggestionViewController, animated: true)
           }
-        }
-        else {
-          self.displayError(title: "No Recipes Found", message: "Internet connection may be unavailable. Or maybe, it's time to go shopping.")
+          else {
+            self.displayError(title: "No Recipes Found", message: "Check that you have internet connection and that the ingredients are spelled correctly.")
+          }
         }
       }
     }
   }
   
+  // To check that any ingredients are selected before fetching recipes
+  func checkForSelection() -> Bool {
+    if(ingredients.count == 0) {
+      displayError(title: "No Ingredients Selected", message: "Please select ingredients first.")
+      return false
+    }
+    return true
+  }
+  
+  // Select all ingredients in the fridge
   @IBAction func onSelectAll(_ sender: UIButton) {
     if !selectedAll {
       selectAll()
@@ -61,6 +72,28 @@ class FridgeViewController: UIViewController, UITableViewDelegate, UITableViewDa
     selectedAll = !selectedAll
   }
   
+  // Select all ingredients in fridge
+  func selectAll() {
+    let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: "expandableHeaderView") as! ExpandableHeaderView
+    header.tableView = tableView
+    for section in 0..<sections.count {
+      if !isExpanded(header: header, section: section) {
+        toggleSection(header: header, section: section)
+      }
+      header.selectSection(section: section)
+    }
+  }
+  
+  // Deselect all ingredients in fridge
+  func deselectAll() {
+    let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: "expandableHeaderView") as! ExpandableHeaderView
+    header.tableView = tableView
+    for section in 0..<sections.count {
+      header.deselectSection(section: section)
+    }
+  }
+  
+  // Delete a selected ingredient
   @IBAction func onDelete(_ sender: UIButton) {
     if checkForSelection() {
       for ingredient in ingredients {
@@ -69,6 +102,18 @@ class FridgeViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
   }
   
+  // Search and remove an ingredient
+  func removeIngredient(ingredient: String) {
+    for i in 0..<sections.count {
+      if let index = sections[i].ingredients.index(of: ingredient) {
+        sections[i].ingredients.remove(at: index)
+        save()
+        return
+      }
+    }
+  }
+  
+  // Move an ingredient to another category
   @IBAction func onMove(_ sender: UIButton) {
     if checkForSelection() {
       let moveToCategoryVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "MoveToCategory") as! MoveToCategoryViewController
@@ -80,6 +125,7 @@ class FridgeViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
   }
   
+  // Delete a selected category that holds ingredients
   @IBAction func onDeleteCategory(_ sender: UIButton) {
     if(sections.count == 0) {
       displayError(title: "Cannot Delete Categories", message: "You have no categories.")
@@ -94,13 +140,15 @@ class FridgeViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
   }
   
+  // Array for all user-created categories that each hold an array of ingredients (Replaced by data in Parse Server)
   var sections = [
-    Section(category: "Unlisted",
+    Section(category: "Example",
             ingredients: [],
             color: UIColor.blue,
             expanded: true)
   ]
   
+  // Save fridge data in Parse Server
   func save() {
     tableView.reloadData()
     let user = PFUser.current()
@@ -119,18 +167,7 @@ class FridgeViewController: UIViewController, UITableViewDelegate, UITableViewDa
     })
   }
   
-  func clearData() {
-    let user = PFUser.current()
-    user!["sections"] = []
-    user!.saveInBackground(block: { (success, error) in
-      if (success) {
-        print("The user data has been saved")
-      } else {
-        print("There was a problem with saving the user data")
-      }
-    })
-  }
-  
+  // Load the fridge data from Parse Server
   func loadSections() {
     sections = []
     let user = PFUser.current()
@@ -144,18 +181,7 @@ class FridgeViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
   }
   
-  func checkForSelection() -> Bool {
-    if(ingredients.count == 0) {
-      displayError(title: "No Ingredients Selected", message: "Please select ingredients first.")
-      return false
-    }
-    return true
-  }
-  
-  func addIngredient(ingredient: String) {
-    addIngredient(ingredient: ingredient, category: "Unlisted")
-  }
-  
+  // Add an ingredient to category
   func addIngredient(ingredient: String, category: String) {
     for i in 0..<sections.count {
       if(sections[i].category == category) {
@@ -166,16 +192,7 @@ class FridgeViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
   }
   
-  func removeIngredient(ingredient: String) {
-    for i in 0..<sections.count {
-      if let index = sections[i].ingredients.index(of: ingredient) {
-        sections[i].ingredients.remove(at: index)
-        save()
-        return
-      }
-    }
-  }
-  
+  // Checks if ingredient with the same name has already been added
   func ingredientAlreadyAdded(ingredient: String) -> Bool {
     for i in 0..<sections.count {
       if sections[i].ingredients.index(of: ingredient) != nil {
@@ -185,11 +202,23 @@ class FridgeViewController: UIViewController, UITableViewDelegate, UITableViewDa
     return false
   }
   
+  // Add new category
+  func addSection(name: String, color: UIColor) {
+    if (checkCategoryExists(category: name) != -1) {
+      displayError(title: "Cannot Add Category", message: "Category already exists.")
+    }
+    else {
+      let newSection = Section(category: name, ingredients: [], color: color, expanded: false)
+      sections.append(newSection)
+      save()
+    }
+    return
+  }
+  
+  // Checks if category with the same name has already been added
   func checkCategoryExists(category: String) -> Int {
     for i in 0..<sections.count {
       let existingCategory = sections[i].category.lowercased()  // Ignore capitalization
-      print("1 - " + existingCategory)
-      print("1 - " + category.lowercased())
       if existingCategory == category.lowercased() {
         return i
       }
@@ -197,13 +226,7 @@ class FridgeViewController: UIViewController, UITableViewDelegate, UITableViewDa
     return -1
   }
   
-  func addSection(name: String, color: UIColor) {
-    let newSection = Section(category: name, ingredients: [], color: color, expanded: false)
-    sections.append(newSection)
-    save()
-    return
-  }
-  
+  // Search and remove a category
   func removeSection(name: String) -> Bool {
     for i in 0..<sections.count {
       if sections[i].category == name {
@@ -216,6 +239,7 @@ class FridgeViewController: UIViewController, UITableViewDelegate, UITableViewDa
     return false
   }
   
+  // Move ingredients from one category to another
   func moveIngredients(ingredients: Array<String>, categoryName: String) {
     for ingredient in ingredients {
       removeIngredient(ingredient: ingredient)
@@ -224,29 +248,21 @@ class FridgeViewController: UIViewController, UITableViewDelegate, UITableViewDa
     self.ingredients = []
   }
   
-  func deselectAll() {
-    let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: "expandableHeaderView") as! ExpandableHeaderView
-    header.tableView = tableView
-    for section in 0..<sections.count {
-      header.deselectSection(section: section)
-    }
-    
-  }
-  
-  func selectAll() {
-    let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: "expandableHeaderView") as! ExpandableHeaderView
-    header.tableView = tableView
-    for section in 0..<sections.count {
-      if !isExpanded(header: header, section: section) {
-        toggleSection(header: header, section: section)
-      }
-      header.selectSection(section: section)
-    }
-  }
-  
   override func viewWillDisappear(_ animated: Bool) {
     ingredients = []
     save()
+  }
+  
+  override func viewDidAppear(_ animated: Bool) {
+    if (sections.count == 0) {
+      instructionsLabel.text = "Start by adding a new category!"
+    }
+    else if (sections.count == 1 && sections[0].ingredients.count == 0) {
+      instructionsLabel.text = "Add a new ingredient to a category by\ntapping the \"+\""
+    }
+    else {
+      instructionsLabel.isHidden = true
+    }
   }
   
   override func viewDidLoad() {
@@ -350,6 +366,7 @@ class FridgeViewController: UIViewController, UITableViewDelegate, UITableViewDa
     tableView.endUpdates()
   }
   
+  // Add ingredient to category
   func addIngredient(header: ExpandableHeaderView, section: Int) {
     let ingredientSearchVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "IngredientSearch") as! IngredientSearchViewController
     ingredientSearchVC.category = sections[section].category
@@ -360,6 +377,7 @@ class FridgeViewController: UIViewController, UITableViewDelegate, UITableViewDa
     ingredientSearchVC.didMove(toParentViewController: self)
   }
   
+  // Check is category is expanded or collapsed
   func isExpanded(header: ExpandableHeaderView, section: Int) -> Bool {
     return sections[section].expanded
   }

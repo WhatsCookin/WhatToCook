@@ -40,6 +40,7 @@
 		20A511BC2077205900FDF6BB /* IngredientCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20A511BB2077205900FDF6BB /* IngredientCell.swift */; };
 		20A511C12077408C00FDF6BB /* Section.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20A511C02077408C00FDF6BB /* Section.swift */; };
 		20A511C3207743E600FDF6BB /* ExpandableHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20A511C2207743E600FDF6BB /* ExpandableHeaderView.swift */; };
+		20AC71BC211FF1D00005EECC /* Dictionary.txt in Resources */ = {isa = PBXBuildFile; fileRef = 20AC71BB211FF1CF0005EECC /* Dictionary.txt */; };
 		20BADE2A209BE66500FE5BB4 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20BADE29209BE66500FE5BB4 /* SignUpViewController.swift */; };
 		20EBA33820819415000B6349 /* SpoonacularAPIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20EBA33720819415000B6349 /* SpoonacularAPIManager.swift */; };
 		20EBA33A20819534000B6349 /* Ingredient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20EBA33920819534000B6349 /* Ingredient.swift */; };
@@ -112,6 +113,7 @@
 		20A511BB2077205900FDF6BB /* IngredientCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientCell.swift; sourceTree = "<group>"; };
 		20A511C02077408C00FDF6BB /* Section.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Section.swift; sourceTree = "<group>"; };
 		20A511C2207743E600FDF6BB /* ExpandableHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpandableHeaderView.swift; sourceTree = "<group>"; };
+		20AC71BB211FF1CF0005EECC /* Dictionary.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Dictionary.txt; sourceTree = "<group>"; };
 		20BADE29209BE66500FE5BB4 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		20EBA33720819415000B6349 /* SpoonacularAPIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpoonacularAPIManager.swift; sourceTree = "<group>"; };
 		20EBA33920819534000B6349 /* Ingredient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ingredient.swift; sourceTree = "<group>"; };
@@ -207,6 +209,7 @@
 				63AE43B4208C1D0500644354 /* SWRevealViewController.h */,
 				63AE43B6208C1D1C00644354 /* SWRevealViewController.m */,
 				63AE43B5208C1D1A00644354 /* What2Cook-Bridging-Header.h */,
+				20AC71BB211FF1CF0005EECC /* Dictionary.txt */,
 			);
 			path = What2Cook;
 			sourceTree = "<group>";
@@ -447,6 +450,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				201BA6372071354F00455146 /* LaunchScreen.storyboard in Resources */,
+				20AC71BC211FF1D00005EECC /* Dictionary.txt in Resources */,
 				20EDAF8D20A2952A00195F93 /* ExpandableHeaderView.xib in Resources */,
 				740CD4FC20B92A3300FC6887 /* fontawesome-webfont.ttf in Resources */,
 				201BA6342071354F00455146 /* Assets.xcassets in Resources */,

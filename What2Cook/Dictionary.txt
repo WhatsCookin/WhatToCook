@@ -24,7 +24,6 @@ as
 your
 all
 have
-new
 more
 an
 was
@@ -51,9 +50,7 @@ time
 they
 site
 he
-up
 may
-what
 which
 their
 news
@@ -100,7 +97,6 @@ than
 find
 price
 date
-back
 top
 people
 had
@@ -118,7 +114,6 @@ health
 n
 world
 re
-next
 used
 go
 b
@@ -138,7 +133,6 @@ post
 her
 city
 t
-add
 policy
 number
 such
@@ -307,7 +301,6 @@ power
 while
 care
 network
-down
 computer
 systems
 three
@@ -391,8 +384,6 @@ money
 quality
 every
 listing
-content
-country
 private
 little
 visit
@@ -511,7 +502,6 @@ staff
 articles
 san
 feedback
-again
 play
 looking
 issues
@@ -527,7 +517,6 @@ things
 working
 against
 standard
-tax
 person
 below
 mobile
@@ -669,7 +658,6 @@ learning
 energy
 run
 delivery
-net
 popular
 term
 film
@@ -743,7 +731,6 @@ called
 short
 arts
 lot
-ask
 display
 limited
 powered
@@ -923,7 +910,6 @@ michael
 known
 half
 cases
-step
 engineering
 florida
 simple
@@ -962,7 +948,6 @@ along
 among
 death
 writing
-speed
 html
 countries
 loss
@@ -998,3 +983,13 @@ next
 repeat
 go 
 back
+again
+what
+step
+slow
+down
+up
+normal
+speed
+previous
+continue
