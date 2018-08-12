@@ -72,7 +72,7 @@ class RecipeSuggestionViewController: UIViewController, UITableViewDelegate, UIT
   }
   
   func fetchRecipes(id: Int, completion: @escaping (_ value: RecipeItem)->()) {
-    SpoonacularAPIManager().getRecipeData(id) { (data, error) in
+    SpoonacularAPIManager().getRecipeData(id) { (data) in
       if let data = data {
         print(data)
         self.recipeItem = data
@@ -80,9 +80,6 @@ class RecipeSuggestionViewController: UIViewController, UITableViewDelegate, UIT
         self.finishedLoading = true
         print("Loaded the data from api")
         completion(data)
-      }
-      else if error != nil {
-        print("Error")
       }
     }
   }

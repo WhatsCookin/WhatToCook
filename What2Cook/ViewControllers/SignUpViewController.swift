@@ -10,26 +10,27 @@ import UIKit
 import Parse
 
 class SignUpViewController: UIViewController {
+  let MIN_PASSWORD_LEN = 6
   
+  var justRegistered = false
   @IBOutlet weak var passwordField: UITextField!
   @IBOutlet weak var reenterPasswordField: UITextField!
   @IBOutlet weak var usernameField: UITextField!
   
   @IBAction func onSignUp(_ sender: UIButton) {
-    // Check for errors and display error message
-    
     let username = usernameField.text
     let password = passwordField.text
     let passwordCheck = reenterPasswordField.text
     
+    // Check for errors and display error message
     if username == "" || password == "" || passwordCheck == "" {
       displayError(title: "Error", message: "All fields are required.")
     }
     else if password != passwordCheck {
       displayError(title: "Error", message: "Passwords do not match.")
     }
-    else if (password?.count)! < 6 {
-      displayError(title: "Error", message: "Password is too short. Must be at least 6 characters.")
+    else if (password?.count)! < MIN_PASSWORD_LEN {
+      displayError(title: "Error", message: "Password is too short. Must be at least " + String(MIN_PASSWORD_LEN) + " characters.")
     }
     else {
       let newUser = PFUser()
@@ -42,17 +43,19 @@ class SignUpViewController: UIViewController {
           if(error._code == 202) {
             self.displayError(title: "That Username is Taken", message: "Try a different username.")
           }
-        } else {
+        }
+        else {
           print("Created a new user")
-          // display view controller that needs to shown after successful login
-          self.performSegue(withIdentifier: "loginSegue", sender: nil)
+          self.justRegistered = true
+          self.navigationController?.viewControllers.remove(at: 0)
+          self.performSegue(withIdentifier: "loginViewSegue", sender: self)
         }
       }
     }
   }
   
   @IBAction func goBack(_ sender: Any) {
-    if let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "loginViewController") as? UIViewController {
+    if let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "loginViewController") as? LoginViewController {
       present(vc, animated: true, completion: nil)
     }
   }
@@ -68,5 +71,14 @@ class SignUpViewController: UIViewController {
   override func didReceiveMemoryWarning() {
     super.didReceiveMemoryWarning()
     // Dispose of any resources that can be recreated.
+  }
+  
+  override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
+    return justRegistered
+  }
+  
+  override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    let loginViewController = segue.destination as? LoginViewController
+    loginViewController?.justRegistered = true
   }
 }
