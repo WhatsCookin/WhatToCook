@@ -142,7 +142,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     Parse.initialize(with: ParseClientConfiguration(block: { (configuration: ParseMutableClientConfiguration) in
       configuration.applicationId = "What2Cook"
       configuration.server = "http://what-2-cook.herokuapp.com/parse"
-      configuration.clientKey = Constants().clientKey
+      configuration.clientKey = Constants().HEROKU_KEY
     }))
     
     if let currentUser = PFUser.current() {

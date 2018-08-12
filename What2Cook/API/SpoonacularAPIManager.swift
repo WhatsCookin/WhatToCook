@@ -11,7 +11,7 @@ import Alamofire
 import Parse
 
 class SpoonacularAPIManager {
-  let key = Constants().key
+  let key = Constants().SPOONACULAR_KEY
   
   // Retrieves recipes given a search query of ingredients
   func searchRecipes(_ ingredients: [String], completion: @escaping([Recipe]?) -> ()) {

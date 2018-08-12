@@ -58,7 +58,8 @@ class SingleViewController: UIViewController, UITableViewDelegate, UITableViewDa
                           "Step: Get the step number\n" +
                           "Slow Down: Slow down reading speed\n" +
                           "Speed up: Speed up reading speed\n" +
-                          "Normal Speed: Reset reading speed")
+                          "Normal Speed: Reset reading speed\n\n" +
+                          "Tap the microphone to get started!")
   }
   
   @IBAction func onBookmark(_ sender: UIButton) {
