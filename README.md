@@ -1,6 +1,6 @@
 # *What2Cook*
 
-**What2Cook** created by ORG WhatsCookin is an iOS app that allows users to quickly find recipes and start cooking! Users can search for popular recipes or use the “What’s In My Fridge” feature to discover recipes that they can make now using only ingredients they have in their fridge! This app can be used hands-off while cooking with text-to-speech to read out recipe instructions and voice commands to navigate through the directions.
+**What2Cook** is an iOS app that allows users to quickly find recipes and start cooking! Users can search for popular recipes or use the “What’s In My Fridge” feature to discover recipes that they can make now using only ingredients they have in their fridge! This app can be used hands-off while cooking with text-to-speech to read out recipe instructions and voice commands to navigate through the directions.
 
 ## User Stories
 
@@ -25,6 +25,17 @@ Bookmarks(Works offline):
 https://i.imgur.com/CQyYOaI.gif
 
 
+## How To Use
+Run in Xcode after creating a file named Constants.swift:
+```
+class Constants {
+  let SPOONACULAR_KEY = "Your Spoonacular API key"
+  let HEROKU_KEY = "Your Heroku master key"
+}
+```
+Spoonacular is free as long as you do not exceed 50 API calls or 500 API results per day. You can keep track of your API calls and results in Settings.
+
+Tested using iPhone 8
 
 
 ## Nice To Haves
