@@ -498,7 +498,6 @@ pc
 study
 application
 cart
-staff
 articles
 san
 feedback
@@ -821,7 +820,6 @@ gifts
 europe
 reading
 topics
-bad
 individual
 tips
 plus

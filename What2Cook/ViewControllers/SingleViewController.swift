@@ -56,10 +56,10 @@ class SingleViewController: UIViewController, UITableViewDelegate, UITableViewDa
                           "Previous: Go to the previous step\n" +
                           "Repeat: Repeat the current step\n" +
                           "Step: Get the step number\n" +
-                          "Slow Down: Slow down reading speed\n" +
-                          "Speed up: Speed up reading speed\n" +
-                          "Normal Speed: Reset reading speed\n\n" +
-                          "Tap the microphone to get started!")
+                          "Slow: Slow down reading speed\n" +
+                          "Speed: Speed up reading speed\n" +
+                          "Normal: Reset reading speed\n\n" +
+                          "Tap the microphone to enable voice commands")
   }
   
   @IBAction func onBookmark(_ sender: UIButton) {
@@ -127,12 +127,11 @@ class SingleViewController: UIViewController, UITableViewDelegate, UITableViewDa
   
   func nextStep() {
     synthesizer.stopSpeaking(at: .immediate)
-    if(currentStep + 1 < toRead.count) {
+    if(currentStep + 1 < directions.count) {
       currentStep = currentStep + 1
       playMessage(message: "Step " + String(currentStep + 1) + ". " + toRead[currentStep])
     }
     else {
-      currentStep = toRead.count
       playMessage(message: "End of recipe.")
     }
   }
@@ -392,7 +391,7 @@ class SingleViewController: UIViewController, UITableViewDelegate, UITableViewDa
       self.playCurrentStep()
     }
     else if wordFound(in: voiceCommand, words: ["step"]) {
-      self.playMessage(message: "We're on step " + String(self.currentStep + 1) + " out of " + String(self.toRead.count))
+      self.playMessage(message: "We're on step " + String(self.currentStep + 1) + " out of " + String(self.directions.count))
     }
     else if wordFound(in: voiceCommand, words: ["slow", "slow down"]) {
       self.changeSpeed(rate: self.utteranceRate * 0.8)
