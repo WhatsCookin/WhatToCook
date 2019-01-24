@@ -15,13 +15,13 @@
 ## Video Walkthrough
 Here's a walkthrough of implemented user stories:
 
-Search popular recipes:
-https://i.imgur.com/vQ4W89e.gif
+1. Log in + Search popular recipes:
+https://i.imgur.com/SNA7KCQ.gif
 
-What's in my fridge:
+2. What's in my Fridge feature:
 https://i.imgur.com/nFd6xC7.gif
 
-Bookmarks(Works offline):
+3. Recipe View + Bookmarks(Works offline):
 https://i.imgur.com/CQyYOaI.gif
 
 
