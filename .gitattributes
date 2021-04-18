@@ -1,2 +1,2 @@
 *.pbxproj binary merge=union
-*.c linguist-detectable=false
+* linguist-language=Swift
